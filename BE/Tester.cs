@@ -14,7 +14,7 @@ namespace BE
 		
 		private uint maxDistance;
 
-		int per;
+		
 		public Day[] Schedule = new Day[5];
 		public uint MaxDistance { get => maxDistance; set => maxDistance = value; }
 		public uint ExpYears { get => expYears; set => expYears = value; }
