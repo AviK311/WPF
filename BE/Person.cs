@@ -33,7 +33,7 @@ namespace BE
 
 		protected CarType carType;
 		protected Address address;
-		protected sex sex;
+		protected Gender gender;
 		protected string phoneNumber;
 		protected DateTime birthDay;
 		protected Name name;
