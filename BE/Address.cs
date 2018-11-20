@@ -4,7 +4,6 @@ using System.Text;
 
 namespace BE
 {
-
 	public struct Address
 	{
 		string city, street, apptNumber;
