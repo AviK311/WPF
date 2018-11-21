@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Text;
 
 namespace BE
-{
+{ 
 	public struct Address
-	{
+	{   
 		string city, street, apptNumber;
 
 		public override string ToString()
