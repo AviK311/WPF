@@ -6,6 +6,7 @@ namespace BE
 { 
 	public struct Address
 	{   
+        //try3
 		string city, street, apptNumber;
 
 		public override string ToString()
