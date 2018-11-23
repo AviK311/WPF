@@ -2,7 +2,7 @@
 
 namespace BE
 {
-	
+
 	public struct Name
 	{
 		private readonly string first, last;
