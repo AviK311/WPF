@@ -5,6 +5,7 @@ namespace BE
 
 	public struct Name
 	{
+
 		private readonly string first, last;
 
 		public Name(string first, string last)
