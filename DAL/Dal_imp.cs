@@ -44,27 +44,21 @@ namespace DAL
 
 		void Idal.RemoveTest(string id)
 		{
-			var removeTest = from test in DataSource.testList
-							 where test.TestNumber == id
-							 select test;
-			DataSource.testList.Remove((Test)removeTest);
+			var removeTest = DataSource.testList.FirstOrDefault(test => test.TestNumber == id);
+			DataSource.testList.Remove(removeTest);
 
 		}
 
 		void Idal.RemoveTester(string id)
 		{
-			var removeTester = from tester in DataSource.testerList
-							   where tester.ID == id
-							   select tester;
-			DataSource.testerList.Remove((Tester)removeTester);
+			var removeTester = DataSource.testerList.FirstOrDefault(tester => tester.ID == id);
+			DataSource.testerList.Remove(removeTester);
 		}
 
 		void Idal.RemoveTrainee(string id)
 		{
-			var removeTrainee = from trainee in DataSource.traineeList
-								where trainee.ID == id
-								select trainee;
-			DataSource.traineeList.Remove((Trainee)removeTrainee);
+			var removeTrainee = DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id);
+			DataSource.traineeList.Remove(removeTrainee);
 		}
 
 		void Idal.UpdateTest(string id, Test newData)
