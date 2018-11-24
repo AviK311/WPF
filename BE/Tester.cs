@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BE
 {
-	class Tester:Person
+	public class Tester:Person
 	{
 		
 
