@@ -16,12 +16,12 @@ namespace DAL
 
 		public IEnumerable<Test> GetTests()
 		{
-			return DataSource.testerList;
+			return DataSource.testList;
 		}
 
 		public IEnumerable<Trainee> GetTrainees()
 		{
-			return DataSource.testerList;
+			return DataSource.traineeList;
 		}
 
 		void Idal.AddTest(Test test)
@@ -31,34 +31,40 @@ namespace DAL
 
 		void Idal.AddTester(Tester tester)
 		{
-			dataSource.testerList.Add(tester);
+			DataSource.testerList.Add(tester);
 
 		}
 
 		void Idal.AddTrainee(Trainee trainee)
 		{
-			dataSource.traineeList.Add(trainee);
+			DataSource.traineeList.Add(trainee);
 		}
 
 		
 
 		void Idal.RemoveTest(string id)
 		{
-			var removeTest = from test in dataSource.testList
+			var removeTest = from test in DataSource.testList
 							 where test.TestNumber == id
 							 select test;
-			dataSource.testList.Remove()
+			DataSource.testList.Remove((Test)removeTest);
 
 		}
 
 		void Idal.RemoveTester(string id)
 		{
-			throw new NotImplementedException();
+			var removeTester = from tester in DataSource.testerList
+							   where tester.ID == id
+							   select tester;
+			DataSource.testerList.Remove((Tester)removeTester);
 		}
 
 		void Idal.RemoveTrainee(string id)
 		{
-			throw new NotImplementedException();
+			var removeTrainee = from trainee in DataSource.traineeList
+								where trainee.ID == id
+								select trainee;
+			DataSource.traineeList.Remove((Trainee)removeTrainee);
 		}
 
 		void Idal.UpdateTest(string id, Test newData)
