@@ -13,7 +13,7 @@ namespace BE
 		private DateTime testDateTime;
 		private Address beginLocation;
 		private ushort grade;
-		private bool isDistance, isReverese, isMirror, isSignal;
+		private bool isDistance, isReverese, isMirror, isSignal, isBreak, isSigns;
 
 		public string TestNumber { get => testNumber; set => testNumber = value; }
 		public string TesterID { get => testerID; set => testerID = value; }
@@ -25,6 +25,8 @@ namespace BE
 		public bool IsMirror { get => isMirror; set => isMirror = value; }
 		public bool IsSignal { get => isSignal; set => isSignal = value; }
 		public ushort Grade { get => grade; set => grade = value; }
+		public bool IsSigns { get => isSigns; set => isSigns = value; }
+		public bool IsBreak { get => isBreak; set => isBreak = value; }
 
 		public override string ToString()
 		{
