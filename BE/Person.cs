@@ -28,7 +28,7 @@ namespace BE
 		public Name Name { get => name; set => name = value; }
 		public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
 		public Address Address { get => address; set => address = value; }
-		public sex Sex { get => sex; set => sex = value; }
+		public Gender Sex { get => gender; set => gender = value; }
 		public CarType CarType { get => carType; set => carType = value; }
 
 		protected CarType carType;

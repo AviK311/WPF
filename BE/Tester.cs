@@ -14,11 +14,10 @@ namespace BE
 		
 		private uint maxDistance;
 
-		
-		public Day[] Schedule = new Day[5];
+
+		public Schedule schedule;
 		public uint MaxDistance { get => maxDistance; set => maxDistance = value; }
 		public uint ExpYears { get => expYears; set => expYears = value; }
 		public uint MaxWeeklyTests { get => maxWeeklyTests; set => maxWeeklyTests = value; }
-		
 	}
 }
