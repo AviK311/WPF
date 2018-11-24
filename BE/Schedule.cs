@@ -9,8 +9,18 @@ namespace BE
 		public bool[] hours = new bool[6];
 		public bool this[int index]
 		{
-			get => hours[index - 9];
-			set => hours[index - 9] = value;
+			get
+			{
+				if (index > 14 || index < 9)
+					throw new System.InvalidOperationException("The hour is invalid");
+				return hours[index - 9];
+			}
+			set
+			{
+				if (index > 14 || index < 9)
+					throw new System.InvalidOperationException("The hour is invalid");
+				hours[index - 9] = value;
+			}
 		}
 	}
 	public class Schedule
@@ -32,8 +42,12 @@ namespace BE
 		}
 		public Day this[string index]
 		{
-			get => week[index];
-			set => week[index] = value;
+			get
+			{ 
+				if (!week.ContainsKey(index.ToLower()))
+					throw new System.InvalidOperationException("The given day is invalid");
+				return week[index.ToLower()];
+			}
 		}
 	}
 }

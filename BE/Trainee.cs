@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BE
 {  
-	class Trainee:Person
+	public class Trainee:Person
 	{
 		private GearType gearType;
 		private string schoolName;

@@ -5,7 +5,7 @@ using System.Text;
 namespace BE
 {
 
-	class Test
+	public class Test
 	{
 		private string testNumber;
 		private string testerID;
