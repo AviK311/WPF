@@ -25,7 +25,7 @@ namespace BE
 	}
 	public class Schedule
 	{
-		Dictionary<string, Day> week;
+		Dictionary<DayOfWeek, Day> week;
 
 		public Schedule()
 		{
@@ -34,19 +34,19 @@ namespace BE
 				day3 = new Day(),
 				day4 = new Day(),
 				day5 = new Day();
-			week.Add("sunday", day1);
-			week.Add("monday", day2);
-			week.Add("tuesday", day3);
-			week.Add("wednesday", day4);
-			week.Add("thursday", day5);
+			week.Add(DayOfWeek.Sunday, day1);
+			week.Add(DayOfWeek.Monday, day2);
+			week.Add(DayOfWeek.Tuesday, day3);
+			week.Add(DayOfWeek.Wednesday, day4);
+			week.Add(DayOfWeek.Thursday, day5);
 		}
-		public Day this[string index]
+		public Day this[DayOfWeek index]
 		{
 			get
 			{ 
-				if (!week.ContainsKey(index.ToLower()))
+				if (!week.ContainsKey(index))
 					throw new System.InvalidOperationException("The given day is invalid");
-				return week[index.ToLower()];
+				return week[index];
 			}
 		}
 	}

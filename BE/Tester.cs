@@ -13,8 +13,8 @@ namespace BE
 		private uint maxWeeklyTests;
 		
 		private uint maxDistance;
-
-
+		
+		
 		public Schedule schedule;
 		public uint MaxDistance { get => maxDistance; set => maxDistance = value; }
 		public uint ExpYears { get => expYears; set => expYears = value; }

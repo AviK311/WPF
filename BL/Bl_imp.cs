@@ -18,7 +18,36 @@ namespace BL
 		public void AddTest(Test test)
         {
 
-			TestGroupsAccordingToStudentID(true);
+			var tests = from test1 in dal.GetTests()
+						where test1.TraineeID == test.TraineeID
+						select test1;
+			if (tests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
+				throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
+			var testTrainee = (from trainee in dal.GetTrainees()
+							  where trainee.ID == test.TraineeID
+							  select trainee).First();
+			var testTester = (from tester in dal.GetTesters()
+							  where tester.ID == test.TesterID
+							  select tester).First();
+			
+			if (testTrainee.CarType != testTester.CarType)
+				throw new InvalidOperationException("The tester does not teach on the car type that the trainee learned with");
+			if (testTrainee.NumOfClasses < 20)
+				throw new InvalidOperationException("The trainee is not yet ready for a test");
+			if (testTrainee.passedTests[testTrainee.CarType])
+				throw new InvalidOperationException("The student has already passed a test on that vehicle");
+			DayOfWeek day = test.TestDateTime.DayOfWeek;
+			int time = test.TestDateTime.Hour;
+			var tests_by_tester = from test1 in dal.GetTests()
+								  where test1.TesterID == testTester.ID
+								  select test1;
+			///if the tester is unavailable
+			if (!testTester.schedule[day][time] || tests_by_tester.Any(T=>T.TestDateTime==test.TestDateTime))
+			{
+				//code to suggest another tester
+			}
+			
+
 			dal.AddTest(test);
         }
 
@@ -148,12 +177,7 @@ namespace BL
 		public IEnumerable<IGrouping<string, Test>> TestGroupsAccordingToStudentID(bool inOrder)
 		{
 
-			var tests = inOrder ? from test in dal.GetTests()
-								  orderby test.TestDateTime
-								  group test by test.TraineeID :
-								from test in dal.GetTests()
-								group test by test.TraineeID;
-			return tests;
+			throw new NotImplementedException();
 		}
 	}
 }
