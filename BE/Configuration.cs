@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BE
 {
-    class Configuration
+    public class Configuration
     {
         protected static int testCode = 0;
         public int TestCode { get => testCode; set => testCode = value; }
@@ -12,5 +12,9 @@ namespace BE
         public static uint MinAgaOfTrainee { get; } = 18;
         public static uint MinNumOfClasses { get; } = 20;
         public static uint MinAgaOfTester { get; } = 40;
+        public Configuration()
+        {
+
+        }
     }
 }
