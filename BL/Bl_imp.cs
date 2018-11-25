@@ -46,7 +46,11 @@ namespace BL
 			{
 				//code to suggest another tester
 			}
-			
+			var tests_by_tester_same_week = from test1 in tests_by_tester
+											where DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
+											select test1;
+			if (tests_by_tester_same_week.Count() > testTester.MaxWeeklyTests)
+				throw new InvalidOperationException("The tester has signed up for too many tests");
 
 			dal.AddTest(test);
         }
@@ -178,6 +182,15 @@ namespace BL
 		{
 
 			throw new NotImplementedException();
+		}
+		private bool DatesAreInTheSameWeek(DateTime date1, DateTime date2)
+		{
+			//var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
+			//var d1 = date1.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date1));
+			//var d2 = date2.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date2));
+			var d1 = date1.AddDays(-1 * (int)date1.DayOfWeek);
+			var d2 = date2.AddDays(-1 * (int)date2.DayOfWeek);
+			return d1 == d2;
 		}
 	}
 }
