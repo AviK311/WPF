@@ -9,14 +9,17 @@ namespace BL
     public interface IBL
     {
         void AddTest(BE.Test test);
+		BE.Test GetTest(string id);
         void RemoveTest(string id);
         void UpdateTest(string id, BE.Test newData);
 
         void AddTrainee(BE.Trainee trainee);
-        void RemoveTrainee(string id);
+		BE.Trainee GetTrainee(string id);
+		void RemoveTrainee(string id);
         void UpdateTrainee(string id, BE.Trainee newData);
 
         void AddTester(BE.Tester tester);
+		BE.Tester GetTester(string id);
         void RemoveTester(string id);
         void UpdateTester(string id, BE.Tester newData);
 
@@ -24,21 +27,23 @@ namespace BL
         IEnumerable<BE.Tester> GetTesters();
         IEnumerable<BE.Trainee> GetTrainees();
 
-        List<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
-        List<BE.Tester> AvailableTesters(DateTime date);
-        List<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
+		IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
+		IEnumerable<BE.Tester> AvailableTesters(DateTime date);
+		IEnumerable<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
         int TestsNum(BE.Trainee trainee);
         bool ProperToLicense(BE.Trainee trainee);
         IEnumerable<DateTime> PlannedTests();
 
         //Groups
         IEnumerable<IGrouping<string, BE.Trainee>> 
-            TraineesGroupsAccordingSchoolName(bool inOrder);
+            TraineesGroupsAccordingToSchoolName(bool inOrder = false);
         IEnumerable<IGrouping<BE.Name, BE.Trainee>>
-            TraineesGroupsAccordingTeacherName(bool inOrder);
+            TraineesGroupsAccordingToTeacherName(bool inOrder = false);
         IEnumerable<IGrouping<int, BE.Trainee>>
-            TraineesGroupsAccordingTestsNum(bool inOrder);
+            TraineesGroupsAccordingToTestsNum(bool inOrder = false);
         IEnumerable<IGrouping<BE.CarType, BE.Tester>>
-            TesterGroupsAccordingCarType(bool inOrder);
+            TesterGroupsAccordingToCarType(bool inOrder = false);
+		IEnumerable<IGrouping<string, BE.Test>>
+			TestGroupsAccordingToStudentID(bool inOrder = false);
     }
 }

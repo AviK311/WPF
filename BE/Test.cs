@@ -30,7 +30,16 @@ namespace BE
 
 		public override string ToString()
 		{
-			return base.ToString();
+			return string.Format(
+				"Test number: {0}\n" +
+				"Tester ID: {1}\n" +
+				"Trainee ID: {2}\n" +
+				"Date and Time: {3}\n" +
+				"Begin location: {4}\n" +
+				"Grade: {5}\n",
+				TestNumber, TesterID, TraineeID,
+				TestDateTime.ToShortDateString() + TestDateTime.ToShortTimeString(),
+				BeginLocation.ToString(), Grade);
 		}
 	}
 }

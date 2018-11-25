@@ -6,13 +6,15 @@ namespace BE
 {
     public class Configuration
     {
-        protected static int testCode = 0;
-        public int TestCode { get => testCode; set => testCode = value; }
+		private static int testCode = 0;
+		public static int TestCode { get => testCode; set => testCode = value; }
         public static uint TimeBetweenTests { get; } = 7;
-        public static uint MinAgaOfTrainee { get; } = 18;
+        public static uint MinAgeOfTrainee { get; } = 18;
         public static uint MinNumOfClasses { get; } = 20;
-        public static uint MinAgaOfTester { get; } = 40;
-        public Configuration()
+        public static uint MinAgeOfTester { get; } = 40;
+		
+
+		public Configuration()
         {
 
         }

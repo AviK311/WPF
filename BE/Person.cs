@@ -41,6 +41,15 @@ namespace BE
 		protected string iD;
 		protected string firstName;
 		protected string lastName;
-
+		public ushort getAge
+		{
+			get
+			{
+				DateTime now = DateTime.Today;
+				ushort age = (ushort)(now.Year - BirthDay.Year);
+				if (now < BirthDay.AddYears(age)) age--;
+				return age;
+			}
+		}
 	}
 }
