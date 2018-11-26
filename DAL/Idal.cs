@@ -1,10 +1,10 @@
 ﻿using System;
+using BE;
 using System.Collections.Generic;
-
 
 namespace DAL
 {
-	public interface Idal
+    public interface Idal
 	{
 		void AddTest(BE.Test test);
 		BE.Test GetTest(string id);

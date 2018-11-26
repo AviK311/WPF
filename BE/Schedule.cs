@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BE
-{  
-	public class Day
+{
+    public class Day
 	{
 		public bool[] hours = new bool[6];
 		public bool this[int index]

@@ -1,13 +1,13 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
-using System.Text;
-using BE;
 using System.Linq;
+using BE;
 using DS;
 
 namespace DAL
 {
-	class Dal_imp : Idal
+    public class Dal_imp : Idal
 	{
 		public Test GetTest(string id)
 		{

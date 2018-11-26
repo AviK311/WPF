@@ -1,10 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace BE
-{  
-	public class Trainee:Person
+{
+    public class Trainee:Person
 	{
 		private GearType gearType;
 		private string schoolName;

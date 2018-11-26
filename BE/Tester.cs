@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BE
+﻿namespace BE
 {
-	public class Tester:Person
+    public class Tester:Person
 	{
 		
 

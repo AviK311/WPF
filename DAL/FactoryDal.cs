@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace DAL
+﻿namespace DAL
 {
-	public class FactoryDal
+    public class FactoryDal
 	{
 		static Idal dal = null;
 		protected FactoryDal() { }

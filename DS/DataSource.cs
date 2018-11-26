@@ -1,10 +1,9 @@
-﻿using System.Collections.Generic;
-using System;
-using BE;
+﻿using BE;
+using System.Collections.Generic;
 
 namespace DS
 {
-	public class DataSource
+    public class DataSource
 	{
 		public static List<Test> testList = new List<Test>();
 		public static List<Tester> testerList = new List<Tester>();

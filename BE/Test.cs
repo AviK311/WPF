@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace BE
 {
 
-	public class Test
+    public class Test
 	{
 		private string testNumber;
 		private string testerID;

@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace BE
-{ 
-	public struct Address
+﻿namespace BE
+{
+    public struct Address
 	{   
         //try3
 		public string city, street, buildingNumber;

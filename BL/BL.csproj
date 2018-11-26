@@ -41,18 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bl_imp.cs" />
     <Compile Include="FactoryBL.cs" />
     <Compile Include="IBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BE\BE.csproj">
-      <Project>{3337c0b3-502b-4959-b993-b0f081123645}</Project>
+      <Project>{d9697b60-2053-4824-9ad8-356719b16b2a}</Project>
       <Name>BE</Name>
     </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
-      <Project>{9b7cc7dc-5346-40f1-8435-9724f59c4679}</Project>
+      <Project>{c76f26d3-dd7c-45d7-8fac-d198d532f326}</Project>
       <Name>DAL</Name>
     </ProjectReference>
   </ItemGroup>

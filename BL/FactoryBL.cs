@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace BL
+﻿namespace BL
 {
-	public class FactoryBL
+    public class FactoryBL
 	{
 		static IBL bl = null;
 		protected FactoryBL() { }
