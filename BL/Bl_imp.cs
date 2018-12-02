@@ -80,22 +80,24 @@ namespace BL
 
         public IEnumerable<Tester> AvailableTesters(DateTime date)
         {
+            
+                             
             throw new NotImplementedException();
         }
 
         public IEnumerable<Tester> GetTesters()
         {
-            throw new NotImplementedException();
+            return dal.GetTesters();
         }
 
         public IEnumerable<Test> GetTests()
         {
-            throw new NotImplementedException();
+            return dal.GetTests();
         }
 
         public IEnumerable<Trainee> GetTrainees()
         {
-            throw new NotImplementedException();
+            return dal.GetTrainees();
         }
 
         public IEnumerable<DateTime> PlannedTests()
