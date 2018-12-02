@@ -154,7 +154,10 @@ namespace BL
 
         public int TestsNum(Trainee trainee)
         {
-            throw new NotImplementedException();
+            var tests = from test in dal.GetTests()
+                        where test.TraineeID==trainee.ID
+                        select test;
+            return tests.Count();
         }
 
         public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(bool inOrder)
