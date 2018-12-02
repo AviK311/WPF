@@ -6,25 +6,25 @@ namespace DAL
 {
     public interface Idal
 	{
-		void AddTest(BE.Test test);
-		BE.Test GetTest(string id);
-		void RemoveTest(string id);
-		void UpdateTest(string id, BE.Test newData);
+		void AddTest(Test test);
+		Test GetTest(string id);
+		void RemoveTest(Test toRemove);
+		void UpdateTest(string id, Test newData);
 		
-		void AddTrainee(BE.Trainee trainee);
-		BE.Trainee GetTrainee(string id);
-		void RemoveTrainee(string id);
-		void UpdateTrainee(string id, BE.Trainee newData);
+		void AddTrainee(Trainee trainee);
+		Trainee GetTrainee(string id);
+		void RemoveTrainee(Trainee toRemove);
+		void UpdateTrainee(string id, Trainee newData);
 
-		void AddTester(BE.Tester tester);
-		BE.Tester getTester(string id);
-		void RemoveTester(string id);
-		void UpdateTester(string id, BE.Tester newData);
+		void AddTester(Tester tester);
+		Tester getTester(string id);
+		void RemoveTester(Tester toRemove);
+		void UpdateTester(string id,Tester newData);
 
 
-		IEnumerable<BE.Test> GetTests();
-		IEnumerable<BE.Tester> GetTesters();
-		IEnumerable<BE.Trainee> GetTrainees();
+		IEnumerable<Test> GetTests();
+		IEnumerable<Tester> GetTesters();
+		IEnumerable<Trainee> GetTrainees();
 
 	}
 }

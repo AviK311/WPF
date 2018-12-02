@@ -41,49 +41,33 @@ namespace DAL
 
 		void Idal.AddTest(Test test)
 		{
-			test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
-			if (DataSource.testList.Any(T => T.TestNumber == test.TestNumber))
-				throw new InvalidOperationException("A test with that ID already exists");
-			Configuration.TestCode++;
+			
 			DataSource.testList.Add(test);
 		}
 
 		void Idal.AddTester(Tester tester)
 		{
-			if (DataSource.testerList.Any(T => T.ID == tester.ID))
-				throw new InvalidOperationException("A tester with that ID already exists");
 			DataSource.testerList.Add(tester);
 		}
 
 		void Idal.AddTrainee(Trainee trainee)
 		{
-			if (DataSource.traineeList.Any(T => T.ID==trainee.ID))
-				throw new InvalidOperationException("A trainee with that ID already exists");
 			DataSource.traineeList.Add(trainee);
 		}
 
-		void Idal.RemoveTest(string id)
+		void Idal.RemoveTest(Test toRemove)
 		{
-			var removeTest = DataSource.testList.FirstOrDefault(test => test.TestNumber == id);
-			if (removeTest != null)
-				DataSource.testList.Remove(removeTest);
-			else throw new InvalidOperationException("A Test with that ID doesn't exist");
+			DataSource.testList.Remove(toRemove);
 		}
 
-		void Idal.RemoveTester(string id)
+		void Idal.RemoveTester(Tester toRemove)
 		{
-			var removeTester = DataSource.testerList.FirstOrDefault(tester => tester.ID == id);
-			if (removeTester != null)
-				DataSource.testerList.Remove(removeTester);
-			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
+			DataSource.testerList.Remove(toRemove);
 		}
 
-		void Idal.RemoveTrainee(string id)
+		void Idal.RemoveTrainee(Trainee toRemove)
 		{
-			var removeTrainee = DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id);
-			if (removeTrainee != null)
-				DataSource.traineeList.Remove(removeTrainee);
-			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
+			DataSource.traineeList.Remove(toRemove);
 		}
 
 		void Idal.UpdateTest(string id, Test newData)

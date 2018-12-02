@@ -43,8 +43,8 @@ namespace BL
             TraineesGroupsAccordingToTestsNum(bool inOrder = false);
         IEnumerable<IGrouping<BE.CarType, BE.Tester>>
             TesterGroupsAccordingToCarType(bool inOrder = false);
-		IEnumerable<IGrouping<string, BE.Test>>
-			TestGroupsAccordingToStudentID(bool inOrder = false);
+		IEnumerable<IGrouping<Trainee, BE.Test>>
+			TestGroupsAccordingToTrainee(bool inOrder = false);
     }
 }
 

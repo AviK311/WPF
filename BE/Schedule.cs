@@ -6,6 +6,13 @@ namespace BE
     public class Day
 	{
 		public bool[] hours = new bool[6];
+
+		public Day()
+		{
+			for (int i = 0; i < 6; i++)
+				hours[i] = true;
+		}
+
 		public bool this[int index]
 		{
 			get
@@ -33,7 +40,7 @@ namespace BE
 				day3 = new Day(),
 				day4 = new Day(),
 				day5 = new Day();
-			week.Add(DayOfWeek.Sunday, day1);
+			week.Add(DayOfWeek.Sunday, new Day());
 			week.Add(DayOfWeek.Monday, day2);
 			week.Add(DayOfWeek.Tuesday, day3);
 			week.Add(DayOfWeek.Wednesday, day4);

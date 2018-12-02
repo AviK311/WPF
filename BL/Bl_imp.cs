@@ -14,22 +14,22 @@ namespace BL
         {
             dal = DAL.FactoryDal.GetDAL();
         }
-
         public void AddTest(Test test)
         {
+			test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
+			var testTrainee = (from trainee in dal.GetTrainees()
+							   where trainee.ID == test.TraineeID
+							   select trainee).First();
+			var testTester = (from tester in dal.GetTesters()
+							  where tester.ID == test.TesterID
+							  select tester).First();
+			if (testTrainee == null) throw new InvalidOperationException("The trainee does not exist");
+			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
 
-            var tests = from test1 in dal.GetTests()
-                        where test1.TraineeID == test.TraineeID
-                        select test1;
-            if (tests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
+			var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
+            if (otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
-            var testTrainee = (from trainee in dal.GetTrainees()
-                               where trainee.ID == test.TraineeID
-                               select trainee).First();
-            var testTester = (from tester in dal.GetTesters()
-                              where tester.ID == test.TesterID
-                              select tester).First();
-
+            
             if (testTrainee.CarType != testTester.CarType)
                 throw new InvalidOperationException("The tester does not teach on the car type that the trainee learned with");
             if (testTrainee.NumOfClasses < 20)
@@ -51,20 +51,25 @@ namespace BL
                                             select test1;
             if (tests_by_tester_same_week.Count() > testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
-
-            dal.AddTest(test);
+			
+			Configuration.TestCode++;
+			dal.AddTest(test);
         }
 
         void IBL.AddTester(Tester tester)
         {
-            if (tester.getAge < Configuration.MinAgeOfTester)
+			if (dal.GetTesters().Any(T => T.ID == tester.ID))
+				throw new InvalidOperationException("A tester with that ID already exists");
+			if (tester.getAge < Configuration.MinAgeOfTester)
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
             dal.AddTester(tester);
         }
 
         public void AddTrainee(Trainee trainee)
         {
-            dal.AddTrainee(trainee);
+			if (dal.GetTrainees().Any(T => T.ID == trainee.ID))
+				throw new InvalidOperationException("A trainee with that ID already exists");
+			dal.AddTrainee(trainee);
         }
 
         public IEnumerable<Test> AppropriateTests(Func<Test, bool> match)
@@ -105,22 +110,34 @@ namespace BL
 
         public void RemoveTest(string id)
         {
-            throw new NotImplementedException();
+			var removeTest = dal.GetTests().FirstOrDefault(test => test.TestNumber == id);
+			if (removeTest != null)
+				dal.RemoveTest(removeTest);
+			else throw new InvalidOperationException("A Test with that ID doesn't exist");
         }
 
         public void RemoveTester(string id)
         {
-            throw new NotImplementedException();
+			var removeTester = dal.GetTesters().FirstOrDefault(tester => tester.ID == id);
+			if (removeTester != null)
+				dal.RemoveTester(removeTester);
+			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
         }
 
         public void RemoveTrainee(string id)
         {
-            throw new NotImplementedException();
+			var removeTrainee = dal.GetTrainees().FirstOrDefault(trainee => trainee.ID == id);
+			if (removeTrainee != null)
+				dal.RemoveTrainee(removeTrainee);
+			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
         }
 
         public IEnumerable<IGrouping<CarType, Tester>> TesterGroupsAccordingToCarType(bool inOrder)
         {
-            throw new NotImplementedException();
+			var toReturn = from tester in dal.GetTesters()
+						   group tester by tester.CarType;
+			if (inOrder) toReturn.OrderBy(item => item.Key.ToString());
+			return toReturn;
         }
 
         public IEnumerable<Tester> TestersInRange(Address address)
@@ -135,18 +152,28 @@ namespace BL
 
         public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(bool inOrder)
         {
-            throw new NotImplementedException();
-        }
+			var toReturn = from trainee in dal.GetTrainees()
+						   group trainee by trainee.SchoolName;
+			if (inOrder) toReturn.OrderBy(item => item.Key);
+			return toReturn;
+		}
 
         public IEnumerable<IGrouping<Name, Trainee>> TraineesGroupsAccordingToTeacherName(bool inOrder)
         {
-            throw new NotImplementedException();
-        }
+			var toReturn = from trainee in dal.GetTrainees()
+						   group trainee by trainee.TeacherName;
+			if (inOrder) toReturn.OrderBy(item => item.Key);
+			return toReturn;
+		}
 
         public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(bool inOrder)
         {
-            throw new NotImplementedException();
-        }
+			var toReturn = from trainee in dal.GetTrainees()
+						   let testsByTrainee = from test in dal.GetTests() where test.TraineeID == trainee.ID select test
+						   group trainee by testsByTrainee.Count();						   
+			if (inOrder) toReturn.OrderBy(item => item.Key);
+			return toReturn;
+		}
 
         public void UpdateTest(string id, Test newData)
         {
@@ -178,10 +205,15 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IGrouping<string, Test>> TestGroupsAccordingToStudentID(bool inOrder)
+        public IEnumerable<IGrouping<Trainee, Test>> TestGroupsAccordingToTrainee(bool inOrder)
         {
-
-            throw new NotImplementedException();
+			var toReturn = from test in dal.GetTests()
+						   let trainee = (from trainee in dal.GetTrainees()
+										  where trainee.ID == test.TraineeID
+										  select trainee).FirstOrDefault()
+						   group test by trainee;
+			if (inOrder) toReturn.OrderBy(item => item.Key.ID);
+			return toReturn;
         }
         private bool DatesAreInTheSameWeek(DateTime date1, DateTime date2)
         {
