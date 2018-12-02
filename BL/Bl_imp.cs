@@ -80,9 +80,14 @@ namespace BL
 
         public IEnumerable<Tester> AvailableTesters(DateTime date)
         {
-            
-                             
-            throw new NotImplementedException();
+            return from  tester in dal.GetTesters()
+                          let tests = from test in dal.GetTests()
+                                      where test.TesterID==tester.ID
+                                      select test
+                          where tester.schedule[date.DayOfWeek][date.Hour]  
+                                && !tests.Any(T=>(T.TestDateTime-date).Days==0)
+                                && tester.MaxWeeklyTests<tests.Count()
+                          select tester;
         }
 
         public IEnumerable<Tester> GetTesters()
