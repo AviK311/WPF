@@ -31,7 +31,6 @@ namespace BE
 		public Address Address { get => address; set => address = value; }
 		public Gender Sex { get => gender; set => gender = value; }
 		public CarType CarType { get => carType; set => carType = value; }
-
 		protected CarType carType;
 		protected Address address;
 		protected Gender gender;
