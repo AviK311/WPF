@@ -179,8 +179,7 @@ namespace BL
         public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
-						   let testsByTrainee = from test in dal.GetTests() where test.TraineeID == trainee.ID select test
-						   group trainee by testsByTrainee.Count();						   
+                          group trainee by TestsNum(trainee);
 			if (inOrder) toReturn.OrderBy(item => item.Key);
 			return toReturn;
 		}
