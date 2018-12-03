@@ -35,16 +35,12 @@ namespace BE
 
 		public Schedule()
 		{
-			Day day1 = new Day(),
-				day2 = new Day(),
-				day3 = new Day(),
-				day4 = new Day(),
-				day5 = new Day();
+			week = new Dictionary<DayOfWeek, Day>();
 			week.Add(DayOfWeek.Sunday, new Day());
-			week.Add(DayOfWeek.Monday, day2);
-			week.Add(DayOfWeek.Tuesday, day3);
-			week.Add(DayOfWeek.Wednesday, day4);
-			week.Add(DayOfWeek.Thursday, day5);
+			week.Add(DayOfWeek.Monday, new Day());
+			week.Add(DayOfWeek.Tuesday, new Day());
+			week.Add(DayOfWeek.Wednesday, new Day());
+			week.Add(DayOfWeek.Thursday, new Day());
 		}
 		public Day this[DayOfWeek index]
 		{
