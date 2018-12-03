@@ -80,22 +80,29 @@ namespace BL
 
         public IEnumerable<Tester> AvailableTesters(DateTime date)
         {
-		   throw new NotImplementedException();
+            return from  tester in dal.GetTesters()
+                          let tests = from test in dal.GetTests()
+                                      where test.TesterID==tester.ID
+                                      select test
+                          where tester.schedule[date.DayOfWeek][date.Hour]  
+                                && !tests.Any(T=>(T.TestDateTime-date).Days==0)
+                                && tester.MaxWeeklyTests<tests.Count()
+                          select tester;
         }
 
         public IEnumerable<Tester> GetTesters()
         {
-            throw new NotImplementedException();
+            return dal.GetTesters();
         }
 
         public IEnumerable<Test> GetTests()
         {
-            throw new NotImplementedException();
+            return dal.GetTests();
         }
 
         public IEnumerable<Trainee> GetTrainees()
         {
-            throw new NotImplementedException();
+            return dal.GetTrainees();
         }
 
         public IEnumerable<DateTime> PlannedTests()
@@ -147,7 +154,10 @@ namespace BL
 
         public int TestsNum(Trainee trainee)
         {
-            throw new NotImplementedException();
+            var tests = from test in dal.GetTests()
+                        where test.TraineeID==trainee.ID
+                        select test;
+            return tests.Count();
         }
 
         public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(bool inOrder)
@@ -169,8 +179,7 @@ namespace BL
         public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
-						   let testsByTrainee = from test in dal.GetTests() where test.TraineeID == trainee.ID select test
-						   group trainee by testsByTrainee.Count();						   
+                          group trainee by TestsNum(trainee);
 			if (inOrder) toReturn.OrderBy(item => item.Key);
 			return toReturn;
 		}

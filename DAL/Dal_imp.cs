@@ -21,12 +21,12 @@ namespace DAL
 
 		public IEnumerable<Tester> GetTesters()
 		{
-			return DataSource.testerList;
+			return new List<Tester>(DataSource.testerList);
 		}
 
 		public IEnumerable<Test> GetTests()
 		{
-			return DataSource.testList;
+			return new List<Test>(DataSource.testList);
 		}
 
 		public Trainee GetTrainee(string id)
@@ -36,7 +36,7 @@ namespace DAL
 
 		public IEnumerable<Trainee> GetTrainees()
 		{
-			return DataSource.traineeList;
+			return new List<Trainee>(DataSource.traineeList);
 		}
 
 		void Idal.AddTest(Test test)
