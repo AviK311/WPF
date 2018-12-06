@@ -22,24 +22,14 @@ namespace BE
 	public class Person
 	{
 		
-		public string ID { get => iD; set => iD = value; }
-		public string FirstName { get => firstName; set => firstName = value; }
-		public string LastName { get => lastName; set => lastName = value; }
-		public DateTime BirthDay { get => birthDay; set => birthDay = value; }
-		public Name Name { get => name; set => name = value; }
-		public string PhoneNumber { get => phoneNumber; set => phoneNumber = value; }
-		public Address Address { get => address; set => address = value; }
-		public Gender Sex { get => gender; set => gender = value; }
-		public CarType CarType { get => carType; set => carType = value; }
-		protected CarType carType;
-		protected Address address;
-		protected Gender gender;
-		protected string phoneNumber;
-		protected DateTime birthDay;
-		protected Name name;
-		protected string iD;
-		protected string firstName;
-		protected string lastName;
+		public string ID { get; set; }
+		public string FirstName { get; set; }
+		public string LastName { get ; set; }
+		public DateTime BirthDay { get; set; }
+		public Name Name { get; set; }
+		public string PhoneNumber { get; set; }
+		public Address Address { get; set; }
+		public Gender Sex { get; set; }
 		public ushort getAge
 		{
 			get

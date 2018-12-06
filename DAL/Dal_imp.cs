@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using BE;
 using DS;
 
@@ -11,12 +12,12 @@ namespace DAL
 	{
 		public Test GetTest(string id)
 		{
-			return DataSource.testList.FirstOrDefault(test => test.TestNumber == id);
+			return new Test(DataSource.testList.FirstOrDefault(test => test.TestNumber == id));
 		}
 
-		public Tester getTester(string id)
+		public Tester GetTester(string id)
 		{
-			return DataSource.testerList.FirstOrDefault(tester => tester.ID == id);
+			return new Tester(DataSource.testerList.FirstOrDefault(tester => tester.ID == id));
 		}
 
 		public IEnumerable<Tester> GetTesters()
@@ -31,7 +32,7 @@ namespace DAL
 
 		public Trainee GetTrainee(string id)
 		{
-			return DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id);
+			return new Trainee(DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id));
 		}
 
 		public IEnumerable<Trainee> GetTrainees()
@@ -72,17 +73,31 @@ namespace DAL
 
 		void Idal.UpdateTest(string id, Test newData)
 		{
-			throw new NotImplementedException();
+			Test oldData = DataSource.testList.FindIndex(T => T.TestNumber == newData.TestNumber);
 		}
 
 		void Idal.UpdateTester(string id, Tester newData)
 		{
-			throw new NotImplementedException();
+			Tester oldData = GetTester(id);
+			foreach (PropertyInfo property in oldData.GetType().GetProperties())
+			{
+				object newValue = property.GetValue(newData);
+				object oldValue = property.GetValue(oldData);
+				if (newValue != null && !newValue.Equals(oldValue))
+					property.SetValue(oldData, newValue);
+			}
 		}
 
 		void Idal.UpdateTrainee(string id, Trainee newData)
 		{
-			throw new NotImplementedException();
+			Trainee oldData = GetTrainee(id);
+			foreach (PropertyInfo property in oldData.GetType().GetProperties())
+			{
+				object newValue = property.GetValue(newData);
+				object oldValue = property.GetValue(oldData);
+				if (newValue != null && !newValue.Equals(oldValue))
+					property.SetValue(oldData, newValue);
+			}
 		}
 	}
 }

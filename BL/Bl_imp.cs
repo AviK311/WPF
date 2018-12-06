@@ -30,11 +30,11 @@ namespace BL
             if (otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
             
-            if (testTrainee.CarType != testTester.CarType)
+            if (testTrainee.currentCarType != testTester.testingCarType)
                 throw new InvalidOperationException("The tester does not teach on the car type that the trainee learned with");
-            if (testTrainee.NumOfClasses < 20)
+            if (testTrainee.carTypeStats[testTrainee.currentCarType].numOfLessons < 20)
                 throw new InvalidOperationException("The trainee is not yet ready for a test");
-            if (testTrainee.passedTests[testTrainee.CarType])
+            if (testTrainee.carTypeStats[testTrainee.currentCarType].passed)
                 throw new InvalidOperationException("The student has already passed a test on that vehicle");
             DayOfWeek day = test.TestDateTime.DayOfWeek;
             int time = test.TestDateTime.Hour;
@@ -142,7 +142,7 @@ namespace BL
         public IEnumerable<IGrouping<CarType, Tester>> TesterGroupsAccordingToCarType(bool inOrder)
         {
 			var toReturn = from tester in dal.GetTesters()
-						   group tester by tester.CarType;
+						   group tester by tester.testingCarType;
 			if (inOrder) toReturn.OrderBy(item => item.Key.ToString());
 			return toReturn;
         }
@@ -152,34 +152,26 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public int TestsNum(Trainee trainee)
-        {
-            var tests = from test in dal.GetTests()
-                        where test.TraineeID==trainee.ID
-                        select test;
-            return tests.Count();
-        }
-
-        public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(bool inOrder)
+        public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(CarType c, bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
-						   group trainee by trainee.SchoolName;
+						   group trainee by trainee.carTypeStats[c].schoolName;
 			if (inOrder) toReturn.OrderBy(item => item.Key);
 			return toReturn;
 		}
 
-        public IEnumerable<IGrouping<Name, Trainee>> TraineesGroupsAccordingToTeacherName(bool inOrder)
+        public IEnumerable<IGrouping<Name, Trainee>> TraineesGroupsAccordingToTeacherName(CarType c, bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
-						   group trainee by trainee.TeacherName;
+						   group trainee by trainee.carTypeStats[c].teacherName;
 			if (inOrder) toReturn.OrderBy(item => item.Key);
 			return toReturn;
 		}
 
-        public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(bool inOrder)
+        public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(CarType c, bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
-                          group trainee by TestsNum(trainee);
+                          group trainee by trainee.carTypeStats[c].numOfTest;
 			if (inOrder) toReturn.OrderBy(item => item.Key);
 			return toReturn;
 		}

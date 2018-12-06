@@ -1,19 +1,18 @@
-﻿namespace BE
+﻿using System.Reflection;
+
+namespace BE
 {
     public class Tester:Person
 	{
-		
-
-
-		private uint expYears;
-		private uint maxWeeklyTests;
-		
-		private uint maxDistance;
-		
-		
+		public Tester(Tester other)
+		{
+			foreach (PropertyInfo property in other.GetType().GetProperties())
+				property.SetValue(this, property.GetValue(other));
+		}
 		public Schedule schedule;
-		public uint MaxDistance { get => maxDistance; set => maxDistance = value; }
-		public uint ExpYears { get => expYears; set => expYears = value; }
-		public uint MaxWeeklyTests { get => maxWeeklyTests; set => maxWeeklyTests = value; }
+		public uint MaxDistance { get; set; }
+		public uint ExpYears { get; set; }
+		public uint MaxWeeklyTests { get; set; }
+		public CarType testingCarType { get; set; }
 	}
 }

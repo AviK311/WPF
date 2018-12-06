@@ -30,17 +30,16 @@ namespace BL
 		IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
 		IEnumerable<BE.Tester> AvailableTesters(DateTime date);
 		IEnumerable<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
-        int TestsNum(BE.Trainee trainee);
         bool ProperToLicense(BE.Trainee trainee);
         IEnumerable<DateTime> PlannedTests();
 
         //Groups
         IEnumerable<IGrouping<string, BE.Trainee>> 
-            TraineesGroupsAccordingToSchoolName(bool inOrder = false);
+            TraineesGroupsAccordingToSchoolName(CarType c, bool inOrder = false);
         IEnumerable<IGrouping<BE.Name, BE.Trainee>>
-            TraineesGroupsAccordingToTeacherName(bool inOrder = false);
+            TraineesGroupsAccordingToTeacherName(CarType c,bool inOrder = false);
         IEnumerable<IGrouping<int, BE.Trainee>>
-            TraineesGroupsAccordingToTestsNum(bool inOrder = false);
+            TraineesGroupsAccordingToTestsNum(CarType c, bool inOrder = false);
         IEnumerable<IGrouping<BE.CarType, BE.Tester>>
             TesterGroupsAccordingToCarType(bool inOrder = false);
 		IEnumerable<IGrouping<Trainee, BE.Test>>

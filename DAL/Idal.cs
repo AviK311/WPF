@@ -17,7 +17,7 @@ namespace DAL
 		void UpdateTrainee(string id, Trainee newData);
 
 		void AddTester(Tester tester);
-		Tester getTester(string id);
+		Tester GetTester(string id);
 		void RemoveTester(Tester toRemove);
 		void UpdateTester(string id,Tester newData);
 
