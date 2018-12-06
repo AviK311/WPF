@@ -14,5 +14,9 @@ namespace BE
 		public int numOfLessons { get; set; }
 		public int numOfTest { get; set; }
 		public bool passed { get; set; }
+        public Stats()
+        {
+             numOfTest = 0;
+        }
 	}
 }

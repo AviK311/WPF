@@ -10,7 +10,7 @@ namespace UI
 {
 	class Program
 	{
-
+        BL.IBL bl = FactoryBL.GetBL();
 		static void AddTest()
 		{
 			Test toAdd = new Test();
@@ -24,15 +24,76 @@ namespace UI
 			toAdd.TestDateTime = date;
 			Console.WriteLine("In what location will the test begin? type on seperate lines.");
 			toAdd.BeginLocation = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
+            Console.WriteLine("What is grade?");
+            toAdd.Grade = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("if trinne keep Distance? 0 - false, 1 - true ");
+            toAdd.IsDistance = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("if trinne succeed in Reverese? 0 - false, 1 - true ");
+            toAdd.IsReverese = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("if trinne looked at the Mirror? 0 - false, 1 - true ");
+            toAdd.IsMirror = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("if trinne signaled? 0 - false, 1 - true ");
+            toAdd.IsSignal = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+            Console.WriteLine("if trinne Brake? 0 - false, 1 - true ");
+            toAdd.IsBreak = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+           // Console.WriteLine("if trinne Succeeded in the test? 0 - false, 1 - true ");
+           
+			BL.IBL bl = FactoryBL.GetBL();
+			try { bl.AddTest(toAdd);  }
+			catch (Exception e)	{
+				Console.WriteLine(e.Message);
+			}
+		}
+        static void RemoveTest()
+        {
+            Console.WriteLine("Enter the Test Number");  
+            BL.IBL bl = FactoryBL.GetBL();
+            try {bl.RemoveTest(Console.ReadLine()); }
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+        }
+  
+        static void AddTrainee()
+        {
+            Trainee toAdd = new Trainee();
+			Console.WriteLine("What is the ID?");
+            toAdd.ID = Console.ReadLine();			
+		    Console.WriteLine("What is the Gender? 0 - Male, 1 - Female");
+			toAdd.Sex = (BE.Gender)Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("What is the date of birth");
+			DateTime date;
+			DateTime.TryParse(Console.ReadLine(), out date);
+			toAdd.TestDateTime = date;
+            Console.WriteLine("What is the first name?");
+            toAdd.FirstName = Console.ReadLine();
+            Console.WriteLine("What is the last name?");
+            toAdd.LastName = Console.ReadLine();
+            Console.WriteLine("What is the PhoneNumber?");
+            toAdd.PhoneNumber=Console.ReadLine();
+			Console.WriteLine("What is the Address? type on seperate lines.");
+            toAdd.Address = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
+            Console.WriteLine("What type is the  vehicle? 0 - motorCycle, 1 -  privateCar, 2 - smallTruck, 3 - largeTruck");
+            toAdd.currentCarType = (BE.CarType)Convert.ToInt32(Console.ReadLine());
 
 			BL.IBL bl = FactoryBL.GetBL();
 			try { bl.AddTest(toAdd);  }
 			catch (Exception e)	{
 				Console.WriteLine(e.Message);
 			}
+        }
+        static void RemoveTrainee()
+        {
+            Console.WriteLine("Enter the Trainee ID");  
+            BL.IBL bl = FactoryBL.GetBL();
+            try {bl.RemoveTrainee(Console.ReadLine()); }
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+        }
 
-
-		}
 		static void AddTester()
 		{
 			Tester toAdd = new Tester();
@@ -47,9 +108,17 @@ namespace UI
 			{
 				Console.WriteLine(e.Message);
 			}
-
-
 		}
+        static void RemoveTester()
+        {
+            Console.WriteLine("Enter the Tester ID");  
+            BL.IBL bl = FactoryBL.GetBL();
+            try {bl.RemoveTester(Console.ReadLine()); }
+			catch (Exception e)
+			{
+				Console.WriteLine(e.Message);
+			}
+        }
 
 		static void Main(string[] args)
 		{

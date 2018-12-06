@@ -42,7 +42,6 @@ namespace DAL
 
 		void Idal.AddTest(Test test)
 		{
-			
 			DataSource.testList.Add(test);
 		}
 
