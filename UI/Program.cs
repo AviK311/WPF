@@ -34,8 +34,9 @@ namespace UI
             toAdd.IsMirror = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
             Console.WriteLine("if trinne signaled? 0 - false, 1 - true ");
             toAdd.IsSignal = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
-            Console.WriteLine("if trinne Brake? 0 - false, 1 - true ");
-            toAdd.IsBreak = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+
+            Console.WriteLine("if trinne followed the Signs? 0 - false, 1 - true ");
+            toAdd.IsSigns = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
            // Console.WriteLine("if trinne Succeeded in the test? 0 - false, 1 - true ");
            
 			BL.IBL bl = FactoryBL.GetBL();
