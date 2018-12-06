@@ -20,7 +20,7 @@ namespace BE
 		public bool IsReverese { get; set; }
 		public bool IsMirror { get; set; }
 		public bool IsSignal { get; set; }
-		public ushort Grade { get; set; }
+		public bool Grade { get; set; }
 		public bool IsSigns { get; set; }
 		public bool IsBreak { get; set; }
 
