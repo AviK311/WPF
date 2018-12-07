@@ -25,7 +25,7 @@ namespace UI
 			Console.WriteLine("In what location will the test begin? type on seperate lines.");
 			toAdd.BeginLocation = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
             Console.WriteLine("What is grade?");
-            toAdd.Grade = Convert.ToInt32(Console.ReadLine());
+            toAdd.Grade = Convert.ToBoolean(Console.ReadLine());
             Console.WriteLine("if trinne keep Distance? 0 - false, 1 - true ");
             toAdd.IsDistance = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
             Console.WriteLine("if trinne succeed in Reverese? 0 - false, 1 - true ");
@@ -63,14 +63,12 @@ namespace UI
             toAdd.ID = Console.ReadLine();			
 		    Console.WriteLine("What is the Gender? 0 - Male, 1 - Female");
 			toAdd.Sex = (BE.Gender)Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("What is the date of birth");
+            Console.WriteLine("What is the date of birth?");
 			DateTime date;
 			DateTime.TryParse(Console.ReadLine(), out date);
-			toAdd.TestDateTime = date;
-            Console.WriteLine("What is the first name?");
-            toAdd.FirstName = Console.ReadLine();
-            Console.WriteLine("What is the last name?");
-            toAdd.LastName = Console.ReadLine();
+			toAdd.BirthDay = date;
+            Console.WriteLine("What is the name? type on seperate lines");
+			toAdd.Name = new Name(Console.ReadLine(), Console.ReadLine());
             Console.WriteLine("What is the PhoneNumber?");
             toAdd.PhoneNumber=Console.ReadLine();
 			Console.WriteLine("What is the Address? type on seperate lines.");
@@ -79,7 +77,7 @@ namespace UI
             toAdd.currentCarType = (BE.CarType)Convert.ToInt32(Console.ReadLine());
 
 			BL.IBL bl = FactoryBL.GetBL();
-			try { bl.AddTest(toAdd);  }
+			try { bl.AddTrainee(toAdd);  }
 			catch (Exception e)	{
 				Console.WriteLine(e.Message);
 			}

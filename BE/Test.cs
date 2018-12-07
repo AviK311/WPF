@@ -11,6 +11,7 @@ namespace BE
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 		}
+		public Test() { }
 		public string TestNumber { get; set; }
 		public string TesterID { get; set; }
 		public string TraineeID { get; set; }

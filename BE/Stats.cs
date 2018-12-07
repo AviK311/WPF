@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-	public class Stats
+	public struct Stats
 	{
 		public Name teacherName { get; set; }
 		public string schoolName { get; set; }
@@ -14,9 +14,5 @@ namespace BE
 		public int numOfLessons { get; set; }
 		public int numOfTest { get; set; }
 		public bool passed { get; set; }
-        public Stats()
-        {
-             numOfTest = 0;
-        }
 	}
 }

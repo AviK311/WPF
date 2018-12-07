@@ -70,9 +70,9 @@ namespace DAL
 			DataSource.traineeList.Remove(toRemove);
 		}
 
-		void Idal.UpdateTest(string id, Test newData)
+		void Idal.UpdateTest(Test newData)
 		{
-			Test oldData = DataSource.testList.FindIndex(T => T.TestNumber == newData.TestNumber);
+			var oldIndex = DataSource.testlist.
 		}
 
 		void Idal.UpdateTester(string id, Tester newData)

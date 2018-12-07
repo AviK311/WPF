@@ -18,13 +18,13 @@ namespace BE
 		{
 			return string.Format("{0} {1}", first, last);
 		}
+		
 	}
 	public class Person
 	{
 		
 		public string ID { get; set; }
-		public string FirstName { get; set; }
-		public string LastName { get ; set; }
+		
 		public DateTime BirthDay { get; set; }
 		public Name Name { get; set; }
 		public string PhoneNumber { get; set; }

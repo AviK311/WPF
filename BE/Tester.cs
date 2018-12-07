@@ -9,6 +9,7 @@ namespace BE
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 		}
+		public Tester() { }
 		public Schedule schedule;
 		public uint MaxDistance { get; set; }
 		public uint ExpYears { get; set; }
