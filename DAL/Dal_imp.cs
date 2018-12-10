@@ -72,10 +72,11 @@ namespace DAL
 
 		void Idal.UpdateTest(Test newData)
 		{
-			var oldIndex = DataSource.testlist.
+			int index = DataSource.testList.FindIndex(T => newData.TestNumber == T.TestNumber);
+			DataSource.testList[index] = newData;
 		}
 
-		void Idal.UpdateTester(string id, Tester newData)
+		void Idal.UpdateTester( Tester newData)
 		{
 			Tester oldData = GetTester(id);
 			foreach (PropertyInfo property in oldData.GetType().GetProperties())
@@ -87,7 +88,7 @@ namespace DAL
 			}
 		}
 
-		void Idal.UpdateTrainee(string id, Trainee newData)
+		void Idal.UpdateTrainee(Trainee newData)
 		{
 			Trainee oldData = GetTrainee(id);
 			foreach (PropertyInfo property in oldData.GetType().GetProperties())
