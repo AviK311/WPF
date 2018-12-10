@@ -78,26 +78,14 @@ namespace DAL
 
 		void Idal.UpdateTester( Tester newData)
 		{
-			Tester oldData = GetTester(id);
-			foreach (PropertyInfo property in oldData.GetType().GetProperties())
-			{
-				object newValue = property.GetValue(newData);
-				object oldValue = property.GetValue(oldData);
-				if (newValue != null && !newValue.Equals(oldValue))
-					property.SetValue(oldData, newValue);
-			}
+			int index = DataSource.testerList.FindIndex(T => newData.ID == T.ID);
+			DataSource.testerList[index] = newData;
 		}
 
 		void Idal.UpdateTrainee(Trainee newData)
 		{
-			Trainee oldData = GetTrainee(id);
-			foreach (PropertyInfo property in oldData.GetType().GetProperties())
-			{
-				object newValue = property.GetValue(newData);
-				object oldValue = property.GetValue(oldData);
-				if (newValue != null && !newValue.Equals(oldValue))
-					property.SetValue(oldData, newValue);
-			}
+			int index = DataSource.traineeList.FindIndex(T => newData.ID == T.ID);
+			DataSource.traineeList[index] = newData;
 		}
 	}
 }

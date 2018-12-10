@@ -49,7 +49,7 @@ namespace BL
             var tests_by_tester_same_week = from test1 in tests_by_tester
                                             where DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
                                             select test1;
-            if (tests_by_tester_same_week.Count() > testTester.MaxWeeklyTests)
+            if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
 			
 			Configuration.TestCode++;
@@ -85,7 +85,7 @@ namespace BL
                                       where test.TesterID==tester.ID
                                       select test
                           where tester.schedule[date.DayOfWeek][date.Hour]  
-                                && !tests.Any(T=>(T.TestDateTime-date).Days==0)
+                                && !tests.Any(T=>(T.TestDateTime-date).Days==0 && date.Hour==T.TestDateTime.Hour)
                                 && tester.MaxWeeklyTests<tests.Count()
                           select tester;
         }
@@ -107,12 +107,13 @@ namespace BL
 
         public IEnumerable<DateTime> PlannedTests()
         {
-            throw new NotImplementedException();
+			return from tests in dal.GetTests()
+				   select tests.TestDateTime;
         }
 
         public bool ProperToLicense(Trainee trainee)
         {
-            throw new NotImplementedException();
+			return trainee.carTypeStats[trainee.currentCarType].passed;
         }
 
         public void RemoveTest(string id)
@@ -176,34 +177,34 @@ namespace BL
 			return toReturn;
 		}
 
-        public void UpdateTest(string id, Test newData)
+        public void UpdateTest(Test newData)
         {
-            throw new NotImplementedException();
+			dal.UpdateTest(newData);
         }
 
-        public void UpdateTester(string id, Tester newData)
+        public void UpdateTester(Tester newData)
         {
-            throw new NotImplementedException();
-        }
+			dal.UpdateTester(newData);
+		}
 
-        public void UpdateTrainee(string id, Trainee newData)
+        public void UpdateTrainee(Trainee newData)
         {
-            throw new NotImplementedException();
-        }
+			dal.UpdateTrainee(newData);
+		}
 
         public Test GetTest(string id)
         {
-            throw new NotImplementedException();
+			return dal.GetTest(id);
         }
 
         public Trainee GetTrainee(string id)
         {
-            throw new NotImplementedException();
-        }
+			return dal.GetTrainee(id);
+		}
 
         public Tester GetTester(string id)
         {
-            throw new NotImplementedException();
+			return dal.GetTester(id);
         }
 
         public IEnumerable<IGrouping<Trainee, Test>> TestGroupsAccordingToTrainee(bool inOrder)
@@ -225,7 +226,8 @@ namespace BL
             var d2 = date2.AddDays(-1 * (int)date2.DayOfWeek);
             return d1 == d2;
         }
-    }
+
+	}
 
 }
 
