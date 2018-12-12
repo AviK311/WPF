@@ -53,7 +53,7 @@ namespace BE
 		}
 		public override string ToString()
 		{
-			string toReturn = "".PadLeft(2);
+			string toReturn = "".PadLeft(1);
 			foreach(var item in week)
 				toReturn +=item.Key.ToString().PadLeft(12);
 			toReturn += "\n";

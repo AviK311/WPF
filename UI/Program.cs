@@ -15,9 +15,9 @@ namespace UI
 	{
 		static void Main(string[] args)
 		{
-			Tester t = new Tester();
-			Console.Write(t);
-			Console.WriteLine(t.toLongString());
+			Test t = new Test();
+			Console.Write("Tests Passed: ".Length);
+			Console.WriteLine(t.ToLongString());
 		}
 	}
 	//class Program
@@ -37,58 +37,60 @@ namespace UI
 	//		Console.WriteLine("In what location will the test begin? type on seperate lines.");
 	//		toAdd.BeginLocation = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
 	//		BL.IBL bl = FactoryBL.GetBL();
-	//		try { bl.AddTest(toAdd);  }
-	//		catch (Exception e)	{
+	//		try { bl.AddTest(toAdd); }
+	//		catch (Exception e)
+	//		{
 	//			Console.WriteLine(e.Message);
 	//		}
 	//	}
-	//       static void RemoveTest()
-	//       {
-	//           Console.WriteLine("Enter the Test Number");  
-	//           BL.IBL bl = FactoryBL.GetBL();
-	//           try {bl.RemoveTest(Console.ReadLine()); }
+	//	static void RemoveTest()
+	//	{
+	//		Console.WriteLine("Enter the Test Number");
+	//		BL.IBL bl = FactoryBL.GetBL();
+	//		try { bl.RemoveTest(Console.ReadLine()); }
 	//		catch (Exception e)
 	//		{
 	//			Console.WriteLine(e.Message);
 	//		}
-	//       }
+	//	}
 
-	//       static void AddTrainee()
-	//       {
-	//           Trainee toAdd = new Trainee();
+	//	static void AddTrainee()
+	//	{
+	//		Trainee toAdd = new Trainee();
 	//		Console.WriteLine("What is the ID?");
-	//           toAdd.ID = Console.ReadLine();			
-	//	    Console.WriteLine("What is the Gender? 0 - Male, 1 - Female");
+	//		toAdd.ID = Console.ReadLine();
+	//		Console.WriteLine("What is the Gender? 0 - Male, 1 - Female");
 	//		toAdd.Sex = (BE.Gender)Convert.ToInt32(Console.ReadLine());
-	//           Console.WriteLine("What is the date of birth?");
+	//		Console.WriteLine("What is the date of birth?");
 	//		DateTime date;
 	//		DateTime.TryParse(Console.ReadLine(), out date);
 	//		toAdd.BirthDay = date;
-	//           Console.WriteLine("What is the name? type on seperate lines");
+	//		Console.WriteLine("What is the name? type on seperate lines");
 	//		toAdd.Name = new Name(Console.ReadLine(), Console.ReadLine());
-	//           Console.WriteLine("What is the PhoneNumber?");
-	//           toAdd.PhoneNumber=Console.ReadLine();
+	//		Console.WriteLine("What is the PhoneNumber?");
+	//		toAdd.PhoneNumber = Console.ReadLine();
 	//		Console.WriteLine("What is the Address? type on seperate lines.");
-	//           toAdd.Address = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
-	//           Console.WriteLine("What type is the  vehicle? 0 - motorCycle, 1 -  privateCar, 2 - smallTruck, 3 - largeTruck");
-	//           toAdd.currentCarType = (BE.CarType)Convert.ToInt32(Console.ReadLine());
+	//		toAdd.Address = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
+	//		Console.WriteLine("What type is the  vehicle? 0 - motorCycle, 1 -  privateCar, 2 - smallTruck, 3 - largeTruck");
+	//		toAdd.currentCarType = (BE.CarType)Convert.ToInt32(Console.ReadLine());
 
 	//		BL.IBL bl = FactoryBL.GetBL();
-	//		try { bl.AddTrainee(toAdd);  }
-	//		catch (Exception e)	{
-	//			Console.WriteLine(e.Message);
-	//		}
-	//       }
-	//       static void RemoveTrainee()
-	//       {
-	//           Console.WriteLine("Enter the Trainee ID");  
-	//           BL.IBL bl = FactoryBL.GetBL();
-	//           try {bl.RemoveTrainee(Console.ReadLine()); }
+	//		try { bl.AddTrainee(toAdd); }
 	//		catch (Exception e)
 	//		{
 	//			Console.WriteLine(e.Message);
 	//		}
-	//       }
+	//	}
+	//	static void RemoveTrainee()
+	//	{
+	//		Console.WriteLine("Enter the Trainee ID");
+	//		BL.IBL bl = FactoryBL.GetBL();
+	//		try { bl.RemoveTrainee(Console.ReadLine()); }
+	//		catch (Exception e)
+	//		{
+	//			Console.WriteLine(e.Message);
+	//		}
+	//	}
 
 	//	static void AddTester()
 	//	{
@@ -105,20 +107,33 @@ namespace UI
 	//			Console.WriteLine(e.Message);
 	//		}
 	//	}
-	//       static void RemoveTester()
-	//       {
-	//           Console.WriteLine("Enter the Tester ID");  
-	//           BL.IBL bl = FactoryBL.GetBL();
-	//           try {bl.RemoveTester(Console.ReadLine()); }
+	//	static void RemoveTester()
+	//	{
+	//		Console.WriteLine("Enter the Tester ID");
+	//		BL.IBL bl = FactoryBL.GetBL();
+	//		try { bl.RemoveTester(Console.ReadLine()); }
 	//		catch (Exception e)
 	//		{
 	//			Console.WriteLine(e.Message);
 	//		}
-	//       }
-
+	//	}
+	//	public delegate void mainFunctions();
 	//	static void Main(string[] args)
 	//	{
-
+	//		List<Action> actionList = new List<Action>();
+	//		actionList.Add(AddTest);
+	//		actionList.Add(RemoveTest);
+	//		actionList.Add(RemoveTest);
+	//		//actionList.Add(updateTest);
+	//		actionList.Add(AddTrainee);
+	//		actionList.Add(RemoveTrainee);
+	//		//actionList.Add(updateTrainee);
+	//		actionList.Add(AddTester);
+	//		actionList.Add(RemoveTester);
+	//		//actionList.Add(updateTester);
+	//		//actionList.Add(showAllTests);
+	//		//actionList.Add(showAllTrainees);
+	//		//actionList.Add(showAllTesters);
 	//		int choice = 0;
 	//		while (choice >= 0 && choice <= 11)
 	//		{
@@ -143,11 +158,7 @@ namespace UI
 	//					throw new InvalidOperationException("That choice is Invalid");
 	//			}
 	//			catch (Exception e) { Console.WriteLine(e.Message + ". Exiting..."); choice = 12; }
-	//			switch (choice)
-	//			{
-	//				case 0: AddTest(); break;
-	//				default: break;
-	//			}
+	//			if (choice != 12) actionList[choice]();
 	//		}
 
 	//	}

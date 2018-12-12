@@ -19,10 +19,10 @@ namespace BE
 		public CarType testingCarType { get; set; }
 		public override string ToString()
 		{
-			return string.Format("Name: {0}, ID: {1}, CarType: {2}",
+			return string.Format("Name: {0}, ID: {1}, CarType: {2}\n",
 									Name, ID, testingCarType);
 		}
-		public string toLongString()
+		public string ToLongString()
 		{
 			string toReturn = string.Format("Name: {0}\n", Name);
 			toReturn += string.Format("Gender: {0}\n", Sex);
@@ -33,7 +33,7 @@ namespace BE
 			toReturn += string.Format("Years Of Experience: {0}\n", ExpYears);
 			toReturn += string.Format("Availability:\n {0}\n", schedule);
 
-			return toReturn;
+			return toReturn+"\n";
 								
 		}
 	}
