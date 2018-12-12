@@ -51,5 +51,25 @@ namespace BE
 				return week[index];
 			}
 		}
+		public override string ToString()
+		{
+			string toReturn = "".PadLeft(2);
+			foreach(var item in week)
+				toReturn +=item.Key.ToString().PadLeft(12);
+			toReturn += "\n";
+			for (int i = 9; i<= 14; i++)
+			{
+				toReturn += i.ToString().PadLeft(2);
+				foreach (var item in week)
+				{
+					if (week[item.Key][i])
+						toReturn += "available".PadLeft(12);
+					else toReturn += "unavailble".PadLeft(12);
+				}
+					
+				toReturn += "\n";
+			}
+			return toReturn;
+		}
 	}
 }

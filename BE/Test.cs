@@ -10,6 +10,7 @@ namespace BE
 		{
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
+			
 		}
 		public Test() { }
 		public string TestNumber { get; set; }
@@ -17,13 +18,8 @@ namespace BE
 		public string TraineeID { get; set; }
 		public DateTime TestDateTime { get; set; }
 		public Address BeginLocation { get; set; }
-		public bool IsDistance { get; set; }
-		public bool IsReverese { get; set; }
-		public bool IsMirror { get; set; }
-		public bool IsSignal { get; set; }
-		public bool Grade { get; set; }
-		public bool IsSigns { get; set; }
-		public bool IsBreak { get; set; }
+
+		public TestProperties testProperties;
 
 		public override string ToString()
 		{
@@ -33,10 +29,10 @@ namespace BE
 				"Trainee ID: {2}\n" +
 				"Date and Time: {3}\n" +
 				"Begin location: {4}\n" +
-				"Grade: {5}\n",
+				"Passed: {5}\n",
 				TestNumber, TesterID, TraineeID,
-				TestDateTime.ToShortDateString() + TestDateTime.ToShortTimeString(),
-				BeginLocation.ToString(), Grade);
+				TestDateTime.ToShortDateString() + TestDateTime.Hour,
+				BeginLocation.ToString(), testProperties.passed());
 		}
 	}
 }

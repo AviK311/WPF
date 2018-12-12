@@ -8,7 +8,7 @@
         public static uint MinAgeOfTrainee { get; } = 18;
         public static uint MinNumOfClasses { get; } = 20;
         public static uint MinAgeOfTester { get; } = 40;
-		
+		public static double MinPassGrade { get; } = 0.6;
 
 		public Configuration()
         {
