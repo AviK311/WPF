@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BE;
 using BL;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace UI
 {
@@ -176,10 +177,18 @@ namespace UI
 				Console.WriteLine(e.Message);
 			}
 		}
+		static string InsertSpacesBeforeUpper(string str)
+		{
+			for(int i = 1; i< str.Length; i++)
+				if (char.IsUpper(str[i]))
+					str = str.Substring(0, i) + ' ' + str.Substring(i++);
+			return str;
+		}
 		public delegate void mainFunctions();
 		static void Main(string[] args)
 		{
 			init();
+			
 			List<Action> actionList = new List<Action>();
 			actionList.Add(AddTest);
 			actionList.Add(RemoveTest);
@@ -201,7 +210,7 @@ namespace UI
 			{
 				Console.WriteLine("choose one:");
 				for (int i = 0; i < actionList.Count; i++)
-					Console.WriteLine(i + " - " + actionList[i].Method.Name);
+					Console.WriteLine(i + " - " + InsertSpacesBeforeUpper(actionList[i].Method.Name));
 				try
 				{
 					choice = Convert.ToInt32(Console.ReadLine());
