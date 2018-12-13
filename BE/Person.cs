@@ -30,15 +30,13 @@ namespace BE
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }
 		public Gender Sex { get; set; }
-		public ushort getAge
+
+		public ushort GetAge()
 		{
-			get
-			{
-				DateTime now = DateTime.Today;
-				ushort age = (ushort)(now.Year - BirthDay.Year);
-				if (now < BirthDay.AddYears(age)) age--;
-				return age;
-			}
+			DateTime now = DateTime.Today;
+			ushort age = (ushort)(now.Year - BirthDay.Year);
+			if (now < BirthDay.AddYears(age)) age--;
+			return age;
 		}
 	}
 }

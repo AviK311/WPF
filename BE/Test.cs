@@ -8,9 +8,11 @@ namespace BE
 	{
 		public Test(Test other)
 		{
+			foreach (FieldInfo field in other.GetType().GetFields())
+				field.SetValue(this, field.GetValue(other));
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
-			
+
 		}
 		public Test() { }
 		public string TestNumber { get; set; }

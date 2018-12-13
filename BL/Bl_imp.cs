@@ -30,11 +30,11 @@ namespace BL
             if (otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
             
-            if (testTrainee.currentCarType != testTester.testingCarType)
+            if (testTrainee.CurrentCarType != testTester.testingCarType)
                 throw new InvalidOperationException("The tester does not teach on the car type that the trainee learned with");
-            if (testTrainee.carTypeStats[testTrainee.currentCarType].numOfLessons < 20)
+            if (testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfLessons < 20)
                 throw new InvalidOperationException("The trainee is not yet ready for a test");
-            if (testTrainee.carTypeStats[testTrainee.currentCarType].passed)
+            if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
                 throw new InvalidOperationException("The student has already passed a test on that vehicle");
             DayOfWeek day = test.TestDateTime.DayOfWeek;
             int time = test.TestDateTime.Hour;
@@ -60,7 +60,7 @@ namespace BL
         {
 			if (dal.GetTesters().Any(T => T.ID == tester.ID))
 				throw new InvalidOperationException("A tester with that ID already exists");
-			if (tester.getAge < Configuration.MinAgeOfTester)
+			if (tester.GetAge() < Configuration.MinAgeOfTester)
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
             dal.AddTester(tester);
         }
@@ -113,7 +113,7 @@ namespace BL
 
         public bool ProperToLicense(Trainee trainee)
         {
-			return trainee.carTypeStats[trainee.currentCarType].passed;
+			return trainee.carTypeStats[trainee.CurrentCarType].passed;
         }
 
         public void RemoveTest(string id)

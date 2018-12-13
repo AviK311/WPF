@@ -6,6 +6,8 @@ namespace BE
 	{
 		public Tester(Tester other)
 		{
+			foreach (FieldInfo field in other.GetType().GetFields())
+				field.SetValue(this, field.GetValue(other));
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 		}

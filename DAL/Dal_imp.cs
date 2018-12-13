@@ -12,12 +12,25 @@ namespace DAL
 	{
 		public Test GetTest(string id)
 		{
-			return new Test(DataSource.testList.FirstOrDefault(test => test.TestNumber == id));
+			Test toReturn = DataSource.testList.FirstOrDefault(test => test.TestNumber == id);
+			if (toReturn == null)
+				throw new InvalidOperationException("That test doesn't exist");
+			return new Test(toReturn);
 		}
 
 		public Tester GetTester(string id)
 		{
-			return new Tester(DataSource.testerList.FirstOrDefault(tester => tester.ID == id));
+			Tester toReturn = DataSource.testerList.FirstOrDefault(tester => tester.ID == id);
+			if (toReturn == null)
+				throw new InvalidOperationException("That test doesn't exist");
+			return new Tester(toReturn);
+		}
+		public Trainee GetTrainee(string id)
+		{
+			Trainee toReturn = DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id);
+			if (toReturn == null)
+				throw new InvalidOperationException("That test doesn't exist");
+			return new Trainee(toReturn);
 		}
 
 		public IEnumerable<Tester> GetTesters()
@@ -30,10 +43,7 @@ namespace DAL
 			return new List<Test>(DataSource.testList);
 		}
 
-		public Trainee GetTrainee(string id)
-		{
-			return new Trainee(DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id));
-		}
+		
 
 		public IEnumerable<Trainee> GetTrainees()
 		{
