@@ -22,14 +22,14 @@ namespace DAL
 		{
 			Tester toReturn = DataSource.testerList.FirstOrDefault(tester => tester.ID == id);
 			if (toReturn == null)
-				throw new InvalidOperationException("That test doesn't exist");
+				throw new InvalidOperationException("That tester doesn't exist");
 			return new Tester(toReturn);
 		}
 		public Trainee GetTrainee(string id)
 		{
 			Trainee toReturn = DataSource.traineeList.FirstOrDefault(trainee => trainee.ID == id);
 			if (toReturn == null)
-				throw new InvalidOperationException("That test doesn't exist");
+				throw new InvalidOperationException("That trainee doesn't exist");
 			return new Trainee(toReturn);
 		}
 

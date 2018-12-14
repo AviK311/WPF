@@ -27,15 +27,15 @@ namespace BE
 
 		public override string ToString()
 		{
-			return string.Format("Name: {0}, ID: {1}, CarType: {2}\n",
-									Name, ID, CurrentCarType);
+			return string.Format("Name: {0}, ID: {1}, CarType: {2}",
+									Name, ID, Func.InsertSpacesBeforeUpper(CurrentCarType.ToString()));
 		}
 		public string ToLongString()
 		{
 			string toReturn = string.Format("Name: {0}\n", Name);
 			toReturn += string.Format("Gender: {0}\n", Sex);
 			toReturn += string.Format("ID: {0}\n", ID);
-			toReturn += string.Format("CarType: {0}\n", CurrentCarType);
+			toReturn += string.Format("CarType: {0}\n", Func.InsertSpacesBeforeUpper(CurrentCarType.ToString()));
 			toReturn += string.Format("PhoneNumber: {0}\n", PhoneNumber);
 			toReturn += string.Format("Address: {0}\n", Address);
 			string passedCars = "Tests Passed: ";
@@ -45,7 +45,7 @@ namespace BE
 			if (passedCars == "Tests Passed: ")
 				passedCars += "none";
 			toReturn += passedCars + "\n";
-			return toReturn + "\n";
+			return toReturn;
 
 		}
 	}

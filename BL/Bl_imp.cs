@@ -42,7 +42,7 @@ namespace BL
                                   where test1.TesterID == testTester.ID
                                   select test1;
             ///if the tester is unavailable
-            if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime == test.TestDateTime))
+            if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour))
             {
                 //code to suggest another tester
             }
@@ -58,7 +58,7 @@ namespace BL
 
         void IBL.AddTester(Tester tester)
         {
-			if (dal.GetTesters().Any(T => T.ID == tester.ID))
+			if (dal.GetTesters().Any(T => T.Equals(tester)))
 				throw new InvalidOperationException("A tester with that ID already exists");
 			if (tester.GetAge() < Configuration.MinAgeOfTester)
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
@@ -67,7 +67,7 @@ namespace BL
 
         public void AddTrainee(Trainee trainee)
         {
-			if (dal.GetTrainees().Any(T => T.ID == trainee.ID))
+			if (dal.GetTrainees().Any(T => T.Equals(trainee)))
 				throw new InvalidOperationException("A trainee with that ID already exists");
 			dal.AddTrainee(trainee);
         }

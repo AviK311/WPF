@@ -14,6 +14,18 @@ namespace BE
 			this.last = last;
 		}
 
+		public override bool Equals(object obj)
+		{
+			if (!(obj is Name))
+			{
+				return false;
+			}
+
+			var name = (Name)obj;
+			return first == name.first &&
+				   last == name.last;
+		}
+
 		public override string ToString()
 		{
 			return string.Format("{0} {1}", first, last);
@@ -30,6 +42,13 @@ namespace BE
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }
 		public Gender Sex { get; set; }
+
+		public override bool Equals(object obj)
+		{
+			var person = obj as Person;
+			return person != null &&
+				   ID == person.ID;
+		}
 
 		public ushort GetAge()
 		{

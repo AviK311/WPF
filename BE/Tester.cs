@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 
 namespace BE
 {
@@ -22,20 +23,21 @@ namespace BE
 		public override string ToString()
 		{
 			return string.Format("Name: {0}, ID: {1}, CarType: {2}\n",
-									Name, ID, testingCarType);
+									Name, ID, Func.InsertSpacesBeforeUpper(testingCarType.ToString()));
 		}
 		public string ToLongString()
 		{
+			
 			string toReturn = string.Format("Name: {0}\n", Name);
 			toReturn += string.Format("Gender: {0}\n", Sex);
 			toReturn += string.Format("ID: {0}\n", ID);
-			toReturn += string.Format("CarType: {0}\n", testingCarType);
-			toReturn += string.Format("PhoneNumber: {0}\n", PhoneNumber);
+			toReturn += string.Format("CarType: {0}\n", Func.InsertSpacesBeforeUpper(testingCarType.ToString()));
+			toReturn += string.Format("Phone Number: {0}\n", PhoneNumber);
 			toReturn += string.Format("Address: {0}\n", Address);
 			toReturn += string.Format("Years Of Experience: {0}\n", ExpYears);
 			toReturn += string.Format("Availability:\n {0}\n", schedule);
 
-			return toReturn+"\n";
+			return toReturn;
 								
 		}
 	}

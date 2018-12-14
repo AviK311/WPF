@@ -51,25 +51,183 @@ namespace UI
 		{
 			IBL bl = FactoryBL.GetBL();
 			if (bl.GetTests().Count() == 0)
+			{
 				Console.WriteLine("There are no tests");
+				return;
+			}
 			else foreach (var item in bl.GetTests())
-				Console.WriteLine(item);
+					Console.WriteLine(item);
+			bool sorted = false;
+			int choice;
+			Console.WriteLine("Choose one:");
+			Console.WriteLine("0 - Show tests according to trainees");
+			Console.WriteLine("1 - Show tests of specific trainee");
+			Console.WriteLine("2 - Exit");
+			choice = Convert.ToInt32(Console.ReadLine());
+			switch (choice)
+			{
+				case 0:
+					Console.WriteLine("Should the list be sorted according to trainee ID? 0 - no, 1 - yes");
+					sorted = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+					foreach (var group in bl.TestGroupsAccordingToTrainee(sorted))
+						foreach (var test in group)
+							Console.WriteLine(test);
+					break;
+				case 1:
+					Console.WriteLine("Please enter the Trainee ID");
+					Trainee trainee;
+					try { trainee = bl.GetTrainee(Console.ReadLine());
+						var list = bl.TestGroupsAccordingToTrainee().FirstOrDefault(T => T.Key.Equals(trainee));
+						if (list == null) throw new InvalidOperationException("That trainee has no tests");
+						foreach (var test in list)
+							Console.WriteLine(test);
+					}
+					catch (Exception e) { Console.WriteLine(e.Message); }
+					break;
+				default: return;
+			}
+
+			
 		}
 		static void ViewAllTesters()
 		{
 			IBL bl = FactoryBL.GetBL();
 			if (bl.GetTesters().Count() == 0)
+			{
 				Console.WriteLine("There are no testers");
+				return;
+			}
 			else foreach (var item in bl.GetTesters())
-				Console.WriteLine(item);
+					Console.WriteLine(item);
+			int choice;
+			Console.WriteLine("Choose one:");
+			Console.WriteLine("0 - Show testers that test on a specific car type");
+			Console.WriteLine("1 - Exit");
+			choice = Convert.ToInt32(Console.ReadLine());
+			switch (choice)
+			{
+				case 0:
+					Console.WriteLine("Which car type would you like to see?");
+					foreach (var c in (CarType[])Enum.GetValues(typeof(CarType)))
+						Console.WriteLine((int)c + " - " +  Func.InsertSpacesBeforeUpper(c.ToString()));
+					try
+					{
+						CarType vehic = (CarType)Convert.ToInt32(Console.ReadLine());
+						if (!Enum.IsDefined(typeof(CarType), vehic))
+							throw new InvalidOperationException("That car type is out of range");
+						var list = bl.TesterGroupsAccordingToCarType().FirstOrDefault(T => T.Key == vehic);
+						if (list == null)
+							throw new InvalidOperationException("No testers teach on that car type");
+						foreach (var tester in list)
+							Console.WriteLine(tester);
+					}
+					catch (Exception e) { Console.WriteLine(e.Message); }
+					break;
+				default: return;
+			}
+
+
 		}
 		static void ViewAllTrainees()
 		{
 			IBL bl = FactoryBL.GetBL();
 			if (bl.GetTrainees().Count() == 0)
+			{
 				Console.WriteLine("There are no trainees");
+				return;
+			}
 			else foreach (var item in bl.GetTrainees())
-				Console.WriteLine(item);
+					Console.WriteLine(item);
+			int choice;
+			Console.WriteLine("Choose one:");
+			Console.WriteLine("0-  Show trainees according to the amount of tests they are signed up for");
+			Console.WriteLine("1 - show trainees who've signed up for x tests");
+			Console.WriteLine("2 - Show trainees who learn in a specific school");
+			Console.WriteLine("3 - Show trainees who learn with a specific teacher");
+			Console.WriteLine("4 - Exit");
+
+			choice = Convert.ToInt32(Console.ReadLine());
+			switch (choice)
+			{
+				case 0:
+					Console.WriteLine("Which car type?");
+					foreach (var c in (CarType[])Enum.GetValues(typeof(CarType)))
+						Console.WriteLine((int)c + " - " + Func.InsertSpacesBeforeUpper(c.ToString()));
+					try
+					{
+						CarType vehic = (CarType)Convert.ToInt32(Console.ReadLine());
+						if (!Enum.IsDefined(typeof(CarType), vehic))
+							throw new InvalidOperationException("That car type is out of range");
+						bool sorted = false;
+						Console.WriteLine("Should the list be sorted according to the number of tests? 0 - no, 1 - yes");
+						sorted = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+						foreach (var group in bl.TraineesGroupsAccordingToTestsNum(vehic,sorted))
+							foreach (var trainee in group)
+								Console.WriteLine(trainee + " " + trainee.carTypeStats[vehic].numOfTest);
+					}
+					catch (Exception e) { Console.WriteLine(e.Message); }
+					break;
+
+				case 1:
+					Console.WriteLine("Which car type?");
+					foreach (var c in (CarType[])Enum.GetValues(typeof(CarType)))
+						Console.WriteLine((int)c + " - " + Func.InsertSpacesBeforeUpper(c.ToString()));
+					try
+					{
+						CarType vehic = (CarType)Convert.ToInt32(Console.ReadLine());
+						if (!Enum.IsDefined(typeof(CarType), vehic))
+							throw new InvalidOperationException("That car type is out of range");
+						Console.WriteLine("Choose x:");
+						int x = Convert.ToInt16(Console.ReadLine());
+						var list = bl.TraineesGroupsAccordingToTestsNum(vehic).FirstOrDefault(T => T.Key == x);
+						if (list == null)
+							throw new InvalidOperationException("No trainees signed up for "+ x + " test/s");
+						foreach (var trainee in list)
+							Console.WriteLine(trainee);
+					}
+					catch (Exception e) { Console.WriteLine(e.Message); }
+					break;
+
+				case 2:
+					Console.WriteLine("Which car type does the school teach?");
+					foreach (var c in (CarType[])Enum.GetValues(typeof(CarType)))
+						Console.WriteLine((int)c + " - " + Func.InsertSpacesBeforeUpper(c.ToString()));
+					try
+					{
+						CarType vehic = (CarType)Convert.ToInt32(Console.ReadLine());
+						if (!Enum.IsDefined(typeof(CarType), vehic))
+							throw new InvalidOperationException("That car type is out of range");
+						Console.WriteLine("What is the name of the school?");
+						string schoolName = Console.ReadLine();
+						var list = bl.TraineesGroupsAccordingToSchoolName(vehic).FirstOrDefault(T => T.Key == schoolName);
+						if (list == null)
+							throw new InvalidOperationException("No trainees learn in " + schoolName);
+						foreach (var trainee in list)
+							Console.WriteLine(trainee);
+					}
+					catch (Exception e) { Console.WriteLine(e.Message); }
+					break;
+				case 3:
+					Console.WriteLine("Which car type does the teacher teach?");
+					foreach (var c in (CarType[])Enum.GetValues(typeof(CarType)))
+						Console.WriteLine((int)c + " - " + Func.InsertSpacesBeforeUpper(c.ToString()));
+					try
+					{
+						CarType vehic = (CarType)Convert.ToInt32(Console.ReadLine());
+						if (!Enum.IsDefined(typeof(CarType), vehic))
+							throw new InvalidOperationException("That car type is out of range");
+						Console.WriteLine("What is the name of the teacher? enter in two lines");
+						Name teacherName = new Name(Console.ReadLine(), Console.ReadLine());
+						var list = bl.TraineesGroupsAccordingToTeacherName(vehic).FirstOrDefault(T => T.Key.Equals(teacherName));
+						if (list == null)
+							throw new InvalidOperationException("No trainees learn with " + teacherName);
+						foreach (var trainee in list)
+							Console.WriteLine(trainee);
+					}
+					catch (Exception e) { Console.WriteLine(e.Message); }
+					break;
+				default: return;
+			}
 		}
 
 		static void AddTest()
@@ -177,20 +335,14 @@ namespace UI
 				Console.WriteLine(e.Message);
 			}
 		}
-		static string InsertSpacesBeforeUpper(string str)
-		{
-			for(int i = 1; i< str.Length; i++)
-				if (char.IsUpper(str[i]))
-					str = str.Substring(0, i) + ' ' + str.Substring(i++);
-			return str;
-		}
-		public delegate void mainFunctions();
+		
 		static void Main(string[] args)
 		{
 			init();
 			
 			List<Action> actionList = new List<Action>();
 			actionList.Add(AddTest);
+			
 			actionList.Add(RemoveTest);
 			//actionList.Add(updateTest);
 			actionList.Add(AddTrainee);
@@ -208,9 +360,9 @@ namespace UI
 			int choice = 0;
 			while (choice >= 0 && choice < actionList.Count)
 			{
-				Console.WriteLine("choose one:");
+				Console.WriteLine("Choose one:");
 				for (int i = 0; i < actionList.Count; i++)
-					Console.WriteLine(i + " - " + InsertSpacesBeforeUpper(actionList[i].Method.Name));
+					Console.WriteLine(i + " - " + Func.InsertSpacesBeforeUpper(actionList[i].Method.Name));
 				try
 				{
 					choice = Convert.ToInt32(Console.ReadLine());
@@ -228,21 +380,21 @@ namespace UI
 			{
 				ID = "123",
 				Name = new Name("Avi", "Levi"),
-				Sex = Gender.male,
+				Sex = Gender.Male,
 				PhoneNumber = "123",
 				BirthDay = new DateTime(1993, 11, 3),
 				Address = new Address("bet shemesh", "nahal maor", "19"),
-				CurrentCarType = CarType.largeTruck,
+				CurrentCarType = CarType.LargeTruck,
 			};
 			Trainee b = new Trainee
 			{
 				ID = "456",
 				Name = new Name("Sapir", "Barabi"),
-				Sex = Gender.female,
+				Sex = Gender.Female,
 				PhoneNumber = "456",
 				BirthDay = new DateTime(1993, 5, 14),
 				Address = new Address("Kiryat Ata", "David Remez", "1a"),
-				CurrentCarType = CarType.largeTruck,
+				CurrentCarType = CarType.LargeTruck,
 
 			};
 
@@ -250,14 +402,14 @@ namespace UI
 			{
 				ID = "123456",
 				Name = new Name("Dan", "internatonal"),
-				Sex = Gender.male,
+				Sex = Gender.Male,
 				PhoneNumber = "224",
 				BirthDay = new DateTime(1969, 2, 1),
 				Address = new Address("jeru", "vaad", "21"),
 				MaxDistance = 60,
 				MaxWeeklyTests = 9,
 				ExpYears = 6,
-				testingCarType = CarType.privateCar,
+				testingCarType = CarType.PrivateCar,
 				schedule = new Schedule()
 			};
 			IBL bl = FactoryBL.GetBL();
