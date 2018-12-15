@@ -35,13 +35,14 @@ namespace BE
 	public class Person
 	{
 		
-		public string ID { get; set; }
 		
+		private string id;
 		public DateTime BirthDay { get; set; }
 		public Name Name { get; set; }
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }
 		public Gender Sex { get; set; }
+		public string ID { get => id.PadLeft(8,'0'); set => id = value; }
 
 		public override bool Equals(object obj)
 		{

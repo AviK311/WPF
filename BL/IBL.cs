@@ -13,12 +13,12 @@ namespace BL
         void RemoveTest(string id);
         void UpdateTest(BE.Test newData);
 
-        void AddTrainee(BE.Trainee trainee);
+        void AddTrainee(BE.Trainee trainee, bool update = false);
 		BE.Trainee GetTrainee(string id);
 		void RemoveTrainee(string id);
         void UpdateTrainee(BE.Trainee newData);
 
-        void AddTester(BE.Tester tester);
+        void AddTester(BE.Tester tester, bool update = false);
 		BE.Tester GetTester(string id);
         void RemoveTester(string id);
         void UpdateTester(BE.Tester newData);
@@ -29,18 +29,19 @@ namespace BL
 
 		IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
 		IEnumerable<BE.Tester> AvailableTesters(DateTime date);
+		IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date);
 		IEnumerable<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
         bool ProperToLicense(BE.Trainee trainee);
         IEnumerable<DateTime> PlannedTests();
 
         //Groups
         IEnumerable<IGrouping<string, BE.Trainee>> 
-            TraineesGroupsAccordingToSchoolName(CarType c, bool inOrder = false);
+            TraineesGroupsAccordingToSchoolName(VehicleType c, bool inOrder = false);
         IEnumerable<IGrouping<BE.Name, BE.Trainee>>
-            TraineesGroupsAccordingToTeacherName(CarType c,bool inOrder = false);
+            TraineesGroupsAccordingToTeacherName(VehicleType c,bool inOrder = false);
         IEnumerable<IGrouping<int, BE.Trainee>>
-            TraineesGroupsAccordingToTestsNum(CarType c, bool inOrder = false);
-        IEnumerable<IGrouping<BE.CarType, BE.Tester>>
+            TraineesGroupsAccordingToTestsNum(VehicleType c, bool inOrder = false);
+        IEnumerable<IGrouping<BE.VehicleType, BE.Tester>>
             TesterGroupsAccordingToCarType(bool inOrder = false);
 		IEnumerable<IGrouping<Trainee, BE.Test>>
 			TestGroupsAccordingToTrainee(bool inOrder = false);

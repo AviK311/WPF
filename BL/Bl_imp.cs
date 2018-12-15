@@ -27,7 +27,7 @@ namespace BL
 			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
 
 			var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
-            if (otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
+            if (otherTests != null &&otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
             
             if (testTrainee.CurrentCarType != testTester.testingCarType)
@@ -41,13 +41,11 @@ namespace BL
             var tests_by_tester = from test1 in dal.GetTests()
                                   where test1.TesterID == testTester.ID
                                   select test1;
-            ///if the tester is unavailable
-            if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour))
-            {
-                //code to suggest another tester
-            }
+			///if the tester is unavailable
+			if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour))
+				throw new InvalidOperationException("The tester is unavailable");
             var tests_by_tester_same_week = from test1 in tests_by_tester
-                                            where DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
+                                            where Functions.DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
                                             select test1;
             if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
@@ -56,18 +54,18 @@ namespace BL
 			dal.AddTest(test);
         }
 
-        void IBL.AddTester(Tester tester)
+        public void AddTester(Tester tester, bool update = false)
         {
-			if (dal.GetTesters().Any(T => T.Equals(tester)))
+			if (!update && dal.GetTesters().Any(T => T.Equals(tester)))
 				throw new InvalidOperationException("A tester with that ID already exists");
 			if (tester.GetAge() < Configuration.MinAgeOfTester)
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
             dal.AddTester(tester);
         }
 
-        public void AddTrainee(Trainee trainee)
+        public void AddTrainee(Trainee trainee, bool update = false)
         {
-			if (dal.GetTrainees().Any(T => T.Equals(trainee)))
+			if (!update &&dal.GetTrainees().Any(T => T.Equals(trainee)))
 				throw new InvalidOperationException("A trainee with that ID already exists");
 			dal.AddTrainee(trainee);
         }
@@ -89,8 +87,22 @@ namespace BL
                                 && tester.MaxWeeklyTests<tests.Count()
                           select tester;
         }
+		public IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date)
+		{
+			List<DateTime> available = new List<DateTime>();
+			for (var j = date.AddDays(-2); j <= date.AddDays(2); j.AddDays(1))
+				for (int hour = 9; hour < 15; hour++)
+				{
+					DateTime availableDate = new DateTime(j.Year, j.Month, j.Day, hour, 0, 0);
+					if (tester.schedule[j.DayOfWeek][hour] &&
+						AvailableTesters(availableDate).Any(T => T.Equals(tester)))
+						available.Add(availableDate);
+				}
+			return available;
+			
+		}
 
-        public IEnumerable<Tester> GetTesters()
+		public IEnumerable<Tester> GetTesters()
         {
             return dal.GetTesters();
         }
@@ -140,7 +152,7 @@ namespace BL
 			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
         }
 
-        public IEnumerable<IGrouping<CarType, Tester>> TesterGroupsAccordingToCarType(bool inOrder)
+        public IEnumerable<IGrouping<VehicleType, Tester>> TesterGroupsAccordingToCarType(bool inOrder)
         {
 			var toReturn = from tester in dal.GetTesters()
 						   group tester by tester.testingCarType;
@@ -153,7 +165,7 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(CarType c, bool inOrder)
+        public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(VehicleType c, bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
 						   group trainee by trainee.carTypeStats[c].schoolName;
@@ -161,7 +173,7 @@ namespace BL
 			return toReturn;
 		}
 
-        public IEnumerable<IGrouping<Name, Trainee>> TraineesGroupsAccordingToTeacherName(CarType c, bool inOrder)
+        public IEnumerable<IGrouping<Name, Trainee>> TraineesGroupsAccordingToTeacherName(VehicleType c, bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
 						   group trainee by trainee.carTypeStats[c].teacherName;
@@ -169,7 +181,7 @@ namespace BL
 			return toReturn;
 		}
 
-        public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(CarType c, bool inOrder)
+        public IEnumerable<IGrouping<int, Trainee>> TraineesGroupsAccordingToTestsNum(VehicleType c, bool inOrder)
         {
 			var toReturn = from trainee in dal.GetTrainees()
                           group trainee by trainee.carTypeStats[c].numOfTest;
@@ -179,17 +191,20 @@ namespace BL
 
         public void UpdateTest(Test newData)
         {
-			dal.UpdateTest(newData);
+			AddTest(newData);
+			RemoveTest(newData.TestNumber);
         }
 
         public void UpdateTester(Tester newData)
         {
-			dal.UpdateTester(newData);
+			AddTester(tester: newData, update: true);
+			RemoveTester(newData.ID);
 		}
 
         public void UpdateTrainee(Trainee newData)
         {
-			dal.UpdateTrainee(newData);
+			AddTrainee(trainee: newData, update: true);
+			RemoveTrainee(newData.ID);
 		}
 
         public Test GetTest(string id)
@@ -217,15 +232,7 @@ namespace BL
 			if (inOrder) toReturn.OrderBy(item => item.Key.ID);
 			return toReturn;
         }
-        private bool DatesAreInTheSameWeek(DateTime date1, DateTime date2)
-        {
-            //var cal = System.Globalization.DateTimeFormatInfo.CurrentInfo.Calendar;
-            //var d1 = date1.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date1));
-            //var d2 = date2.Date.AddDays(-1 * (int)cal.GetDayOfWeek(date2));
-            var d1 = date1.AddDays(-1 * (int)date1.DayOfWeek);
-            var d2 = date2.AddDays(-1 * (int)date2.DayOfWeek);
-            return d1 == d2;
-        }
+        
 
 	}
 

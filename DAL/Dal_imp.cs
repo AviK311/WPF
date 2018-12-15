@@ -80,22 +80,22 @@ namespace DAL
 			DataSource.traineeList.Remove(toRemove);
 		}
 
-		void Idal.UpdateTest(Test newData)
-		{
-			int index = DataSource.testList.FindIndex(T => newData.TestNumber == T.TestNumber);
-			DataSource.testList[index] = newData;
-		}
+		//void Idal.UpdateTest(Test newData)
+		//{
+		//	int index = DataSource.testList.FindIndex(T => newData.TestNumber == T.TestNumber);
+		//	DataSource.testList[index] = newData;
+		//}
 
-		void Idal.UpdateTester( Tester newData)
-		{
-			int index = DataSource.testerList.FindIndex(T => newData.ID == T.ID);
-			DataSource.testerList[index] = newData;
-		}
+		//void Idal.UpdateTester( Tester newData)
+		//{
+		//	int index = DataSource.testerList.FindIndex(T => newData.ID == T.ID);
+		//	DataSource.testerList[index] = newData;
+		//}
 
-		void Idal.UpdateTrainee(Trainee newData)
-		{
-			int index = DataSource.traineeList.FindIndex(T => newData.ID == T.ID);
-			DataSource.traineeList[index] = newData;
-		}
+		//void Idal.UpdateTrainee(Trainee newData)
+		//{
+		//	int index = DataSource.traineeList.FindIndex(T => newData.ID == T.ID);
+		//	DataSource.traineeList[index] = newData;
+		//}
 	}
 }

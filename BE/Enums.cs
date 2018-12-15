@@ -1,7 +1,7 @@
 ﻿namespace BE
 {
     public enum Gender { Male, Female };
-	public enum CarType { MotorCycle, PrivateCar, SmallTruck, LargeTruck };
-	public enum GearType { automatic, Manual };
+	public enum VehicleType { MotorCycle, PrivateCar, SmallTruck, LargeTruck, AirPlane, Train, MotorBoat, CruiseShip};
+	public enum GearType { Automatic, Manual };
 	public enum UserType { Admin, Tester, Trainee };
 }

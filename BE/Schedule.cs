@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace BE
@@ -11,6 +12,11 @@ namespace BE
 		{
 			for (int i = 0; i < 6; i++)
 				hours[i] = true;
+		}
+		public Day(Day other)
+		{
+			for (int i = 0; i < 6; i++)
+				this[i] = other[i];
 		}
 
 		public bool this[int index]
@@ -31,8 +37,12 @@ namespace BE
 	}
 	public class Schedule
 	{
-		Dictionary<DayOfWeek, Day> week;
-
+		public Dictionary<DayOfWeek, Day> week;
+		public Schedule(Schedule other)
+		{
+			foreach (var day in other.week)
+				this.week.Add(day.Key, new Day(day.Value));
+		}
 		public Schedule()
 		{
 			week = new Dictionary<DayOfWeek, Day>();
