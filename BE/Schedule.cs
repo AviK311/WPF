@@ -15,7 +15,7 @@ namespace BE
 		}
 		public Day(Day other)
 		{
-			for (int i = 0; i < 6; i++)
+			for (int i = 9; i <= 14; i++)
 				this[i] = other[i];
 		}
 
@@ -40,6 +40,7 @@ namespace BE
 		public Dictionary<DayOfWeek, Day> week;
 		public Schedule(Schedule other)
 		{
+			week = new Dictionary<DayOfWeek, Day>();
 			foreach (var day in other.week)
 				this.week.Add(day.Key, new Day(day.Value));
 		}

@@ -14,7 +14,7 @@ namespace BL
         {
             dal = DAL.FactoryDal.GetDAL();
         }
-        public void AddTest(Test test)
+        public void AddTest(Test test, bool update = false)
         {
 			test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
 			var testTrainee = (from trainee in dal.GetTrainees()
@@ -31,7 +31,7 @@ namespace BL
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
             
             if (testTrainee.CurrentCarType != testTester.testingCarType)
-                throw new InvalidOperationException("The tester does not teach on the car type that the trainee learned with");
+                throw new InvalidOperationException("The tester does not teach on the vehicle type that the trainee learned with");
             if (testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfLessons < 20)
                 throw new InvalidOperationException("The trainee is not yet ready for a test");
             if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
@@ -49,7 +49,11 @@ namespace BL
                                             select test1;
             if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
-			
+			if (test.TestDateTime < DateTime.Now && test.testProperties.passed())
+				testTrainee.carTypeStats[testTrainee.CurrentCarType].passed = true;
+			if(!update)
+				testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfTest++;
+			UpdateTrainee(testTrainee);
 			Configuration.TestCode++;
 			dal.AddTest(test);
         }

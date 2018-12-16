@@ -11,6 +11,8 @@ namespace BE
 	{
 		public Stats()
 		{
+			numOfLessons = 0;
+			numOfTest = 0;
 		}
 
 		public Stats(Stats other)

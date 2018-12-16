@@ -8,7 +8,7 @@ namespace BL
 {
     public interface IBL
     {
-        void AddTest(BE.Test test);
+        void AddTest(BE.Test test,  bool update = false);
 		BE.Test GetTest(string id);
         void RemoveTest(string id);
         void UpdateTest(BE.Test newData);

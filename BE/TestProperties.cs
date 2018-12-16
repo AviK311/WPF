@@ -7,14 +7,23 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-	public struct TestProperties
+	public class TestProperties
 	{
-		public bool IsDistance { get; set; }
-		public bool IsReverese { get; set; }
-		public bool IsMirror { get; set; }
-		public bool IsSignal { get; set; }
-		public bool IsSigns { get; set; }
-		public bool IsBreak { get; set; }
+		public TestProperties()
+		{
+		}
+		public TestProperties(TestProperties other)
+		{
+			foreach (PropertyInfo p in typeof(TestProperties).GetProperties())
+				p.SetValue(this, p.GetValue(other));
+		}
+
+		public bool KeepingDistance { get; set; }
+		public bool DrivingInReverse { get; set; }
+		public bool MirrorUsage { get; set; }
+		public bool Signaling { get; set; }
+		public bool SignsReading { get; set; }
+		public bool Breaking { get; set; }
 
 		public bool passed()
 		{

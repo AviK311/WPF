@@ -47,21 +47,165 @@ namespace UI
 			}
 			catch (Exception e) { Console.WriteLine(e.Message); return; }
 			Console.WriteLine("You will be prompted to update fields. Press enter to ignore.");
+			string stringHelper;
 			Console.WriteLine("What is the Phone Number?");
-			toUpdate.PhoneNumber = Console.ReadLine();
+			stringHelper = Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.PhoneNumber = stringHelper;
 			Console.WriteLine("What is the Address? type on seperate lines: city, street name, building number.");
-			toUpdate.Address = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
-
+			stringHelper = Console.ReadLine()+"\n"+ Console.ReadLine() + "\n" + Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+			{
+				var splitAddress = stringHelper.Split('\n');
+				toUpdate.Address = new Address(splitAddress[0], splitAddress[1], splitAddress[2]);
+			}
 			Console.WriteLine("What type is the vehicle the trainee is learning on?");
 			PrintVehicleTypes();
-			int v = (int)toUpdate.CurrentCarType;
-			int.TryParse(Console.ReadLine(), out v);
-			toUpdate.CurrentCarType = (BE.VehicleType)v;
+			stringHelper = Console.ReadLine();
+			int v;
+			int.TryParse(stringHelper, out v);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.CurrentCarType = (BE.VehicleType)v;
 			Console.WriteLine("What gear type is the trainee learning on?");
-			int g = (int)toUpdate.carTypeStats[toUpdate.CurrentCarType].gearType;
-			int.TryParse(Console.ReadLine(), out g);
-			toUpdate.carTypeStats[toUpdate.CurrentCarType].gearType = (GearType)g;
+			stringHelper = Console.ReadLine();
+			int g;
+			int.TryParse(stringHelper, out g);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.carTypeStats[toUpdate.CurrentCarType].gearType = (GearType)g;
+			Console.WriteLine("How many lessons did the trainee learn?");
+			int lessons;
+			stringHelper = Console.ReadLine();
+			int.TryParse(stringHelper, out lessons);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.carTypeStats[toUpdate.CurrentCarType].numOfLessons = lessons;
 
+			try { bl.UpdateTrainee(toUpdate); }
+			catch (Exception e) { Console.WriteLine(e.Message); return; }
+
+
+
+		}
+		static void UpdateTest()
+		{
+			Console.WriteLine("Please enter the Test Number");
+			IBL bl = FactoryBL.GetBL();
+			Test toUpdate;
+			try
+			{
+				toUpdate = bl.GetTest(Console.ReadLine());
+				Console.WriteLine(toUpdate.ToLongString());
+			}
+			catch (Exception e) { Console.WriteLine(e.Message); return; }
+			Console.WriteLine("You will be prompted to update fields. Press enter to ignore.");
+			string stringHelper;
+			Console.WriteLine("What is the Trainee ID?");
+			stringHelper = Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.TraineeID = stringHelper;
+			Console.WriteLine("What is the Tester ID?");
+			stringHelper = Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.TesterID = stringHelper;
+			Console.WriteLine("When is the Test? type in mm/dd/yyyy hh format");
+			stringHelper = Console.ReadLine() + ":00:00";
+			DateTime date;
+			DateTime.TryParse(stringHelper, out date);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.TestDateTime = date;
+			if (toUpdate.TestDateTime < DateTime.Now)
+			{
+				Console.WriteLine("The test has passed. Please enter the results:");
+				foreach (var item in typeof(TestProperties).GetProperties())
+				{
+					string str = Functions.InsertSpacesBeforeUpper(item.Name).ToLower();
+					Console.WriteLine("Did the trainee keep the rules of {0}? 0 - no, 1 - yes", str);
+					stringHelper = Console.ReadLine();
+					if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+					{
+						bool passed = Convert.ToBoolean(Convert.ToInt32(stringHelper));
+						item.SetValue(toUpdate.testProperties, passed);
+					}
+				}
+			}
+			Console.WriteLine("What is the begin address? type on seperate lines: city, street name, building number.");
+			stringHelper = Console.ReadLine() + "\n" + Console.ReadLine() + "\n" + Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+			{
+				var splitAddress = stringHelper.Split('\n');
+				toUpdate.BeginLocation = new Address(splitAddress[0], splitAddress[1], splitAddress[2]);
+			}
+			try { bl.UpdateTest(toUpdate); }
+			catch (Exception e) { Console.WriteLine(e.Message); return; }
+
+
+
+		}
+		static void UpdateTester()
+		{
+			Console.WriteLine("Please enter the Tester ID");
+			IBL bl = FactoryBL.GetBL();
+			Tester toUpdate;
+			try
+			{
+				toUpdate = bl.GetTester(Console.ReadLine());
+				Console.WriteLine(toUpdate.ToLongString());
+			}
+			catch (Exception e) { Console.WriteLine(e.Message); return; }
+			Console.WriteLine("You will be prompted to update fields. Press enter to ignore.");
+			string stringHelper;
+			Console.WriteLine("What is the Phone Number?");
+			stringHelper = Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.PhoneNumber = stringHelper;
+			Console.WriteLine("What is the Address? type on seperate lines: city, street name, building number.");
+			stringHelper = Console.ReadLine() + "\n" + Console.ReadLine() + "\n" + Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+			{
+				var splitAddress = stringHelper.Split('\n');
+				toUpdate.Address = new Address(splitAddress[0], splitAddress[1], splitAddress[2]);
+			}
+			Console.WriteLine("What type is the vehicle the testers tests on?");
+			PrintVehicleTypes();
+			stringHelper = Console.ReadLine();
+			int v;
+			int.TryParse(stringHelper, out v);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.testingCarType = (BE.VehicleType)v;
+			Console.WriteLine("How many years of experience does the tester have?");
+			stringHelper = Console.ReadLine();
+			UInt32 expYears;
+			UInt32.TryParse(stringHelper, out expYears);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.ExpYears = expYears;
+			Console.WriteLine("What is the maximum amount of weekly tests the tester can perform?");
+			stringHelper = Console.ReadLine();
+			UInt32 maxTests;
+			UInt32.TryParse(stringHelper, out maxTests);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.MaxWeeklyTests = maxTests;
+			Console.WriteLine("What is the maximum distance the tester can go for a test?");
+			stringHelper = Console.ReadLine();
+			UInt32 maxDist;
+			UInt32.TryParse(stringHelper, out maxDist);
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+				toUpdate.MaxDistance = maxDist;
+			Schedule schedule = new Schedule();
+			Console.WriteLine("On which days is the tester busy?");
+			Console.WriteLine("1 - sunday, etc");
+			stringHelper = Console.ReadLine();
+			if (stringHelper.Any(c => char.IsLetterOrDigit(c)))
+			{
+				foreach (var day in Functions.DaysOfWeekFromString(stringHelper))
+				{
+					Console.WriteLine("During what hours is the tester busy on {0}?\n9-14", day);
+					string hoursString = Console.ReadLine();
+					for (int hour = 9; hour < 15; hour++)
+						schedule[day][hour] = !hoursString.Contains(hour.ToString());
+				}
+				toUpdate.schedule = schedule;
+			}
+			try { bl.UpdateTester(toUpdate); }
+			catch (Exception e) { Console.WriteLine(e.Message); return; }
 
 
 
@@ -280,10 +424,21 @@ namespace UI
 			toAdd.TraineeID = Console.ReadLine();
 			Console.WriteLine("What is the Tester ID?");
 			toAdd.TesterID = Console.ReadLine();
-			Console.WriteLine("When is the Test?");
+			Console.WriteLine("When is the Test? type in mm/dd/yyyy hh format");
+			string dateString = Console.ReadLine()+":00:00";
 			DateTime date;
-			DateTime.TryParse(Console.ReadLine(), out date);
+			DateTime.TryParse(dateString, out date);
 			toAdd.TestDateTime = date;
+			if (date < DateTime.Now)
+			{
+				foreach(var item in typeof(TestProperties).GetProperties())
+				{
+					string str = Functions.InsertSpacesBeforeUpper(item.Name).ToLower();
+					Console.WriteLine("Did the trainee keep the rules of {0}? 0 - no, 1 - yes", str);
+					bool passed = Convert.ToBoolean(Convert.ToInt32(Console.ReadLine()));
+					item.SetValue(toAdd.testProperties, passed);
+				}
+			}
 			Console.WriteLine("In what location will the test begin? type on seperate lines: city, street name, building number.");
 			toAdd.BeginLocation = new Address(Console.ReadLine(), Console.ReadLine(), Console.ReadLine());
 			BL.IBL bl = FactoryBL.GetBL();
@@ -426,15 +581,15 @@ namespace UI
 			toAdd.schedule = schedule;
 			Console.WriteLine("How many years of experience does the tester have?");
 			UInt32 expYears;
-			while(!UInt32.TryParse(Console.ReadLine(), out expYears));
+			UInt32.TryParse(Console.ReadLine(), out expYears);
 			toAdd.ExpYears = expYears;
 			Console.WriteLine("What is the maximum amount of weekly tests the tester can perform?");
 			UInt32 maxTests;
-			while (!UInt32.TryParse(Console.ReadLine(), out maxTests)) ;
+			UInt32.TryParse(Console.ReadLine(), out maxTests);
 			toAdd.MaxWeeklyTests = maxTests;
 			Console.WriteLine("What is the maximum distance the tester can go for a test?");
 			UInt32 maxDist;
-			while (!UInt32.TryParse(Console.ReadLine(), out maxDist)) ;
+			UInt32.TryParse(Console.ReadLine(), out maxDist);
 			toAdd.MaxDistance = maxDist;
 
 			BL.IBL bl = FactoryBL.GetBL();
@@ -457,19 +612,19 @@ namespace UI
 
 		static void Main(string[] args)
 		{
-			init();
+			Functions.init();
 
 			List<Action> actionList = new List<Action>();
 			actionList.Add(AddTest);
 
 			actionList.Add(RemoveTest);
-			//actionList.Add(UpdateTest);
+			actionList.Add(UpdateTest);
 			actionList.Add(AddTrainee);
 			actionList.Add(RemoveTrainee);
 			actionList.Add(UpdateTrainee);
 			actionList.Add(AddTester);
 			actionList.Add(RemoveTester);
-			//actionList.Add(UpdateTester);
+			actionList.Add(UpdateTester);
 			actionList.Add(ViewAllTests);
 			actionList.Add(ViewAllTrainees);
 			actionList.Add(ViewAllTesters);
@@ -494,48 +649,5 @@ namespace UI
 
 		}
 		
-		static void init()
-		{
-			Trainee a = new Trainee
-			{
-				ID = "123",
-				Name = new Name("Avi", "Levi"),
-				Sex = Gender.Male,
-				PhoneNumber = "123",
-				BirthDay = new DateTime(1993, 11, 3),
-				Address = new Address("bet shemesh", "nahal maor", "19"),
-				CurrentCarType = VehicleType.LargeTruck,
-			};
-			Trainee b = new Trainee
-			{
-				ID = "456",
-				Name = new Name("Sapir", "Barabi"),
-				Sex = Gender.Female,
-				PhoneNumber = "456",
-				BirthDay = new DateTime(1993, 5, 14),
-				Address = new Address("Kiryat Ata", "David Remez", "1a"),
-				CurrentCarType = VehicleType.LargeTruck,
-
-			};
-
-			Tester c = new Tester
-			{
-				ID = "123456",
-				Name = new Name("Dan", "internatonal"),
-				Sex = Gender.Male,
-				PhoneNumber = "224",
-				BirthDay = new DateTime(1969, 2, 1),
-				Address = new Address("jeru", "vaad", "21"),
-				MaxDistance = 60,
-				MaxWeeklyTests = 9,
-				ExpYears = 6,
-				testingCarType = VehicleType.PrivateCar,
-				schedule = new Schedule()
-			};
-			IBL bl = FactoryBL.GetBL();
-			bl.AddTester(c);
-			bl.AddTrainee(a);
-			bl.AddTrainee(b);
-		}
 	}
 }
