@@ -21,8 +21,12 @@ namespace DAL
 		void RemoveTester(Tester toRemove);
 		//void UpdateTester(Tester newData);
 
+		void AddAdmin(Admin admin);
+		Admin GetAdmin(string id);
+
 
 		IEnumerable<Test> GetTests();
+		IEnumerable<Admin> GetAdmins();
 		IEnumerable<Tester> GetTesters();
 		IEnumerable<Trainee> GetTrainees();
 

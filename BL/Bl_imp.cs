@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BL
 {
+	/// <summary>
+	/// 
+	/// </summary>
     public class Bl_imp : IBL
     {
         DAL.Idal dal;
@@ -120,8 +123,12 @@ namespace BL
         {
             return dal.GetTrainees();
         }
+		public IEnumerable<Admin> GetAdmins()
+		{
+			return dal.GetAdmins();
+		}
 
-        public IEnumerable<DateTime> PlannedTests()
+		public IEnumerable<DateTime> PlannedTests()
         {
 			return from tests in dal.GetTests()
 				   select tests.TestDateTime;
@@ -195,7 +202,7 @@ namespace BL
 
         public void UpdateTest(Test newData)
         {
-			AddTest(newData);
+			AddTest(newData, update: true);
 			RemoveTest(newData.TestNumber);
         }
 
@@ -236,8 +243,18 @@ namespace BL
 			if (inOrder) toReturn.OrderBy(item => item.Key.ID);
 			return toReturn;
         }
-        
 
+		public void AddAdmin(Admin admin)
+		{
+			if (dal.GetAdmins().Any(A => A.Equals(admin)))
+				throw new InvalidOperationException("An Admin with that ID already exists");
+			dal.AddAdmin(admin);
+		}
+
+		public Admin GetAdmin(string id)
+		{
+			return dal.GetAdmin(id);
+		}
 	}
 
 }

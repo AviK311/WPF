@@ -35,6 +35,49 @@ namespace UI
 	//}
 	class Program
 	{
+		public static void init()
+		{
+			Trainee a = new Trainee
+			{
+				ID = "123",
+				Name = new Name("Avi", "Levi"),
+				Sex = Gender.Male,
+				PhoneNumber = "123",
+				BirthDay = new DateTime(1993, 11, 3),
+				Address = new Address("bet shemesh", "nahal maor", "19"),
+				CurrentCarType = VehicleType.LargeTruck,
+			};
+			Trainee b = new Trainee
+			{
+				ID = "456",
+				Name = new Name("Sapir", "Barabi"),
+				Sex = Gender.Female,
+				PhoneNumber = "456",
+				BirthDay = new DateTime(1993, 5, 14),
+				Address = new Address("Kiryat Ata", "David Remez", "1a"),
+				CurrentCarType = VehicleType.LargeTruck,
+
+			};
+
+			Tester c = new Tester
+			{
+				ID = "123456",
+				Name = new Name("Dan", "internatonal"),
+				Sex = Gender.Male,
+				PhoneNumber = "224",
+				BirthDay = new DateTime(1969, 2, 1),
+				Address = new Address("jeru", "vaad", "21"),
+				MaxDistance = 60,
+				MaxWeeklyTests = 9,
+				ExpYears = 6,
+				testingCarType = VehicleType.PrivateCar,
+				schedule = new Schedule()
+			};
+			IBL bl = FactoryBL.GetBL();
+			bl.AddTester(c);
+			bl.AddTrainee(a);
+			bl.AddTrainee(b);
+		}
 		static void UpdateTrainee()
 		{
 			Console.WriteLine("Please enter the Trainee ID");
@@ -612,7 +655,7 @@ namespace UI
 
 		static void Main(string[] args)
 		{
-			Functions.init();
+			init();
 
 			List<Action> actionList = new List<Action>();
 			actionList.Add(AddTest);

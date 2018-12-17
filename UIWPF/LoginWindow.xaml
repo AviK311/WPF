@@ -1,0 +1,14 @@
+﻿<Window x:Class="UIWPF.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UIWPF"
+        mc:Ignorable="d"
+        Title="LoginWindow" Height="450" Width="800">
+	<Grid>
+		<TextBox x:Name="textBox" HorizontalAlignment="Left" Height="49" TextWrapping="Wrap" Text="Enter User ID Here" VerticalAlignment="Top" Width="396" Margin="324,167,0,0"/>
+		<TextBox x:Name="textBox_Copy" HorizontalAlignment="Left" Height="49" TextWrapping="Wrap" Text="Enter Password Here" VerticalAlignment="Top" Width="396" Margin="324,244,0,0"/>
+
+	</Grid>
+</Window>

@@ -7,8 +7,7 @@ namespace BE
     public class Test
 	{
 		public Test(Test other)
-		{
-			
+		{ 
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 			testProperties = new TestProperties(other.testProperties);

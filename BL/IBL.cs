@@ -23,8 +23,13 @@ namespace BL
         void RemoveTester(string id);
         void UpdateTester(BE.Tester newData);
 
-        IEnumerable<BE.Test> GetTests();
-        IEnumerable<BE.Tester> GetTesters();
+		void AddAdmin(BE.Admin admin);
+		BE.Admin GetAdmin(string id);
+
+		IEnumerable<BE.Test> GetTests();
+		IEnumerable<BE.Admin> GetAdmins();
+
+		IEnumerable<BE.Tester> GetTesters();
         IEnumerable<BE.Trainee> GetTrainees();
 
 		IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps

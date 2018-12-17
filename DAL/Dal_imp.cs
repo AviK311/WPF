@@ -49,6 +49,10 @@ namespace DAL
 		{
 			return new List<Trainee>(DataSource.traineeList);
 		}
+		public IEnumerable<Admin> GetAdmins()
+		{
+			return new List<Admin>(DataSource.adminList);
+		}
 
 		void Idal.AddTest(Test test)
 		{
@@ -63,6 +67,10 @@ namespace DAL
 		void Idal.AddTrainee(Trainee trainee)
 		{
 			DataSource.traineeList.Add(trainee);
+		}
+		void Idal.AddAdmin(Admin admin)
+		{
+			DataSource.adminList.Add(admin);
 		}
 
 		void Idal.RemoveTest(Test toRemove)
@@ -79,6 +87,17 @@ namespace DAL
 		{
 			DataSource.traineeList.Remove(toRemove);
 		}
+
+		public Admin GetAdmin(string id)
+		{
+			Admin toReturn = DataSource.adminList.FirstOrDefault(admin => admin.ID == id);
+			if (toReturn == null)
+				throw new InvalidOperationException("That Admin doesn't exist");
+			return new Admin(toReturn);
+			
+		}
+
+
 
 		//void Idal.UpdateTest(Test newData)
 		//{
