@@ -24,5 +24,23 @@ namespace UI_WPF
 		{
 			InitializeComponent();
 		}
-	}
+
+        private void button_trainee_Click(object sender, RoutedEventArgs e)
+        {
+            Window trainee = new TraineeWindow();
+            trainee.Show();
+        }
+
+        private void button_tester_Click(object sender, RoutedEventArgs e)
+        {
+            Window tester = new TesterWindow();
+            tester.Show();
+        }
+
+        private void button_test_Click(object sender, RoutedEventArgs e)
+        {
+            Window test = new TestWindow();
+            test.Show();
+        }
+    }
 }
