@@ -26,9 +26,13 @@ namespace UI_WPF
 			InitializeComponent();
 			IBL bl = FactoryBL.GetBL();
 			Name name = new Name("Avi", "Koenigsberg");
-			Admin avi = new Admin(name, "J0gging9");
-			avi.ID = "31122370";
+			Admin avi = new Admin(name, "J0gging9");           
+			avi.ID = "31122370";            
 			bl.AddAdmin(avi);
+            name = new Name("Tamar", "Gold");
+			Admin tamar = new Admin(name, "1234");
+            tamar.ID="207623224";
+            bl.AddAdmin(tamar);            
 		}
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
