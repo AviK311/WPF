@@ -6,7 +6,7 @@ namespace BE
 {
     public class Trainee:Person
 	{
-		public Dictionary<VehicleType, Stats> carTypeStats;
+		public Dictionary<VehicleType, Stats> carTypeStats { get; set; }
 		public Trainee(Trainee other)
 		{
 			clearanceLevel = ClearanceLevel.Trainee;

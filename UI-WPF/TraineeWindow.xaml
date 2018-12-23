@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="TraineeWindow" Height="450" Width="800">
+        Title="TraineeWindow" Height="450" Width="800" >
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="2*"/>
+            <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <Grid Name="buttons" Grid.Column="1">
@@ -16,7 +16,11 @@
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
+            <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto" Click="Add_Click" FontSize="36" Grid.Row="0"/>
+            <Button x:Name="View" Content="View" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="1" Click="View_Click"/>
+            <Button x:Name="Delete" Content="Delete" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="2"/>
         </Grid>
     </Grid>
 </Window>
