@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddTrainee1.xaml.cs">
+      <DependentUpon>AddTrainee1.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TesterWindow.xaml.cs">
       <DependentUpon>TesterWindow.xaml</DependentUpon>
     </Compile>
@@ -64,6 +67,10 @@
     <Compile Include="TraineeWindow.xaml.cs">
       <DependentUpon>TraineeWindow.xaml</DependentUpon>
     </Compile>
+    <Page Include="AddTrainee1.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -115,6 +122,19 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Properties\DataSources\BE.Address.datasource" />
+    <None Include="Properties\DataSources\BE.Admin.datasource" />
+    <None Include="Properties\DataSources\BE.Configuration.datasource" />
+    <None Include="Properties\DataSources\BE.Day.datasource" />
+    <None Include="Properties\DataSources\BE.Functions.datasource" />
+    <None Include="Properties\DataSources\BE.Name.datasource" />
+    <None Include="Properties\DataSources\BE.Person.datasource" />
+    <None Include="Properties\DataSources\BE.Schedule.datasource" />
+    <None Include="Properties\DataSources\BE.Stats.datasource" />
+    <None Include="Properties\DataSources\BE.Test.datasource" />
+    <None Include="Properties\DataSources\BE.Tester.datasource" />
+    <None Include="Properties\DataSources\BE.TestProperties.datasource" />
+    <None Include="Properties\DataSources\BE.Trainee.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -141,6 +161,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\מכונית 2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\נהג חדש.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\ל.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

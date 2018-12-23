@@ -6,9 +6,10 @@ namespace BE
     public struct Name
 	{
 
-		private readonly string first, last;
+		public string first { get; set; }
+        public string last { get; set; }
 
-		public Name(string first, string last)
+        public Name(string first, string last)
 		{
 			this.first = first;
 			this.last = last;
