@@ -50,8 +50,13 @@ namespace BE
 					toReturn.Add(s.Key);
 			return toReturn; 	
 		}
+		public static void AddTemplateList<T>(List<T> list, params T[] args)
+		{
+			foreach (var item in args)
+				list.Add(item);
+		}
 
-		
+
 
 	}
 }

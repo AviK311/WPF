@@ -11,5 +11,7 @@ namespace UI_WPF
 	{
 		public static ClearanceLevel appClearanceLevel = ClearanceLevel.Trainee;
 		public static Person user;
+		
+		
 	}
 }

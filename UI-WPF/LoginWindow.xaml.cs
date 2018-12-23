@@ -51,6 +51,7 @@ namespace UI_WPF
 				if (!Global.user.CheckPassword(password))
 					throw new InvalidOperationException("Wrong password!");
 				MainWindow main = new MainWindow();
+				//TesterAdd main = new TesterAdd();
 				main.Show();
 				this.Close();
 			}
