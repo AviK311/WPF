@@ -61,6 +61,9 @@
     <Compile Include="AddTrainee1.xaml.cs">
       <DependentUpon>AddTrainee1.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TesterView.xaml.cs">
+      <DependentUpon>TesterView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TesterWindow.xaml.cs">
       <DependentUpon>TesterWindow.xaml</DependentUpon>
     </Compile>
@@ -95,6 +98,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="TesterAdd.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TesterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -53,7 +53,7 @@ namespace UI_WPF
 				MainWindow main = new MainWindow();
 				//TesterAdd main = new TesterAdd();
 				main.Show();
-				this.Close();
+				Close();
 			}
 			catch (InvalidOperationException exc)
 			{

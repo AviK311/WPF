@@ -1,0 +1,159 @@
+﻿<Window x:Class="UI_WPF.TesterView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_WPF"
+        mc:Ignorable="d"
+        Title="TesterView" Height="450" Width="800">
+	<Grid>
+		<Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,59,0,0" HorizontalAlignment="Left" Width="370">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="8*"/>
+				<ColumnDefinition Width="9*"/>
+			</Grid.ColumnDefinitions>
+			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="First Name:" Height="26" Width="179"/>
+			<TextBlock x:Name="FirstName" Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding Name.first, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=true}"/>
+			<Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Last Name:" Height="26" Width="179"/>
+			<TextBlock x:Name="LastName" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding Name.last, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=true}"/>
+			<Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Birth Day:" Height="26" Width="61"/>
+			<DatePicker x:Name="birthDayDatePicker" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" VerticalAlignment="Center" SelectedDate="{Binding BirthDay, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=true}" Grid.Row="3" Margin="3,4,0,4" HorizontalAlignment="Left" Grid.Column="1" Height="24" Width="155"/>
+			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Exp Years:" Height="26" Width="62"/>
+			<TextBox x:Name="expYearsTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding ExpYears, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="ID:" Height="26" Width="24"/>
+			<TextBlock x:Name="iDTextBox" Width="155" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" VerticalAlignment="Center" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Label VerticalAlignment="Center" Grid.Row="7" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Maximum Distance:" Height="26" Width="179"/>
+			<TextBox x:Name="maxDistanceTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding MaxDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Label VerticalAlignment="Bottom" Grid.Row="8" Margin="3,0,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Maximum Weekly Tests:" Height="26" Width="167"/>
+			<TextBox x:Name="maxWeeklyTestsTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding MaxWeeklyTests, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="8" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Label VerticalAlignment="Center" Grid.Row="5" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:" Height="26" Width="93"/>
+			<TextBox x:Name="phoneNumberTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Sex:" Height="26" Width="31"/>
+			<ComboBox x:Name="sexComboBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Grid.Row="4" Margin="3,5,0,5" SelectedItem="{Binding Sex}" Height="22" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Label VerticalAlignment="Center" Grid.Row="9" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Testing Car Type:" Height="26" Width="98"/>
+			<ComboBox x:Name="testingCarTypeComboBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Grid.Row="9" Margin="3,5,0,5" Height="22" HorizontalAlignment="Left" SelectedItem="{Binding testingCarType}"  Grid.Column="1"/>
+
+		</Grid>
+		<Grid x:Name="Address" VerticalAlignment="Top" Margin="440,10,0,0" HorizontalAlignment="Left"  Width="306">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+
+				<ColumnDefinition Width="8*"/>
+				<ColumnDefinition Width="9*"/>
+
+			</Grid.ColumnDefinitions>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Center" Grid.Column="0" Content="Address" Height="26" Width="293" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
+
+			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="City:" Height="26" Width="179"/>
+			<TextBox x:Name="City" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding Address.city}"/>
+			<Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Street:" Height="26" Width="179"/>
+			<TextBox x:Name="Street" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"  Text="{Binding Address.street}"/>
+			<Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Bld number:" Height="26" Width="179"/>
+			<TextBox x:Name="Number" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding Address.buildingNumber}"/>
+
+
+		</Grid>
+		<Grid x:Name="Schedule" ShowGridLines="True"  VerticalAlignment="Top" Margin="385,176,0,0" HorizontalAlignment="Left" Width="311">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+
+				<RowDefinition Height="Auto"/>
+
+				<RowDefinition Height="Auto"/>
+
+
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+
+
+			</Grid.ColumnDefinitions>
+			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="09:00" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="10:00" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="11:00" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="12:00" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="5" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="13:00" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="14:00" Height="26" Width="47"/>
+
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="1" Content="Sun" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="2" Content="Mon" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="3" Content="Tues" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="4" Content="Wed" Height="26" Width="47"/>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="5" Content="Thurs" Height="26" Width="47"/>
+			<CheckBox x:Name="Sun9" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" />
+			<CheckBox x:Name="Sun10" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Sun11" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Sun12" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Sun13" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" />
+			<CheckBox x:Name="Sun14" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="1" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"  />
+
+			<CheckBox x:Name="Mon9" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" />
+			<CheckBox x:Name="Mon10" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Mon11" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" />
+			<CheckBox x:Name="Mon12" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Mon13" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" />
+			<CheckBox x:Name="Mon14" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="2" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"  />
+
+			<CheckBox x:Name="Tue9" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" />
+			<CheckBox x:Name="Tue10" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Tue11" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" />
+			<CheckBox x:Name="Tue12" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Tue13" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" />
+			<CheckBox x:Name="Tue14" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="3" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"  />
+
+			<CheckBox x:Name="Wed9" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" />
+			<CheckBox x:Name="Wed10"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Grid.Column="4" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Wed11" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" />
+			<CheckBox x:Name="Wed12" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Wed13" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" />
+			<CheckBox x:Name="Wed14" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="4" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"  />
+
+			<CheckBox x:Name="Thurs9" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="5" HorizontalAlignment="Center" Grid.Row="1" VerticalAlignment="Center" />
+			<CheckBox x:Name="Thurs10"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Grid.Column="5" HorizontalAlignment="Center" Grid.Row="2" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Thurs11" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="5" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center" />
+			<CheckBox x:Name="Thurs12" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="5" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"  />
+			<CheckBox x:Name="Thurs13" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Grid.Column="5" HorizontalAlignment="Center" Grid.Row="5" VerticalAlignment="Center" />
+			<CheckBox x:Name="Thurs14" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Grid.Column="5" HorizontalAlignment="Center" Grid.Row="6" VerticalAlignment="Center"  />
+
+
+
+
+
+
+
+
+		</Grid>
+		<Button x:Name="EditButton"  Content="Edit" HorizontalAlignment="Left" Margin="206,24,0,0" VerticalAlignment="Top" Width="75" Click="EditButton_Click"/>
+		<Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="206,24,0,0" VerticalAlignment="Top" Width="75" Click="SaveButton_Click"/>
+
+
+	</Grid>
+</Window>
