@@ -12,11 +12,9 @@
          <TypeUISetting>
             <PropertyUISettings>
                <PropertyUISetting Name="Key">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:WPF" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="ComboBox" Type="System.Windows.Controls.ComboBox" AssemblyName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
             </PropertyUISettings>
          </TypeUISetting>
@@ -33,11 +31,9 @@
                   </ControlSettings>
                </PropertyUISetting>
                <PropertyUISetting Name="Trainee.carTypeStats.Value.teacherName">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
+                  <ControlSettings><ControlSetting ArtifactName="Microsoft:System.Windows:WPF" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
                         <BindableControlInfo Name="Details" Type="Microsoft.VSDesigner.Data.DataForm.Windows.DetailView" />
-                     </ControlSetting>
-                  </ControlSettings>
+                     </ControlSetting></ControlSettings>
                </PropertyUISetting>
             </PropertyUISettings>
          </TypeUISetting>
@@ -50,27 +46,6 @@
                   <ControlSettings>
                      <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
                         <BindableControlInfo Name="Details" Type="Microsoft.VSDesigner.Data.DataForm.Windows.DetailView" />
-                     </ControlSetting>
-                  </ControlSettings>
-               </PropertyUISetting>
-            </PropertyUISettings>
-         </TypeUISetting>
-      </GenericObjectDataSource>
-      <GenericObjectDataSource DisplayName="Value" Version="1.0">
-         <TypeInfo>BE.Stats, BE, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</TypeInfo>
-         <TypeUISetting>
-            <PropertyUISettings>
-               <PropertyUISetting Name="Trainee.carTypeStats.Value">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
-                        <BindableControlInfo Name="Details" Type="Microsoft.VSDesigner.Data.DataForm.Windows.DetailView" />
-                     </ControlSetting>
-                  </ControlSettings>
-               </PropertyUISetting>
-               <PropertyUISetting Name="gearType">
-                  <ControlSettings>
-                     <ControlSetting ArtifactName="Microsoft:System.Windows:WPF">
-                        <BindableControlInfo Name="ComboBox" Type="System.Windows.Controls.ComboBox" AssemblyName="PresentationFramework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
                      </ControlSetting>
                   </ControlSettings>
                </PropertyUISetting>

@@ -16,25 +16,23 @@ using BL;
 namespace UI_WPF
 {
     /// <summary>
-    /// Interaction logic for AddTrainee1.xaml
+    /// Interaction logic for ViewTrainee.xaml
     /// </summary>
-    public partial class AddTrainee1 : Window
+    public partial class ViewTrainee : Window
     {
         BE.Trainee trainee;
         BL.IBL bl;
-        public AddTrainee1()
+        public ViewTrainee()
         {
             InitializeComponent();
             trainee = new BE.Trainee();
             this.DataContext = trainee;
             bl = BL.FactoryBL.GetBL();
-            trainee.BirthDay = DateTime.Now.AddYears(-(int)Configuration.MinAgeOfTrainee);
-            trainee.BirthDay = trainee.BirthDay.AddDays(-1);
             this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
             this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
-        }       
+        }
 
         private void add_button_Click(object sender, RoutedEventArgs e)
         {
@@ -42,7 +40,7 @@ namespace UI_WPF
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
             try
             {
-                bl.AddTrainee(trainee);
+                bl.UpdateTrainee(trainee);
                 trainee = new BE.Trainee();
                 this.DataContext = trainee;
             }

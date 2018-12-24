@@ -65,11 +65,11 @@ namespace UI_WPF
 			try
 			{
 				bl.AddTester(tester);
-			}catch (InvalidOperationException exc) { 
-			
-				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
-		
+            catch (InvalidOperationException exc)
+            { 			
+				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}		
 		}
 	}
 }

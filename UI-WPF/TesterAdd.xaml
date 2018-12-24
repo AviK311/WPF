@@ -12,7 +12,7 @@
 
 	<Grid>
 
-		<Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,59,0,0" HorizontalAlignment="Left" Width="370">
+		<Grid x:Name="grid1" VerticalAlignment="Top" Margin="7,22,0,0" HorizontalAlignment="Left" Width="370">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -51,7 +51,7 @@
 			<ComboBox x:Name="testingCarTypeComboBox" Width="155" VerticalAlignment="Center" Grid.Row="9" Margin="3,5,0,5" Height="22" HorizontalAlignment="Left" SelectedItem="{Binding testingCarType}"  Grid.Column="1"/>
 
 		</Grid>
-		<Grid x:Name="Address" VerticalAlignment="Top" Margin="440,10,0,0" HorizontalAlignment="Left"  Width="306">
+		<Grid x:Name="Address" VerticalAlignment="Top" Margin="389,6,0,0" HorizontalAlignment="Left"  Width="306">
 			<Grid.RowDefinitions>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
@@ -156,7 +156,7 @@
 
 
 		</Grid>
-		<Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="224,16,0,0" VerticalAlignment="Top" Width="74" Click="SaveButton_Click"/>
+		<Button x:Name="SaveButton" Content="Save" HorizontalAlignment="Left" Margin="80,360,0,0" VerticalAlignment="Top" Width="150" Height="50" Click="SaveButton_Click" FontSize="36"/>
 
 	</Grid>
 </Window>

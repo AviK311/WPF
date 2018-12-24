@@ -32,7 +32,8 @@ namespace UI_WPF
 
         private void View_Click(object sender, RoutedEventArgs e)
         {
-
+            Window trainee = new ViewTrainee();
+            trainee.Show();
         }
     }
 }
