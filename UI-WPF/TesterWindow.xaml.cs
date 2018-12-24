@@ -23,5 +23,11 @@ namespace UI_WPF
         {
             InitializeComponent();
         }
+
+        private void Add_Click(object sender, RoutedEventArgs e)
+        {
+            Window trainee = new TesterAdd();
+            trainee.Show();
+        }
     }
 }

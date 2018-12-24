@@ -22,8 +22,8 @@ namespace BE
 		public DateTime TestDateTime { get; set; }
 		public Address BeginLocation { get; set; }
 
-		public TestProperties testProperties;
-		public override string ToString()
+		public TestProperties testProperties { get; set; }
+        public override string ToString()
 		{
 			string toReturn = string.Format("Test Number: {0},", TestNumber);
 			toReturn += string.Format("Tester ID: {0},", TesterID);
