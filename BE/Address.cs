@@ -1,6 +1,6 @@
 ﻿namespace BE
 {
-    public struct Address
+    public class Address
     {
         public string city {get; set;}
         public string street { get; set; }
@@ -11,6 +11,12 @@
             this.city = city;
 			this.street = street;
 			this.buildingNumber = buildingNumber;
+		}
+		public Address(Address other)
+		{
+			this.city = other.city;
+			this.street = other.street;
+			this.buildingNumber = other.buildingNumber;
 		}
 
 		public override string ToString()

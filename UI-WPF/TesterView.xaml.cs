@@ -37,7 +37,7 @@ namespace UI_WPF
 			SaveButton.Visibility = Visibility.Hidden;
 			tester = new Tester(tester1);
 			DataContext = tester;
-
+			
 
 			sexComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
 			testingCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(VehicleType));
@@ -77,7 +77,6 @@ namespace UI_WPF
 				tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
 			foreach (var item in thursCheckboxes)
 				tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
-			
 			try
 			{
 				bl.UpdateTester(tester);
