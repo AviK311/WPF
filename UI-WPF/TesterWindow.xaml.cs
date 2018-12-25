@@ -34,6 +34,7 @@ namespace UI_WPF
         {
             Window tester = new TesterAdd();
             tester.Show();
+			Close();
         }
 
         private void View_Click(object sender, RoutedEventArgs e)

@@ -32,16 +32,16 @@ namespace UI_WPF
         //public TesterView(Tester tester1)
 
         public TesterView(Tester tester1)
-		{
-			Global.IsUpdate = false;
-			
+		{			
 			InitializeComponent();
 			SaveButton.Visibility = Visibility.Hidden;
-			tester = tester1;
-			DataContext = tester1;
+			tester = new Tester(tester1);
+			DataContext = tester;
+
+
 			sexComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
 			testingCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(VehicleType));
-			
+			bl = FactoryBL.GetBL();
 			Functions.AddTemplateList(sunCheckboxes, Sun9, Sun10, Sun11, Sun12, Sun13, Sun14);
 			Functions.AddTemplateList(monCheckboxes, Mon9, Mon10, Mon11, Mon12, Mon13, Mon14);
 			Functions.AddTemplateList(tueCheckboxes, Tue9, Tue10, Tue11, Tue12, Tue13, Tue14);
@@ -77,16 +77,40 @@ namespace UI_WPF
 				tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
 			foreach (var item in thursCheckboxes)
 				tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
-			bl = FactoryBL.GetBL();
+			
 			try
 			{
 				bl.UpdateTester(tester);
+				EditButton.Visibility = Visibility.Visible;
+				SaveButton.Visibility = Visibility.Hidden;
 			}
 			catch (InvalidOperationException exc)
 			{
 
 				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
+		}
+
+		private void DeleteButton_Click(object sender, RoutedEventArgs e)
+		{
+			bl.RemoveTester(tester.ID);
+			TesterWindow testerWindow = new TesterWindow();
+			testerWindow.Show();
+			Close();
+		}
+
+		private void CancelButton_Click(object sender, RoutedEventArgs e)
+		{
+
+			EditButton.Visibility = Visibility.Visible;
+			SaveButton.Visibility = Visibility.Hidden;
+		}
+
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			TesterWindow testerWindow = new TesterWindow();
+			testerWindow.Show();
+			Close();
 		}
 	}
 }

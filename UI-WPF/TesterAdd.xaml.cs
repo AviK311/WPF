@@ -67,6 +67,8 @@ namespace UI_WPF
 			try
 			{
 				bl.AddTester(tester);
+				TesterWindow testerWindow = new TesterWindow();
+				testerWindow.Show();
 				Close();
 				
 			}catch (InvalidOperationException exc) { 

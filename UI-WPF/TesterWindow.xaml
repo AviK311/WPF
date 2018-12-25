@@ -6,22 +6,20 @@
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
         Title="TesterWindow" Height="450" Width="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Name="buttons" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
-            <Button x:Name="View" Content="View" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="1" Click="View_Click" />
-            <Button x:Name="Delete" Content="Delete" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="2"/>
-        </Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="280" Margin="80,40,0,0" VerticalAlignment="Top" Width="245" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
-    </Grid>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid Name="buttons" Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
+		</Grid>
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="277" Margin="80,40,0,0" VerticalAlignment="Top" Width="452" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
+	</Grid>
 </Window>

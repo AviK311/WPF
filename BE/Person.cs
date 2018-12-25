@@ -43,7 +43,7 @@ namespace BE
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }
 		public Gender Sex { get; set; }
-		public string ID { get => id.PadLeft(8,'0'); set => id = value; }
+		public string ID { get => id?.PadLeft(8,'0'); set => id = value; }
 
 		public override bool Equals(object obj)
 		{
