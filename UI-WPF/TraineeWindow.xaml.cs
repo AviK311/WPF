@@ -28,34 +28,11 @@ namespace UI_WPF
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-            DataContext = trainees;
-            Trainee a = new Trainee
-            {
-                ID = "123",
-                Name = new Name("Avi", "Levi"),
-                Sex = Gender.Male,
-                PhoneNumber = "123",
-                BirthDay = new DateTime(1993, 11, 3),
-                Address = new Address("bet shemesh", "nahal maor", "19"),
-                CurrentCarType = VehicleType.LargeTruck,
-            };
+			
            
-            Trainee b = new Trainee
-            {
-                ID = "456",
-                Name = new Name("Sapir", "Barabi"),
-                Sex = Gender.Female,
-                PhoneNumber = "456",
-                BirthDay = new DateTime(1993, 5, 14),
-                Address = new Address("Kiryat Ata", "David Remez", "1a"),
-                CurrentCarType = VehicleType.LargeTruck,
-            };
-            trainees.Add(b);
-            trainees.Add(a);
-            bl.AddTrainee(a);
-            bl.AddTrainee(b);
-            //trainees = (ObservableCollection<Trainee>)bl.GetTrainees();
-        }
+			DataContext = bl.GetTrainees();
+			//trainees = (ObservableCollection<Trainee>)bl.GetTrainees();
+		}
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {

@@ -22,6 +22,6 @@
             <Button x:Name="View" Content="View" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="1" Click="View_Click" />
             <Button x:Name="Delete" Content="Delete" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="2"/>
         </Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="280" Margin="80,40,0,0" VerticalAlignment="Top" Width="245" ItemsSource="{Binding}"/>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="280" Margin="80,40,0,0" VerticalAlignment="Top" Width="245" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
     </Grid>
 </Window>

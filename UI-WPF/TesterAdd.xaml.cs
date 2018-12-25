@@ -67,6 +67,7 @@ namespace UI_WPF
 			try
 			{
 				bl.AddTester(tester);
+				Close();
 				
 			}catch (InvalidOperationException exc) { 
 			

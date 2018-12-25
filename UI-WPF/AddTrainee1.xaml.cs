@@ -45,6 +45,7 @@ namespace UI_WPF
                 bl.AddTrainee(trainee);
                 trainee = new BE.Trainee();
                 this.DataContext = trainee;
+				Close();
             }
             catch (InvalidOperationException exc)
             {

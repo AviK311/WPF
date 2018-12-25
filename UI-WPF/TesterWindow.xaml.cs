@@ -28,23 +28,8 @@ namespace UI_WPF
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-            DataContext = trainees;            
-            Tester c = new Tester
-            {
-                ID = "123456",
-                Name = new Name("Dan", "internatonal"),
-                Sex = Gender.Male,
-                PhoneNumber = "224",
-                BirthDay = new DateTime(1969, 2, 1),
-                Address = new Address("jeru", "vaad", "21"),
-                MaxDistance = 60,
-                MaxWeeklyTests = 9,
-                ExpYears = 6,
-                testingCarType = VehicleType.PrivateCar,
-                schedule = new Schedule()
-            };
-            trainees.Add(c);           
-        }
+			DataContext = bl.GetTesters();
+		}
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             Window tester = new TesterAdd();
@@ -56,5 +41,16 @@ namespace UI_WPF
             //Window tester = new TesterView();
             //tester.Show();
         }
-    }
+
+		private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (listBox.SelectedItem != null)
+			{
+				TesterView testerView = new TesterView((Tester)listBox.SelectedItem);
+				testerView.Show();
+				Close();
+			}
+
+		}
+	}
 }
