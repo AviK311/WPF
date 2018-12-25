@@ -42,7 +42,7 @@
                     </ComboBox.ItemsPanel>
                 </ComboBox>
                 <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ID:"/>
-                <TextBox x:Name="iDTextBox" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+                <TextBox x:Name="iDTextBox" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" />
                 <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="first Name:"/>
                 <TextBox x:Name="firstNameTextBox" Width="155" VerticalAlignment="Center" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
                 <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="last Name:"/>
@@ -96,7 +96,8 @@
                 <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="school Name:"/>
                 <TextBox x:Name="schoolNameTextBox" Width="155" VerticalAlignment="Center" Text="{Binding Value.schoolName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="4" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
             </Grid>
-            <Button x:Name="add_button" Width="120" VerticalAlignment="Top" Margin="50,285,0,0" Height="70" HorizontalAlignment="Left" FontSize="36" Content="save" Click="add_button_Click" />
+            <Button x:Name="EditButton" Width="120" VerticalAlignment="Top" Margin="50,285,0,0" Height="70" HorizontalAlignment="Left" FontSize="36" Content="Edit" Click="EditButton_Click" />
+            <Button x:Name="SaveButton" Width="120" VerticalAlignment="Top" Margin="50,285,0,0" Height="70" HorizontalAlignment="Left" FontSize="36" Content="Save" Click="SaveButton_Click" />
             <Grid x:Name="grid3" VerticalAlignment="Top" Margin="326,6,0,0" HorizontalAlignment="Left" DataContext="{StaticResource traineeViewSource}">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
