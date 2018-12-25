@@ -14,11 +14,11 @@
 		</Grid.RowDefinitions>
 		<Grid Margin="75,66,90,9" Grid.Row="1" MinHeight="33">
 			<Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="0,0,0,-1" Width="97" FontSize="20" Height="33"/>
-			<PasswordBox x:Name="PasswordInput" HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="97,0,0,0"  FontSize="20" HorizontalContentAlignment="Center"/>
+            <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="97,0,0,0"  FontSize="20" HorizontalContentAlignment="Center"/>
 		</Grid>
 		<Grid Margin="75,23,90,52" Grid.Row="1" MinHeight="33">
 			<Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" />
-			<TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="Enter Here" VerticalAlignment="Top" Width="430" Margin="97,0,0,0" TextAlignment="Center" FontSize="20"/>
+            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="97,0,0,0" TextAlignment="Center" FontSize="20"/>
 		</Grid>
 		<Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="516,63,0,0" Grid.Row="2" Height="56" Click="LoginButton_Click"/>
 

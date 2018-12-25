@@ -29,7 +29,9 @@ namespace UI_WPF
 		List<CheckBox> tueCheckboxes = new List<CheckBox>();
 		List<CheckBox> wedCheckboxes = new List<CheckBox>();
 		List<CheckBox> thursCheckboxes = new List<CheckBox>();
-		public TesterView(Tester tester1)
+        //public TesterView(Tester tester1)
+
+        public TesterView(Tester tester1)
 		{
 			Global.IsUpdate = false;
 			

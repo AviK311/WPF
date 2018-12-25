@@ -32,8 +32,9 @@ namespace UI_WPF
             name = new Name("Tamar", "Gold");
 			Admin tamar = new Admin(name, "1234");
             tamar.ID="207623224";
-            bl.AddAdmin(tamar);            
-		}
+            bl.AddAdmin(tamar);
+
+        }
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
 			string id = IdInput.Text;

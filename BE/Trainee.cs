@@ -42,10 +42,12 @@ namespace BE
 
 		public override string ToString()
 		{
-			return string.Format("Name: {0}, ID: {1}, CarType: {2}",
-									Name, ID, Functions.InsertSpacesBeforeUpper(CurrentCarType.ToString()));
-		}
-		public string ToLongString()
+            string s = "Name: " + Name + "\nID: " + ID + "\nCarType" + Functions.InsertSpacesBeforeUpper(CurrentCarType.ToString()) + "\n";
+            return s;
+            //return string.Format("Name: {0}, ID: {1}, CarType: {2}",
+            //Name, ID, Functions.InsertSpacesBeforeUpper(CurrentCarType.ToString()));
+        }
+		public  string ToLongString()
 		{
 			string toReturn = string.Format("Name: {0}\n", Name);
 			toReturn += string.Format("Gender: {0}\n", Sex);

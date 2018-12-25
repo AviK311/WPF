@@ -21,6 +21,7 @@
             <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click" />
             <Button x:Name="View" Content="View" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="1" />
             <Button x:Name="Delete" Content="Delete" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="2"/>
+            <Button x:Name="Grade" Content="Update Grade" Margin="20,25,20,25" Height="auto" Width="auto" FontSize="24" Grid.Row="3"/>
         </Grid>
     </Grid>
 </Window>

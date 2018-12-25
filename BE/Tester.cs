@@ -31,9 +31,11 @@ namespace BE
 		public VehicleType testingCarType { get; set; }
 		public override string ToString()
 		{
-			return string.Format("Name: {0}, ID: {1}, CarType: {2}\n",
-									Name, ID, Functions.InsertSpacesBeforeUpper(testingCarType.ToString()));
-		}
+            string s = "Name: " + Name + "\nID: " + ID + "\nCarType" + Functions.InsertSpacesBeforeUpper(testingCarType.ToString()) + "\n";
+            return s;
+            //return string.Format("Name: {0}, ID: {1}, CarType: {2}\n",
+            //Name, ID, Functions.InsertSpacesBeforeUpper(testingCarType.ToString()));
+        }
 		public string ToLongString()
 		{
 			
