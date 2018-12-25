@@ -20,21 +20,22 @@ namespace UI_WPF
     /// </summary>
     public partial class ViewTrainee : Window
     {
-        BE.Trainee trainee;
-        BL.IBL bl;
-        public ViewTrainee()
-        {
-            InitializeComponent();
-            trainee = new BE.Trainee();
-            this.DataContext = trainee;
-            bl = BL.FactoryBL.GetBL();
+        IBL bl = BL.FactoryBL.GetBL();
+        Trainee trainee;        
+        public ViewTrainee(Trainee t)
+        {           
+            InitializeComponent();                 
+            //bl = BL.FactoryBL.GetBL();
+            SaveButton.Visibility = Visibility.Hidden;
+            trainee = t;
+            DataContext = t;
             this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
             this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
         }
 
-        private void add_button_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
@@ -48,6 +49,11 @@ namespace UI_WPF
             {
                 MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
             }
+        }
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            EditButton.Visibility = Visibility.Hidden;
+            SaveButton.Visibility = Visibility.Visible;
         }
     }
 }

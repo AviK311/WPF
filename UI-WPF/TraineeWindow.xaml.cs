@@ -22,33 +22,30 @@ namespace UI_WPF
     public partial class TraineeWindow : Window
     {
         private ObservableCollection<Trainee> trainees=new ObservableCollection<Trainee>();
-        IBL bl;
-        Trainee trainee;
+        IBL bl;        
         public TraineeWindow()
         {
             InitializeComponent();
-            bl = FactoryBL.GetBL();
-			
-           
-			DataContext = bl.GetTrainees();
-			//trainees = (ObservableCollection<Trainee>)bl.GetTrainees();
+            bl = FactoryBL.GetBL();			          
+			DataContext = bl.GetTrainees();			
 		}
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             Window trainee = new AddTrainee1();
             trainee.Show();
-        }
+        }      
 
-        private void View_Click(object sender, RoutedEventArgs e)
+        
+        private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            Window trainee = new ViewTrainee();
-            trainee.Show();
-        }
+            if (listBox.SelectedItem != null)
+            {
+                ViewTrainee traineeView = new ViewTrainee((Trainee)listBox.SelectedItem);
+                traineeView.Show();
+                Close();
+            }
 
-        private void listBox1_GotMouseCapture(object sender, MouseEventArgs e)
-        {
-            trainee = (Trainee)sender;
         }
     }
 }
