@@ -31,7 +31,7 @@ namespace UI_WPF
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
-            Window test = new AddTest();
+            Window test = new TestAdd();
             test.Show();
             Close();
         }

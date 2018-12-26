@@ -55,41 +55,37 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddTest.xaml.cs">
-      <DependentUpon>AddTest.xaml</DependentUpon>
+    <Compile Include="Test\TestAdd.xaml.cs">
+      <DependentUpon>TestAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TesterAdd.xaml.cs">
+    <Compile Include="Tester\TesterAdd.xaml.cs">
       <DependentUpon>TesterAdd.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddTrainee1.xaml.cs">
+    <Compile Include="Trainee\AddTrainee1.xaml.cs">
       <DependentUpon>AddTrainee1.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TesterView.xaml.cs">
+    <Compile Include="Tester\TesterView.xaml.cs">
       <DependentUpon>TesterView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TesterWindow.xaml.cs">
+    <Compile Include="Tester\TesterWindow.xaml.cs">
       <DependentUpon>TesterWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestView.xaml.cs">
+    <Compile Include="Test\TestView.xaml.cs">
       <DependentUpon>TestView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TestWindow.xaml.cs">
+    <Compile Include="Test\TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="TraineeWindow.xaml.cs">
+    <Compile Include="Trainee\TraineeWindow.xaml.cs">
       <DependentUpon>TraineeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateGrade.xaml.cs">
       <DependentUpon>UpdateGrade.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ViewTrainee.xaml.cs">
+    <Compile Include="Trainee\ViewTrainee.xaml.cs">
       <DependentUpon>ViewTrainee.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddTest.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddTrainee1.xaml">
+    <Page Include="Trainee\AddTrainee1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,27 +109,31 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="TesterAdd.xaml">
+    <Page Include="Test\TestAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TesterView.xaml">
+    <Page Include="Tester\TesterAdd.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TesterWindow.xaml">
+    <Page Include="Tester\TesterView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestView.xaml">
+    <Page Include="Tester\TesterWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TestWindow.xaml">
+    <Page Include="Test\TestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="TraineeWindow.xaml">
+    <Page Include="Test\TestWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Trainee\TraineeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -141,7 +141,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ViewTrainee.xaml">
+    <Page Include="Trainee\ViewTrainee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
