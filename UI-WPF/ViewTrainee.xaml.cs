@@ -22,13 +22,13 @@ namespace UI_WPF
     {
         IBL bl = BL.FactoryBL.GetBL();
         Trainee trainee;        
-        public ViewTrainee(Trainee t)
+        public ViewTrainee(Trainee trainee1)
         {           
             InitializeComponent();                 
             //bl = BL.FactoryBL.GetBL();
             SaveButton.Visibility = Visibility.Hidden;
-            trainee = t;
-            DataContext = t;
+            trainee = new Trainee(trainee1);
+            DataContext = trainee;
             this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));

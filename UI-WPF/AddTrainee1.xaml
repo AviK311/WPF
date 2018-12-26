@@ -7,12 +7,9 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.AddTrainee1"
         mc:Ignorable="d"
         Title="AddTrainee1" Height="450" Width="800" >
-    <Window.Resources>
-        <CollectionViewSource x:Key="traineeViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Trainee}, CreateList=True}"/>
-        <CollectionViewSource x:Key="traineecarTypeStatsViewSource" Source="{Binding carTypeStats, Source={StaticResource traineeViewSource}}"/>
-    </Window.Resources>
+   
     <Grid>
-        <Grid x:Name="grid1" DataContext="{StaticResource traineeViewSource}" HorizontalAlignment="Left" Margin="12,27,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="12,27,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -57,27 +54,21 @@
             </ComboBox>
 
         </Grid>
-        <Grid x:Name="grid2" DataContext="{StaticResource traineecarTypeStatsViewSource}" HorizontalAlignment="Left" Margin="326,190,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid2"  HorizontalAlignment="Left" Margin="326,190,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
+               
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label Content="Car Type Stats:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <ComboBox x:Name="keyComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding VehicleType}" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="155">
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>
+               
+            
             <Label Content="gear Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <ComboBox x:Name="gearTypeComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding GearType}" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="155">
                 <ComboBox.ItemsPanel>
@@ -94,7 +85,7 @@
             <TextBox x:Name="schoolNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Value.schoolName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="155"/>
         </Grid>
         <Button x:Name="add_button" Content="save" HorizontalAlignment="Left" Margin="50,285,0,0" VerticalAlignment="Top" Width="120" Height="70" FontSize="36" Click="add_button_Click"/>
-        <Grid x:Name="grid3" DataContext="{StaticResource traineeViewSource}" HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid3"  HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="154.8"/>
