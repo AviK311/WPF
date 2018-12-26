@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.TestView"
         mc:Ignorable="d"
-        Title="TestView" Height="450" Width="600" Loaded="Window_Loaded">
-	<Window.Resources>
-		<CollectionViewSource x:Key="testViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Test}, CreateList=True}"/>
-	</Window.Resources>
+        Title="TestView" Height="450" Width="600" >
+	
 	<Grid>
 		<Grid x:Name="grid1" HorizontalAlignment="Left" Margin="33,81,0,0" VerticalAlignment="Top" Width="247">
 			<Grid.ColumnDefinitions>
@@ -61,7 +59,7 @@
 			<TextBox x:Name="Street" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding BeginLocation.street, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
 		</Grid>
 
-		<Grid x:Name="grid2" DataContext="{StaticResource testViewSource}" HorizontalAlignment="Left" Margin="298,82,0,0" VerticalAlignment="Top">
+		<Grid x:Name="grid2"  HorizontalAlignment="Left" Margin="298,82,0,0" VerticalAlignment="Top">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="Auto"/>
 				<ColumnDefinition Width="Auto"/>

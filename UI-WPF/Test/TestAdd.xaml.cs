@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -30,6 +31,7 @@ namespace UI_WPF
 		{
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
+			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
 			try
 			{
 				bl.AddTest(test);
@@ -44,15 +46,27 @@ namespace UI_WPF
 			}
 		}
 
+		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
+			DateTime s = test.TestDateTime.Date + ts;
+			if (s > DateTime.Now) { 
+			propertiesGrid.Visibility = Visibility.Hidden;
+			}
+			else propertiesGrid.Visibility = Visibility.Visible;
+		}
+
 		public TestAdd()
         {
             InitializeComponent();
+			propertiesGrid.Visibility = Visibility.Hidden;
 			bl = FactoryBL.GetBL();
 			test = new Test();
 			test.TestDateTime = DateTime.Now;
 			DataContext = test;
 			int[] arr = { 9, 10, 11, 12, 13, 14 };
 			Hour.ItemsSource = arr;
+			Hour.SelectedIndex = 0;
 			testers = new List<string>();
 			trainees = new List<string>();
 			foreach (var item in bl.GetTrainees())
@@ -60,7 +74,9 @@ namespace UI_WPF
 			foreach (var item in bl.GetTesters())
 				testers.Add(item.ID);
 			testerIDComboBox.ItemsSource = testers;
+			testerIDComboBox.SelectedIndex = 0;
 			traineeIDComboBox.ItemsSource = trainees;
+			traineeIDComboBox.SelectedIndex = 1;
 
 
 
