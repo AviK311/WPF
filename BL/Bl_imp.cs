@@ -19,8 +19,8 @@ namespace BL
         }
         public void AddTest(Test test, bool update = false)
         {
-			test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
-			var testTrainee = (from trainee in dal.GetTrainees()
+            test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
+            var testTrainee = (from trainee in dal.GetTrainees()
 							   where trainee.ID == test.TraineeID
 							   select trainee).First();
 			var testTester = (from tester in dal.GetTesters()

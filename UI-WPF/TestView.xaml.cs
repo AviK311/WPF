@@ -13,36 +13,35 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BE;
 using BL;
+
 namespace UI_WPF
 {
     /// <summary>
-    /// Interaction logic for ViewTrainee.xaml
+    /// Interaction logic for TestView.xaml
     /// </summary>
-    public partial class ViewTrainee : Window
+    public partial class TestView : Window
     {
+        Test test;
         IBL bl = BL.FactoryBL.GetBL();
-        Trainee trainee;        
-        public ViewTrainee(Trainee trainee1)
-        {           
-            InitializeComponent();                 
-            //bl = BL.FactoryBL.GetBL();
-            SaveButton.Visibility = Visibility.Hidden;
-            trainee = new Trainee(trainee1);
-            DataContext = trainee;
-            this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
-            this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
-            this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
-            this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+        public TestView(Test t)
+        {
+            InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource testViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("testViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // testViewSource.Source = [generic data source]
+        }
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
-            trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
-            trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
+            test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
             try
             {
-                bl.UpdateTrainee(trainee);
-                trainee = new BE.Trainee();                
+                bl.UpdateTest(test);
+                test = new BE.Test();
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;
             }
@@ -58,9 +57,9 @@ namespace UI_WPF
         }
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
-            bl.RemoveTrainee(trainee.ID);
-            TraineeWindow traineeWindow = new TraineeWindow();
-            traineeWindow.Show();
+            bl.RemoveTest(test.TestNumber);
+            TestWindow testWindow = new TestWindow();
+            testWindow.Show();
             Close();
         }
 
@@ -73,8 +72,8 @@ namespace UI_WPF
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            TraineeWindow traineeWindow = new TraineeWindow();
-            traineeWindow.Show();
+            TestWindow testWindow = new TestWindow();
+            testWindow.Show();
             Close();
         }
     }

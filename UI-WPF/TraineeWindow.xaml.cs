@@ -34,6 +34,7 @@ namespace UI_WPF
         {
             Window trainee = new AddTrainee1();
             trainee.Show();
+            Close();
         }      
 
         

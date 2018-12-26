@@ -70,6 +70,9 @@
     <Compile Include="TesterWindow.xaml.cs">
       <DependentUpon>TesterWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="TestView.xaml.cs">
+      <DependentUpon>TestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TestWindow.xaml.cs">
       <DependentUpon>TestWindow.xaml</DependentUpon>
     </Compile>
@@ -119,6 +122,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TesterWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TestView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -204,6 +211,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\ל.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\גשר.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\גשר2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\רכבת2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\רכבת.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

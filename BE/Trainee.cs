@@ -42,7 +42,7 @@ namespace BE
 
 		public override string ToString()
 		{
-            string s = "Name: " + Name + "\nID: " + ID + "\nCarType" + Functions.InsertSpacesBeforeUpper(CurrentCarType.ToString()) + "\n";
+            string s = "Name: " + Name + "\nID: " + ID + "\nCarType: " + Functions.InsertSpacesBeforeUpper(CurrentCarType.ToString()) + "\n";
             return s;
             //return string.Format("Name: {0}, ID: {1}, CarType: {2}",
             //Name, ID, Functions.InsertSpacesBeforeUpper(CurrentCarType.ToString()));

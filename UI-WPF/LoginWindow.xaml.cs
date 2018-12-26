@@ -54,7 +54,15 @@ namespace UI_WPF
 				MainWindow main = new MainWindow();
 				//TesterAdd main = new TesterAdd();
 				main.Show();
-				Tester c = new Tester
+                Test d = new Test
+                {
+                    TesterID = "123456",
+                    TraineeID = "123",                  
+                    TestDateTime = new DateTime(2018, 12, 26),
+                    BeginLocation = new Address("jeru", "vaad", "21"),                 
+                };
+               
+                Tester c = new Tester
 				{
 					ID = "123456",
 					Name = new Name("Dan", "internatonal"),
@@ -69,16 +77,19 @@ namespace UI_WPF
 					schedule = new Schedule()
 				};
 				bl.AddTester(c);
-				Trainee a = new Trainee
-				{
-					ID = "123",
-					Name = new Name("Avi", "Levi"),
-					Sex = Gender.Male,
-					PhoneNumber = "123",
-					BirthDay = new DateTime(1993, 11, 3),
-					Address = new Address("bet shemesh", "nahal maor", "19"),
-					CurrentCarType = VehicleType.LargeTruck,
-				};
+                Dictionary<VehicleType, Stats> s = new Dictionary<VehicleType, Stats>();
+                s.Add(VehicleType.LargeTruck, new Stats { gearType = GearType.Manual, numOfLessons = 21, numOfTest = 0, schoolName = " www", passed = false });
+                Trainee a = new Trainee
+                {
+                    ID = "123",
+                    Name = new Name("Avi", "Levi"),
+                    Sex = Gender.Male,
+                    PhoneNumber = "123",
+                    BirthDay = new DateTime(1993, 11, 3),
+                    Address = new Address("bet shemesh", "nahal maor", "19"),
+                    CurrentCarType = VehicleType.LargeTruck,
+                    carTypeStats = s
+                };
 
 				Trainee b = new Trainee
 				{
@@ -93,7 +104,8 @@ namespace UI_WPF
 
 				bl.AddTrainee(a);
 				bl.AddTrainee(b);
-				Close();
+                //bl.AddTest(d);
+                Close();
 			}
 			catch (InvalidOperationException exc)
 			{

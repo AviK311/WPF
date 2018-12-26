@@ -38,5 +38,24 @@ namespace UI_WPF
             // Load data by setting the CollectionViewSource.Source property:
             // testViewSource.Source = [generic data source]
         }
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);           
+            bl = FactoryBL.GetBL();
+            try
+            {
+                bl.AddTest(test);
+                TestWindow testWindow = new TestWindow();
+                testWindow.Show();
+                Close();
+
+            }
+            catch (InvalidOperationException exc)
+            {
+
+                MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+
+        }
     }
 }

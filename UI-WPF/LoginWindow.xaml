@@ -5,22 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="LoginWindow" Height="450" Width="800">
-	<Grid Margin="0,112,100,0">
-		<Grid.RowDefinitions>
-			<RowDefinition Height="auto" MinHeight="70"/>
-			<RowDefinition Height="108"/>
-			<RowDefinition Height="129"/>
-		</Grid.RowDefinitions>
-		<Grid Margin="75,66,90,9" Grid.Row="1" MinHeight="33">
-			<Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="0,0,0,-1" Width="97" FontSize="20" Height="33"/>
-            <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="97,0,0,0"  FontSize="20" HorizontalContentAlignment="Center"/>
-		</Grid>
-		<Grid Margin="75,23,90,52" Grid.Row="1" MinHeight="33">
-			<Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" />
-            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="97,0,0,0" TextAlignment="Center" FontSize="20"/>
-		</Grid>
-		<Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="516,63,0,0" Grid.Row="2" Height="56" Click="LoginButton_Click"/>
+        Title="עמוד התחברות" Height="450" Width="800">
 
-	</Grid>
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="LightYellow" Offset="0"/>
+                <GradientStop Color="Yellow" Offset="0.5"/>
+                <GradientStop Color="AliceBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Name="buttons" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="0.25*"/>
+            </Grid.RowDefinitions>
+            <Label x:Name="label" Content="מערכת לניתוב מבחני נהיגה " HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="36" Width="465" Grid.Row="0" FontWeight="Bold"/>
+            <Label x:Name="label2" Content="להתחברות אנא הקש ת.ז וסיסמא " HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" FontSize="18" Width="270" Grid.Row="1"/>
+            <Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="153,10,0,41" Width="97" FontSize="20" Height="33" Grid.Row="3"/>
+            <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="250,0,0,30"  FontSize="20" HorizontalContentAlignment="Center" Grid.Row="3"/>
+            <Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
+            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
+            <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="554,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" />
+        </Grid>
+    </Grid>
+
 </Window>

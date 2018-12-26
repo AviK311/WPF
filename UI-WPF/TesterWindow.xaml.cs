@@ -21,7 +21,7 @@ namespace UI_WPF
     /// </summary>
     public partial class TesterWindow : Window
     {
-        private ObservableCollection<Tester> trainees = new ObservableCollection<Tester>();
+        //private ObservableCollection<Tester> trainees = new ObservableCollection<Tester>();
         IBL bl;
 
         public TesterWindow()
@@ -35,12 +35,6 @@ namespace UI_WPF
             Window tester = new TesterAdd();
             tester.Show();
 			Close();
-        }
-
-        private void View_Click(object sender, RoutedEventArgs e)
-        {
-            //Window tester = new TesterView();
-            //tester.Show();
         }
 
 		private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)

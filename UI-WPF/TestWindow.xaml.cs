@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace UI_WPF
 {
@@ -19,15 +21,29 @@ namespace UI_WPF
     /// </summary>
     public partial class TestWindow : Window
     {
+        IBL bl;
         public TestWindow()
         {
             InitializeComponent();
+            bl = FactoryBL.GetBL();
+            DataContext = bl.GetTests();
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
             Window test = new AddTest();
             test.Show();
+            Close();
+        }
+        private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (listBox.SelectedItem != null)
+            {
+                TestView testerView = new TestView((Test)listBox.SelectedItem);
+                testerView.Show();
+                Close();
+            }
+
         }
     }
 }

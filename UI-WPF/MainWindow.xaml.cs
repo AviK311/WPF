@@ -28,19 +28,19 @@ namespace UI_WPF
         private void button_trainee_Click(object sender, RoutedEventArgs e)
         {
             Window trainee = new TraineeWindow();
-            trainee.Show();
+            trainee.ShowDialog();
         }
 
         private void button_tester_Click(object sender, RoutedEventArgs e)
         {
             Window tester = new TesterWindow();
-            tester.Show();
+            tester.ShowDialog();
         }
 
         private void button_test_Click(object sender, RoutedEventArgs e)
         {
             Window test = new TestWindow();
-            test.Show();
+            test.ShowDialog();
         }
     }
 }
