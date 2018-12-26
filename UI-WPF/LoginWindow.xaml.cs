@@ -56,9 +56,9 @@ namespace UI_WPF
 				main.Show();
                 Test d = new Test
                 {
-                    TesterID = "123456",
-                    TraineeID = "123",                  
-                    TestDateTime = new DateTime(2018, 12, 26),
+                    TesterID = "00123456",
+                    TraineeID = "00000123",                  
+                    TestDateTime = new DateTime(2018, 12, 26,10,0,0),
                     BeginLocation = new Address("jeru", "vaad", "21"),                 
                 };
                
@@ -73,7 +73,7 @@ namespace UI_WPF
 					MaxDistance = 60,
 					MaxWeeklyTests = 9,
 					ExpYears = 6,
-					testingCarType = VehicleType.PrivateCar,
+					testingCarType = VehicleType.LargeTruck,
 					schedule = new Schedule()
 				};
 				bl.AddTester(c);
@@ -104,7 +104,7 @@ namespace UI_WPF
 
 				bl.AddTrainee(a);
 				bl.AddTrainee(b);
-                //bl.AddTest(d);
+                bl.AddTest(d);
                 Close();
 			}
 			catch (InvalidOperationException exc)

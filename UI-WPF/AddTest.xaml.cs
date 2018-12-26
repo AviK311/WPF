@@ -31,13 +31,7 @@ namespace UI_WPF
             test.TestDateTime = DateTime.Now;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource testViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("testViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // testViewSource.Source = [generic data source]
-        }
+       
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);           
