@@ -44,7 +44,7 @@
                 <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ID:"/>
                 <TextBox x:Name="iDTextBox" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" />
                 <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="first Name:"/>
-                <TextBox x:Name="firstNameTextBox" Width="155" VerticalAlignment="Center" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
+                <TextBox x:Name="firstNameTextBox" Width="155" VerticalAlignment="Center" Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" />
                 <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="last Name:"/>
                 <TextBox x:Name="lastNameTextBox" Width="155" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1"/>
                 <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:"/>
