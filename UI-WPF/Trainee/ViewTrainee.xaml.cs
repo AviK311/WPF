@@ -21,36 +21,35 @@ namespace UI_WPF
     public partial class ViewTrainee : Window
     {
         IBL bl = BL.FactoryBL.GetBL();
-        Trainee trainee;        
+        Trainee trainee;
+		List<Trainee> list;
         public ViewTrainee(Trainee trainee1)
         {           
             InitializeComponent();                 
             //bl = BL.FactoryBL.GetBL();
             SaveButton.Visibility = Visibility.Hidden;
             trainee = new Trainee(trainee1);
+			list = (List<Trainee>)bl.GetTrainees();
             DataContext = trainee;
-            this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+            this.cartype.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
             this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
-            gearTypeComboBox.SelectedItem = trainee.carTypeStats[trainee.CurrentCarType].gearType;
-            numOfLessonsTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfLessons.ToString();
-            schoolNameTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].schoolName;
-            numOfTestTextBlock.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfTest.ToString();
-            passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
-        }
+			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
+			cartype.SelectedItem = trainee.CurrentCarType;
+			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
+			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
+
+		}
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-            trainee.carTypeStats[trainee.CurrentCarType].gearType = (GearType)gearTypeComboBox.SelectedItem;
-            trainee.carTypeStats[trainee.CurrentCarType].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
-            trainee.carTypeStats[trainee.CurrentCarType].schoolName = schoolNameTextBox.Text;
+           
             try
             {
-                bl.UpdateTrainee(trainee);
-                trainee = new BE.Trainee();                
+                bl.UpdateTrainee(trainee);                
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;
             }
@@ -120,5 +119,24 @@ namespace UI_WPF
             passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
             DataContext = trainee;            
         }
-    }
+
+		private void cartype_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			StatsGrid.DataContext = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex];
+			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
+			teacherFirst.Text= trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
+		}
+
+		private void teacherLast_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last = teacherLast.Text;
+
+		}
+
+		private void teacherFirst_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first = teacherFirst.Text;
+
+		}
+	}
 }

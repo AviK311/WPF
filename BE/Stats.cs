@@ -13,6 +13,7 @@ namespace BE
 		{
 			numOfLessons = 0;
 			numOfTest = 0;
+			teacherName = new Name();
 		}
 
 		public Stats(Stats other)

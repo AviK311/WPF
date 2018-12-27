@@ -3,7 +3,7 @@
 namespace BE
 {
 
-    public struct Name
+    public class Name
 	{
 
 		public string first { get; set; }
@@ -13,6 +13,10 @@ namespace BE
 		{
 			this.first = first;
 			this.last = last;
+		}
+		public Name()
+		{
+			first = last = "";
 		}
 
 		public override bool Equals(object obj)
