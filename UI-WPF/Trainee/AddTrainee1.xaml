@@ -68,8 +68,7 @@
             <Label Content="school Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox x:Name="schoolNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Value.schoolName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="155"/>
         </Grid>
-        <Button x:Name="add_button" Content="save" HorizontalAlignment="Left" Margin="50,285,0,0" VerticalAlignment="Top" Width="120" Height="70" FontSize="36" Click="add_button_Click"/>
-        <Grid x:Name="grid3"  HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
+		<Grid x:Name="grid3"  HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="154.8"/>
@@ -110,6 +109,14 @@
 			<PasswordBox x:Name="confirmPassword" Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
 
 
+		</Grid>
+		<Grid HorizontalAlignment="Left" Height="20" Margin="414,391,0,0" VerticalAlignment="Top" Width="auto">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="auto"/>
+				<ColumnDefinition Width="auto"/>
+			</Grid.ColumnDefinitions>
+			<Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="1" Width="60" Height="20" />
+			<Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
 		</Grid>
 
 	</Grid>

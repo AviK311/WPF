@@ -82,5 +82,13 @@ namespace UI_WPF
 			}
 		
 		}
+
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			Window testerWindow = new TesterWindow();
+			testerWindow.Show();
+			Close();
+
+		}
 	}
 }
