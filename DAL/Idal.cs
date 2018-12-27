@@ -24,6 +24,9 @@ namespace DAL
 		void AddAdmin(Admin admin);
 		Admin GetAdmin(string id);
 
+		bool CheckPassword(string id, string password);
+		void AddPassword(string id, string password);
+		void RemovePassword(string id);
 
 		IEnumerable<Test> GetTests();
 		IEnumerable<Admin> GetAdmins();

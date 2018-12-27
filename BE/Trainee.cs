@@ -9,17 +9,17 @@ namespace BE
 		public Dictionary<VehicleType, Stats> carTypeStats { get; set; }
 		public Trainee(Trainee other)
 		{
-			clearanceLevel = ClearanceLevel.Trainee;
+			
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 			carTypeStats = new Dictionary<VehicleType, Stats>();
 			foreach (var item in other.carTypeStats)
 				carTypeStats.Add(item.Key, new Stats(item.Value));
-			Password = other.Password;
+			
 		}
 		public Trainee()
 		{
-			clearanceLevel = ClearanceLevel.Trainee;
+			
 			carTypeStats = new Dictionary<VehicleType, Stats>();
 			foreach (var c in (VehicleType[])Enum.GetValues(typeof(VehicleType)))
 			{
@@ -29,8 +29,7 @@ namespace BE
 		public Trainee(Name name, string password)
 		{
 			Name = name;
-			Password = password;
-			clearanceLevel = ClearanceLevel.Trainee;
+			
 			carTypeStats = new Dictionary<VehicleType, Stats>();
 			foreach (var c in (VehicleType[])Enum.GetValues(typeof(VehicleType)))
 			{

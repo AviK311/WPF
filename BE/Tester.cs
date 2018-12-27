@@ -7,21 +7,19 @@ namespace BE
 	{
 		public Tester(Tester other)
 		{
-			clearanceLevel = ClearanceLevel.Tester;
+			
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 			schedule = new Schedule(other.schedule);
-			Password = other.Password;
+			
 		}
 		public Tester() {
-			clearanceLevel = ClearanceLevel.Tester;
+			
 			schedule = new Schedule();
 		}
-		public Tester(Name name, string password)
+		public Tester(Name name)
 		{
 			Name = name;
-			Password = password;
-			clearanceLevel = ClearanceLevel.Tester;
 			schedule = new Schedule();
 		}
 		public Schedule schedule;

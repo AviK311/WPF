@@ -66,7 +66,12 @@ namespace UI_WPF
 			bl = FactoryBL.GetBL();
 			try
 			{
+				if (password.Password != confirmPassword.Password)
+					throw new InvalidOperationException("The passwords do not match!");
+				if (password.Password == "")
+					throw new InvalidOperationException("Please enter a password!");
 				bl.AddTester(tester);
+				bl.AddPassword(tester.ID, password.Password);
 				TesterWindow testerWindow = new TesterWindow();
 				testerWindow.Show();
 				Close();

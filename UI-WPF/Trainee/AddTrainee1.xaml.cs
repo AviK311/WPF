@@ -42,9 +42,13 @@ namespace UI_WPF
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
             try
             {
-                bl.AddTrainee(trainee);
+				if (password.Password != confirmPassword.Password)
+					throw new InvalidOperationException("The passwords do not match!");
+				if (password.Password == "")
+					throw new InvalidOperationException("Please enter a password!");
+				bl.AddTrainee(trainee);
                 trainee = new BE.Trainee();
-                //this.DataContext = trainee;
+				bl.AddPassword(trainee.ID, password.Password);
                 TraineeWindow traineeWindow = new TraineeWindow();
                 traineeWindow.Show();
                 Close();
