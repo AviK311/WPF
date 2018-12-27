@@ -66,6 +66,7 @@ namespace UI_WPF
         private void DeleteButton_Click(object sender, RoutedEventArgs e)
         {
             bl.RemoveTrainee(trainee.ID);
+			bl.RemovePassword(trainee.ID);
             TraineeWindow traineeWindow = new TraineeWindow();
             traineeWindow.Show();
             Close();
@@ -87,37 +88,31 @@ namespace UI_WPF
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveButton.Visibility = Visibility.Hidden;
-            EditButton.Visibility = Visibility.Visible;
-            Trainee t = bl.GetTrainees().First();
-            bl.RemoveTrainee(t.ID);
-            bl.AddTrainee(t);
-            trainee = new Trainee(bl.GetTrainees().First());
-            gearTypeComboBox.SelectedItem = trainee.carTypeStats[trainee.CurrentCarType].gearType;
-            numOfLessonsTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfLessons.ToString();
-            schoolNameTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].schoolName;
-            numOfTestTextBlock.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfTest.ToString();
-            passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
-            DataContext = trainee;          
-        }
+			int currentIndex = list.FindIndex(T => T.Equals(trainee));
+			if (currentIndex + 1 == list.Count)
+				currentIndex = -1;
+			trainee = list[currentIndex + 1];
+			DataContext = trainee;
+			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
+			cartype.SelectedItem = trainee.CurrentCarType;
+			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
+			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
+
+		
+		}
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveButton.Visibility = Visibility.Hidden;
-            EditButton.Visibility = Visibility.Visible;
-            Trainee t;
-            for (int i = 0; i < bl.GetTrainees().Count()-1; i++)
-            {
-                t = bl.GetTrainees().First();
-                bl.RemoveTrainee(t.ID);
-                bl.AddTrainee(t);
-            }                    
-            trainee = new Trainee(bl.GetTrainees().First());
-            gearTypeComboBox.SelectedItem = trainee.carTypeStats[trainee.CurrentCarType].gearType;
-            numOfLessonsTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfLessons.ToString();
-            schoolNameTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].schoolName;
-            numOfTestTextBlock.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfTest.ToString();
-            passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
-            DataContext = trainee;            
+			int currentIndex = list.FindIndex(T => T.Equals(trainee));
+			if (currentIndex == 0)
+				currentIndex = list.Count;
+			trainee = list[currentIndex - 1];
+			DataContext = trainee;
+			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
+			cartype.SelectedItem = trainee.CurrentCarType;
+			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
+			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
+
+			
         }
 
 		private void cartype_SelectionChanged(object sender, SelectionChangedEventArgs e)
