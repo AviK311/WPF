@@ -50,8 +50,10 @@ namespace UI_WPF
 		{
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			DateTime s = test.TestDateTime.Date + ts;
-			if (s > DateTime.Now) { 
+			if (s > DateTime.Now) {
 			propertiesGrid.Visibility = Visibility.Hidden;
+			foreach (var i in propertiesGrid.Children.OfType<CheckBox>()) 
+				i.IsChecked = false;
 			}
 			else propertiesGrid.Visibility = Visibility.Visible;
 		}

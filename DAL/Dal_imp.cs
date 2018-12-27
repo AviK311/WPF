@@ -97,6 +97,21 @@ namespace DAL
 			
 		}
 
+		public bool CheckPassword(string id, string password)
+		{
+			return DataSource.passwordDictionary.CheckPassword(id, password);
+		}
+
+		public void AddPassword(string id, string password)
+		{
+			DataSource.passwordDictionary.AddPassword(id, password);
+		}
+
+		public void RemovePassword(string id)
+		{
+			DataSource.passwordDictionary.RemovePassword(id);
+		}
+
 
 
 		//void Idal.UpdateTest(Test newData)

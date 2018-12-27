@@ -255,6 +255,21 @@ namespace BL
 		{
 			return dal.GetAdmin(id);
 		}
+
+		public bool CheckPassword(string id, string password)
+		{
+			return dal.CheckPassword(id, password);
+		}
+
+		public void AddPassword(string id, string password)
+		{
+			dal.AddPassword(id, password);
+		}
+
+		public void RemovePassword(string id)
+		{
+			dal.RemovePassword(id);
+		}
 	}
 
 }

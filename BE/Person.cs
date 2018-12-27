@@ -35,8 +35,6 @@ namespace BE
 	}
 	public class Person
 	{
-		public ClearanceLevel clearanceLevel;
-		protected string Password;
 		protected string id;
 		public DateTime BirthDay { get; set; }
 		public Name Name { get; set; }
@@ -51,10 +49,7 @@ namespace BE
 			return person != null &&
 				   ID == person.ID;
 		}
-		public bool CheckPassword(string attempt)
-		{
-			return attempt == Password;
-		}
+		
 		public ushort GetAge()
 		{
 			DateTime now = DateTime.Today;

@@ -20,6 +20,7 @@ namespace UI_WPF
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		LoginWindow toReturn;
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -43,5 +44,12 @@ namespace UI_WPF
             Window test = new TestWindow();
             test.ShowDialog();
         }
-    }
+
+		private void LogOut_Click(object sender, RoutedEventArgs e)
+		{
+			Window loginWindow = new LoginWindow();
+			loginWindow.Show();
+			Close();
+		}
+	}
 }

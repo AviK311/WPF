@@ -36,23 +36,36 @@ namespace UI_WPF
             this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
         }       
 
-        private void add_button_Click(object sender, RoutedEventArgs e)
-        {
-            trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
-            trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-            try
-            {
-                bl.AddTrainee(trainee);
-                trainee = new BE.Trainee();
-                //this.DataContext = trainee;
-                TraineeWindow traineeWindow = new TraineeWindow();
-                traineeWindow.Show();
-                Close();
-            }
-            catch (InvalidOperationException exc)
-            {
-                MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-            }
-        }
-    }
+        
+
+		private void SaveButton_Click(object sender, RoutedEventArgs e)
+		{
+			trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
+			trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
+			try
+			{
+				if (password.Password != confirmPassword.Password)
+					throw new InvalidOperationException("The passwords do not match!");
+				if (password.Password == "")
+					throw new InvalidOperationException("Please enter a password!");
+				bl.AddTrainee(trainee);
+				trainee = new BE.Trainee();
+				bl.AddPassword(trainee.ID, password.Password);
+				TraineeWindow traineeWindow = new TraineeWindow();
+				traineeWindow.Show();
+				Close();
+			}
+			catch (InvalidOperationException exc)
+			{
+				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+		}
+
+		private void BackButton_Click(object sender, RoutedEventArgs e)
+		{
+			Window traineeWindow = new TraineeWindow();
+			traineeWindow.Show();
+			Close();
+		}
+	}
 }

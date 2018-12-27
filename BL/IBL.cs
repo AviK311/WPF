@@ -26,6 +26,10 @@ namespace BL
 		void AddAdmin(BE.Admin admin);
 		BE.Admin GetAdmin(string id);
 
+		bool CheckPassword(string id, string password);
+		void AddPassword(string id, string password);
+		void RemovePassword(string id);
+
 		IEnumerable<BE.Test> GetTests();
 		IEnumerable<BE.Admin> GetAdmins();
 

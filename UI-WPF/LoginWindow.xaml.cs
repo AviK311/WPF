@@ -25,44 +25,24 @@ namespace UI_WPF
 		{
 			InitializeComponent();
 			IBL bl = FactoryBL.GetBL();
-			Name name = new Name("Avi", "Koenigsberg");
-			Admin avi = new Admin(name, "J0gging9");           
-			avi.ID = "31122370";            
-			bl.AddAdmin(avi);
-            name = new Name("Tamar", "Gold");
-			Admin tamar = new Admin(name, "1234");
-            tamar.ID="207623224";
-            bl.AddAdmin(tamar);
+			if (Global.alreadyLoggedIn == false) { 
+				Admin avi = new Admin(new Name("Avi", "Koenigsberg"));
+				avi.ID = "31122370";
+				bl.AddAdmin(avi);
+				bl.AddPassword(avi.ID, "5678");
+				Admin tamar = new Admin(new Name("Tamar", "Gold"));
+				tamar.ID = "207623224";
+				bl.AddAdmin(tamar);
+				bl.AddPassword(tamar.ID, "1234");
+				Test d = new Test
+				{
+					TesterID = "00123456",
+					TraineeID = "00000123",
+					TestDateTime = new DateTime(2018, 12, 26, 10, 0, 0),
+					BeginLocation = new Address("jeru", "vaad", "21"),
+				};
 
-        }
-		private void LoginButton_Click(object sender, RoutedEventArgs e)
-		{
-			string id = IdInput.Text;
-			string password = PasswordInput.Password;
-			try
-			{
-				IBL bl = FactoryBL.GetBL();
-				if (bl.GetTesters().Any(T => T.ID == id))
-					Global.user = bl.GetTester(id);
-				else if (bl.GetTrainees().Any(T => T.ID == id))
-					Global.user = bl.GetTrainee(id);
-				else if (bl.GetAdmins().Any(A => A.ID == id))
-					Global.user = bl.GetAdmin(id);
-				else throw new InvalidOperationException("That user ID does not exist in the system");
-				if (!Global.user.CheckPassword(password))
-					throw new InvalidOperationException("Wrong password!");
-				MainWindow main = new MainWindow();
-				//TesterAdd main = new TesterAdd();
-				main.Show();
-                Test d = new Test
-                {
-                    TesterID = "00123456",
-                    TraineeID = "00000123",                  
-                    TestDateTime = new DateTime(2018, 12, 26,10,0,0),
-                    BeginLocation = new Address("jeru", "vaad", "21"),                 
-                };
-               
-                Tester c = new Tester
+				Tester c = new Tester
 				{
 					ID = "123456",
 					Name = new Name("Dan", "internatonal"),
@@ -77,19 +57,19 @@ namespace UI_WPF
 					schedule = new Schedule()
 				};
 				bl.AddTester(c);
-                Dictionary<VehicleType, Stats> s = new Dictionary<VehicleType, Stats>();
-                s.Add(VehicleType.LargeTruck, new Stats { gearType = GearType.Manual, numOfLessons = 21, numOfTest = 0, schoolName = " www", passed = false });
-                Trainee a = new Trainee
-                {
-                    ID = "123",
-                    Name = new Name("Avi", "Levi"),
-                    Sex = Gender.Male,
-                    PhoneNumber = "123",
-                    BirthDay = new DateTime(1993, 11, 3),
-                    Address = new Address("bet shemesh", "nahal maor", "19"),
-                    CurrentCarType = VehicleType.LargeTruck,
-                    carTypeStats = s
-                };
+				Dictionary<VehicleType, Stats> s = new Dictionary<VehicleType, Stats>();
+				s.Add(VehicleType.LargeTruck, new Stats { gearType = GearType.Manual, numOfLessons = 21, numOfTest = 0, schoolName = " www", passed = false });
+				Trainee a = new Trainee
+				{
+					ID = "123",
+					Name = new Name("Avi", "Levi"),
+					Sex = Gender.Male,
+					PhoneNumber = "123",
+					BirthDay = new DateTime(1993, 11, 3),
+					Address = new Address("bet shemesh", "nahal maor", "19"),
+					CurrentCarType = VehicleType.LargeTruck,
+					carTypeStats = s
+				};
 
 				Trainee b = new Trainee
 				{
@@ -104,7 +84,45 @@ namespace UI_WPF
 
 				bl.AddTrainee(a);
 				bl.AddTrainee(b);
-                bl.AddTest(d);
+				bl.AddTest(d);
+				bl.AddPassword(a.ID, "a");
+				bl.AddPassword(b.ID, "b");
+				bl.AddPassword(c.ID, "c");
+			}
+			//this needs to be erased. it's here only for debugging reasons
+			Global.alreadyLoggedIn = true;
+
+
+		}
+		private void LoginButton_Click(object sender, RoutedEventArgs e)
+		{
+			string id = IdInput.Text;
+			string password = PasswordInput.Password;
+			try
+			{
+				IBL bl = FactoryBL.GetBL();
+				if (bl.GetTesters().Any(T => T.ID == id))
+				{
+					Global.user = bl.GetTester(id);
+					Global.appClearanceLevel = ClearanceLevel.Tester;
+				}
+				else if (bl.GetTrainees().Any(T => T.ID == id))
+				{
+					Global.user = bl.GetTrainee(id);
+					Global.appClearanceLevel = ClearanceLevel.Tester;
+				}
+				else if (bl.GetAdmins().Any(A => A.ID == id))
+				{
+					Global.user = bl.GetAdmin(id);
+					Global.appClearanceLevel = ClearanceLevel.Admin;
+				}
+				else throw new InvalidOperationException("That user ID does not exist in the system");
+				if (!bl.CheckPassword(Global.user.ID, password))
+					throw new InvalidOperationException("Wrong password!");
+				MainWindow main = new MainWindow();
+				//TesterAdd main = new TesterAdd();
+				main.Show();
+               
                 Close();
 			}
 			catch (InvalidOperationException exc)
