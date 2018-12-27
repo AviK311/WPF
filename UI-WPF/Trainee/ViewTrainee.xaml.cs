@@ -21,14 +21,14 @@ namespace UI_WPF
     public partial class ViewTrainee : Window
     {
         IBL bl = BL.FactoryBL.GetBL();
-        Trainee trainee;        
+        Trainee trainee;
         public ViewTrainee(Trainee trainee1)
         {           
             InitializeComponent();                 
             //bl = BL.FactoryBL.GetBL();
             SaveButton.Visibility = Visibility.Hidden;
             trainee = new Trainee(trainee1);
-            DataContext = trainee;
+            DataContext = trainee;            
             this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
