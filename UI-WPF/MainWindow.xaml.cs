@@ -28,7 +28,8 @@ namespace UI_WPF
         private void button_trainee_Click(object sender, RoutedEventArgs e)
         {
             Window trainee = new TraineeWindow();
-            trainee.ShowDialog();
+            trainee.Show();
+            Close();
         }
 
         private void button_tester_Click(object sender, RoutedEventArgs e)

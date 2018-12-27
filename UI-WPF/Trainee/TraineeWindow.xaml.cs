@@ -48,5 +48,12 @@ namespace UI_WPF
             }
 
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
     }
 }

@@ -111,5 +111,59 @@ namespace UI_WPF
 			testerWindow.Show();
 			Close();
 		}
-	}
+        private void RightButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveButton.Visibility = Visibility.Hidden;
+            EditButton.Visibility = Visibility.Visible;
+            Tester t = bl.GetTesters().First();
+            bl.RemoveTester(t.ID);
+            bl.AddTester(t);
+            tester = new Tester(bl.GetTesters().First());
+            Functions.AddTemplateList(sunCheckboxes, Sun9, Sun10, Sun11, Sun12, Sun13, Sun14);
+            Functions.AddTemplateList(monCheckboxes, Mon9, Mon10, Mon11, Mon12, Mon13, Mon14);
+            Functions.AddTemplateList(tueCheckboxes, Tue9, Tue10, Tue11, Tue12, Tue13, Tue14);
+            Functions.AddTemplateList(wedCheckboxes, Wed9, Wed10, Wed11, Wed12, Wed13, Wed14);
+            Functions.AddTemplateList(thursCheckboxes, Thurs9, Thurs10, Thurs11, Thurs12, Thurs13, Thurs14);
+            foreach (var item in sunCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Sunday][sunCheckboxes.IndexOf(item) + 9];
+            foreach (var item in monCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Monday][monCheckboxes.IndexOf(item) + 9];
+            foreach (var item in tueCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Tuesday][tueCheckboxes.IndexOf(item) + 9];
+            foreach (var item in wedCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9];
+            foreach (var item in thursCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9];
+            DataContext = tester;
+        }
+        private void LeftButton_Click(object sender, RoutedEventArgs e)
+        {
+            SaveButton.Visibility = Visibility.Hidden;
+            EditButton.Visibility = Visibility.Visible;
+            Tester t;
+            for (int i = 0; i < bl.GetTrainees().Count() - 1; i++)
+            {
+                t = bl.GetTesters().First();
+                bl.RemoveTester(t.ID);
+                bl.AddTester(t);
+            }
+            tester = new Tester(bl.GetTesters().First());
+            Functions.AddTemplateList(sunCheckboxes, Sun9, Sun10, Sun11, Sun12, Sun13, Sun14);
+            Functions.AddTemplateList(monCheckboxes, Mon9, Mon10, Mon11, Mon12, Mon13, Mon14);
+            Functions.AddTemplateList(tueCheckboxes, Tue9, Tue10, Tue11, Tue12, Tue13, Tue14);
+            Functions.AddTemplateList(wedCheckboxes, Wed9, Wed10, Wed11, Wed12, Wed13, Wed14);
+            Functions.AddTemplateList(thursCheckboxes, Thurs9, Thurs10, Thurs11, Thurs12, Thurs13, Thurs14);
+            foreach (var item in sunCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Sunday][sunCheckboxes.IndexOf(item) + 9];
+            foreach (var item in monCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Monday][monCheckboxes.IndexOf(item) + 9];
+            foreach (var item in tueCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Tuesday][tueCheckboxes.IndexOf(item) + 9];
+            foreach (var item in wedCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9];
+            foreach (var item in thursCheckboxes)
+                item.IsChecked = tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9];
+            DataContext = tester;
+        }
+    }
 }

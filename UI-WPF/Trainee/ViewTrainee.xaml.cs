@@ -33,12 +33,20 @@ namespace UI_WPF
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
             this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+            gearTypeComboBox.SelectedItem = trainee.carTypeStats[trainee.CurrentCarType].gearType;
+            numOfLessonsTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfLessons.ToString();
+            schoolNameTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].schoolName;
+            numOfTestTextBlock.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfTest.ToString();
+            passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
+            trainee.carTypeStats[trainee.CurrentCarType].gearType = (GearType)gearTypeComboBox.SelectedItem;
+            trainee.carTypeStats[trainee.CurrentCarType].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
+            trainee.carTypeStats[trainee.CurrentCarType].schoolName = schoolNameTextBox.Text;
             try
             {
                 bl.UpdateTrainee(trainee);
@@ -78,7 +86,7 @@ namespace UI_WPF
             Close();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void RightButton_Click(object sender, RoutedEventArgs e)
         {
             SaveButton.Visibility = Visibility.Hidden;
             EditButton.Visibility = Visibility.Visible;
@@ -86,13 +94,14 @@ namespace UI_WPF
             bl.RemoveTrainee(t.ID);
             bl.AddTrainee(t);
             trainee = new Trainee(bl.GetTrainees().First());
-            DataContext = trainee;
-            //this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
-            //this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
-            //this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
-            //this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+            gearTypeComboBox.SelectedItem = trainee.carTypeStats[trainee.CurrentCarType].gearType;
+            numOfLessonsTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfLessons.ToString();
+            schoolNameTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].schoolName;
+            numOfTestTextBlock.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfTest.ToString();
+            passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
+            DataContext = trainee;          
         }
-        private void button_Click2(object sender, RoutedEventArgs e)
+        private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
             SaveButton.Visibility = Visibility.Hidden;
             EditButton.Visibility = Visibility.Visible;
@@ -104,6 +113,11 @@ namespace UI_WPF
                 bl.AddTrainee(t);
             }                    
             trainee = new Trainee(bl.GetTrainees().First());
+            gearTypeComboBox.SelectedItem = trainee.carTypeStats[trainee.CurrentCarType].gearType;
+            numOfLessonsTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfLessons.ToString();
+            schoolNameTextBox.Text = trainee.carTypeStats[trainee.CurrentCarType].schoolName;
+            numOfTestTextBlock.Text = trainee.carTypeStats[trainee.CurrentCarType].numOfTest.ToString();
+            passedCheckBox.IsChecked = trainee.carTypeStats[trainee.CurrentCarType].passed;
             DataContext = trainee;            
         }
     }
