@@ -224,5 +224,17 @@
   <ItemGroup>
     <Resource Include="images\רכבת.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\חץ2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\חץ.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\חץ4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\חץ5.jpg" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

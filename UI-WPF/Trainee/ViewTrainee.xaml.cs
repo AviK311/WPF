@@ -77,5 +77,34 @@ namespace UI_WPF
             traineeWindow.Show();
             Close();
         }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            SaveButton.Visibility = Visibility.Hidden;
+            EditButton.Visibility = Visibility.Visible;
+            Trainee t = bl.GetTrainees().First();
+            bl.RemoveTrainee(t.ID);
+            bl.AddTrainee(t);
+            trainee = new Trainee(bl.GetTrainees().First());
+            DataContext = trainee;
+            //this.keyComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+            //this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
+            //this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
+            //this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+        }
+        private void button_Click2(object sender, RoutedEventArgs e)
+        {
+            SaveButton.Visibility = Visibility.Hidden;
+            EditButton.Visibility = Visibility.Visible;
+            Trainee t;
+            for (int i = 0; i < bl.GetTrainees().Count()-1; i++)
+            {
+                t = bl.GetTrainees().First();
+                bl.RemoveTrainee(t.ID);
+                bl.AddTrainee(t);
+            }                    
+            trainee = new Trainee(bl.GetTrainees().First());
+            DataContext = trainee;            
+        }
     }
 }
