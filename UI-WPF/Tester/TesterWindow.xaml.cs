@@ -44,6 +44,7 @@ namespace UI_WPF
 				TesterView testerView = new TesterView((Tester)listBox.SelectedItem);
 				testerView.Show();
 				Close();
+				
 			}
 
 		}

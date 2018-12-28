@@ -13,5 +13,9 @@ namespace UI_WPF
 		public static Person user;
 		public static bool alreadyLoggedIn;
 		public static bool IsUpdate { get; set; } = false;
+		public static void m()
+		{
+			
+		}
 	}
 }

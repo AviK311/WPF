@@ -81,7 +81,7 @@ namespace UI_WPF
 					Address = new Address("Kiryat Ata", "David Remez", "1a"),
 					CurrentCarType = VehicleType.LargeTruck,
 				};
-
+				a.notifications.Add(new Notification(MessageIcon.Error, "what do you want?"));
 				bl.AddTrainee(a);
 				bl.AddTrainee(b);
 				bl.AddTest(d);
@@ -109,7 +109,7 @@ namespace UI_WPF
 				else if (bl.GetTrainees().Any(T => T.ID == id))
 				{
 					Global.user = bl.GetTrainee(id);
-					Global.appClearanceLevel = ClearanceLevel.Tester;
+					Global.appClearanceLevel = ClearanceLevel.Trainee;
 				}
 				else if (bl.GetAdmins().Any(A => A.ID == id))
 				{
@@ -121,6 +121,37 @@ namespace UI_WPF
 					throw new InvalidOperationException("Wrong password!");
 				MainWindow main = new MainWindow();
 				//TesterAdd main = new TesterAdd();
+				foreach (var item in Global.user.notifications)
+				{
+					MessageBoxImage messageBoxImage = MessageBoxImage.Asterisk;
+					switch (item.Icon)
+					{
+						case MessageIcon.Error:
+							messageBoxImage = MessageBoxImage.Error;
+							break;
+						case MessageIcon.Information:
+							messageBoxImage = MessageBoxImage.Information;
+							break;
+						case MessageIcon.Warning:
+							messageBoxImage = MessageBoxImage.Warning;
+							break;
+						default: break;
+					}
+					MessageBox.Show(item.message, item.time.ToShortDateString() + " "+ item.time.ToShortTimeString(), MessageBoxButton.OK, messageBoxImage);
+				}
+				Global.user.notifications.Clear();
+				switch (Global.appClearanceLevel)
+				{
+					case ClearanceLevel.Admin:
+						///// code to update admin;
+						break;
+					case ClearanceLevel.Tester:
+						bl.UpdateTester((Tester)Global.user);
+						break;
+					case ClearanceLevel.Trainee:
+						bl.UpdateTrainee((Trainee)Global.user);
+						break;
+				}
 				main.Show();
                
                 Close();

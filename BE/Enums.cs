@@ -4,4 +4,5 @@
 	public enum VehicleType { MotorCycle, PrivateCar, SmallTruck, LargeTruck, AirPlane, Train, MotorBoat, CruiseShip};
 	public enum GearType { Automatic, Manual };
 	public enum ClearanceLevel { Admin, Tester, Trainee };
+	public enum MessageIcon { Error, Warning, Information };
 }

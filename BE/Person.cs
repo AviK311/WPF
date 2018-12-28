@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 
 namespace BE
 {
@@ -39,6 +41,7 @@ namespace BE
 	}
 	public class Person
 	{
+		public List<Notification> notifications;
 		protected string id;
 		public DateTime BirthDay { get; set; }
 		public Name Name { get; set; }
@@ -52,6 +55,10 @@ namespace BE
 			var person = obj as Person;
 			return person != null &&
 				   ID == person.ID;
+		}
+		public Person()
+		{
+			notifications = new List<Notification>();
 		}
 		
 		public ushort GetAge()

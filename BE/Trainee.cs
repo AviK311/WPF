@@ -9,7 +9,7 @@ namespace BE
 		public Dictionary<VehicleType, Stats> carTypeStats { get; set; }
 		public Trainee(Trainee other)
 		{
-			
+			notifications = new List<Notification>(other.notifications);
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 			carTypeStats = new Dictionary<VehicleType, Stats>();
