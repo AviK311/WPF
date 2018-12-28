@@ -15,7 +15,7 @@ namespace BE
 		}
 		public Admin(Admin other)
 		{
-			
+			notifications = new List<Notification>(other.notifications);
 			foreach (PropertyInfo property in other.GetType().GetProperties())
 				property.SetValue(this, property.GetValue(other));
 			
