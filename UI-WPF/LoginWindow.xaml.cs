@@ -32,6 +32,7 @@ namespace UI_WPF
 				bl.AddPassword(avi.ID, "5678");
 				Admin tamar = new Admin(new Name("Tamar", "Gold"));
 				tamar.ID = "207623224";
+				tamar.notifications.Add(new Notification(MessageIcon.Information, "Hey Tamar, I added notifications!"));
 				bl.AddAdmin(tamar);
 				bl.AddPassword(tamar.ID, "1234");
 				Test d = new Test
