@@ -31,9 +31,9 @@ namespace UI_WPF
             trainee.BirthDay = DateTime.Now.AddYears(-(int)Configuration.MinAgeOfTrainee);
             trainee.BirthDay = trainee.BirthDay.AddDays(-1);
             
-            this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
-            this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
-            this.currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
+            sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
+            gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
+            currentCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
         }       
 
         

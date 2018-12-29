@@ -108,7 +108,21 @@
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="1" Width="60" Height="20" />
+            <Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="1" Width="60" Height="20">
+                <Button.Style>
+                    <Style>
+                        <Style.Triggers>
+                            
+                            <DataTrigger Binding="{Binding ElementName=testerIDComboBox, Path=Text}" Value="">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding ElementName=traineeIDComboBox, Path=Text}" Value="">
+                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
         </Grid>
 
