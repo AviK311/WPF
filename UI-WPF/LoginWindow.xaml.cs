@@ -21,10 +21,50 @@ namespace UI_WPF
 	/// </summary>
 	public partial class LoginWindow : Window
 	{
+		IBL bl;
+		public void ShowNotifications(Person p)
+		{
+			if (p.notifications.Count == 0)
+				return;
+			foreach (var item in p.notifications)
+			{
+				MessageBoxImage messageBoxImage = MessageBoxImage.Asterisk;
+				switch (item.Icon)
+				{
+					case MessageIcon.Error:
+						messageBoxImage = MessageBoxImage.Error;
+						break;
+					case MessageIcon.Information:
+						messageBoxImage = MessageBoxImage.Information;
+						break;
+					case MessageIcon.Warning:
+						messageBoxImage = MessageBoxImage.Warning;
+						break;
+					default: break;
+				}
+				MessageBox.Show(item.message, item.time.ToShortDateString() + " " + item.time.ToShortTimeString(), MessageBoxButton.OK, messageBoxImage);
+			}
+			p.notifications.Clear();
+			bl.UpdatePerson(p);
+			//switch (Global.appClearanceLevel)
+			//{
+			//	case ClearanceLevel.Admin:
+			//		///// code to update admin;
+			//		break;
+			//	case ClearanceLevel.Tester:
+			//		bl.UpdateTester((Tester)Global.user);
+			//		break;
+			//	case ClearanceLevel.Trainee:
+			//		bl.UpdateTrainee((Trainee)Global.user);
+			//		break;
+			//}
+		}
+
+
 		public LoginWindow()
 		{
 			InitializeComponent();
-			IBL bl = FactoryBL.GetBL();
+			bl = FactoryBL.GetBL();
 			if (Global.alreadyLoggedIn == false) { 
 				Admin avi = new Admin(new Name("Avi", "Koenigsberg"));
 				avi.ID = "31122370";
@@ -122,37 +162,7 @@ namespace UI_WPF
 					throw new InvalidOperationException("Wrong password!");
 				MainWindow main = new MainWindow();
 				//TesterAdd main = new TesterAdd();
-				foreach (var item in Global.user.notifications)
-				{
-					MessageBoxImage messageBoxImage = MessageBoxImage.Asterisk;
-					switch (item.Icon)
-					{
-						case MessageIcon.Error:
-							messageBoxImage = MessageBoxImage.Error;
-							break;
-						case MessageIcon.Information:
-							messageBoxImage = MessageBoxImage.Information;
-							break;
-						case MessageIcon.Warning:
-							messageBoxImage = MessageBoxImage.Warning;
-							break;
-						default: break;
-					}
-					MessageBox.Show(item.message, item.time.ToShortDateString() + " "+ item.time.ToShortTimeString(), MessageBoxButton.OK, messageBoxImage);
-				}
-				Global.user.notifications.Clear();
-				switch (Global.appClearanceLevel)
-				{
-					case ClearanceLevel.Admin:
-						///// code to update admin;
-						break;
-					case ClearanceLevel.Tester:
-						bl.UpdateTester((Tester)Global.user);
-						break;
-					case ClearanceLevel.Trainee:
-						bl.UpdateTrainee((Trainee)Global.user);
-						break;
-				}
+				ShowNotifications(Global.user);
 				main.Show();
                
                 Close();

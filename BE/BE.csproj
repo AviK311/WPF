@@ -45,6 +45,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Functions.cs" />
+    <Compile Include="Global.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="PasswordDictionary.cs" />
     <Compile Include="Person.cs" />

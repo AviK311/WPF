@@ -23,6 +23,7 @@ namespace DAL
 
 		void AddAdmin(Admin admin);
 		Admin GetAdmin(string id);
+		void RemoveAdmin(Admin toRemove);
 
 		bool CheckPassword(string id, string password);
 		void AddPassword(string id, string password);
@@ -32,6 +33,6 @@ namespace DAL
 		IEnumerable<Admin> GetAdmins();
 		IEnumerable<Tester> GetTesters();
 		IEnumerable<Trainee> GetTrainees();
-
+		
 	}
 }

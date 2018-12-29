@@ -19,7 +19,7 @@ namespace BL
         }
         public void AddTest(Test test, bool update = false)
         {
-            test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
+            if (!update)test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
             var testTrainee = (from trainee in dal.GetTrainees()
 							   where trainee.ID == test.TraineeID
 							   select trainee).First();
@@ -52,12 +52,41 @@ namespace BL
                                             select test1;
             if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
-			if (test.TestDateTime < DateTime.Now && test.testProperties.passed())
-				testTrainee.carTypeStats[testTrainee.CurrentCarType].passed = true;
-			if(!update)
+			if (test.TestDateTime < DateTime.Now)
+			{
+				bool Passed = test.testProperties.passed();
+
+				if (Passed && !testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
+				{
+					testTrainee.carTypeStats[testTrainee.CurrentCarType].passed = true;
+					string message = string.Format("Congradulations! you've passed the test on {0}, at {1}!", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
+					testTrainee.AddNotification(message, MessageIcon.Information);
+				}
+				else if(test.testProperties.GradeSet && !Passed)
+				{
+					string message = string.Format("We're sorry, but you failed the test on {0}, at {1}", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
+					testTrainee.AddNotification(message, MessageIcon.Error);
+				}
+			}
+			if (!update)
+			{
 				testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfTest++;
+				string testerMessage = string.Format("A test was appointed to you with the trainee {0} at {1}, {2}. See test for details.", testTrainee.Name, test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
+				string traineeMessage = string.Format("A test was appointed to you with the tester {0} at {1}, {2}. See test for details.", testTester.Name, test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
+				testTrainee.AddNotification(traineeMessage, MessageIcon.Warning);
+				testTester.AddNotification(testerMessage, MessageIcon.Warning);
+			}
+			else
+			{
+				string message = string.Format("Your test on {0} at {1} has been updated. See for details.", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
+				if (!testTrainee.Equals(Global.user))
+					testTrainee.AddNotification(message, MessageIcon.Information);
+				if (!testTester.Equals(Global.user))
+					testTester.AddNotification(message, MessageIcon.Information);
+			}
 			UpdateTrainee(testTrainee);
-			Configuration.TestCode++;
+			UpdateTester(testTester);
+			if (!update) Configuration.TestCode++;
 			dal.AddTest(test);
         }
 
@@ -162,8 +191,15 @@ namespace BL
 				dal.RemoveTrainee(removeTrainee);
 			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
         }
+		public void RemoveAdmin(string id)
+		{
+			var removeAdmin = dal.GetAdmins().FirstOrDefault(admin => admin.ID == id);
+			if (removeAdmin != null)
+				dal.RemoveAdmin(removeAdmin);
+			else throw new InvalidOperationException("An Admin with that ID doesn't exist");
+		}
 
-        public IEnumerable<IGrouping<VehicleType, Tester>> TesterGroupsAccordingToCarType(bool inOrder)
+		public IEnumerable<IGrouping<VehicleType, Tester>> TesterGroupsAccordingToCarType(bool inOrder)
         {
 			var toReturn = from tester in dal.GetTesters()
 						   group tester by tester.testingCarType;
@@ -217,6 +253,20 @@ namespace BL
 			AddTrainee(trainee: newData, update: true);
 			RemoveTrainee(newData.ID);
 		}
+		public void UpdateAdmin(Admin newData)
+		{
+			AddAdmin(admin: newData, update: true);
+			RemoveAdmin(newData.ID);
+		}
+		public void UpdatePerson(Person newData)
+		{
+			if (newData is Trainee)
+				UpdateTrainee((Trainee)newData);
+			else if (newData is Tester)
+				UpdateTester((Tester)newData);
+			else
+				UpdateAdmin((Admin)newData);
+		}
 
         public Test GetTest(string id)
         {
@@ -244,9 +294,9 @@ namespace BL
 			return toReturn;
         }
 
-		public void AddAdmin(Admin admin)
+		public void AddAdmin(Admin admin, bool update = false)
 		{
-			if (dal.GetAdmins().Any(A => A.Equals(admin)))
+			if (!update && dal.GetAdmins().Any(A => A.Equals(admin)))
 				throw new InvalidOperationException("An Admin with that ID already exists");
 			dal.AddAdmin(admin);
 		}
