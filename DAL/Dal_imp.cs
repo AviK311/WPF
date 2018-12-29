@@ -89,6 +89,10 @@ namespace DAL
 		{
 			DataSource.traineeList.Remove(toRemove);
 		}
+		void Idal.RemoveAdmin(Admin toRemove)
+		{
+			DataSource.adminList.Remove(toRemove);
+		}
 
 		public Admin GetAdmin(string id)
 		{

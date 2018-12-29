@@ -23,8 +23,12 @@ namespace BL
         void RemoveTester(string id);
         void UpdateTester(BE.Tester newData);
 
-		void AddAdmin(BE.Admin admin);
+		void AddAdmin(BE.Admin admin, bool update = false);
 		BE.Admin GetAdmin(string id);
+		void RemoveAdmin(string id);
+		void UpdateAdmin(Admin newData);
+
+		void UpdatePerson(Person newData);
 
 		bool CheckPassword(string id, string password);
 		void AddPassword(string id, string password);

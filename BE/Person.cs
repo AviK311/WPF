@@ -68,5 +68,9 @@ namespace BE
 			if (now < BirthDay.AddYears(age)) age--;
 			return age;
 		}
+		public void AddNotification(string message, MessageIcon icon)
+		{
+			notifications.Add(new Notification(message: message, icon: icon));
+		}
 	}
 }

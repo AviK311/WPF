@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BE;
 
-namespace UI_WPF
+namespace BE
 {
 	public class Global
 	{
@@ -13,9 +12,6 @@ namespace UI_WPF
 		public static Person user;
 		public static bool alreadyLoggedIn;
 		public static bool IsUpdate { get; set; } = false;
-		public static void m()
-		{
-			
-		}
+		
 	}
 }
