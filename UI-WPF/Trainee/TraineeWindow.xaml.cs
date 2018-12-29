@@ -49,7 +49,7 @@ namespace UI_WPF
 
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void button_back_Click(object sender, RoutedEventArgs e)
         {
             MainWindow mainWindow = new MainWindow();
             mainWindow.Show();

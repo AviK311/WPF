@@ -43,10 +43,14 @@ namespace UI_WPF
 			{
 				TesterView testerView = new TesterView((Tester)listBox.SelectedItem);
 				testerView.Show();
-				Close();
-				
+				Close();				
 			}
-
 		}
-	}
+        private void button_back_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow();
+            mainWindow.Show();
+            Close();
+        }
+    }
 }

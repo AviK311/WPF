@@ -21,5 +21,6 @@
 			<Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
 		</Grid>
 		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="277" Margin="80,40,0,0" VerticalAlignment="Top" Width="452" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
-	</Grid>
+        <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
+    </Grid>
 </Window>

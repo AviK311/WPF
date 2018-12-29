@@ -27,12 +27,14 @@ namespace UI_WPF
 		List<string> testers, trainees;
 		Test test;
 
-		private void add_button_Click(object sender, RoutedEventArgs e)
+		private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-			try
+            //Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
+            //testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
+            try
 			{
 				bl.AddTest(test);
 				TestWindow testWindow = new TestWindow();
@@ -58,7 +60,20 @@ namespace UI_WPF
 			else propertiesGrid.Visibility = Visibility.Visible;
 		}
 
-		public TestAdd()
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            System.Windows.Data.CollectionViewSource testViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("testViewSource")));
+            // Load data by setting the CollectionViewSource.Source property:
+            // testViewSource.Source = [generic data source]
+        }
+        private void BackButton_Click(object sender, RoutedEventArgs e)
+        {
+            Window testWindow = new TestWindow();
+            testWindow.Show();
+            Close();
+        }
+        public TestAdd()
         {
             InitializeComponent();
 			propertiesGrid.Visibility = Visibility.Hidden;

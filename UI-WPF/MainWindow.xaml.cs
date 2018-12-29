@@ -36,13 +36,15 @@ namespace UI_WPF
         private void button_tester_Click(object sender, RoutedEventArgs e)
         {
             Window tester = new TesterWindow();
-            tester.ShowDialog();
+            tester.Show();
+            Close();
         }
 
         private void button_test_Click(object sender, RoutedEventArgs e)
         {
             Window test = new TestWindow();
-            test.ShowDialog();
+            test.Show();
+            Close();
         }
 
 		private void LogOut_Click(object sender, RoutedEventArgs e)

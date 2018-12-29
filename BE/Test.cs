@@ -21,18 +21,18 @@ namespace BE
 		public string TraineeID { get; set; }
 		public DateTime TestDateTime { get; set; }
 		public Address BeginLocation { get; set; }
-
-		public TestProperties testProperties { get; set; }
+        public VehicleType testingCarType { get; set; }
+        public TestProperties testProperties { get; set; }
         public override string ToString()
 		{
-			string toReturn = string.Format("Test Number: {0},", TestNumber);
-			toReturn += string.Format("Tester ID: {0},", TesterID);
-			toReturn += string.Format("Trainee ID: {0},", TraineeID);
-			toReturn += string.Format("Date and Time: {0}, {1}:00", TestDateTime.ToShortDateString(), TestDateTime.Hour);
-
-
-			return toReturn;
-		}
+            string s = "Tester ID: " + TesterID + "\nTrainee ID: " + TraineeID+ "\nDate and Time: " + TestDateTime.ToShortDateString()+" "+ TestDateTime.Hour + ":00\nCarType: " + Functions.InsertSpacesBeforeUpper(testingCarType.ToString()) + "\n";
+            return s;
+            //string toReturn = string.Format("Test Number: {0},", TestNumber);
+            //toReturn += string.Format("Tester ID: {0},", TesterID);
+            //toReturn += string.Format("Trainee ID: {0},", TraineeID);
+            //toReturn += string.Format("Date and Time: {0}, {1}:00", TestDateTime.ToShortDateString(), TestDateTime.Hour);
+            //return toReturn;
+        }
 		public string ToLongString()
 		{
 			return string.Format(

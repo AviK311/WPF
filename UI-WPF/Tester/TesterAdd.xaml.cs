@@ -88,7 +88,6 @@ namespace UI_WPF
 			Window testerWindow = new TesterWindow();
 			testerWindow.Show();
 			Close();
-
 		}
 	}
 }

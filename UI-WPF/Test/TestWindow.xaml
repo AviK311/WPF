@@ -24,5 +24,6 @@
             <Button x:Name="Grade" Content="Update Grade" Margin="20,25,20,25" Height="auto" Width="auto" FontSize="24" Grid.Row="3"/>
         </Grid>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="240" Margin="75,40,0,0" VerticalAlignment="Top" Width="320" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
+        <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
     </Grid>
 </Window>
