@@ -96,9 +96,7 @@ namespace UI_WPF
 			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
 			cartype.SelectedItem = trainee.CurrentCarType;
 			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
-			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
-
-		
+			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;		
 		}
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
@@ -110,9 +108,7 @@ namespace UI_WPF
 			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
 			cartype.SelectedItem = trainee.CurrentCarType;
 			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
-			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
-
-			
+			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;			
         }
 
 		private void cartype_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -55,5 +55,6 @@ namespace UI_WPF
             mainWindow.Show();
             Close();
         }
+       
     }
 }

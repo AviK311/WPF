@@ -33,5 +33,7 @@ namespace DAL
 		IEnumerable<Tester> GetTesters();
 		IEnumerable<Trainee> GetTrainees();
 
-	}
+
+
+    }
 }

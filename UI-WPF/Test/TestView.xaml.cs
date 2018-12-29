@@ -23,7 +23,8 @@ namespace UI_WPF
 	{
 		Test test;
 		IBL bl = BL.FactoryBL.GetBL();
-		public TestView(Test t)
+        List<Test> list;
+        public TestView(Test t)
 		{
 			InitializeComponent();
 		}
@@ -76,5 +77,23 @@ namespace UI_WPF
 			testWindow.Show();
 			Close();
 		}
-	}
+        private void RightButton_Click(object sender, RoutedEventArgs e)
+        {
+            int currentIndex = list.FindIndex(T => T.Equals(test));
+            if (currentIndex + 1 == list.Count)
+                currentIndex = -1;
+            test = list[currentIndex + 1];
+            DataContext = test;            
+        }
+        private void LeftButton_Click(object sender, RoutedEventArgs e)
+        {
+            int currentIndex = list.FindIndex(T => T.Equals(test));
+            if (currentIndex == 0)
+                currentIndex = list.Count;
+            test = list[currentIndex - 1];
+            DataContext = test;            
+        }
+
+
+    }
 }

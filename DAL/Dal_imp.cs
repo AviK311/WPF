@@ -49,7 +49,9 @@ namespace DAL
 		{
 			return new List<Trainee>(DataSource.traineeList);
 		}
-		public IEnumerable<Admin> GetAdmins()
+       
+
+        public IEnumerable<Admin> GetAdmins()
 		{
 			return new List<Admin>(DataSource.adminList);
 		}

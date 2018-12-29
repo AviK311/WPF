@@ -123,7 +123,10 @@ namespace BL
         {
             return dal.GetTrainees();
         }
-		public IEnumerable<Admin> GetAdmins()
+
+        
+
+        public IEnumerable<Admin> GetAdmins()
 		{
 			return dal.GetAdmins();
 		}

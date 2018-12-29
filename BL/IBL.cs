@@ -34,9 +34,10 @@ namespace BL
 		IEnumerable<BE.Admin> GetAdmins();
 
 		IEnumerable<BE.Tester> GetTesters();
-        IEnumerable<BE.Trainee> GetTrainees();
+        IEnumerable<BE.Trainee> GetTrainees();       
 
-		IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
+
+        IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
 		IEnumerable<BE.Tester> AvailableTesters(DateTime date);
 		IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date);
 		IEnumerable<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
