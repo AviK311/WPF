@@ -49,7 +49,6 @@ namespace UI_WPF
 				if (password.Password == "")
 					throw new InvalidOperationException("Please enter a password!");
 				bl.AddTrainee(trainee);
-				trainee = new BE.Trainee();
 				bl.AddPassword(trainee.ID, password.Password);
 				TraineeWindow traineeWindow = new TraineeWindow();
 				traineeWindow.Show();

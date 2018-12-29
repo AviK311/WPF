@@ -21,16 +21,15 @@ namespace UI_WPF
 	/// </summary>
 	public partial class TesterView : Window
 	{
-		
-		IBL bl;
-		Tester tester;
+
+        IBL bl = BL.FactoryBL.GetBL();
+        Tester tester;
 		List<CheckBox> sunCheckboxes = new List<CheckBox>();
 		List<CheckBox> monCheckboxes = new List<CheckBox>();
 		List<CheckBox> tueCheckboxes = new List<CheckBox>();
 		List<CheckBox> wedCheckboxes = new List<CheckBox>();
 		List<CheckBox> thursCheckboxes = new List<CheckBox>();
-        List<Tester> list;
-        int index;
+        List<Tester> list;       
         //public TesterView(Tester tester1)
 
         public TesterView(Tester tester1)
@@ -38,13 +37,13 @@ namespace UI_WPF
 			InitializeComponent();
 			SaveButton.Visibility = Visibility.Hidden;
 			tester = new Tester(tester1);
-			DataContext = tester;
+            list = (List<Tester>)bl.GetTesters();
+            DataContext = tester;
             //foreach (var item in bl.GetTesters())
             //{
             //    list.Add(item);
             //}
-            list = (List<Tester>)bl.GetTesters();
-            index = list.FindIndex(t => t.ID == tester.ID);
+            
 
             sexComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
 			testingCarTypeComboBox.ItemsSource = Enum.GetValues(typeof(VehicleType));
@@ -87,7 +86,6 @@ namespace UI_WPF
 			try
 			{
 				bl.UpdateTester(tester);
-                list = (List<Tester>)bl.GetTrainees();
                 EditButton.Visibility = Visibility.Visible;
 				SaveButton.Visibility = Visibility.Hidden;
 			}
@@ -101,7 +99,6 @@ namespace UI_WPF
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
 			bl.RemoveTester(tester.ID);
-            list = (List<Tester>)bl.GetTrainees();
             TesterWindow testerWindow = new TesterWindow();
 			testerWindow.Show();
 			Close();
@@ -125,14 +122,15 @@ namespace UI_WPF
             SaveButton.Visibility = Visibility.Hidden;
             EditButton.Visibility = Visibility.Visible;
 
-           
+
 
             //Tester t = bl.GetTesters().First();
             //bl.RemoveTester(t.ID);
             //bl.AddTester(t);
-            if (index == list.Count-1)
-                index = 0;
-            tester = new Tester(list[index+1]);
+            int currentIndex = list.FindIndex(T => T.Equals(tester));
+            if (currentIndex + 1 == list.Count)
+                currentIndex = -1;
+            tester = list[currentIndex + 1];
             Functions.AddTemplateList(sunCheckboxes, Sun9, Sun10, Sun11, Sun12, Sun13, Sun14);
             Functions.AddTemplateList(monCheckboxes, Mon9, Mon10, Mon11, Mon12, Mon13, Mon14);
             Functions.AddTemplateList(tueCheckboxes, Tue9, Tue10, Tue11, Tue12, Tue13, Tue14);
@@ -162,9 +160,11 @@ namespace UI_WPF
             //    bl.AddTester(t);
             //}
             //tester = new Tester(bl.GetTesters().First());
-            if (index == 0)
-                index = list.Count;
-            tester = new Tester(list[index - 1]);
+            int currentIndex = list.FindIndex(T => T.Equals(tester));
+            if (currentIndex == 0)
+                currentIndex = list.Count;
+            tester = list[currentIndex - 1];
+            DataContext = tester;
             Functions.AddTemplateList(sunCheckboxes, Sun9, Sun10, Sun11, Sun12, Sun13, Sun14);
             Functions.AddTemplateList(monCheckboxes, Mon9, Mon10, Mon11, Mon12, Mon13, Mon14);
             Functions.AddTemplateList(tueCheckboxes, Tue9, Tue10, Tue11, Tue12, Tue13, Tue14);
@@ -179,8 +179,7 @@ namespace UI_WPF
             foreach (var item in wedCheckboxes)
                 item.IsChecked = tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9];
             foreach (var item in thursCheckboxes)
-                item.IsChecked = tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9];
-            DataContext = tester;
+                item.IsChecked = tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9];           
         }
     }
 }
