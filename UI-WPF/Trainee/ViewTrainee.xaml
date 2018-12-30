@@ -133,7 +133,7 @@
 				<ColumnDefinition Width="Auto"/>
 			</Grid.ColumnDefinitions>
 			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Car Type Stats:"/>
-			<ComboBox x:Name="cartype" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}" SelectionChanged="cartype_SelectionChanged"/>
+			<ComboBox x:Name="cartype" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1"  SelectionChanged="cartype_SelectionChanged"/>
 		</Grid>
 	</Grid>
 </Window>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BE;
 
 namespace UI_WPF
 {
@@ -28,14 +29,21 @@ namespace UI_WPF
 
         private void button_trainee_Click(object sender, RoutedEventArgs e)
         {
-            Window trainee = new TraineeWindow();
+			Window trainee;
+			if (GlobalSettings.User is Trainee)
+				trainee = new ViewTrainee((Trainee)GlobalSettings.User);
+			else 
+              trainee = new TraineeWindow();
             trainee.Show();
             Close();
         }
 
         private void button_tester_Click(object sender, RoutedEventArgs e)
         {
-            Window tester = new TesterWindow();
+			Window tester;
+			if (GlobalSettings.User is Tester)
+				tester = new TesterView((Tester)GlobalSettings.User);
+			else tester = new TesterWindow();
             tester.Show();
             Close();
         }

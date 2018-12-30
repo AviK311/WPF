@@ -29,7 +29,22 @@ namespace UI_WPF
             //bl = BL.FactoryBL.GetBL();
             SaveButton.Visibility = Visibility.Hidden;
             trainee = new Trainee(trainee1);
-			list = (List<Trainee>)bl.GetTrainees();
+			if (GlobalSettings.User is Trainee)
+			{
+				RightButton.Visibility = Visibility.Hidden;
+				LeftButton.Visibility = Visibility.Hidden;
+			}
+			else
+			{
+				list = (List<Trainee>)bl.GetTrainees();
+				if (GlobalSettings.User is Tester)
+				{
+					EditButton.IsEnabled = false;
+					DeleteButton.IsEnabled = false;
+					CancelButton.IsEnabled = false;
+				}
+			}
+			
             DataContext = trainee;
             this.cartype.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
@@ -81,8 +96,11 @@ namespace UI_WPF
 
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
-            TraineeWindow traineeWindow = new TraineeWindow();
-            traineeWindow.Show();
+			Window trainee;
+			if (GlobalSettings.User is Trainee)
+				trainee = new MainWindow();
+			else trainee = new TraineeWindow();
+			trainee.Show();
             Close();
         }
 

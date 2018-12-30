@@ -37,7 +37,21 @@ namespace UI_WPF
 			InitializeComponent();
 			SaveButton.Visibility = Visibility.Hidden;
 			tester = new Tester(tester1);
-            list = (List<Tester>)bl.GetTesters();
+			if (GlobalSettings.User is Tester)
+			{
+				RightButton.Visibility = Visibility.Hidden;
+				LeftButton.Visibility = Visibility.Hidden;
+			}
+			else {
+				list = (List<Tester>)bl.GetTesters();
+				if (GlobalSettings.User is Trainee)
+				{
+					EditButton.IsEnabled = false;
+					DeleteButton.IsEnabled = false;
+					CancelButton.IsEnabled = false;
+				}
+			}
+				
             DataContext = tester;
             //foreach (var item in bl.GetTesters())
             //{
@@ -113,14 +127,17 @@ namespace UI_WPF
 
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
-			TesterWindow testerWindow = new TesterWindow();
-			testerWindow.Show();
+			Window tester; 
+			if (GlobalSettings.User is Tester)
+				tester = new MainWindow();
+			else tester = new TesterWindow();
+			tester.Show();
 			Close();
 		}
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveButton.Visibility = Visibility.Hidden;
-            EditButton.Visibility = Visibility.Visible;
+            //SaveButton.Visibility = Visibility.Hidden;
+            //EditButton.Visibility = Visibility.Visible;
 
 
 
@@ -150,8 +167,8 @@ namespace UI_WPF
         }
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            SaveButton.Visibility = Visibility.Hidden;
-            EditButton.Visibility = Visibility.Visible;
+            //SaveButton.Visibility = Visibility.Hidden;
+            //EditButton.Visibility = Visibility.Visible;
             //Tester t;
             //for (int i = 0; i < bl.GetTrainees().Count() - 1; i++)
             //{

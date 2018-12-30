@@ -19,8 +19,7 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto" Click="Add_Click" FontSize="36" Grid.Row="0"/>
-            <Button x:Name="Delete" Content="Delete" Margin="40,25,40,25" Height="auto" Width="auto" FontSize="36" Grid.Row="2"/>
-        </Grid>
+		</Grid>
         <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="115" Margin="70,55,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="425" MouseDoubleClick="listBox_MouseDoubleClick"/>
         <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
     </Grid>

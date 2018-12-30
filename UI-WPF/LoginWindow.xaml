@@ -31,7 +31,8 @@
             <Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
             <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
             <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="554,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" />
-        </Grid>
+			<Button x:Name="FirstTimeLogin" Content="First Time Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="366,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" />
+		</Grid>
     </Grid>
 
 </Window>

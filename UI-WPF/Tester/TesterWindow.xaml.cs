@@ -29,6 +29,10 @@ namespace UI_WPF
             InitializeComponent();
             bl = FactoryBL.GetBL();
 			DataContext = bl.GetTesters();
+			if (!(GlobalSettings.User is Admin))
+				Add.Visibility = Visibility.Hidden;
+
+			
 		}
         private void Add_Click(object sender, RoutedEventArgs e)
         {

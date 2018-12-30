@@ -26,7 +26,9 @@ namespace UI_WPF
         public TraineeWindow()
         {
             InitializeComponent();
-            bl = FactoryBL.GetBL();			          
+            bl = FactoryBL.GetBL();
+			if (!(GlobalSettings.User is Admin))
+				Add.Visibility = Visibility.Hidden;
 			DataContext = bl.GetTrainees();			
 		}
 
