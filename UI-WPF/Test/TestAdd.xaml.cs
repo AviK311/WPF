@@ -51,8 +51,8 @@ namespace UI_WPF
 		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
-			DateTime s = test.TestDateTime.Date + ts;
-			if (s > DateTime.Now) {
+			test.TestDateTime = test.TestDateTime.Date + ts;
+			if (test.TestDateTime > DateTime.Now) {
 			propertiesGrid.Visibility = Visibility.Hidden;
 			foreach (var i in propertiesGrid.Children.OfType<CheckBox>()) 
 				i.IsChecked = false;
@@ -60,13 +60,7 @@ namespace UI_WPF
 			else propertiesGrid.Visibility = Visibility.Visible;
 		}
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource testViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("testViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // testViewSource.Source = [generic data source]
-        }
+       
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             Window testWindow = new TestWindow();

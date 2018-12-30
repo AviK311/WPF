@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.AddTrainee1"
         mc:Ignorable="d"
-        Title="AddTrainee1" Height="550" Width="620" >
+        Title="AddTrainee1" Height="470" Width="620" >
    
     <Grid>
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="12,27,0,0" VerticalAlignment="Top">
@@ -88,28 +88,7 @@
             <Label Content="street:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="streetTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.2,4,0,4" Grid.Row="2" VerticalAlignment="Center" Width="155" Grid.ColumnSpan="2"/>
         </Grid>
-		<Grid x:Name="PasswordGrid" VerticalAlignment="Top" Margin="50,385,0,0" HorizontalAlignment="Left"  Width="306">
-			<Grid.RowDefinitions>
-
-				<RowDefinition Height="Auto"/>
-
-				<RowDefinition Height="Auto"/>
-
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-
-				<ColumnDefinition Width="8*"/>
-				<ColumnDefinition Width="9*"/>
-
-			</Grid.ColumnDefinitions>
-
-			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Enter Password:" Height="26" Width="179"/>
-			<PasswordBox x:Name="password" Width="155" VerticalAlignment="Center"  Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
-			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Confirm Password:" Height="26" Width="179"/>
-			<PasswordBox x:Name="confirmPassword" Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
-
-
-		</Grid>
+		
 		<Grid HorizontalAlignment="Left" Height="20" Margin="414,391,0,0" VerticalAlignment="Top" Width="auto">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="auto"/>
