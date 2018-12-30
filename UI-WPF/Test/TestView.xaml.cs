@@ -22,12 +22,35 @@ namespace UI_WPF
 	public partial class TestView : Window
 	{
 		Test test;
-		IBL bl = BL.FactoryBL.GetBL();
+        List<string> testers, trainees;
+        IBL bl = BL.FactoryBL.GetBL();
         List<Test> list;
-        public TestView(Test t)
+        public TestView(Test test1)
 		{
 			InitializeComponent();
-		}
+            list = (List<Test>)bl.GetTests();
+            SaveButton.Visibility = Visibility.Hidden;            
+            propertiesGrid.Visibility = Visibility.Hidden;
+            bl = FactoryBL.GetBL();
+            test = new Test();
+            test.TestDateTime = DateTime.Now;
+            DataContext = test;
+            int[] arr = { 9, 10, 11, 12, 13, 14 };
+            Hour.ItemsSource = arr;
+            Hour.SelectedIndex = test1.TestDateTime.Hour-9;
+            testers = new List<string>();
+            trainees = new List<string>();
+            foreach (var item in bl.GetTrainees())
+                trainees.Add(item.ID);
+            foreach (var item in bl.GetTesters())
+                testers.Add(item.ID);
+            testerIDComboBox.ItemsSource = testers;
+            testerIDComboBox.SelectedIndex = 0;
+            traineeIDComboBox.ItemsSource = trainees;
+            traineeIDComboBox.SelectedIndex = 1;
+            test = new Test(test1);
+            DataContext = test;
+        }
 
 		private void Window_Loaded(object sender, RoutedEventArgs e)
 		{
@@ -94,6 +117,21 @@ namespace UI_WPF
             DataContext = test;            
         }
 
+        private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
+            DateTime s = test.TestDateTime.Date + ts;
+            if (s > DateTime.Now)
+            {
+                propertiesGrid.Visibility = Visibility.Hidden;
+                foreach (var i in propertiesGrid.Children.OfType<CheckBox>())
+                    i.IsChecked = false;
+            }
+            else propertiesGrid.Visibility = Visibility.Visible;
+            testers = new List<string>();
+            foreach (var item in bl.AvailableTesters(test.TestDateTime))
+                testers.Add(item.ID);
+        }
 
     }
 }

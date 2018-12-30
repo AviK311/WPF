@@ -26,7 +26,7 @@ namespace BL
 			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
 
 			var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
-            if (otherTests != null &&otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
+            if (update==false && otherTests != null &&otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests));
             
             if (testTrainee.CurrentCarType != testTester.testingCarType)
@@ -41,7 +41,7 @@ namespace BL
                                   where test1.TesterID == testTester.ID
                                   select test1;
 			///if the tester is unavailable
-			if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour))
+			if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour&&T.TestNumber!=test.TestNumber))
 				throw new InvalidOperationException("The tester is unavailable");
             var tests_by_tester_same_week = from test1 in tests_by_tester
                                             where Functions.DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
