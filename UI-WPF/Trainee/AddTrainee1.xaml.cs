@@ -40,13 +40,17 @@ namespace UI_WPF
 
 		private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
-			trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
-			trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-			try
+            trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
+            trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
+            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
+            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].schoolName = schoolNameTextBox.Text;
+            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].gearType = (GearType)gearTypeComboBox.SelectedIndex;
+            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
+            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
+            try
 			{
 				
 				bl.AddTrainee(trainee);
-
 				TraineeWindow traineeWindow = new TraineeWindow();
 				traineeWindow.Show();
 				Close();

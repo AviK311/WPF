@@ -43,32 +43,7 @@
             <ComboBox x:Name="sexComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding Sex}" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="155"/>
 
 		</Grid>
-        <Grid x:Name="grid2"  HorizontalAlignment="Left" Margin="326,190,0,0" VerticalAlignment="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-               
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-               
-            
-            <Label Content="Gear Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <ComboBox x:Name="gearTypeComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding GearType}" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="155"/>
-
-			<Label Content="num Of Lessons:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="numOfLessonsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Value.numOfLessons, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="155" KeyDown="TextBox_KeyDown"/>
-            <Label Content="num Of Test:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="numOfTestTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Value.numOfTest, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="155" KeyDown="TextBox_KeyDown"/>
-            <Label Content="school Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="schoolNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Value.schoolName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="155"/>
-        </Grid>
-		<Grid x:Name="grid3"  HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid3"  HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="154.8"/>
@@ -107,6 +82,32 @@
             </Button>
 			<Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
 		</Grid>
+        <Grid x:Name="StatsGrid" VerticalAlignment="Top" Margin="305,168,0,0" HorizontalAlignment="Left" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition/>
+                <RowDefinition Height="Auto"/>
 
-	</Grid>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Gear Type:"/>
+            <ComboBox x:Name="gearTypeComboBox" Width="155" VerticalAlignment="Center"  Grid.Row="0" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" SelectedItem ="{Binding gearType, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
+
+            <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Number Of Lessons:"/>
+            <TextBox x:Name="numOfLessonsTextBox" Text="{Binding numOfLessons, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}" KeyDown="TextBox_KeyDown"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="School Name:"/>
+            <TextBox x:Name="schoolNameTextBox" Text="{Binding schoolName, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Teacher Name:"/>
+            <TextBox x:Name="teacherFirst" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="3,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
+            <TextBox x:Name="teacherLast" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="83,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
+        </Grid>
+
+    </Grid>
 </Window>
