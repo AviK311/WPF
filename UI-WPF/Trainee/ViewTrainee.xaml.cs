@@ -147,5 +147,11 @@ namespace UI_WPF
 			trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first = teacherFirst.Text;
 
 		}
-	}
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                e.Handled = true;
+        }
+    }
 }

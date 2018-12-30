@@ -201,7 +201,14 @@ namespace UI_WPF
 
         private void RightButton_MouseMove(object sender, MouseEventArgs e)
         {
-            MessageBox.Show(" next trainee", "Alert");
+           
         }
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                e.Handled = true;
+        }
+        
     }
 }

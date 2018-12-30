@@ -66,5 +66,12 @@ namespace UI_WPF
 			traineeWindow.Show();
 			Close();
 		}
-	}
+
+        private void TextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key < Key.D0 || e.Key > Key.D9)
+                e.Handled = true;
+        }
+       
+    }
 }
