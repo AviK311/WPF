@@ -29,8 +29,10 @@ namespace UI_WPF
             bl = FactoryBL.GetBL();
 			if (!(GlobalSettings.User is Admin))
 				Add.Visibility = Visibility.Hidden;
-			DataContext = bl.GetTrainees();			
-		}
+			DataContext = bl.GetTrainees();
+
+
+        }
 
         private void Add_Click(object sender, RoutedEventArgs e)
         {
@@ -62,5 +64,43 @@ namespace UI_WPF
         {
             DataContext = bl.GetTrainees().OrderBy(N=>N.Name.last).OrderBy(N => N.Name.first);
         }
+
+        private void All_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees();
+        }
+        private void MotorCycle_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.MotorCycle);
+        }
+        private void PrivateCar_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.PrivateCar);
+        }
+        private void SmallTruck_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.SmallTruck);
+        }
+        private void LargeTruck_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.LargeTruck);
+        }              
+        private void AirPlane_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.AirPlane);
+        }
+        private void Train_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.Train);
+        }
+        private void MotorBoat_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.MotorBoat);
+        }
+        private void CruiseShip_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.CruiseShip);
+        }
+
     }
 }
