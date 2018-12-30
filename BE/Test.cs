@@ -21,11 +21,11 @@ namespace BE
 		public string TraineeID { get; set; }
 		public DateTime TestDateTime { get; set; }
 		public Address BeginLocation { get; set; }
-        public VehicleType testingCarType { get; set; }
+        public VehicleType TestingCarType { get; set; }
         public TestProperties testProperties { get; set; }
         public override string ToString()
 		{
-            string s = "Tester ID: " + TesterID + "\nTrainee ID: " + TraineeID+ "\nDate and Time: " + TestDateTime.ToShortDateString()+" "+ TestDateTime.Hour + ":00\nCarType: " + Functions.InsertSpacesBeforeUpper(testingCarType.ToString()) + "\n";
+            string s = "Tester ID: " + TesterID + "\nTrainee ID: " + TraineeID+ "\nDate and Time: " + TestDateTime.ToShortDateString()+" "+ TestDateTime.Hour + ":00\nCarType: " + Functions.InsertSpacesBeforeUpper(TestingCarType.ToString()) + "\n";
             return s;
             //string toReturn = string.Format("Test Number: {0},", TestNumber);
             //toReturn += string.Format("Tester ID: {0},", TesterID);

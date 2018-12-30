@@ -81,6 +81,7 @@ namespace BL
 			UpdateTrainee(testTrainee);
 			UpdateTester(testTester);
 			if (!update) Configuration.TestCode++;
+            test.TestingCarType = testTester.testingCarType;
 			dal.AddTest(test);
         }
 
