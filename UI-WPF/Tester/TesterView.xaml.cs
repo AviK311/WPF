@@ -181,5 +181,10 @@ namespace UI_WPF
             foreach (var item in thursCheckboxes)
                 item.IsChecked = tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9];           
         }
+
+        private void RightButton_MouseMove(object sender, MouseEventArgs e)
+        {
+            MessageBox.Show(" next trainee", "Alert");
+        }
     }
 }

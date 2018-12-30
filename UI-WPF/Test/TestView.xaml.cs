@@ -128,9 +128,9 @@ namespace UI_WPF
                     i.IsChecked = false;
             }
             else propertiesGrid.Visibility = Visibility.Visible;
-            testers = new List<string>();
-            foreach (var item in bl.AvailableTesters(test.TestDateTime))
-                testers.Add(item.ID);
+            //testers = new List<string>();
+            //foreach (var item in bl.AvailableTesters(test.TestDateTime))
+            //    testers.Add(item.ID);
         }
 
     }
