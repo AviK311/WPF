@@ -33,6 +33,7 @@
 
 		<Label x:Name="label" Content="מערכת  לניתוב מבחני נהיגה" HorizontalAlignment="Right" Margin="0,45,50,0" VerticalAlignment="Top" Height="auto" Width="auto" FontSize="48" FontStyle="Oblique" FontWeight="Bold" Grid.Column="0" />
 		<Button x:Name="LogOut" Content="Log Out" FontSize="30" HorizontalAlignment="Left" Margin="33,10,0,0" FontStyle="Italic" Grid.Row="1" VerticalAlignment="Top" Width="133" Height="48" Click="LogOut_Click"/>
+		<Button x:Name="changePassword" Content="Change Password" FontSize="17" HorizontalAlignment="Left" Margin="33,87,0,0" FontStyle="Italic" Grid.Row="1" VerticalAlignment="Top" Width="152" Height="48" Click="changePassword_Click"/>
 
 	</Grid>
 </Window>

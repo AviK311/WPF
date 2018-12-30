@@ -32,7 +32,7 @@ namespace BE
 			var info = GetType().GetProperties();
 			int passedTests = 0;
 			foreach (var item in info)
-				if (item.Name.Contains("Is") && (bool)item.GetValue(this)) passedTests++;
+				if ((bool)item.GetValue(this)) passedTests++;
 			double grade = (double)passedTests / info.Length;
 			return grade >= Configuration.MinPassGrade;
 		}

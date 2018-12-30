@@ -6,10 +6,8 @@
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.TestAdd"
         mc:Ignorable="d"
-        Title="TestAdd" Height="450" Width="800" Loaded="Window_Loaded" >
-    <Window.Resources>
-        <CollectionViewSource x:Key="testViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Test}, CreateList=True}"/>
-    </Window.Resources>
+        Title="TestAdd" Height="450" Width="800"  >
+    
 
     <Grid>
 
@@ -93,7 +91,7 @@
             <Label Content="Signs Reading:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <CheckBox x:Name="signsReadingCheckBox" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.SignsReading, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
         </Grid>
-        <Grid x:Name="grid2" DataContext="{StaticResource testViewSource}" HorizontalAlignment="Left" Margin="90,202,0,0" VerticalAlignment="Top">
+        <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="90,202,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>

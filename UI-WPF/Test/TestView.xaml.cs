@@ -25,47 +25,42 @@ namespace UI_WPF
         List<string> testers, trainees;
         IBL bl = BL.FactoryBL.GetBL();
         List<Test> list;
+		readonly DateTime OriginalTime;
         public TestView(Test test1)
 		{
+			testers = new List<string>();
+			trainees = new List<string>();
 			InitializeComponent();
             list = (List<Test>)bl.GetTests();
-            SaveButton.Visibility = Visibility.Hidden;            
+			test = new Test(test1);
+			
+			OriginalTime = test.TestDateTime;
+			SaveButton.Visibility = Visibility.Hidden;            
             propertiesGrid.Visibility = Visibility.Hidden;
             bl = FactoryBL.GetBL();
-            test = new Test();
-            test.TestDateTime = DateTime.Now;
+            
             DataContext = test;
             int[] arr = { 9, 10, 11, 12, 13, 14 };
             Hour.ItemsSource = arr;
             Hour.SelectedIndex = test1.TestDateTime.Hour-9;
-            testers = new List<string>();
-            trainees = new List<string>();
-            foreach (var item in bl.GetTrainees())
-                trainees.Add(item.ID);
-            foreach (var item in bl.GetTesters())
-                testers.Add(item.ID);
-            testerIDComboBox.ItemsSource = testers;
-            testerIDComboBox.SelectedIndex = 0;
+
+			foreach (var item in bl.GetTrainees())
+				trainees.Add(item.ID);
+			foreach (var item in bl.GetTesters())
+				testers.Add(item.ID);
+			
             traineeIDComboBox.ItemsSource = trainees;
-            traineeIDComboBox.SelectedIndex = 1;
-            test = new Test(test1);
-            DataContext = test;
+			testerIDComboBox.ItemsSource = testers;
+            
+            
         }
 
-		private void Window_Loaded(object sender, RoutedEventArgs e)
-		{
-
-			System.Windows.Data.CollectionViewSource testViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("testViewSource")));
-			// Load data by setting the CollectionViewSource.Source property:
-			// testViewSource.Source = [generic data source]
-		}
 		private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
 			try
 			{
 				bl.UpdateTest(test);
-				test = new BE.Test();
 				EditButton.Visibility = Visibility.Visible;
 				SaveButton.Visibility = Visibility.Hidden;
 			}
@@ -102,7 +97,7 @@ namespace UI_WPF
 		}
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            int currentIndex = list.FindIndex(T => T.Equals(test));
+            int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
             if (currentIndex + 1 == list.Count)
                 currentIndex = -1;
             test = list[currentIndex + 1];
@@ -110,28 +105,32 @@ namespace UI_WPF
         }
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            int currentIndex = list.FindIndex(T => T.Equals(test));
+            int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
             if (currentIndex == 0)
                 currentIndex = list.Count;
             test = list[currentIndex - 1];
+
             DataContext = test;            
         }
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
-            DateTime s = test.TestDateTime.Date + ts;
-            if (s > DateTime.Now)
+			test.TestDateTime = test.TestDateTime.Date + ts;
+            if (test.TestDateTime > DateTime.Now)
             {
                 propertiesGrid.Visibility = Visibility.Hidden;
                 foreach (var i in propertiesGrid.Children.OfType<CheckBox>())
                     i.IsChecked = false;
             }
             else propertiesGrid.Visibility = Visibility.Visible;
-            //testers = new List<string>();
-            //foreach (var item in bl.AvailableTesters(test.TestDateTime))
-            //    testers.Add(item.ID);
-        }
+			//testers.Clear();
+			//foreach (var item in bl.AvailableTesters(test.TestDateTime))
+			//	testers.Add(item.ID);
+			//if (test.TestDateTime == OriginalTime)
+			//	testers.Add(test.TesterID);
+			//testerIDComboBox.ItemsSource = testers;
+		}
 
     }
 }

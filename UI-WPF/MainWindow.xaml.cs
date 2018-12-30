@@ -60,5 +60,11 @@ namespace UI_WPF
 			loginWindow.Show();
 			Close();
 		}
+
+		private void changePassword_Click(object sender, RoutedEventArgs e)
+		{
+			ChangePassword changePassword = new ChangePassword();
+			changePassword.Show();
+		}
 	}
 }
