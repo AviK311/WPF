@@ -308,9 +308,10 @@ namespace BL
 			return dal.CheckPassword(id, password);
 		}
 
-		public void AddPassword(string id, string password)
+		public void AddUpdatePassword(string id, string password)
 		{
-			dal.AddPassword(id, password);
+
+			dal.AddUpdatePassword(id, password);
 		}
 
 		public void RemovePassword(string id)

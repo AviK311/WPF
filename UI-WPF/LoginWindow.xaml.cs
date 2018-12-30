@@ -21,8 +21,8 @@ namespace UI_WPF
 	/// </summary>
 	public partial class LoginWindow : Window
 	{
-		IBL bl;
-		public void ShowNotifications(Person p)
+		static IBL bl;
+		public static void ShowNotifications(Person p)
 		{
 			if (p.notifications.Count == 0)
 				return;
@@ -70,12 +70,12 @@ namespace UI_WPF
 				avi.ID = "31122370";
 				avi.AddNotification( "Hey Avi, I added notifications!", MessageIcon.Information);
 				bl.AddAdmin(avi);
-				bl.AddPassword(avi.ID, "5678");
+				bl.AddUpdatePassword(avi.ID, "5678");
 				Admin tamar = new Admin(new Name("Tamar", "Gold"));
 				tamar.ID = "207623224";
-				
+				tamar.FirstLogIn = false;
 				bl.AddAdmin(tamar);
-				bl.AddPassword(tamar.ID, "1234");
+				bl.AddUpdatePassword(tamar.ID, "1234");
 				Test d = new Test
 				{
 					TesterID = "00123456",
@@ -127,9 +127,9 @@ namespace UI_WPF
 				bl.AddTrainee(a);
 				bl.AddTrainee(b);
 				bl.AddTest(d);
-				bl.AddPassword(a.ID, "a");
-				bl.AddPassword(b.ID, "b");
-				bl.AddPassword(c.ID, "c");
+				bl.AddUpdatePassword(a.ID, "a");
+				bl.AddUpdatePassword(b.ID, "b");
+				bl.AddUpdatePassword(c.ID, "c");
 			}
 			//this needs to be erased. it's here only for debugging reasons
 			GlobalSettings.AlreadyLoggedIn = true;
@@ -159,14 +159,21 @@ namespace UI_WPF
 					GlobalSettings.AppClearanceLevel = ClearanceLevel.Admin;
 				}
 				else throw new InvalidOperationException("That user ID does not exist in the system");
-				if (!bl.CheckPassword(GlobalSettings.User.ID, password))
-					throw new InvalidOperationException("Wrong password!");
-				MainWindow main = new MainWindow();
-				//TesterAdd main = new TesterAdd();
-				ShowNotifications(GlobalSettings.User);
-				main.Show();
-               
-                Close();
+				if (GlobalSettings.User.FirstLogIn)
+				{
+					FirstPassword firstPassword = new FirstPassword();
+					firstPassword.Show();
+				}
+				else
+				{
+					if (!bl.CheckPassword(GlobalSettings.User.ID, password))
+						throw new InvalidOperationException(password==""?"This is not your first login, please enter a password!":"Wrong password!");
+					MainWindow main = new MainWindow();
+					ShowNotifications(GlobalSettings.User);
+					main.Show();
+
+					Close();
+				}
 			}
 			catch (InvalidOperationException exc)
 			{
@@ -174,5 +181,7 @@ namespace UI_WPF
 			}
 
 		}
+
+		
 	}
 }

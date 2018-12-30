@@ -26,7 +26,7 @@ namespace DAL
 		void RemoveAdmin(Admin toRemove);
 
 		bool CheckPassword(string id, string password);
-		void AddPassword(string id, string password);
+		void AddUpdatePassword(string id, string password);
 		void RemovePassword(string id);
 
 		IEnumerable<Test> GetTests();

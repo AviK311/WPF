@@ -108,9 +108,9 @@ namespace DAL
 			return DataSource.passwordDictionary.CheckPassword(id, password);
 		}
 
-		public void AddPassword(string id, string password)
+		public void AddUpdatePassword(string id, string password)
 		{
-			DataSource.passwordDictionary.AddPassword(id, password);
+			DataSource.passwordDictionary.AddUpdatePassword(id, password);
 		}
 
 		public void RemovePassword(string id)

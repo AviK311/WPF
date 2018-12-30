@@ -44,6 +44,7 @@ namespace BE
 		public List<Notification> notifications;
 		protected string id;
 		public DateTime BirthDay { get; set; }
+		public bool FirstLogIn { get; set; } = true;
 		public Name Name { get; set; }
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }

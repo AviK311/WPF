@@ -156,28 +156,6 @@
 
 
 		</Grid>
-		<Grid x:Name="PasswordGrid" VerticalAlignment="Top" Margin="33,379,0,0" HorizontalAlignment="Left"  Width="306">
-			<Grid.RowDefinitions>
-				
-				<RowDefinition Height="Auto"/>
-				
-				<RowDefinition Height="Auto"/>
-
-			</Grid.RowDefinitions>
-			<Grid.ColumnDefinitions>
-
-				<ColumnDefinition Width="8*"/>
-				<ColumnDefinition Width="9*"/>
-
-			</Grid.ColumnDefinitions>
-			
-			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Enter Password:" Height="26" Width="179"/>
-			<PasswordBox x:Name="password" Width="155" VerticalAlignment="Center"  Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
-			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Confirm Password:" Height="26" Width="179"/>
-			<PasswordBox x:Name="confirmPassword" Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
-			
-
-		</Grid>
 		<Grid HorizontalAlignment="Left" Height="20" Margin="428,476,0,0" VerticalAlignment="Top" Width="auto">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="auto"/>

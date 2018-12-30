@@ -21,9 +21,12 @@ namespace BE
 			//return PasswordDB.Any(pair => pair.Key == id && pair.Value == password);
 			return PasswordDB[id] == password;
 		}
-		public void AddPassword(string id, string password)
+		public void AddUpdatePassword(string id, string password)
 		{
-			PasswordDB.Add(id, password);
+			if (PasswordDB.Any(pair => pair.Key == id))
+				PasswordDB[id] = password;
+			else
+				PasswordDB.Add(id, password);
 		}
 		public void RemovePassword(string id)
 		{

@@ -55,6 +55,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="FirstPassword.xaml.cs">
+      <DependentUpon>FirstPassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Test\TestAdd.xaml.cs">
       <DependentUpon>TestAdd.xaml</DependentUpon>
     </Compile>
@@ -85,6 +88,10 @@
     <Compile Include="Trainee\ViewTrainee.xaml.cs">
       <DependentUpon>ViewTrainee.xaml</DependentUpon>
     </Compile>
+    <Page Include="FirstPassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Trainee\AddTrainee1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

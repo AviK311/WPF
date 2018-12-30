@@ -31,7 +31,7 @@ namespace BL
 		void UpdatePerson(Person newData);
 
 		bool CheckPassword(string id, string password);
-		void AddPassword(string id, string password);
+		void AddUpdatePassword(string id, string password);
 		void RemovePassword(string id);
 
 		IEnumerable<BE.Test> GetTests();
