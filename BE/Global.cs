@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace BE
 {
-	public class Global
+	public class GlobalSettings
 	{
-		public static ClearanceLevel appClearanceLevel = ClearanceLevel.Trainee;
-		public static Person user;
-		public static bool alreadyLoggedIn;
-		public static bool IsUpdate { get; set; } = false;
+		public static ClearanceLevel AppClearanceLevel { get; set; } = ClearanceLevel.Trainee;
+		public static Person User { get; set; }
+		public static bool AlreadyLoggedIn { get; set; }
+	
 		
 	}
 }

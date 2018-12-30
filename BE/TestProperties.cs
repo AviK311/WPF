@@ -19,13 +19,13 @@ namespace BE
 			foreach (PropertyInfo p in typeof(TestProperties).GetProperties())
 				p.SetValue(this, p.GetValue(other));
 		}
-		public bool GradeSet { get; set; }
-		public bool? KeepingDistance { get; set; }
-		public bool? DrivingInReverse { get; set; }
-		public bool? MirrorUsage { get; set; }
-		public bool? Signaling { get; set; }
-		public bool? SignsReading { get; set; }
-		public bool? Breaking { get; set; }
+		
+		public bool KeepingDistance { get; set; }
+		public bool DrivingInReverse { get; set; }
+		public bool MirrorUsage { get; set; }
+		public bool Signaling { get; set; }
+		public bool SignsReading { get; set; }
+		public bool Breaking { get; set; }
 
 		public bool passed()
 		{

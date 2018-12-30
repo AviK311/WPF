@@ -20,18 +20,14 @@ namespace BL
         public void AddTest(Test test, bool update = false)
         {
             if (!update)test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
-            var testTrainee = (from trainee in dal.GetTrainees()
-							   where trainee.ID == test.TraineeID
-							   select trainee).First();
-			var testTester = (from tester in dal.GetTesters()
-							  where tester.ID == test.TesterID
-							  select tester).First();
+			var testTrainee = dal.GetTrainees().FirstOrDefault(T => T.ID == test.TraineeID);
+			var testTester = dal.GetTesters().FirstOrDefault(T => T.ID == test.TesterID);
 			if (testTrainee == null) throw new InvalidOperationException("The trainee does not exist");
 			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
 
 			var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
             if (otherTests != null &&otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
-                throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can redo the test", Configuration.TimeBetweenTests));
+                throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests));
             
             if (testTrainee.CurrentCarType != testTester.testingCarType)
                 throw new InvalidOperationException("The tester does not teach on the vehicle type that the trainee learned with");
@@ -54,15 +50,13 @@ namespace BL
                 throw new InvalidOperationException("The tester has signed up for too many tests");
 			if (test.TestDateTime < DateTime.Now)
 			{
-				bool Passed = test.testProperties.passed();
-
-				if (Passed && !testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
+				if (test.testProperties.passed())
 				{
 					testTrainee.carTypeStats[testTrainee.CurrentCarType].passed = true;
 					string message = string.Format("Congradulations! you've passed the test on {0}, at {1}!", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 					testTrainee.AddNotification(message, MessageIcon.Information);
 				}
-				else if(test.testProperties.GradeSet && !Passed)
+				else
 				{
 					string message = string.Format("We're sorry, but you failed the test on {0}, at {1}", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 					testTrainee.AddNotification(message, MessageIcon.Error);
@@ -79,9 +73,9 @@ namespace BL
 			else
 			{
 				string message = string.Format("Your test on {0} at {1} has been updated. See for details.", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
-				if (!testTrainee.Equals(Global.user))
+				if (!testTrainee.Equals(GlobalSettings.User))
 					testTrainee.AddNotification(message, MessageIcon.Information);
-				if (!testTester.Equals(Global.user))
+				if (!testTester.Equals(GlobalSettings.User))
 					testTester.AddNotification(message, MessageIcon.Information);
 			}
 			UpdateTrainee(testTrainee);

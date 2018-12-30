@@ -65,14 +65,15 @@ namespace UI_WPF
 		{
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
-			if (Global.alreadyLoggedIn == false) { 
+			if (GlobalSettings.AlreadyLoggedIn == false) { 
 				Admin avi = new Admin(new Name("Avi", "Koenigsberg"));
 				avi.ID = "31122370";
+				avi.AddNotification( "Hey Avi, I added notifications!", MessageIcon.Information);
 				bl.AddAdmin(avi);
 				bl.AddPassword(avi.ID, "5678");
 				Admin tamar = new Admin(new Name("Tamar", "Gold"));
 				tamar.ID = "207623224";
-				tamar.notifications.Add(new Notification(MessageIcon.Information, "Hey Tamar, I added notifications!"));
+				
 				bl.AddAdmin(tamar);
 				bl.AddPassword(tamar.ID, "1234");
 				Test d = new Test
@@ -131,7 +132,7 @@ namespace UI_WPF
 				bl.AddPassword(c.ID, "c");
 			}
 			//this needs to be erased. it's here only for debugging reasons
-			Global.alreadyLoggedIn = true;
+			GlobalSettings.AlreadyLoggedIn = true;
 
 
 		}
@@ -144,25 +145,25 @@ namespace UI_WPF
 				IBL bl = FactoryBL.GetBL();
 				if (bl.GetTesters().Any(T => T.ID == id))
 				{
-					Global.user = bl.GetTester(id);
-					Global.appClearanceLevel = ClearanceLevel.Tester;
+					GlobalSettings.User = bl.GetTester(id);
+					GlobalSettings.AppClearanceLevel = ClearanceLevel.Tester;
 				}
 				else if (bl.GetTrainees().Any(T => T.ID == id))
 				{
-					Global.user = bl.GetTrainee(id);
-					Global.appClearanceLevel = ClearanceLevel.Trainee;
+					GlobalSettings.User = bl.GetTrainee(id);
+					GlobalSettings.AppClearanceLevel = ClearanceLevel.Trainee;
 				}
 				else if (bl.GetAdmins().Any(A => A.ID == id))
 				{
-					Global.user = bl.GetAdmin(id);
-					Global.appClearanceLevel = ClearanceLevel.Admin;
+					GlobalSettings.User = bl.GetAdmin(id);
+					GlobalSettings.AppClearanceLevel = ClearanceLevel.Admin;
 				}
 				else throw new InvalidOperationException("That user ID does not exist in the system");
-				if (!bl.CheckPassword(Global.user.ID, password))
+				if (!bl.CheckPassword(GlobalSettings.User.ID, password))
 					throw new InvalidOperationException("Wrong password!");
 				MainWindow main = new MainWindow();
 				//TesterAdd main = new TesterAdd();
-				ShowNotifications(Global.user);
+				ShowNotifications(GlobalSettings.User);
 				main.Show();
                
                 Close();
