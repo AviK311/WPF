@@ -6,21 +6,22 @@
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
         Title="TesterWindow" Height="450" Width="800">
-	<Grid>
-		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="3*"/>
-			<ColumnDefinition Width="*"/>
-		</Grid.ColumnDefinitions>
-		<Grid Name="buttons" Grid.Column="1">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="*"/>
-				<RowDefinition Height="*"/>
-			</Grid.RowDefinitions>
-			<Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
-		</Grid>
-		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="277" Margin="80,40,0,0" VerticalAlignment="Top" Width="452" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Name="buttons" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
+        </Grid>
+        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="262" Margin="80,55,0,0" VerticalAlignment="Top" Width="410" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
         <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
+        <Button x:Name="button_sort" Content="Sort" HorizontalAlignment="Left" Margin="510,55,0,0" VerticalAlignment="Top" Width="75" Click="sort_Click" FontSize="14"/>
     </Grid>
 </Window>

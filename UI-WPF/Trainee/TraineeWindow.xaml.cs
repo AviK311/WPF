@@ -21,7 +21,7 @@ namespace UI_WPF
     /// </summary>
     public partial class TraineeWindow : Window
     {
-        private ObservableCollection<Trainee> trainees=new ObservableCollection<Trainee>();
+        //private ObservableCollection<Trainee> trainees=new ObservableCollection<Trainee>();
         IBL bl;        
         public TraineeWindow()
         {
@@ -57,6 +57,10 @@ namespace UI_WPF
             mainWindow.Show();
             Close();
         }
-       
+
+        private void sort_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().OrderBy(N=>N.Name.last).OrderBy(N => N.Name.first);
+        }
     }
 }

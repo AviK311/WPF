@@ -56,5 +56,9 @@ namespace UI_WPF
             mainWindow.Show();
             Close();
         }
+        private void sort_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTesters().OrderBy(N => N.Name.last).OrderBy(N => N.Name.first);
+        }
     }
 }
