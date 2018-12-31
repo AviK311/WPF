@@ -32,8 +32,7 @@ namespace UI_WPF
 			trainees = new List<string>();
 			InitializeComponent();
             list = (List<Test>)bl.GetTests();
-			test = new Test(test1);
-			
+			test = list.First(T => T.TestNumber == test1.TestNumber);
 			OriginalTime = test.TestDateTime;
 			SaveButton.Visibility = Visibility.Hidden;            
             propertiesGrid.Visibility = Visibility.Hidden;

@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="MessagesWindow" Height="450" Width="800">
-    <Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="210"/>
+        Title="MessagesWindow" Height="368.617" Width="482.447">
+	<Grid>
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="210"/>
 
-    </Grid>
+	</Grid>
 </Window>

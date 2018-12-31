@@ -36,7 +36,7 @@ namespace UI_WPF
 		{			
 			InitializeComponent();
 			SaveButton.Visibility = Visibility.Hidden;
-			tester = new Tester(tester1);
+			
 			if (GlobalSettings.User is Tester)
 			{
 				RightButton.Visibility = Visibility.Hidden;
@@ -51,8 +51,8 @@ namespace UI_WPF
 					CancelButton.IsEnabled = false;
 				}
 			}
-				
-            DataContext = tester;
+			tester = list.First(T=>T.Equals(tester1));
+			DataContext = tester;
             //foreach (var item in bl.GetTesters())
             //{
             //    list.Add(item);
