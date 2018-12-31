@@ -33,6 +33,8 @@ namespace DAL
 		IEnumerable<Admin> GetAdmins();
 		IEnumerable<Tester> GetTesters();
 		IEnumerable<Trainee> GetTrainees();
-		
-	}
+        IEnumerable<Messages> GetMessages();
+
+
+    }
 }

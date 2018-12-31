@@ -11,7 +11,7 @@ namespace DS
 		public static List<Trainee> traineeList = new List<Trainee>();
 		public static List<Admin> adminList = new List<Admin>();
         public static PasswordDictionary passwordDictionary = new PasswordDictionary();
-
+        public static List<Messages> messagesList = new List<Messages>();
 
     }
 }

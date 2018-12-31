@@ -49,7 +49,11 @@ namespace DAL
 		{
 			return new List<Trainee>(DataSource.traineeList);
 		}
-       
+
+        public IEnumerable<Messages> GetMessages()
+        {
+            return new List<Messages>(DataSource.messagesList);
+        }
 
         public IEnumerable<Admin> GetAdmins()
 		{
