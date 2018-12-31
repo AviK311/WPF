@@ -47,7 +47,7 @@ namespace UI_WPF
 				if (GlobalSettings.User is Trainee)
 				{
 					EditButton.IsEnabled = false;
-					DeleteButton.IsEnabled = false;
+					TesterDeleteButton.IsEnabled = false;
 					CancelButton.IsEnabled = false;
 				}
 			}
@@ -112,10 +112,10 @@ namespace UI_WPF
 
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			bl.RemoveTester(tester.ID);
-            TesterWindow testerWindow = new TesterWindow();
-			testerWindow.Show();
-			Close();
+			
+            Window confirmDelete = new ConfirmDelete(sender, this, tester.ID);
+			confirmDelete.ShowDialog();
+			
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)

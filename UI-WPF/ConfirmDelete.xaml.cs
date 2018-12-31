@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BE;
+using BL;
 
 namespace UI_WPF
 {
@@ -19,9 +21,22 @@ namespace UI_WPF
 	/// </summary>
 	public partial class ConfirmDelete : Window
 	{
-		public ConfirmDelete()
+		IBL bl = FactoryBL.GetBL();
+		Window toReturn;
+		Button senderButton;
+		string toDelete;
+		public ConfirmDelete(object sender, Window window, string ID)
 		{
+			
 			InitializeComponent();
+			toReturn = window;
+			senderButton = sender as Button;
+		}
+
+		private void ConfirmButton_Click(object sender, RoutedEventArgs e)
+		{
+			if (senderButton.Name.Contains("Tester"))
+
 		}
 	}
 }

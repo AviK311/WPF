@@ -5,8 +5,29 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="ConfirmDelete" Height="274.467" Width="388.298">
-    <Grid>
-        
-    </Grid>
+        Title="ConfirmDelete" Height="192.467" Width="385.298">
+	<Grid>
+		<Grid x:Name="PasswordGrid" VerticalAlignment="Top" Margin="46,93,0,0" HorizontalAlignment="Left"  Width="306">
+			<Grid.RowDefinitions>
+
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+
+
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+
+				<ColumnDefinition Width="8*"/>
+				<ColumnDefinition Width="9*"/>
+
+			</Grid.ColumnDefinitions>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="-24,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Enter password to confirm:" Height="26" Width="206" Grid.ColumnSpan="2"/>
+			<PasswordBox x:Name="ConfirmDelete" Width="155" VerticalAlignment="Center"  Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Content="Accept" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="75"/>
+
+
+		</Grid>
+		<TextBlock x:Name="textBlock" FontSize="17" HorizontalAlignment="Center" TextWrapping="Wrap" Text="Are you sure you want to delete?" VerticalAlignment="Center" TextAlignment="Center" Margin="56,35,72,94" Height="32" Width="249"/>
+
+	</Grid>
 </Window>
