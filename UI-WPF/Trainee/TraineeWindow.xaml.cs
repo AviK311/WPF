@@ -29,7 +29,7 @@ namespace UI_WPF
             bl = FactoryBL.GetBL();
 			if (!(GlobalSettings.User is Admin))
 				Add.Visibility = Visibility.Hidden;
-			DataContext = bl.GetTrainees();
+            DataContext = bl.GetTrainees();
 
 
         }

@@ -60,5 +60,30 @@ namespace UI_WPF
         {
             DataContext = bl.GetTesters().OrderBy(N => N.Name.last).OrderBy(N => N.Name.first);
         }
+
+        private void All_RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTesters();
+        }
+
+
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+            var button = sender as RadioButton;
+            VehicleType vehicleType = new VehicleType();
+            foreach (var item in (VehicleType[])Enum.GetValues(typeof(VehicleType)))
+                if (item.ToString() == button.Name)
+                {
+                    vehicleType = item;
+                    break;
+                }
+            DataContext = bl.GetTesters().Where(c => c.testingCarType == vehicleType);
+        }
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text));
+        }
     }
 }

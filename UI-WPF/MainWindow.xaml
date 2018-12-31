@@ -28,7 +28,7 @@
 			<Button x:Name="button_trainee" Content="Trainee" Margin="25,25,25,25"  Width="auto" Height="auto" FontSize="36" FontStyle="Italic"  Grid.Column="0" Click="button_trainee_Click"/>
 			<Button Content="Tester"  Margin="25,25,25,25"  Width="auto" Height="auto" FontSize="36" FontStyle="Italic"  Grid.Column="1" Click="button_tester_Click" />
 			<Button x:Name="button_test" Content="Test"  Margin="25,25,25,25" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Grid.Column="2" Click="button_test_Click" />
-			<Button x:Name="button_actions" Content="Actions"  Margin="25,25,25,25" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Grid.Column="3" />
+			<Button x:Name="button_actions" Content="Actions"  Margin="25,25,25,25" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Grid.Column="3" Click="button_actions_Click" />
 		</Grid>
 
 		<Label x:Name="label" Content="מערכת  לניתוב מבחני נהיגה" HorizontalAlignment="Right" Margin="0,45,50,0" VerticalAlignment="Top" Height="auto" Width="auto" FontSize="48" FontStyle="Oblique" FontWeight="Bold" Grid.Column="0" />

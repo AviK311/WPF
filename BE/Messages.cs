@@ -14,7 +14,7 @@ namespace BE
         public DateTime dateOfMessage { get; set; }
         public override string ToString()
         {
-            string s = dateOfMessage+ "\nName: " + Name + " ID: " + ID + "\n" + content;
+            string s = "\n" + dateOfMessage+ "\nName: " + Name + " ID: " + ID + "\n" + content;
             return s;           
         }
     }
