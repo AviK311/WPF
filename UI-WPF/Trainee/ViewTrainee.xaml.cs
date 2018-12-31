@@ -166,6 +166,7 @@ namespace UI_WPF
             message.Name = trainee.Name;
             message.dateOfMessage = DateTime.Now;
             message.content = contentTextBox.Text;
+            message.IsTrainee = true;
             bl.AddMessage(message);
             contentTextBox.Text = "";
         }

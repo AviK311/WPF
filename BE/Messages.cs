@@ -12,6 +12,7 @@ namespace BE
         public string ID { get; set; }
         public string content { get; set; }
         public DateTime dateOfMessage { get; set; }
+        public bool IsTrainee { get; set; }
         public override string ToString()
         {
             string s = "\n" + dateOfMessage+ "\nName: " + Name + " ID: " + ID + "\n" + content;
