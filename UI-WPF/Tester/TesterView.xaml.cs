@@ -51,10 +51,7 @@ namespace UI_WPF
 			list = (List<Tester>)bl.GetTesters();
 			tester = list.First(T=>T.Equals(tester1));
 			DataContext = tester;
-            //foreach (var item in bl.GetTesters())
-            //{
-            //    list.Add(item);
-            //}
+    
             
 
             sexComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
