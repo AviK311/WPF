@@ -144,7 +144,8 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Leave Message for System:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="contentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="56" Margin="3,4.2,-76.8,-26.6" Grid.Row="1" Text="{Binding content, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="197" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
+            <TextBox x:Name="contentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="56" Margin="3,4.2,-76.8,-26.6" Grid.Row="1" Text="{Binding content, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="197" Grid.RowSpan="3" Grid.ColumnSpan="2"
+                     TextWrapping="Wrap"/>
 
         </Grid>
     </Grid>
