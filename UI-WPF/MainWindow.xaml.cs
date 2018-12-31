@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BE;
+using BL;
 
 namespace UI_WPF
 {
@@ -24,6 +25,10 @@ namespace UI_WPF
 		public MainWindow()
 		{
 			InitializeComponent();
+			contentTextBox.Visibility = Visibility.Hidden;
+			MessageButton.Visibility = Visibility.Hidden;
+			if (GlobalSettings.User is Admin)
+				messageLabel.Visibility = Visibility.Hidden;
 		}
 
         private void button_trainee_Click(object sender, RoutedEventArgs e)
@@ -76,5 +81,37 @@ namespace UI_WPF
                 Close();
             }
         }
-    }
+
+		private void Label_MouseDown(object sender, MouseButtonEventArgs e)
+		{
+			if (contentTextBox.Visibility == Visibility.Visible)
+			{
+				contentTextBox.Visibility = Visibility.Hidden;
+				MessageButton.Visibility = Visibility.Hidden;
+			}else
+			{
+				contentTextBox.Visibility = Visibility.Visible;
+				MessageButton.Visibility = Visibility.Visible;
+			}
+		}
+
+		
+
+		private void MessageButton_Click(object sender, RoutedEventArgs e)
+		{
+			IBL bl = FactoryBL.GetBL();
+			Messages message = new Messages
+			{
+				ID = GlobalSettings.User.ID,
+				Name = GlobalSettings.User.Name,
+				DateOfMessage = DateTime.Now,
+				Content = contentTextBox.Text,
+
+			};
+
+			message.UserType = GlobalSettings.User is Tester ? UserType.Tester : UserType.Trainee;
+			bl.AddMessage(message);
+			contentTextBox.Text = "";
+		}
+	}
 }

@@ -151,23 +151,10 @@ namespace UI_WPF
                 e.Handled = true;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-
-            System.Windows.Data.CollectionViewSource messagesViewSource = ((System.Windows.Data.CollectionViewSource)(this.FindResource("messagesViewSource")));
-            // Load data by setting the CollectionViewSource.Source property:
-            // messagesViewSource.Source = [generic data source]
-        }
-
+       
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            Messages message=new Messages();
-            message.ID = trainee.ID;
-            message.Name = trainee.Name;
-            message.dateOfMessage = DateTime.Now;
-            message.content = contentTextBox.Text;
-            bl.AddMessage(message);
-            contentTextBox.Text = "";
+            
         }
     }
 }

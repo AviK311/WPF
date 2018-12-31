@@ -131,21 +131,5 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Car Type Stats:"/>
             <ComboBox x:Name="cartype" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1"  SelectionChanged="cartype_SelectionChanged"/>
         </Grid>
-        <Button x:Name="button" Content="Send" HorizontalAlignment="Left" Margin="77,413,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-        <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="75,310,0,0" VerticalAlignment="Top" Height="92">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
-            <Label Content="Leave Message for System:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="contentTextBox" Grid.Column="0" HorizontalAlignment="Left" Height="56" Margin="3,4.2,-76.8,-26.6" Grid.Row="1" Text="{Binding content, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="197" Grid.RowSpan="3" Grid.ColumnSpan="2"/>
-
-        </Grid>
-    </Grid>
+	</Grid>
 </Window>

@@ -148,17 +148,17 @@ namespace UI_WPF
 				if (bl.GetTesters().Any(T => T.ID == id))
 				{
 					GlobalSettings.User = bl.GetTester(id);
-					GlobalSettings.AppClearanceLevel = ClearanceLevel.Tester;
+					GlobalSettings.AppClearanceLevel = UserType.Tester;
 				}
 				else if (bl.GetTrainees().Any(T => T.ID == id))
 				{
 					GlobalSettings.User = bl.GetTrainee(id);
-					GlobalSettings.AppClearanceLevel = ClearanceLevel.Trainee;
+					GlobalSettings.AppClearanceLevel = UserType.Trainee;
 				}
 				else if (bl.GetAdmins().Any(A => A.ID == id))
 				{
 					GlobalSettings.User = bl.GetAdmin(id);
-					GlobalSettings.AppClearanceLevel = ClearanceLevel.Admin;
+					GlobalSettings.AppClearanceLevel = UserType.Admin;
 				}
 				else throw new InvalidOperationException("That user ID does not exist in the system");
 				if (GlobalSettings.User.FirstLogIn)
