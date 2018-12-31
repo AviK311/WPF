@@ -34,6 +34,19 @@
 		<Label x:Name="label" Content="מערכת  לניתוב מבחני נהיגה" HorizontalAlignment="Right" Margin="0,45,50,0" VerticalAlignment="Top" Height="auto" Width="auto" FontSize="48" FontStyle="Oblique" FontWeight="Bold" Grid.Column="0" />
 		<Button x:Name="LogOut" Content="Log Out" FontSize="30" HorizontalAlignment="Left" Margin="33,10,0,0" FontStyle="Italic" Grid.Row="1" VerticalAlignment="Top" Width="133" Height="48" Click="LogOut_Click"/>
 		<Button x:Name="changePassword" Content="Change Password" FontSize="17" HorizontalAlignment="Left" Margin="33,87,0,0" FontStyle="Italic" Grid.Row="1" VerticalAlignment="Top" Width="152" Height="48" Click="changePassword_Click"/>
+		<Grid x:Name="grid2" HorizontalAlignment="Left" Margin="583,25,0,0" VerticalAlignment="Top" Height="143" Width="199" Grid.Row="1">
+
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto" MinHeight="45"/>
+				<RowDefinition Height="Auto" MinHeight="78"/>
+				<RowDefinition Height="Auto"/>
+
+			</Grid.RowDefinitions>
+			<Label x:Name="messageLabel" Content="Leave Message for System:" Background="Yellow"  HorizontalAlignment="Left" Margin="0,0,0,16" VerticalAlignment="Center" MouseDown="Label_MouseDown" Height="29" Width="172"/>
+			<TextBox x:Name="contentTextBox" TextWrapping="Wrap" Grid.Column="0" HorizontalAlignment="Left" Height="76"  Grid.Row="1" Text="{Binding content, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="197" Margin="0,1,-12,1"/>
+			<Button x:Name="MessageButton" Content="Send" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="75" Click="MessageButton_Click" Grid.Row="2" Height="20" />
+		</Grid>
+
 
 	</Grid>
 </Window>
