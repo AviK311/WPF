@@ -6,12 +6,10 @@
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.ViewTrainee"
         mc:Ignorable="d"
-        Title="ViewTrainee" Height="500" Width="800" Loaded="Window_Loaded">
-    <Window.Resources>
-        <CollectionViewSource x:Key="messagesViewSource" d:DesignSource="{d:DesignInstance {x:Type BE:Messages}, CreateList=True}"/>
-    </Window.Resources>
+        Title="ViewTrainee" Height="500" Width="800" >
+   
 
-    <Grid DataContext="{StaticResource messagesViewSource}">
+    <Grid >
 
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,61,0,0" HorizontalAlignment="Left">
@@ -45,14 +43,9 @@
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:"/>
             <TextBox x:Name="phoneNumberTextBox" Width="155" VerticalAlignment="Center" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" KeyDown="TextBox_KeyDown"/>
             <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Sex:"/>
-            <ComboBox x:Name="sexComboBox" Width="155" VerticalAlignment="Center" SelectedItem="{Binding Sex}" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}">
-                <ComboBox.ItemsPanel>
-                    <ItemsPanelTemplate>
-                        <VirtualizingStackPanel/>
-                    </ItemsPanelTemplate>
-                </ComboBox.ItemsPanel>
-            </ComboBox>
-        </Grid>
+			<ComboBox x:Name="sexComboBox" Width="155" VerticalAlignment="Center" SelectedItem="{Binding Sex}" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"/>
+
+		</Grid>
         <Grid x:Name="StatsGrid" VerticalAlignment="Top" Margin="374,240,0,0" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>

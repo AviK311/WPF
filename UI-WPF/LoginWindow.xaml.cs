@@ -99,7 +99,7 @@ namespace UI_WPF
 					schedule = new Schedule()
 				};
 				bl.AddTester(c);
-				
+
 				Trainee a = new Trainee
 				{
 					ID = "123",
@@ -109,6 +109,7 @@ namespace UI_WPF
 					BirthDay = new DateTime(1993, 11, 3),
 					Address = new Address("bet shemesh", "nahal maor", "19"),
 					CurrentCarType = VehicleType.LargeTruck,
+					FirstLogIn = false,
 					
 				};
 				a.carTypeStats[VehicleType.LargeTruck] = new Stats { gearType = GearType.Manual, numOfLessons = 21, numOfTest = 0, schoolName = " www", passed = false };
