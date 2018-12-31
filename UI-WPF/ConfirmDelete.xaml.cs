@@ -22,20 +22,63 @@ namespace UI_WPF
 	public partial class ConfirmDelete : Window
 	{
 		IBL bl = FactoryBL.GetBL();
-		Window toReturn;
+		Window toClose;
 		Button senderButton;
 		string toDelete;
 		public ConfirmDelete(object sender, Window window, string ID)
 		{
 			
 			InitializeComponent();
-			toReturn = window;
+			toClose = window;
 			senderButton = sender as Button;
+			toDelete = ID;
 		}
 
 		private void ConfirmButton_Click(object sender, RoutedEventArgs e)
 		{
-			if (senderButton.Name.Contains("Tester"))
+			try
+			{
+				Window toReturn = new Window();
+				if (!bl.CheckPassword(GlobalSettings.User.ID, ConfirmDeletePassword.Password))
+					throw new InvalidOperationException("The password is incorrect");
+				if (senderButton.Name.Contains("Tester"))
+				{
+					bl.RemoveTester(toDelete);
+					if (GlobalSettings.User.ID == toDelete)
+						toReturn = new LoginWindow();
+					else toReturn = new TesterWindow();
+					
+				}
+				if (senderButton.Name.Contains("Trainee"))
+				{
+					bl.RemoveTrainee(toDelete);
+					if (GlobalSettings.User.ID == toDelete)
+						toReturn = new LoginWindow();
+					else toReturn = new TraineeWindow();
+				}
+				if (senderButton.Name.Contains("Admin"))
+				{
+					bl.RemoveTrainee(toDelete);
+					if (GlobalSettings.User.ID == toDelete)
+						toReturn = new LoginWindow();
+					//else toReturn = new ();
+				}
+				if (senderButton.Name.Contains("Test") && !senderButton.Name.Contains("Tester"))
+				{
+					bl.RemoveTest(toDelete);
+				}
+					
+				else bl.RemovePassword(toDelete);
+				toReturn.Show();
+				toClose.Close();
+				Close();
+			}
+			catch (InvalidOperationException exc)
+			{
+				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+			//	
+
 
 		}
 	}

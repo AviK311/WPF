@@ -183,7 +183,11 @@ namespace BL
 			if (removeTester != null)
 				dal.RemoveTester(removeTester);
 			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
-        }
+			var testList = GetTests();
+			foreach (var test in testList)
+				if (test.TesterID == id)
+					RemoveTest(test.TestNumber);
+		}
 
         public void RemoveTrainee(string id)
         {
@@ -191,7 +195,11 @@ namespace BL
 			if (removeTrainee != null)
 				dal.RemoveTrainee(removeTrainee);
 			else throw new InvalidOperationException("A Trainee with that ID doesn't exist");
-        }
+			var testList = GetTests();
+			foreach (var test in testList)
+				if (test.TraineeID == id)
+					RemoveTest(test.TestNumber);
+		}
 		public void RemoveAdmin(string id)
 		{
 			var removeAdmin = dal.GetAdmins().FirstOrDefault(admin => admin.ID == id);

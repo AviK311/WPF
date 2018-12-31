@@ -87,7 +87,7 @@ namespace UI_WPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = bl.GetTrainees().Where(d => d.ID == ID_textBox.Text);
+            DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text));
         }
       
     }

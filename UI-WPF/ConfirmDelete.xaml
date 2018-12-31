@@ -22,7 +22,7 @@
 
 			</Grid.ColumnDefinitions>
 			<Label VerticalAlignment="Center" Grid.Row="0" Margin="-24,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Enter password to confirm:" Height="26" Width="206" Grid.ColumnSpan="2"/>
-			<PasswordBox x:Name="ConfirmDelete" Width="155" VerticalAlignment="Center"  Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
+			<PasswordBox x:Name="ConfirmDeletePassword" Width="155" VerticalAlignment="Center"  Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
 			<Button x:Name="ConfirmButton" Click="ConfirmButton_Click" Content="Accept" Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center"  VerticalAlignment="Center" Width="75"/>
 
 
