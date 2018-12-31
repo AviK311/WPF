@@ -26,7 +26,7 @@ namespace BL
 			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
 
 			var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
-            if (update==false && otherTests != null &&otherTests.Any(T => (T.TestDateTime - DateTime.Now).TotalDays < Configuration.TimeBetweenTests))
+            if (update==false && otherTests != null &&otherTests.Any(T => Math.Abs((T.TestDateTime - DateTime.Now).TotalDays) < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests));
             
             if (testTrainee.CurrentCarType != testTester.testingCarType)
@@ -248,7 +248,7 @@ namespace BL
         public void UpdateTest(Test newData)
         {
 			AddTest(newData, update: true);
-			dal.RemoveTest(newData);
+			RemoveTest(newData.TestNumber);
         }
 
         public void UpdateTester(Tester newData)

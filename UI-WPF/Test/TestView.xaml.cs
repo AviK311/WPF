@@ -38,7 +38,6 @@ namespace UI_WPF
 			SaveButton.Visibility = Visibility.Hidden;            
             propertiesGrid.Visibility = Visibility.Hidden;
             bl = FactoryBL.GetBL();
-            
             DataContext = test;
             int[] arr = { 9, 10, 11, 12, 13, 14 };
             Hour.ItemsSource = arr;
@@ -49,6 +48,10 @@ namespace UI_WPF
 				list = (from item in list
 						where item.TraineeID == GlobalSettings.User.ID
 						select item).ToList();
+				if (test.TestDateTime < DateTime.Now)
+					EditButton.IsEnabled = false;
+				TestDeleteButton.IsEnabled = false;
+
 			}
 			else foreach (var item in bl.GetTrainees())
 					trainees.Add(item.ID);
@@ -113,8 +116,13 @@ namespace UI_WPF
             if (currentIndex + 1 == list.Count)
                 currentIndex = -1;
             test = list[currentIndex + 1];
-            DataContext = test;            
-        }
+            DataContext = test;
+			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+				EditButton.IsEnabled = false;
+			else EditButton.IsEnabled = true;
+
+
+		}
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
             int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
@@ -122,8 +130,11 @@ namespace UI_WPF
                 currentIndex = list.Count;
             test = list[currentIndex - 1];
 
-            DataContext = test;            
-        }
+            DataContext = test;
+			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+				EditButton.IsEnabled = false;
+			else EditButton.IsEnabled = true;
+		}
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

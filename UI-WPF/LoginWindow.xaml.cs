@@ -96,7 +96,8 @@ namespace UI_WPF
 					MaxWeeklyTests = 9,
 					ExpYears = 6,
 					testingCarType = VehicleType.LargeTruck,
-					schedule = new Schedule()
+					schedule = new Schedule(),
+					FirstLogIn = false,
 				};
 				bl.AddTester(c);
 
