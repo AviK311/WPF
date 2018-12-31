@@ -5,41 +5,44 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="TraineeWindow" Height="450" Width="800" >
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3*"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid Name="buttons" Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto" Click="Add_Click" FontSize="36" Grid.Row="0"/>
-        </Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="115" Margin="70,55,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="425" MouseDoubleClick="listBox_MouseDoubleClick"/>
-        <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
-        <Button x:Name="button_sort" Content="Sort" HorizontalAlignment="Left" Margin="510,55,0,0" VerticalAlignment="Top" Width="75" Click="sort_Click" FontSize="14"/>
-        <StackPanel Margin="510,105,108.6,100" Grid.ColumnSpan="2" Grid.RowSpan="5">
-            <RadioButton  GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
-            <RadioButton x:Name="MotorCycle" GroupName="Car Type" Content="Motor Cycle" Checked="RadioButton_Checked" />
-            <RadioButton x:Name="PrivateCar" GroupName="Car Type" Content="Private Car" Checked="RadioButton_Checked" />
-            <RadioButton x:Name="SmallTruck" GroupName="Car Type" Content="Small Truck" Checked="RadioButton_Checked" />
-            <RadioButton x:Name="LargeTruck" GroupName="Car Type" Content="Large Truck" Checked="RadioButton_Checked" />
-            <RadioButton x:Name="AirPlane" GroupName="Car Type" Content="Air Plane" Checked="RadioButton_Checked" />
-            <RadioButton x:Name="Train" GroupName="Car Type" Content="Train" Checked="RadioButton_Checked"/>
-            <RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
-            <RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
-        </StackPanel>
-        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="350,27,0,0" VerticalAlignment="Top" Width="20" Click="button_Click" Height="22">
-            <Button.Background>
-                <ImageBrush ImageSource="/UI-WPF;component/images/חיפוש.jpg"/>
-            </Button.Background>
-        </Button>
-        <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Top" Width="120" />
-        <ListBox x:Name="listBox1" HorizontalAlignment="Left" Height="170" Margin="70,190,0,0" VerticalAlignment="Top" Width="150"/>
-    </Grid>
+        Title="TraineeWindow" Height="395.745" Width="800" >
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="419*"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="3*"/>
+			<ColumnDefinition Width="*"/>
+		</Grid.ColumnDefinitions>
+		<Grid Name="buttons" Grid.Column="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+			</Grid.RowDefinitions>
+			<Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto" Click="Add_Click" FontSize="36" Grid.Row="0"/>
+		</Grid>
+		<ListBox x:Name="listBox" HorizontalAlignment="Left" Height="115" Margin="70,55,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="425" MouseDoubleClick="listBox_MouseDoubleClick"/>
+		<Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
+		<Button x:Name="button_sort" Content="Sort" HorizontalAlignment="Left" Margin="510,55,0,0" VerticalAlignment="Top" Width="75" Click="sort_Click" FontSize="14"/>
+		<StackPanel Margin="510,105,109,100" Grid.ColumnSpan="2">
+			<RadioButton  GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
+			<RadioButton x:Name="MotorCycle" GroupName="Car Type" Content="Motor Cycle" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="PrivateCar" GroupName="Car Type" Content="Private Car" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="SmallTruck" GroupName="Car Type" Content="Small Truck" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="LargeTruck" GroupName="Car Type" Content="Large Truck" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="AirPlane" GroupName="Car Type" Content="Air Plane" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="Train" GroupName="Car Type" Content="Train" Checked="RadioButton_Checked"/>
+			<RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
+			<RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
+		</StackPanel>
+		<Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="350,27,0,0" VerticalAlignment="Top" Width="20" Click="button_Click" Height="22">
+			<Button.Background>
+				<ImageBrush ImageSource="/UI-WPF;component/images/חיפוש.jpg"/>
+			</Button.Background>
+		</Button>
+		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Top" Width="120" />
+	</Grid>
 </Window>

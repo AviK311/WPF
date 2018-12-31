@@ -37,6 +37,7 @@ namespace UI_WPF
             try
 			{
 				bl.AddTest(test);
+				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TestWindow testWindow = new TestWindow();
 				testWindow.Show();
 				Close();

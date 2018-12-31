@@ -71,6 +71,7 @@ namespace UI_WPF
 				else bl.RemovePassword(toDelete);
 				toReturn.Show();
 				toClose.Close();
+				MessageBox.Show("Deletion Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				Close();
 			}
 			catch (InvalidOperationException exc)

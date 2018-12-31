@@ -64,7 +64,8 @@ namespace UI_WPF
                 bl.UpdateTrainee(trainee);                
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;
-            }
+				MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+			}
             catch (InvalidOperationException exc)
             {
                 MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);

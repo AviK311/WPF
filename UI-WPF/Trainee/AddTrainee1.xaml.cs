@@ -51,6 +51,7 @@ namespace UI_WPF
 			{
 				
 				bl.AddTrainee(trainee);
+				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TraineeWindow traineeWindow = new TraineeWindow();
 				traineeWindow.Show();
 				Close();
