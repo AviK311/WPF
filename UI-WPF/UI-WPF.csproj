@@ -189,7 +189,11 @@
     <None Include="Properties\DataSources\BE.Configuration.datasource" />
     <None Include="Properties\DataSources\BE.Day.datasource" />
     <None Include="Properties\DataSources\BE.Functions.datasource" />
+    <None Include="Properties\DataSources\BE.GlobalSettings.datasource" />
+    <None Include="Properties\DataSources\BE.Messages.datasource" />
     <None Include="Properties\DataSources\BE.Name.datasource" />
+    <None Include="Properties\DataSources\BE.Notification.datasource" />
+    <None Include="Properties\DataSources\BE.PasswordDictionary.datasource" />
     <None Include="Properties\DataSources\BE.Person.datasource" />
     <None Include="Properties\DataSources\BE.Schedule.datasource" />
     <None Include="Properties\DataSources\BE.Stats.datasource" />
@@ -255,6 +259,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\חץ5.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\חיפוש.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

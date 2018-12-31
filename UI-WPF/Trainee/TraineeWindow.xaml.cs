@@ -84,7 +84,11 @@ namespace UI_WPF
 				}
 			DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == vehicleType);
 		}
-       
 
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            DataContext = bl.GetTrainees().Where(d => d.ID == ID_textBox.Text);
+        }
+      
     }
 }

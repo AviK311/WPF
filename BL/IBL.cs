@@ -38,7 +38,8 @@ namespace BL
 		IEnumerable<BE.Admin> GetAdmins();
 
 		IEnumerable<BE.Tester> GetTesters();
-        IEnumerable<BE.Trainee> GetTrainees();       
+        IEnumerable<BE.Trainee> GetTrainees();
+        IEnumerable<Messages> GetMessages();
 
 
         IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps

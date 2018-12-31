@@ -148,7 +148,10 @@ namespace BL
             return dal.GetTrainees();
         }
 
-        
+        public IEnumerable<Messages> GetMessages()
+        {
+            return dal.GetMessages();
+        }
 
         public IEnumerable<Admin> GetAdmins()
 		{
