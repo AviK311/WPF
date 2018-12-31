@@ -31,7 +31,19 @@ namespace UI_WPF
 
 		private void Back_Click(object sender, RoutedEventArgs e)
 		{
+			Window main = new MainWindow();
+			main.Show();
+			Close();
 
+		}
+
+		private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (listBox.SelectedItem != null)
+			{
+				bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+				DataContext = bl.GetMessages();
+			}
 		}
 	}
 }

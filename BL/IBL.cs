@@ -29,6 +29,7 @@ namespace BL
 		void UpdateAdmin(Admin newData);
 
         void AddMessage(Messages message);
+		void RemoveMessage(int num);
         
 
             void UpdatePerson(Person newData);
