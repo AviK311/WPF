@@ -127,6 +127,11 @@ namespace DAL
 			DataSource.passwordDictionary.RemovePassword(id);
 		}
 
+		public void RemoveMessage(int num)
+		{
+			DataSource.messagesList.RemoveAll(T => T.MessageNumber == num);
+		}
+
 
 
 		//void Idal.UpdateTest(Test newData)

@@ -33,16 +33,14 @@ namespace UI_WPF
 				RightButton.Visibility = Visibility.Hidden;
 				LeftButton.Visibility = Visibility.Hidden;
 			}
-			else
+			else if (GlobalSettings.User is Tester)
 			{
-				list = (List<Trainee>)bl.GetTrainees();
-				if (GlobalSettings.User is Tester)
-				{
+				
 					EditButton.IsEnabled = false;
 					TraineeDeleteButton.IsEnabled = false;
 					CancelButton.IsEnabled = false;
-				}
 			}
+			list = (List<Trainee>)bl.GetTrainees();
 			trainee = list.First(T=>T.Equals(trainee1));
 			DataContext = trainee;
             this.cartype.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));

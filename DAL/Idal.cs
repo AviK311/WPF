@@ -30,6 +30,7 @@ namespace DAL
 		void RemovePassword(string id);
 
         void AddMessage(Messages message);
+		void RemoveMessage(int num);
 
 
         IEnumerable<Test> GetTests();

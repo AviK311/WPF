@@ -42,21 +42,16 @@ namespace UI_WPF
 				RightButton.Visibility = Visibility.Hidden;
 				LeftButton.Visibility = Visibility.Hidden;
 			}
-			else {
-				list = (List<Tester>)bl.GetTesters();
-				if (GlobalSettings.User is Trainee)
-				{
+			else if(GlobalSettings.User is Trainee)
+			{
 					EditButton.IsEnabled = false;
 					TesterDeleteButton.IsEnabled = false;
 					CancelButton.IsEnabled = false;
-				}
 			}
+			list = (List<Tester>)bl.GetTesters();
 			tester = list.First(T=>T.Equals(tester1));
 			DataContext = tester;
-            //foreach (var item in bl.GetTesters())
-            //{
-            //    list.Add(item);
-            //}
+    
             
 
             sexComboBox.ItemsSource = Enum.GetValues(typeof(Gender));
