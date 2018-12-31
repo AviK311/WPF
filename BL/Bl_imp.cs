@@ -248,19 +248,19 @@ namespace BL
         public void UpdateTest(Test newData)
         {
 			AddTest(newData, update: true);
-			RemoveTest(newData.TestNumber);
+			dal.RemoveTest(newData);
         }
 
         public void UpdateTester(Tester newData)
         {
 			AddTester(tester: newData, update: true);
-			RemoveTester(newData.ID);
+			dal.RemoveTester(newData);
 		}
 
         public void UpdateTrainee(Trainee newData)
         {
 			AddTrainee(trainee: newData, update: true);
-			RemoveTrainee(newData.ID);
+			dal.RemoveTrainee(newData);
 		}
 		public void UpdateAdmin(Admin newData)
 		{

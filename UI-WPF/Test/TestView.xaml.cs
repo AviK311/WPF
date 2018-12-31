@@ -43,12 +43,24 @@ namespace UI_WPF
             int[] arr = { 9, 10, 11, 12, 13, 14 };
             Hour.ItemsSource = arr;
             Hour.SelectedIndex = test1.TestDateTime.Hour-9;
-
-			foreach (var item in bl.GetTrainees())
-				trainees.Add(item.ID);
-			foreach (var item in bl.GetTesters())
-				testers.Add(item.ID);
-			
+			if (GlobalSettings.User is Trainee)
+			{
+				trainees.Add(GlobalSettings.User.ID);
+				list = (from item in list
+						where item.TraineeID == GlobalSettings.User.ID
+						select item).ToList();
+			}
+			else foreach (var item in bl.GetTrainees())
+					trainees.Add(item.ID);
+			if (GlobalSettings.User is Tester)
+			{
+				testers.Add(GlobalSettings.User.ID);
+				list = (from item in list
+						where item.TesterID == GlobalSettings.User.ID
+						select item).ToList();
+			}
+			else foreach (var item in bl.GetTesters())
+					testers.Add(item.ID);
             traineeIDComboBox.ItemsSource = trainees;
 			testerIDComboBox.ItemsSource = testers;
             
