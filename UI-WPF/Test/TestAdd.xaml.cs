@@ -80,10 +80,14 @@ namespace UI_WPF
 			Hour.SelectedIndex = 0;
 			testers = new List<string>();
 			trainees = new List<string>();
-			foreach (var item in bl.GetTrainees())
-				trainees.Add(item.ID);
-			foreach (var item in bl.GetTesters())
-				testers.Add(item.ID);
+			if (GlobalSettings.User is Trainee)
+				trainees.Add(GlobalSettings.User.ID);
+			else foreach (var item in bl.GetTrainees())
+					trainees.Add(item.ID);
+			if (GlobalSettings.User is Tester)
+				testers.Add(GlobalSettings.User.ID);
+			else foreach (var item in bl.GetTesters())
+					testers.Add(item.ID);
 			testerIDComboBox.ItemsSource = testers;
 			testerIDComboBox.SelectedIndex = 0;
 			traineeIDComboBox.ItemsSource = trainees;

@@ -26,7 +26,16 @@ namespace UI_WPF
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-            DataContext = bl.GetTests();
+			var list = bl.GetTests();
+			if (GlobalSettings.User is Trainee)
+				DataContext = (from item in list
+							   where item.TraineeID == GlobalSettings.User.ID
+							   select item).ToList();
+			else if(GlobalSettings.User is Tester)
+				DataContext = (from item in list
+							   where item.TesterID == GlobalSettings.User.ID
+							   select item).ToList();
+			else DataContext = list;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
