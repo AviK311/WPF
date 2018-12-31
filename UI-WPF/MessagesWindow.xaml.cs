@@ -28,5 +28,10 @@ namespace UI_WPF
             bl = FactoryBL.GetBL();            
             DataContext = bl.GetMessages();
         }
-    }
+
+		private void Back_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }
