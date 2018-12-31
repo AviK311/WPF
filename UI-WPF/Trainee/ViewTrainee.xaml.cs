@@ -28,7 +28,6 @@ namespace UI_WPF
             InitializeComponent();                 
             //bl = BL.FactoryBL.GetBL();
             SaveButton.Visibility = Visibility.Hidden;
-            trainee = new Trainee(trainee1);
 			if (GlobalSettings.User is Trainee)
 			{
 				RightButton.Visibility = Visibility.Hidden;
@@ -44,8 +43,8 @@ namespace UI_WPF
 					CancelButton.IsEnabled = false;
 				}
 			}
-			
-            DataContext = trainee;
+			trainee = list.First(T=>T.Equals(trainee1));
+			DataContext = trainee;
             this.cartype.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
             this.gearTypeComboBox.ItemsSource = Enum.GetValues(typeof(BE.GearType));
