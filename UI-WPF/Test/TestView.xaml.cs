@@ -91,10 +91,8 @@ namespace UI_WPF
 		}
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			bl.RemoveTest(test.TestNumber);
-			TestWindow testWindow = new TestWindow();
-			testWindow.Show();
-			Close();
+			Window confirmDelete = new ConfirmDelete(sender, this, test.TestNumber);
+			confirmDelete.ShowDialog();
 		}
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
