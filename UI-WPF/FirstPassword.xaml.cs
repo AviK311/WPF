@@ -43,6 +43,7 @@ namespace UI_WPF
 				bl.UpdatePerson(GlobalSettings.User);
 				MainWindow main = new MainWindow();
 				LoginWindow.ShowNotifications(GlobalSettings.User);
+				MessageBox.Show("Password successfully set!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				main.Show();
 				Close();
 			}

@@ -66,11 +66,15 @@ namespace UI_WPF
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
 			if (GlobalSettings.AlreadyLoggedIn == false) { 
-				Admin avi = new Admin(new Name("Avi", "Koenigsberg"));
-				avi.ID = "31122370";
-				avi.AddNotification( "Hey Avi, I added notifications!", MessageIcon.Information);
-				bl.AddAdmin(avi);
-				bl.AddUpdatePassword(avi.ID, "5678");
+				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));
+				Vizen.ID = "11111111";
+				bl.AddAdmin(Vizen);
+				MessageBox.Show("Welcome, Dr. Vizen!\n" +
+					"To begin, click login. the system will allow you to choose a password.\n" +
+					"For your convenience, there are 3 other users in the system:\n" +
+					"Tester id: 00123456, password: \"c\"\n" +
+					"Trainee id: 00000123, password: \"a\" \n" +
+					"Trainee id: 00000456, password:  \"b\" \n");
 				Admin tamar = new Admin(new Name("Tamar", "Gold"));
 				tamar.ID = "207623224";
 				tamar.FirstLogIn = false;

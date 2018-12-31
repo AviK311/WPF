@@ -29,6 +29,7 @@ namespace UI_WPF
 			MessageButton.Visibility = Visibility.Hidden;
 			if (GlobalSettings.User is Admin)
 				messageLabel.Visibility = Visibility.Hidden;
+			else button_Messages.Visibility = Visibility.Hidden;
 		}
 
         private void button_trainee_Click(object sender, RoutedEventArgs e)
@@ -111,6 +112,7 @@ namespace UI_WPF
 
 			message.UserType = GlobalSettings.User is Tester ? UserType.Tester : UserType.Trainee;
 			bl.AddMessage(message);
+			MessageBox.Show("Message Sent!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 			contentTextBox.Text = "";
 		}
 	}
