@@ -69,38 +69,22 @@ namespace UI_WPF
         {
             DataContext = bl.GetTrainees();
         }
-        private void MotorCycle_RadioButton_Checked(object sender, RoutedEventArgs e)
+       
+       
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.MotorCycle);
-        }
-        private void PrivateCar_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.PrivateCar);
-        }
-        private void SmallTruck_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.SmallTruck);
-        }
-        private void LargeTruck_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.LargeTruck);
-        }              
-        private void AirPlane_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.AirPlane);
-        }
-        private void Train_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.Train);
-        }
-        private void MotorBoat_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.MotorBoat);
-        }
-        private void CruiseShip_RadioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == VehicleType.CruiseShip);
-        }
+            
+			var button = sender as RadioButton;
+			VehicleType vehicleType = new VehicleType();
+			foreach (var item in (VehicleType[])Enum.GetValues(typeof(VehicleType)))
+				if (item.ToString() == button.Name)
+				{
+					vehicleType = item;
+					break;
+				}
+			DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == vehicleType);
+		}
+       
 
     }
 }

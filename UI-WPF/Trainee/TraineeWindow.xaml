@@ -24,15 +24,15 @@
         <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
         <Button x:Name="button_sort" Content="Sort" HorizontalAlignment="Left" Margin="510,55,0,0" VerticalAlignment="Top" Width="75" Click="sort_Click" FontSize="14"/>
         <StackPanel Margin="510,105,108.6,100" Grid.ColumnSpan="2" Grid.RowSpan="5">
-            <RadioButton GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
-            <RadioButton GroupName="Car Type" Content="Motor Cycle" Checked="MotorCycle_RadioButton_Checked" />
-            <RadioButton GroupName="Car Type" Content="Private Car" Checked="PrivateCar_RadioButton_Checked" />
-            <RadioButton GroupName="Car Type" Content="Small Truck" Checked="SmallTruck_RadioButton_Checked" />
-            <RadioButton GroupName="Car Type" Content="Large Truck" Checked="LargeTruck_RadioButton_Checked" />
-            <RadioButton GroupName="Car Type" Content="Air Plane" Checked="AirPlane_RadioButton_Checked" />
-            <RadioButton GroupName="Car Type" Content="Train" Checked="Train_RadioButton_Checked"/>
-            <RadioButton GroupName="Car Type" Content="Motor Boat" Checked="MotorBoat_RadioButton_Checked"/>
-            <RadioButton GroupName="Car Type" Content="Cruise Ship" Checked="CruiseShip_RadioButton_Checked"/>
+			<RadioButton  GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
+			<RadioButton x:Name="MotorCycle" GroupName="Car Type" Content="Motor Cycle" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="PrivateCar" GroupName="Car Type" Content="Private Car" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="SmallTruck" GroupName="Car Type" Content="Small Truck" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="LargeTruck" GroupName="Car Type" Content="Large Truck" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="AirPlane" GroupName="Car Type" Content="Air Plane" Checked="RadioButton_Checked" />
+			<RadioButton x:Name="Train" GroupName="Car Type" Content="Train" Checked="RadioButton_Checked"/>
+			<RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
+			<RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
         </StackPanel>
     </Grid>
 </Window>

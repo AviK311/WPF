@@ -58,6 +58,9 @@
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfirmDelete.xaml.cs">
+      <DependentUpon>ConfirmDelete.xaml</DependentUpon>
+    </Compile>
     <Compile Include="FirstPassword.xaml.cs">
       <DependentUpon>FirstPassword.xaml</DependentUpon>
     </Compile>
@@ -92,6 +95,10 @@
       <DependentUpon>ViewTrainee.xaml</DependentUpon>
     </Compile>
     <Page Include="ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfirmDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
