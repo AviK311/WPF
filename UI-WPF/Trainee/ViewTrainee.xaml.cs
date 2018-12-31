@@ -146,12 +146,7 @@ namespace UI_WPF
         {
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 e.Handled = true;
-        }
-
+        }   
        
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
     }
 }
