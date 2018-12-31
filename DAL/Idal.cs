@@ -29,7 +29,10 @@ namespace DAL
 		void AddUpdatePassword(string id, string password);
 		void RemovePassword(string id);
 
-		IEnumerable<Test> GetTests();
+        void AddMessage(Messages message);
+
+
+        IEnumerable<Test> GetTests();
 		IEnumerable<Admin> GetAdmins();
 		IEnumerable<Tester> GetTesters();
 		IEnumerable<Trainee> GetTrainees();

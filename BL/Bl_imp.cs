@@ -292,6 +292,11 @@ namespace BL
 			return dal.GetTester(id);
         }
 
+        public void AddMessage(Messages message)
+        {
+            dal.AddMessage(message);
+        }
+
         public IEnumerable<IGrouping<Trainee, Test>> TestGroupsAccordingToTrainee(bool inOrder)
         {
 			var toReturn = from test in dal.GetTests()
