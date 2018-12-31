@@ -66,5 +66,15 @@ namespace UI_WPF
 			ChangePassword changePassword = new ChangePassword();
 			changePassword.Show();
 		}
-	}
+
+        private void button_actions_Click(object sender, RoutedEventArgs e)
+        {
+            Window messages = new MessagesWindow();
+            if (GlobalSettings.User is Admin)
+            {
+                messages.Show();
+                Close();
+            }
+        }
+    }
 }
