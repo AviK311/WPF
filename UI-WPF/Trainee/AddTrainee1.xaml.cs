@@ -42,7 +42,7 @@ namespace UI_WPF
 		{
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
+            //trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].schoolName = schoolNameTextBox.Text;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].gearType = (GearType)gearTypeComboBox.SelectedIndex;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;

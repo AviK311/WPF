@@ -28,7 +28,10 @@ namespace BL
 		void RemoveAdmin(string id);
 		void UpdateAdmin(Admin newData);
 
-		void UpdatePerson(Person newData);
+        void AddMessage(Messages message);
+        
+
+            void UpdatePerson(Person newData);
 
 		bool CheckPassword(string id, string password);
 		void AddUpdatePassword(string id, string password);

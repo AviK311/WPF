@@ -79,7 +79,12 @@ namespace DAL
 			DataSource.adminList.Add(admin);
 		}
 
-		void Idal.RemoveTest(Test toRemove)
+        void Idal.AddMessage(Messages message)
+        {
+            DataSource.messagesList.Add(message);
+        }
+
+        void Idal.RemoveTest(Test toRemove)
 		{
 			DataSource.testList.Remove(toRemove);
 		}
