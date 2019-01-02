@@ -41,7 +41,46 @@ namespace UI_WPF
 		{
 			if (listBox.SelectedItem != null)
 			{
-                var result = MessageBox.Show("Are you sure you want to delete this message?", "Alert", MessageBoxButton.YesNo,  MessageBoxImage.Warning);
+				if (((Messages)listBox.SelectedItem).UserReset)
+				{
+					var resetResult = MessageBox.Show("Click yes to reset the user's password.", "Password Reset", MessageBoxButton.YesNo, MessageBoxImage.Information);
+					if (resetResult == MessageBoxResult.Yes)
+					{
+						var id = ((Messages)listBox.SelectedItem).ID;
+						try
+						{
+							if (bl.GetTesters().Any(T => T.ID == id))
+							{
+								var p = bl.GetTester(id);
+								p.FirstLogIn = true;
+								bl.UpdatePerson(p);
+							}
+							else if (bl.GetTrainees().Any(T => T.ID == id))
+							{
+								var p = bl.GetTrainee(id);
+								p.FirstLogIn = true;
+								bl.UpdatePerson(p);
+							}
+							else if (bl.GetAdmins().Any(A => A.ID == id))
+							{
+								var p = bl.GetAdmin(id);
+								p.FirstLogIn = true;
+								bl.UpdatePerson(p);
+							}
+							else throw new InvalidOperationException("That user ID does not exist in the system");
+							bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+							DataContext = bl.GetMessages();
+						}
+						catch (InvalidOperationException exc)
+						{
+							MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+							bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+							DataContext = bl.GetMessages();
+						}
+					}
+				}
+
+				var result = MessageBox.Show("Are you sure you want to delete this message?", "Alert", MessageBoxButton.YesNo,  MessageBoxImage.Warning);
                 if (result == MessageBoxResult.Yes)
                 {
                     bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);

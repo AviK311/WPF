@@ -65,7 +65,7 @@ namespace UI_WPF
 		{
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
-			if (GlobalSettings.AlreadyLoggedIn == false) { 
+			if (GlobalSettings.AlreadyLoggedIn == false) {
 				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));
 				Vizen.ID = "11111111";
 				bl.AddAdmin(Vizen);
@@ -104,24 +104,24 @@ namespace UI_WPF
 					FirstLogIn = false,
 				};
 				bl.AddTester(c);
-                //Tester e = new Tester
-                //{
-                //    ID = "123456",
-                //    Name = new Name("ron", "Cohen"),
-                //    Sex = Gender.Male,
-                //    PhoneNumber = "224",
-                //    BirthDay = new DateTime(1969, 2, 1),
-                //    Address = new Address("Tel Aviv", "Hahagana", "28"),
-                //    MaxDistance = 60,
-                //    MaxWeeklyTests = 9,
-                //    ExpYears = 6,
-                //    testingCarType = VehicleType.PrivateCar,
-                //    schedule = new Schedule(),
-                //    FirstLogIn = false,
-                //};
-                //bl.AddTester(e);
+				//Tester e = new Tester
+				//{
+				//    ID = "123456",
+				//    Name = new Name("ron", "Cohen"),
+				//    Sex = Gender.Male,
+				//    PhoneNumber = "224",
+				//    BirthDay = new DateTime(1969, 2, 1),
+				//    Address = new Address("Tel Aviv", "Hahagana", "28"),
+				//    MaxDistance = 60,
+				//    MaxWeeklyTests = 9,
+				//    ExpYears = 6,
+				//    testingCarType = VehicleType.PrivateCar,
+				//    schedule = new Schedule(),
+				//    FirstLogIn = false,
+				//};
+				//bl.AddTester(e);
 
-                Trainee a = new Trainee
+				Trainee a = new Trainee
 				{
 					ID = "123",
 					Name = new Name("Avi", "Levi"),
@@ -131,7 +131,7 @@ namespace UI_WPF
 					Address = new Address("bet shemesh", "nahal maor", "19"),
 					CurrentCarType = VehicleType.LargeTruck,
 					FirstLogIn = false,
-					
+
 				};
 				a.carTypeStats[VehicleType.LargeTruck] = new Stats { gearType = GearType.Manual, numOfLessons = 21, numOfTest = 0, schoolName = " www", passed = false };
 
@@ -189,7 +189,7 @@ namespace UI_WPF
 				else
 				{
 					if (!bl.CheckPassword(GlobalSettings.User.ID, password))
-						throw new InvalidOperationException(password==""?"This is not your first login, please enter a password!":"Wrong password!");
+						throw new InvalidOperationException(password == "" ? "This is not your first login, please enter a password!" : "Wrong password!");
 					MainWindow main = new MainWindow();
 					ShowNotifications(GlobalSettings.User);
 					main.Show();
@@ -204,5 +204,51 @@ namespace UI_WPF
 
 		}
 
-    }
-}
+		private void Forgot_Click(object sender, RoutedEventArgs e)
+		{
+			string id = IdInput.Text;
+			try
+			{
+				IBL bl = FactoryBL.GetBL();
+				if (bl.GetTesters().Any(T => T.ID == id))
+				{
+					GlobalSettings.User = bl.GetTester(id);
+					GlobalSettings.AppClearanceLevel = UserType.Tester;
+				}
+				else if (bl.GetTrainees().Any(T => T.ID == id))
+				{
+					GlobalSettings.User = bl.GetTrainee(id);
+					GlobalSettings.AppClearanceLevel = UserType.Trainee;
+				}
+				else if (bl.GetAdmins().Any(A => A.ID == id))
+				{
+					GlobalSettings.User = bl.GetAdmin(id);
+					GlobalSettings.AppClearanceLevel = UserType.Admin;
+				}
+				else throw new InvalidOperationException("That user ID does not exist in the system");
+				if (GlobalSettings.User.AwaitingAdminReset == true)
+					throw new InvalidOperationException("The admins are processing your first request.");
+				var result = MessageBox.Show("The administrators will receive a request to reset your password.\n Do you want to proceed?", "Alert",
+					MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+				if (result == MessageBoxResult.Yes)
+				{
+					GlobalSettings.User.AwaitingAdminReset = true;
+					bl.UpdatePerson(GlobalSettings.User);
+					Messages message = new Messages
+					{
+						ID = GlobalSettings.User.ID,
+						Name = GlobalSettings.User.Name,
+						DateOfMessage = DateTime.Now,
+						Content = "The user has requested a password reset.",
+						UserReset = true,
+					};
+					message.UserType = GlobalSettings.User is Tester ? UserType.Tester : GlobalSettings.User is Trainee? UserType.Trainee:UserType.Admin;
+					bl.AddMessage(message);
+				}
+			}
+			catch (InvalidOperationException exc)
+			{
+				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+			}
+		}
+	} }

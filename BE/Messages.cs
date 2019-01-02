@@ -14,7 +14,8 @@ namespace BE
         public string Content { get; set; }
         public DateTime DateOfMessage { get; set; }
 		public UserType UserType { get; set; }
-		public int MessageNumber { get; set; } 
+		public int MessageNumber { get; set; }
+		public bool UserReset { get; set; } = false;
         public override string ToString()
         {
             string s = DateOfMessage + "\n"+UserType.ToString() +" " + Name + "\nID: " + ID + "\n" + Content;
