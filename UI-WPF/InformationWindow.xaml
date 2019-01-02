@@ -9,7 +9,7 @@
     <Grid>
         <StackPanel>
             <Label x:Name="label" Content="שאלות נפוצות" FontSize="22" />
-            <Label  x:Name="q1" Content="question1" MouseDown="Label_MouseDown" FontSize="24"/>
+            <Label  x:Name="q1" Content="question1 press here!" MouseDown="Label_MouseDown" FontSize="24"/>
             <TextBlock x:Name="a1" Text="answer1" FontSize="20" />
             <Label  x:Name="q2" Content="question2" FontSize="24" MouseDown="Label_MouseDown"/>
             <TextBlock x:Name="a2" Text="answer2" FontSize="20" />
