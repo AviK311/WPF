@@ -40,7 +40,7 @@
 		</StackPanel>
 		<Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="350,27,0,0" VerticalAlignment="Top" Width="20" Click="button_Click" Height="22">
 			<Button.Background>
-				<ImageBrush ImageSource="/UI-WPF;component/images/חיפוש.jpg"/>
+				<ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
 			</Button.Background>
 		</Button>
 		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter ID" VerticalAlignment="Top" Width="120" />

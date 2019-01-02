@@ -5,24 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Icon="images/ל.png">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="40*"/>
-            <RowDefinition Height="30*">
+        Title="MainWindow" Height="450" Width="800" Icon="images/L.png">
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="30*"/>
+			<RowDefinition Height="40*"/>
+			<RowDefinition Height="30*">
 
-            </RowDefinition>
-        </Grid.RowDefinitions>
-        <Grid.Background>
-            <ImageBrush ImageSource="images/מכונית 2.jpg"/>
-        </Grid.Background>
-        <Grid Name="buttons" Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+			</RowDefinition>
+		</Grid.RowDefinitions>
+		<Grid.Background>
+			<ImageBrush ImageSource="images/Car2.jpg"/>
+		</Grid.Background>
+		<Grid Name="buttons" Grid.Row="2">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
+				<ColumnDefinition Width="*"/>
 
             </Grid.ColumnDefinitions>
             <Button x:Name="button_trainee" Content="Trainee" Margin="25,25,25,25"  Width="auto" Height="auto" FontSize="36" FontStyle="Italic"  Grid.Column="0" Click="button_trainee_Click"/>
