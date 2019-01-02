@@ -41,9 +41,30 @@ namespace UI_WPF
 		{
 			if (listBox.SelectedItem != null)
 			{
-				bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
-				DataContext = bl.GetMessages();
+                var result = MessageBox.Show("Are you sure you want to delete this message?", "Alert", MessageBoxButton.YesNo,  MessageBoxImage.Warning);
+                if (result == MessageBoxResult.Yes)
+                {
+                    bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+                    DataContext = bl.GetMessages();
+                }              
 			}
 		}
-	}
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+            var button = sender as RadioButton;
+            if (button.Name== "All")
+            {
+                DataContext = bl.GetMessages();
+            }
+            if (button.Name == "Tester")
+            {
+                DataContext = bl.GetMessages().Where(c => c.UserType == UserType.Tester);
+            }
+            else
+            {
+                DataContext = bl.GetMessages().Where(c => c.UserType == UserType.Trainee);
+            }
+        }
+    }
 }

@@ -29,7 +29,7 @@
             <Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="153,10,0,41" Width="97" FontSize="20" Height="33" Grid.Row="3"/>
             <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="250,0,0,30"  FontSize="20" HorizontalContentAlignment="Center" Grid.Row="3"/>
             <Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
-            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="11111111" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
+            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
             <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="554,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" />
 		</Grid>
     </Grid>
