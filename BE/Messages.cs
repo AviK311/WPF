@@ -16,8 +16,18 @@ namespace BE
 		public UserType UserType { get; set; }
 		public int MessageNumber { get; set; } 
         public override string ToString()
-        {
-            string s = DateOfMessage + "\n"+UserType.ToString() +" " + Name + "\nID: " + ID + "\n" + Content;
+        {          
+            if (Content.Length>25)
+            {
+                for (int i = 25; i < Content.Length; i += 30)
+                {
+                    while (Content[i] != ' ')
+                        i--;
+                        Content = Content.Substring(0, i) + "\n" + Content.Substring(i++);                  
+                }
+            }
+            
+            string s = DateOfMessage + "\n"+UserType.ToString() +" " + Name + "\nID: " + ID + "\n" + Content+ "\n";
             return s;           
         }
 		public Messages()
