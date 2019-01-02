@@ -111,12 +111,12 @@
 		</Grid>
 		<Button x:Name="RightButton" Content="" HorizontalAlignment="Left" Margin="585,12,0,0" VerticalAlignment="Top" Width="50" Height="30" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="RightButton_Click" BorderBrush="White">
 			<Button.Background>
-				<ImageBrush ImageSource="/UI-WPF;component/images/חץ5.jpg"/>
+				<ImageBrush ImageSource="/UI-WPF;component/images/arrow5.jpg"/>
 			</Button.Background>
 		</Button>
 		<Button x:Name="LeftButton" Content="" HorizontalAlignment="Left" Margin="530,12,0,0" VerticalAlignment="Top" Width="50" Height="30" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="LeftButton_Click" BorderBrush="White">
 			<Button.Background>
-				<ImageBrush ImageSource="/UI-WPF;component/images/חץ4.jpg"/>
+				<ImageBrush ImageSource="/UI-WPF;component/images/arrow4.jpg"/>
 			</Button.Background>
 		</Button>
 		<Grid x:Name="carTypeGrid" VerticalAlignment="Top" Margin="381,203,0,0" HorizontalAlignment="Left" >

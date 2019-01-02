@@ -229,46 +229,46 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\מכונית לבנה.jpg" />
+    <Resource Include="images\WhiteCar.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\מכונית.jpg" />
+    <Resource Include="images\Car.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\מכונית 2.jpg" />
+    <Resource Include="images\Car2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\נהג חדש.jpg" />
+    <Resource Include="images\NewDriver.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\ל.png" />
+    <Resource Include="images\L.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\גשר.jpg" />
+    <Resource Include="images\Bridge1.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\גשר2.jpg" />
+    <Resource Include="images\Bridge2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\רכבת2.jpg" />
+    <Resource Include="images\Train2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\רכבת.jpg" />
+    <Resource Include="images\Train.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\חץ2.jpg" />
+    <Resource Include="images\arrow2.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\חץ.jpg" />
+    <Resource Include="images\arrow.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\חץ4.jpg" />
+    <Resource Include="images\arrow4.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\חץ5.jpg" />
+    <Resource Include="images\arrow5.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\חיפוש.jpg" />
+    <Resource Include="images\Search.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Image1.png" />
