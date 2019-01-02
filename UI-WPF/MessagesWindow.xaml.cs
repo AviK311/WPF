@@ -52,18 +52,21 @@ namespace UI_WPF
 							if (bl.GetTesters().Any(T => T.ID == id))
 							{
 								var p = bl.GetTester(id);
+								p.AwaitingAdminReset = false;
 								p.FirstLogIn = true;
 								bl.UpdatePerson(p);
 							}
 							else if (bl.GetTrainees().Any(T => T.ID == id))
 							{
 								var p = bl.GetTrainee(id);
+								p.AwaitingAdminReset = false;
 								p.FirstLogIn = true;
 								bl.UpdatePerson(p);
 							}
 							else if (bl.GetAdmins().Any(A => A.ID == id))
 							{
 								var p = bl.GetAdmin(id);
+								p.AwaitingAdminReset = false;
 								p.FirstLogIn = true;
 								bl.UpdatePerson(p);
 							}
@@ -79,13 +82,16 @@ namespace UI_WPF
 						}
 					}
 				}
+				else
+				{
 
-				var result = MessageBox.Show("Are you sure you want to delete this message?", "Alert", MessageBoxButton.YesNo,  MessageBoxImage.Warning);
-                if (result == MessageBoxResult.Yes)
-                {
-                    bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
-                    DataContext = bl.GetMessages();
-                }              
+					var result = MessageBox.Show("Are you sure you want to delete this message?", "Alert", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+					if (result == MessageBoxResult.Yes)
+					{
+						bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+						DataContext = bl.GetMessages();
+					}
+				}
 			}
 		}
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
