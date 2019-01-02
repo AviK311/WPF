@@ -115,5 +115,11 @@ namespace UI_WPF
 			MessageBox.Show("Message Sent!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 			contentTextBox.Text = "";
 		}
-	}
+
+        private void button_Click(object sender, RoutedEventArgs e)
+        {
+            Window informationWindow = new InformationWindow();
+            informationWindow.Show();
+        }
+    }
 }

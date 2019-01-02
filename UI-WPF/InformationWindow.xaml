@@ -1,0 +1,22 @@
+﻿<Window x:Class="UI_WPF.InformationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:UI_WPF"
+        mc:Ignorable="d"
+        Title="InformationWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel>
+            <Label x:Name="label" Content="שאלות נפוצות" FontSize="22" />
+            <Label  x:Name="q1" Content="question1" MouseDown="Label_MouseDown" FontSize="24"/>
+            <TextBlock x:Name="a1" Text="answer1" FontSize="20" />
+            <Label  x:Name="q2" Content="question2" FontSize="24" MouseDown="Label_MouseDown"/>
+            <TextBlock x:Name="a2" Text="answer2" FontSize="20" />
+            <Label  x:Name="q3" Content="question3" FontSize="24" MouseDown="Label_MouseDown"/>
+            <TextBlock x:Name="a3" Text="answer3" FontSize="20" />
+            <Label  x:Name="q4" Content="question4" FontSize="24" MouseDown="Label_MouseDown"/>
+            <TextBlock x:Name="a4" Text="answer4" FontSize="20" />
+        </StackPanel>
+    </Grid>
+</Window>
