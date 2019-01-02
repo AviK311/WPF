@@ -45,5 +45,22 @@ namespace UI_WPF
 				DataContext = bl.GetMessages();
 			}
 		}
-	}
+        private void RadioButton_Checked(object sender, RoutedEventArgs e)
+        {
+
+            var button = sender as RadioButton;
+            if (button.Name=="Trainee")
+            {
+                DataContext = bl.GetMessages().Where(c => c.UserType== UserType.Trainee);
+            }
+            if (button.Name == "Tester")
+            {
+                DataContext = bl.GetMessages().Where(c => c.UserType == UserType.Tester);
+            }
+            else
+            {
+                DataContext = bl.GetMessages();
+            }
+        }
+    }
 }

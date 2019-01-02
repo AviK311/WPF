@@ -69,12 +69,12 @@ namespace UI_WPF
 				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));
 				Vizen.ID = "11111111";
 				bl.AddAdmin(Vizen);
-				MessageBox.Show("Welcome, Dr. Vizen!\n" +
-					"To begin, click login. the system will allow you to choose a password.\n" +
-					"For your convenience, there are 3 other users in the system:\n" +
-					"Tester id: 00123456, password: \"c\"\n" +
-					"Trainee id: 00000123, password: \"a\" \n" +
-					"Trainee id: 00000456, password:  \"b\" \n");
+				//MessageBox.Show("Welcome, Dr. Vizen!\n" +
+				//	"To begin, click login. the system will allow you to choose a password.\n" +
+				//	"For your convenience, there are 3 other users in the system:\n" +
+				//	"Tester id: 00123456, password: \"c\"\n" +
+				//	"Trainee id: 00000123, password: \"a\" \n" +
+				//	"Trainee id: 00000456, password:  \"b\" \n");
 				Admin tamar = new Admin(new Name("Tamar", "Gold"));
 				tamar.ID = "207623224";
 				tamar.FirstLogIn = false;
@@ -104,8 +104,24 @@ namespace UI_WPF
 					FirstLogIn = false,
 				};
 				bl.AddTester(c);
+                //Tester e = new Tester
+                //{
+                //    ID = "123456",
+                //    Name = new Name("ron", "Cohen"),
+                //    Sex = Gender.Male,
+                //    PhoneNumber = "224",
+                //    BirthDay = new DateTime(1969, 2, 1),
+                //    Address = new Address("Tel Aviv", "Hahagana", "28"),
+                //    MaxDistance = 60,
+                //    MaxWeeklyTests = 9,
+                //    ExpYears = 6,
+                //    testingCarType = VehicleType.PrivateCar,
+                //    schedule = new Schedule(),
+                //    FirstLogIn = false,
+                //};
+                //bl.AddTester(e);
 
-				Trainee a = new Trainee
+                Trainee a = new Trainee
 				{
 					ID = "123",
 					Name = new Name("Avi", "Levi"),
@@ -188,6 +204,5 @@ namespace UI_WPF
 
 		}
 
-		
-	}
+    }
 }
