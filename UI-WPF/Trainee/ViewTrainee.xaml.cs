@@ -59,13 +59,17 @@ namespace UI_WPF
         {
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-			Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
 			
 			try
             {
-				if (!match.Success)
-					throw new InvalidOperationException("The email address is invalid");
-                bl.UpdateTrainee(trainee);                
+				if (trainee.Email != null)
+				{
+					Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
+					if (!match.Success)
+						throw new InvalidOperationException("The email address is invalid");
+				}
+				else throw new InvalidOperationException("The email address is invalid");
+				bl.UpdateTrainee(trainee);                
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;
 				MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);

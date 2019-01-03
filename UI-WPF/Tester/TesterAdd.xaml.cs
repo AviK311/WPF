@@ -65,13 +65,17 @@ namespace UI_WPF
 				sched[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
 			tester.schedule = sched;
 			bl = FactoryBL.GetBL();
-			Match match = GlobalSettings.EmailRegex.Match(tester.Email);
+			
 
 			try
 			{
-				if (!match.Success)
-					throw new InvalidOperationException("The email address is invalid");
-
+				if (tester.Email != null)
+				{
+					Match match = GlobalSettings.EmailRegex.Match(tester.Email);
+					if (!match.Success)
+						throw new InvalidOperationException("The email address is invalid");
+				}
+				else throw new InvalidOperationException("The email address is invalid");
 				bl.AddTester(tester);
 				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TesterWindow testerWindow = new TesterWindow();

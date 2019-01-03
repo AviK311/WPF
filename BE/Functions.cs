@@ -58,7 +58,7 @@ namespace BE
 		}
 		public static void SendEmail(Person p, string subject, string content)
 		{
-			if (p.Email != "")
+			if (p.Email != null)
 			{
 				MailMessage mail = new MailMessage(GlobalSettings.SystemEmail, p.Email, subject, content);
 				GlobalSettings.MailSender.send(mail);
