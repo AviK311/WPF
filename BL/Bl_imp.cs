@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -53,13 +54,16 @@ namespace BL
 				if (test.testProperties.passed())
 				{
 					testTrainee.carTypeStats[testTrainee.CurrentCarType].passed = true;
+					
 					string message = string.Format("Congradulations! you've passed the test on {0}, at {1}!", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 					testTrainee.AddNotification(message, MessageIcon.Information);
+					Functions.SendEmail(testTrainee, "You Passed the Test!!!", message);
 				}
 				else
 				{
 					string message = string.Format("We're sorry, but you failed the test on {0}, at {1}", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 					testTrainee.AddNotification(message, MessageIcon.Error);
+					Functions.SendEmail(testTrainee, "You failed :(", message);
 				}
 			}
 			if (!update)
@@ -69,14 +73,22 @@ namespace BL
 				string traineeMessage = string.Format("A test was appointed to you with the tester {0} at {1}, {2}. See test for details.", testTester.Name, test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 				testTrainee.AddNotification(traineeMessage, MessageIcon.Warning);
 				testTester.AddNotification(testerMessage, MessageIcon.Warning);
+				Functions.SendEmail(testTrainee, "New Test Appointment", traineeMessage);
+				Functions.SendEmail(testTester, "New Test Appointment", testerMessage);
 			}
 			else
 			{
 				string message = string.Format("Your test on {0} at {1} has been updated. See for details.", test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 				if (!testTrainee.Equals(GlobalSettings.User))
+				{
 					testTrainee.AddNotification(message, MessageIcon.Information);
+					Functions.SendEmail(testTrainee, "Test Update", message);
+				}
 				if (!testTester.Equals(GlobalSettings.User))
+				{
 					testTester.AddNotification(message, MessageIcon.Information);
+					Functions.SendEmail(testTester, "Test Update", message);
+				}
 			}
 			UpdateTrainee(testTrainee);
 			UpdateTester(testTester);

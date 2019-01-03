@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,8 +56,17 @@ namespace BE
 			foreach (var item in args)
 				list.Add(item);
 		}
+		public static void SendEmail(Person p, string subject, string content)
+		{
+			if (p.Email != "")
+			{
+				MailMessage mail = new MailMessage(GlobalSettings.SystemEmail, p.Email, subject, content);
+				GlobalSettings.MailSender.send(mail);
+			}
+		}
+		
 
 
 
-	}
+}
 }

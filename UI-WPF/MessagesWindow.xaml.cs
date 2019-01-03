@@ -75,13 +75,9 @@ namespace UI_WPF
 							else throw new InvalidOperationException("That user ID does not exist in the system");
 							bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
 							DataContext = bl.GetMessages();
-							if (p.Email != "")
-							{
-								MailMessage mail = new MailMessage(GlobalSettings.SystemEmail, p.Email, "Password Reset",
+							Functions.SendEmail(p, "Password Reset",
 									"Your password has been reset.\nDuring your next login, enter your ID and click the login button.\n" +
 									"You will be prompted to choose a new Password");
-								GlobalSettings.MailSender.send(mail);
-							}
 						}
 						catch (InvalidOperationException exc)
 						{
