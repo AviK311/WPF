@@ -121,5 +121,13 @@ namespace UI_WPF
             Window informationWindow = new InformationWindow();
             informationWindow.Show();
         }
+
+        private void contentTextBox_KeyDown(object sender, KeyEventArgs e)
+        {
+           if (e.Key == Key.Enter)
+            {
+                MessageButton_Click(this, new RoutedEventArgs());
+            }
+        }
     }
 }

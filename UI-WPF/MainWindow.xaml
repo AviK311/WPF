@@ -43,7 +43,7 @@
 
             </Grid.RowDefinitions>
             <Label x:Name="messageLabel" Content="Leave Message for System:" Background="#FF939383"  HorizontalAlignment="Left" Margin="0,0,0,15.8" VerticalAlignment="Center" MouseDown="Label_MouseDown" Height="29" Width="197"/>
-            <TextBox x:Name="contentTextBox" TextWrapping="Wrap" Grid.Column="0" HorizontalAlignment="Left" Height="87"  Grid.Row="1" Text="{Binding content, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="197" Margin="0,1.2,0,10.2" Grid.RowSpan="2"/>
+            <TextBox x:Name="contentTextBox" TextWrapping="Wrap" Grid.Column="0" HorizontalAlignment="Left" Height="87"  Grid.Row="1" Text="{Binding content, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="197" Margin="0,1.2,0,10.2" Grid.RowSpan="2" KeyDown="contentTextBox_KeyDown"/>
             <Button x:Name="MessageButton" Content="Send" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="75" Click="MessageButton_Click" Grid.Row="2" Height="20" Margin="0,14.8,2,-14.8" />
         </Grid>
         <Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="48,71,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
