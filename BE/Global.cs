@@ -14,6 +14,7 @@ namespace BE
 		public static bool AlreadyLoggedIn { get; set; }
 		public static MailClient MailSender { get; set; }
 		public static Regex EmailRegex;
+		public static string SystemEmail { get; } = "CsharpProject5779@gmail.com";
 
 
 	}

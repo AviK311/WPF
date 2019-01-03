@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -49,23 +50,24 @@ namespace UI_WPF
 						var id = ((Messages)listBox.SelectedItem).ID;
 						try
 						{
+							Person p = new Person();
 							if (bl.GetTesters().Any(T => T.ID == id))
 							{
-								var p = bl.GetTester(id);
+								p = bl.GetTester(id);
 								p.AwaitingAdminReset = false;
 								p.FirstLogIn = true;
 								bl.UpdatePerson(p);
 							}
 							else if (bl.GetTrainees().Any(T => T.ID == id))
 							{
-								var p = bl.GetTrainee(id);
+								p = bl.GetTrainee(id);
 								p.AwaitingAdminReset = false;
 								p.FirstLogIn = true;
 								bl.UpdatePerson(p);
 							}
 							else if (bl.GetAdmins().Any(A => A.ID == id))
 							{
-								var p = bl.GetAdmin(id);
+								p = bl.GetAdmin(id);
 								p.AwaitingAdminReset = false;
 								p.FirstLogIn = true;
 								bl.UpdatePerson(p);
@@ -73,6 +75,13 @@ namespace UI_WPF
 							else throw new InvalidOperationException("That user ID does not exist in the system");
 							bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
 							DataContext = bl.GetMessages();
+							if (p.Email != "")
+							{
+								MailMessage mail = new MailMessage(GlobalSettings.SystemEmail, p.Email, "Password Reset",
+									"Your password has been reset.\nDuring your next login, enter your ID and click the login button.\n" +
+									"You will be prompted to choose a new Password");
+								GlobalSettings.MailSender.send(mail);
+							}
 						}
 						catch (InvalidOperationException exc)
 						{
