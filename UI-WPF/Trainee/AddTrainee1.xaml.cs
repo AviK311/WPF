@@ -48,12 +48,16 @@ namespace UI_WPF
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].gearType = (GearType)gearTypeComboBox.SelectedIndex;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
-			Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
 
 			try
 			{
-				if (!match.Success)
-					throw new InvalidOperationException("The email address is invalid");				
+				if (trainee.Email != null)
+				{
+					Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
+					if (!match.Success)
+						throw new InvalidOperationException("The email address is invalid");
+				}
+				else throw new InvalidOperationException("The email address is invalid");
 				bl.AddTrainee(trainee);
 				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TraineeWindow traineeWindow = new TraineeWindow();

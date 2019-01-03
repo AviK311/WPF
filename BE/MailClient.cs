@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Mail;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BE
@@ -11,6 +12,7 @@ namespace BE
 	public class MailClient
 	{
 		SmtpClient client;
+		Thread mailThread;
 
 		public MailClient()
 		{
@@ -19,6 +21,7 @@ namespace BE
 			client.Host = "smtp.gmail.com";
 			client.Port = 587;
 			client.EnableSsl = true;
+			
 		}
 		public void send(MailMessage message)
 		{

@@ -93,12 +93,16 @@ namespace UI_WPF
 				tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
 			foreach (var item in thursCheckboxes)
 				tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
-			Match match = GlobalSettings.EmailRegex.Match(tester.Email);
 
 			try
 			{
-				if (!match.Success)
-					throw new InvalidOperationException("The email address is invalid");
+				if (tester.Email != null)
+				{
+					Match match = GlobalSettings.EmailRegex.Match(tester.Email);
+					if (!match.Success)
+						throw new InvalidOperationException("The email address is invalid");
+				}
+				else throw new InvalidOperationException("The email address is invalid");
 				bl.UpdateTester(tester);
                 EditButton.Visibility = Visibility.Visible;
 				SaveButton.Visibility = Visibility.Hidden;
