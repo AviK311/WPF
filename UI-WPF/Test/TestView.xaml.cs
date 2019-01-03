@@ -91,9 +91,32 @@ namespace UI_WPF
 		}
 		private void DeleteButton_Click(object sender, RoutedEventArgs e)
 		{
-			Window confirmDelete = new ConfirmDelete(sender, this, test.TestNumber);
-			confirmDelete.ShowDialog();
-		}
+            var resetResult = MessageBox.Show(" Are you sure you want to delete this test?", "Delete Test", MessageBoxButton.YesNo, MessageBoxImage.Information);
+            if (resetResult == MessageBoxResult.Yes)
+            {
+                try
+                {
+                    bl.RemoveTest(test.TestNumber);
+                    if (bl.GetTests().Count() == 0)
+                    {
+                        TestWindow testWindow = new TestWindow();
+                        testWindow.Show();
+                        Close();
+                    }
+                    else
+                    {
+                        list = (List<Test>)bl.GetTests();
+                        RightButton_Click(sender, e);
+                    }
+               }
+                catch (InvalidOperationException exc)
+                {
+                    MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+            //Window confirmDelete = new ConfirmDelete(sender, this, test.TestNumber);
+            //confirmDelete.ShowDialog();
+        }
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
