@@ -51,7 +51,7 @@ namespace BE
 		public Address Address { get; set; }
 		public Gender Sex { get; set; }
 		public string ID { get => id?.PadLeft(8,'0'); set => id = value; }
-
+		public string Email { get; set; }
 		public override bool Equals(object obj)
 		{
 			var person = obj as Person;

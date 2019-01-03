@@ -46,6 +46,7 @@
     <Compile Include="Enums.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="Global.cs" />
+    <Compile Include="MailClient.cs" />
     <Compile Include="Messages.cs" />
     <Compile Include="Notification.cs" />
     <Compile Include="PasswordDictionary.cs" />

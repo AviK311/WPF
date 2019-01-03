@@ -13,6 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL;
 using BE;
+using System.Net.Mail;
+using System.Net.Http;
 
 namespace UI_WPF
 {
@@ -65,6 +67,15 @@ namespace UI_WPF
 		{
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
+			MailMessage message = new MailMessage("abkoen@gmail.com", "tamarr.go@gmail.com", "c#", "This message was sent from C#");
+			SmtpClient client = new SmtpClient();
+			//Add the Creddentials- use your own email id and password
+			client.Credentials = new System.Net.NetworkCredential("abkoen@gmail.com", "311223705"); ;
+
+			client.Host = "smtp.gmail.com";
+			client.Port = 587;
+			client.EnableSsl = true;
+			client.Send(message);
 			if (GlobalSettings.AlreadyLoggedIn == false) {
 				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));
 				Vizen.ID = "11111111";
