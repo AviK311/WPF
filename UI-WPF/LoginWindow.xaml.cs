@@ -65,6 +65,7 @@ namespace UI_WPF
 
 		public LoginWindow()
 		{
+			GlobalSettings.MailSender = new MailClient();
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
 			

@@ -14,6 +14,7 @@ namespace BE
 
 		public MailClient()
 		{
+			client = new SmtpClient();
 			client.Credentials = new NetworkCredential("CsharpProject5779@gmail.com", "GoldShmid");
 			client.Host = "smtp.gmail.com";
 			client.Port = 587;

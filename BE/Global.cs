@@ -11,7 +11,7 @@ namespace BE
 		public static UserType AppClearanceLevel { get; set; } = UserType.Trainee;
 		public static Person User { get; set; }
 		public static bool AlreadyLoggedIn { get; set; }
-		public static MailClient MailSender = new MailClient();
+		public static MailClient MailSender { get; set; }
 	
 		
 	}
