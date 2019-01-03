@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -64,9 +65,13 @@ namespace UI_WPF
 				sched[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
 			tester.schedule = sched;
 			bl = FactoryBL.GetBL();
+			Match match = GlobalSettings.EmailRegex.Match(tester.Email);
+
 			try
 			{
-				
+				if (!match.Success)
+					throw new InvalidOperationException("The email address is invalid");
+
 				bl.AddTester(tester);
 				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TesterWindow testerWindow = new TesterWindow();

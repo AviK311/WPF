@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -47,9 +48,12 @@ namespace UI_WPF
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].gearType = (GearType)gearTypeComboBox.SelectedIndex;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
-            try
+			Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
+
+			try
 			{
-				
+				if (!match.Success)
+					throw new InvalidOperationException("The email address is invalid");				
 				bl.AddTrainee(trainee);
 				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TraineeWindow traineeWindow = new TraineeWindow();

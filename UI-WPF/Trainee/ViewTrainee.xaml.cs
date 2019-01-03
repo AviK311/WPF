@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,9 +59,12 @@ namespace UI_WPF
         {
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-           
-            try
+			Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
+			
+			try
             {
+				if (!match.Success)
+					throw new InvalidOperationException("The email address is invalid");
                 bl.UpdateTrainee(trainee);                
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;

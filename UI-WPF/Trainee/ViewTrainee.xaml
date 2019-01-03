@@ -24,15 +24,17 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-            </Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+
+			</Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Birth Day:"/>
             <DatePicker x:Name="birthDayDatePicker" Width="155" VerticalAlignment="Center" SelectedDate="{Binding BirthDay, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="3" Margin="2.8,4,0,4" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"/>
-            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Current Car Type:"/>
-            <ComboBox x:Name="currentCarTypeComboBox" Width="155" VerticalAlignment="Center" SelectedItem="{Binding CurrentCarType, Mode=TwoWay}" Grid.Row="6" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"/>
+            <Label VerticalAlignment="Center" Grid.Row="7" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Current Car Type:"/>
+            <ComboBox x:Name="currentCarTypeComboBox" Width="155" VerticalAlignment="Center" SelectedItem="{Binding CurrentCarType, Mode=TwoWay}" Grid.Row="7" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"/>
 
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="ID:"/>
             <TextBlock x:Name="iDTextBox" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" />
@@ -42,7 +44,10 @@
             <TextBlock x:Name="lastNameTextBox" Width="155" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding Name.last, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=true}"/>
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:"/>
             <TextBox x:Name="phoneNumberTextBox" Width="155" VerticalAlignment="Center" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" KeyDown="TextBox_KeyDown"/>
-            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Sex:"/>
+			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Email Address:"/>
+			<TextBox x:Name="emailTextBox" Width="155" VerticalAlignment="Center" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+
+			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Sex:"/>
 			<ComboBox x:Name="sexComboBox" Width="155" VerticalAlignment="Center" SelectedItem="{Binding Sex}" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"/>
 
 		</Grid>

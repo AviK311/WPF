@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -92,8 +93,12 @@ namespace UI_WPF
 				tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
 			foreach (var item in thursCheckboxes)
 				tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9] = (bool)item.IsChecked;
+			Match match = GlobalSettings.EmailRegex.Match(tester.Email);
+
 			try
 			{
+				if (!match.Success)
+					throw new InvalidOperationException("The email address is invalid");
 				bl.UpdateTester(tester);
                 EditButton.Visibility = Visibility.Visible;
 				SaveButton.Visibility = Visibility.Hidden;

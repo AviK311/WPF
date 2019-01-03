@@ -15,6 +15,7 @@ using BL;
 using BE;
 using System.Net.Mail;
 using System.Net.Http;
+using System.Text.RegularExpressions;
 
 namespace UI_WPF
 {
@@ -66,6 +67,7 @@ namespace UI_WPF
 		public LoginWindow()
 		{
 			GlobalSettings.MailSender = new MailClient();
+			GlobalSettings.EmailRegex= new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
 			
