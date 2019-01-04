@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Mail;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace BE
@@ -56,17 +57,48 @@ namespace BE
 			foreach (var item in args)
 				list.Add(item);
 		}
+		public static bool ValidateEmail(string email)
+		{
+			if (email == null || email == "")
+				return true;
+			Match match = Configuration.EmailRegex.Match(email);
+			return match.Success;
+		}
+		public static bool ValidatePhone(string phone)
+		{
+			if (phone == null || phone == "")
+				return true;
+			Match match = Configuration.PhoneRegex.Match(phone);
+			return match.Success;
+		}
+		public static void ValidatePerson(Person p)
+		{
+			if (!ValidateEmail(p.Email))
+				throw new InvalidOperationException("The email address is invalid");
+			if (!ValidatePhone(p.PhoneNumber))
+				throw new InvalidOperationException("The phone number is invalid");
+		}
 		public static void SendEmail(Person p, string subject, string content)
 		{
 			if (p.Email != null)
 			{
-				MailMessage mail = new MailMessage(GlobalSettings.SystemEmail, p.Email, subject, content);
-				GlobalSettings.MailSender.send(mail);
+				MailMessage mail = new MailMessage(Configuration.SystemEmail, p.Email, subject, content);
+				Configuration.MailSender.send(mail);
 			}
 		}
+		public static string CreateNewRandomPassword()
+		{
+			Random random = new Random();
+			const string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+			return new string(Enumerable.Repeat(chars, 8)
+			  .Select(s => s[random.Next(s.Length)]).ToArray());
+		}
+			
+		
+	}
 		
 
 
 
 }
-}
+

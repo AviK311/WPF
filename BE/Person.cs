@@ -46,6 +46,8 @@ namespace BE
 		public DateTime BirthDay { get; set; }
 		public bool FirstLogIn { get; set; } = true;
 		public bool AwaitingAdminReset { get; set; } = false;
+		public bool CheckEmail { get; set; } = false;
+
 		public Name Name { get; set; }
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }

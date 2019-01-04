@@ -62,13 +62,8 @@ namespace UI_WPF
 			
 			try
             {
-				if (trainee.Email != null)
-				{
-					Match match = GlobalSettings.EmailRegex.Match(trainee.Email);
-					if (!match.Success)
-						throw new InvalidOperationException("The email address is invalid");
-				}
-				else throw new InvalidOperationException("The email address is invalid");
+				Functions.ValidatePerson(trainee);
+
 				bl.UpdateTrainee(trainee);                
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;

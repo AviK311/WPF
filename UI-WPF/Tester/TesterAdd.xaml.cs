@@ -69,13 +69,7 @@ namespace UI_WPF
 
 			try
 			{
-				if (tester.Email != null)
-				{
-					Match match = GlobalSettings.EmailRegex.Match(tester.Email);
-					if (!match.Success)
-						throw new InvalidOperationException("The email address is invalid");
-				}
-				else throw new InvalidOperationException("The email address is invalid");
+				Functions.ValidatePerson(tester);
 				bl.AddTester(tester);
 				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				TesterWindow testerWindow = new TesterWindow();

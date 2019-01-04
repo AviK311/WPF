@@ -66,8 +66,7 @@ namespace UI_WPF
 
 		public LoginWindow()
 		{
-			GlobalSettings.MailSender = new MailClient();
-			GlobalSettings.EmailRegex= new Regex(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$");
+			Configuration.MailSender = new MailClient();
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
 			
@@ -237,17 +236,30 @@ namespace UI_WPF
 				else throw new InvalidOperationException("That user ID does not exist in the system");
 				if (GlobalSettings.User.AwaitingAdminReset == true)
 					throw new InvalidOperationException("The admins are processing your first request.");
-				var result = MessageBox.Show("The administrators will receive a request to reset your password.\n Do you want to proceed?", "Alert",
+				if (GlobalSettings.User.CheckEmail == true)
+					throw new InvalidOperationException("Your new password has been sent to your email address");
+				
+				if (GlobalSettings.User.Email != null || GlobalSettings.User.Email != "")
+				{
+					var result = MessageBox.Show("You will receive a new password by email.\nDo you want to proceed?", "Alert",
+					MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
+					if (result == MessageBoxResult.Yes)
+					{
+						GlobalSettings.User.CheckEmail = true;
+						bl.UpdatePerson(GlobalSettings.User);
+						string NewPassword = Functions.CreateNewRandomPassword();
+						bl.AddUpdatePassword(GlobalSettings.User.ID, NewPassword);
+						Functions.SendEmail(GlobalSettings.User, "Password Reset", "Your new password is: " + NewPassword);
+					}
+				}
+				else { 
+				var result = MessageBox.Show("The administrators will receive a request to reset your password.\nDo you want to proceed?", "Alert",
 					MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
                 if (result == MessageBoxResult.Yes)
                 {
                     GlobalSettings.User.AwaitingAdminReset = true;
                     bl.UpdatePerson(GlobalSettings.User);
 
-                    if (GlobalSettings.User.Email != null)
-                        Functions.SendEmail(GlobalSettings.User, "Password recovery", "your password is: " + bl.GetPassword(GlobalSettings.User.ID));
-                    else
-                    {
                         Messages message = new Messages
                         {
                             ID = GlobalSettings.User.ID,
