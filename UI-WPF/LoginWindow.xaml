@@ -27,9 +27,9 @@
             <Label x:Name="label" Content="מערכת לניתוב מבחני נהיגה " HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="36" Width="465" Grid.Row="0" FontWeight="Bold"/>
             <Label x:Name="label2" Content="להתחברות אנא הקש ת.ז וסיסמא " HorizontalAlignment="Left" Margin="410,10,0,0" VerticalAlignment="Top" FontSize="18" Width="270" Grid.Row="1"/>
             <Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="153,10,0,41" Width="97" FontSize="20" Height="33" Grid.Row="3"/>
-            <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="250,0,0,30"  FontSize="20" HorizontalContentAlignment="Center" Grid.Row="3"/>
+            <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="250,0,0,30"  FontSize="20" HorizontalContentAlignment="Center" Grid.Row="3" KeyDown="PasswordInput_KeyDown"/>
             <Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
-            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2"/>
+            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2" KeyDown="PasswordInput_KeyDown"/>
             <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="554,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" />
 			<Button x:Name="Forgot" Content="Forgot Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="382,18,0,0" Grid.Row="4" Height="56" Click="Forgot_Click" />
 		</Grid>

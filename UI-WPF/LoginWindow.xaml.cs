@@ -212,6 +212,7 @@ namespace UI_WPF
 
 		}
 
+
 		private void Forgot_Click(object sender, RoutedEventArgs e)
 		{
 			string id = IdInput.Text;
@@ -238,25 +239,39 @@ namespace UI_WPF
 					throw new InvalidOperationException("The admins are processing your first request.");
 				var result = MessageBox.Show("The administrators will receive a request to reset your password.\n Do you want to proceed?", "Alert",
 					MessageBoxButton.YesNo, MessageBoxImage.Exclamation);
-				if (result == MessageBoxResult.Yes)
-				{
-					GlobalSettings.User.AwaitingAdminReset = true;
-					bl.UpdatePerson(GlobalSettings.User);
-					Messages message = new Messages
-					{
-						ID = GlobalSettings.User.ID,
-						Name = GlobalSettings.User.Name,
-						DateOfMessage = DateTime.Now,
-						Content = "The user has requested a password reset.",
-						UserReset = true,
-					};
-					message.UserType = GlobalSettings.User is Tester ? UserType.Tester : GlobalSettings.User is Trainee? UserType.Trainee:UserType.Admin;
-					bl.AddMessage(message);
-				}
+                if (result == MessageBoxResult.Yes)
+                {
+                    GlobalSettings.User.AwaitingAdminReset = true;
+                    bl.UpdatePerson(GlobalSettings.User);
+
+                    if (GlobalSettings.User.Email != null)
+                        Functions.SendEmail(GlobalSettings.User, "Password recovery", "your password is: " + bl.GetPassword(GlobalSettings.User.ID));
+                    else
+                    {
+                        Messages message = new Messages
+                        {
+                            ID = GlobalSettings.User.ID,
+                            Name = GlobalSettings.User.Name,
+                            DateOfMessage = DateTime.Now,
+                            Content = "The user has requested a password reset.",
+                            UserReset = true,
+                        };
+                        message.UserType = GlobalSettings.User is Tester ? UserType.Tester : GlobalSettings.User is Trainee ? UserType.Trainee : UserType.Admin;
+                        bl.AddMessage(message);
+                    }
+                }
 			}
 			catch (InvalidOperationException exc)
 			{
 				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 			}
 		}
-	} }
+
+        private void PasswordInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                LoginButton_Click(this, new RoutedEventArgs());
+            }
+        }
+    } }

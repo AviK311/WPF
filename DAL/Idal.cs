@@ -28,6 +28,7 @@ namespace DAL
 		bool CheckPassword(string id, string password);
 		void AddUpdatePassword(string id, string password);
 		void RemovePassword(string id);
+        string GetPassword(string id);
 
         void AddMessage(Messages message);
 		void RemoveMessage(int num);

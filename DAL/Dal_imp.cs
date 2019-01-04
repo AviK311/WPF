@@ -126,11 +126,16 @@ namespace DAL
 		{
 			DataSource.passwordDictionary.RemovePassword(id);
 		}
+        public string GetPassword(string id)
+        {
+           return DataSource.passwordDictionary.GetPassword(id);
+        }
 
-		public void RemoveMessage(int num)
+        public void RemoveMessage(int num)
 		{
 			DataSource.messagesList.RemoveAll(T => T.MessageNumber == num);
 		}
+
 
 
 

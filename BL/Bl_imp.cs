@@ -347,7 +347,13 @@ namespace BL
 		{
 			dal.RemovePassword(id);
 		}
-		public void RemoveMessage(int num)
+
+        public string GetPassword(string id)
+        {
+            return dal.GetPassword(id);
+        }
+
+        public void RemoveMessage(int num)
 		{
 			dal.RemoveMessage(num);
 		}

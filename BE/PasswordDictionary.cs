@@ -32,5 +32,9 @@ namespace BE
 		{
 			PasswordDB.Remove(id);
 		}
+        public string GetPassword(string id)
+        {
+            return PasswordDB[id];
+        }
 	}
 }
