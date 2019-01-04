@@ -197,6 +197,12 @@ namespace UI_WPF
 				{
 					if (!bl.CheckPassword(GlobalSettings.User.ID, password))
 						throw new InvalidOperationException(password == "" ? "This is not your first login, please enter a password!" : "Wrong password!");
+					if (GlobalSettings.User.CheckEmail == true)
+					{
+						GlobalSettings.User.CheckEmail = false;
+						bl.UpdatePerson(GlobalSettings.User);
+					}
+	
 					MainWindow main = new MainWindow();
 					ShowNotifications(GlobalSettings.User);
 					main.Show();
@@ -239,7 +245,7 @@ namespace UI_WPF
 				if (GlobalSettings.User.CheckEmail == true)
 					throw new InvalidOperationException("Your new password has been sent to your email address");
 				
-				if (GlobalSettings.User.Email != null || GlobalSettings.User.Email != "")
+				if (GlobalSettings.User.Email != null && GlobalSettings.User.Email != "")
 				{
 					var result = MessageBox.Show("You will receive a new password by email.\nDo you want to proceed?", "Alert",
 					MessageBoxButton.YesNo, MessageBoxImage.Exclamation);

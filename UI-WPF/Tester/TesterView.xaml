@@ -37,7 +37,7 @@
 			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Sex:" Height="26" Width="31"/>
 			<ComboBox x:Name="sexComboBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Grid.Row="4" Margin="3,5,0,5" SelectedItem="{Binding Sex}" Height="22" HorizontalAlignment="Left" Grid.Column="1"/>
 			<Label VerticalAlignment="Center" Grid.Row="5" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:" Height="26" Width="93"/>
-			<TextBox x:Name="phoneNumberTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" KeyDown="TextBox_KeyDown"/>
+			<TextBox x:Name="phoneNumberTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" KeyDown="Phone_KeyDown"/>
 			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Email Address:" Height="26" Width="93"/>
 			<TextBox x:Name="emailTextBox" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"/>
 

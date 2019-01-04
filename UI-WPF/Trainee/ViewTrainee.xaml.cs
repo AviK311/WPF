@@ -174,7 +174,12 @@ namespace UI_WPF
         {
             if (e.Key < Key.D0 || e.Key > Key.D9)
                 e.Handled = true;
-        }   
-       
-    }
+        }
+		private void Phone_KeyDown(object sender, KeyEventArgs e)
+		{
+			if (e.Key!= Key.OemMinus && e.Key != Key.Subtract &&(e.Key < Key.D0 || e.Key > Key.D9))
+				e.Handled = true;
+		}
+
+	}
 }

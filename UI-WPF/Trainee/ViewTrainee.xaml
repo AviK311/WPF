@@ -43,7 +43,7 @@
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="last Name:"/>
             <TextBlock x:Name="lastNameTextBox" Width="155" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding Name.last, Mode=TwoWay, NotifyOnValidationError=True, ValidatesOnExceptions=true}"/>
             <Label VerticalAlignment="Center" Grid.Row="5" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:"/>
-            <TextBox x:Name="phoneNumberTextBox" Width="155" VerticalAlignment="Center" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" KeyDown="TextBox_KeyDown"/>
+			<TextBox x:Name="phoneNumberTextBox" Width="155" VerticalAlignment="Center" Grid.Row="5" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" KeyDown="Phone_KeyDown"/>
 			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Email Address:"/>
 			<TextBox x:Name="emailTextBox" Width="155" VerticalAlignment="Center" Grid.Row="6" Margin="3" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
 

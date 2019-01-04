@@ -41,7 +41,7 @@
             <Label Content="last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="155"/>
             <Label Content="Phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-			<TextBox x:Name="phoneNumberTextBox" Grid.Column="1" Text="{Binding PhoneNumber, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="155" KeyDown="TextBox_KeyDown"/>
+			<TextBox x:Name="phoneNumberTextBox" Grid.Column="1" Text="{Binding PhoneNumber, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="155" KeyDown="Phone_KeyDown"/>
 			<Label Content="Email Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
 			<TextBox x:Name="emailTextBox" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="155"/>
 			<Label Content="Sex:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>

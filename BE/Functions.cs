@@ -71,8 +71,14 @@ namespace BE
 			Match match = Configuration.PhoneRegex.Match(phone);
 			return match.Success;
 		}
+		public static bool ValidateID(string ID)
+		{
+			return (ID != null && ID != "" && ID.Length == 8);
+		}
 		public static void ValidatePerson(Person p)
 		{
+			if (!ValidateID(p.ID))
+				throw new InvalidOperationException("The ID must be 8 digits long!");
 			if (!ValidateEmail(p.Email))
 				throw new InvalidOperationException("The email address is invalid");
 			if (!ValidatePhone(p.PhoneNumber))
@@ -80,7 +86,7 @@ namespace BE
 		}
 		public static void SendEmail(Person p, string subject, string content)
 		{
-			if (p.Email != null)
+			if (p.Email != null && p.Email != "")
 			{
 				MailMessage mail = new MailMessage(Configuration.SystemEmail, p.Email, subject, content);
 				Configuration.MailSender.send(mail);
