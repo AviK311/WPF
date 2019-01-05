@@ -21,8 +21,8 @@ namespace BE
 		public static XMLHandler GetXMLHandler()
 		{
 			if (Handler == null)
-				return new XMLHandler();
-			else return Handler;
+				Handler = new XMLHandler();
+			 return Handler;
 		}
 		private XMLHandler()
 		{
