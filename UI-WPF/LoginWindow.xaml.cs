@@ -68,6 +68,7 @@ namespace UI_WPF
 		{
 			Configuration.MailSender = new MailClient();
 			InitializeComponent();
+			XMLHandler Handler = XMLHandler.GetXMLHandler();
 			bl = FactoryBL.GetBL();
 			
 
@@ -154,6 +155,7 @@ namespace UI_WPF
 				};
 				a.notifications.Add(new Notification(MessageIcon.Error, "what do you want?"));
 				bl.AddTrainee(a);
+				
 				bl.AddTrainee(b);
 				bl.AddTest(d);
 				bl.AddUpdatePassword(a.ID, "a");

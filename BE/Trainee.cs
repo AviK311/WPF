@@ -7,6 +7,8 @@ namespace BE
     public class Trainee:Person
 	{
 		public Dictionary<VehicleType, Stats> carTypeStats { get; set; }
+		public VehicleType CurrentCarType { get; set; }
+
 		public Trainee(Trainee other)
 		{
 			notifications = new List<Notification>(other.notifications);
@@ -37,7 +39,6 @@ namespace BE
 			}
 		}
 
-		public VehicleType CurrentCarType { get; set; }
 
 		public override string ToString()
 		{

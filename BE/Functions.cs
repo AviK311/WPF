@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace BE
@@ -89,9 +90,11 @@ namespace BE
 			if (p.Email != null && p.Email != "")
 			{
 				MailMessage mail = new MailMessage(Configuration.SystemEmail, p.Email, subject, content);
-				Configuration.MailSender.send(mail);
+				Thread thread = new Thread(() => Configuration.MailSender.send(mail));
+				thread.Start();
 			}
 		}
+		
 		public static string CreateNewRandomPassword()
 		{
 			Random random = new Random();
@@ -99,6 +102,7 @@ namespace BE
 			return new string(Enumerable.Repeat(chars, 8)
 			  .Select(s => s[random.Next(s.Length)]).ToArray());
 		}
+		 
 			
 		
 	}

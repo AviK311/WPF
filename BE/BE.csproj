@@ -58,6 +58,7 @@
     <Compile Include="Tester.cs" />
     <Compile Include="TestProperties.cs" />
     <Compile Include="Trainee.cs" />
+    <Compile Include="XMLHandler.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
