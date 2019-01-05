@@ -118,17 +118,26 @@ namespace UI_WPF
                 try
                 {
                     bl.RemoveTester(tester.ID);
-                    if (bl.GetTesters().Count()==0)
+                    if (!(GlobalSettings.User is Admin))
                     {
-                        TesterWindow testWindow = new TesterWindow();
-                        testWindow.Show();
+                        LoginWindow loginWindow = new LoginWindow();
+                        loginWindow.Show();
                         Close();
                     }
                     else
                     {
-                        list = (List<Tester>)bl.GetTesters();
-                        RightButton_Click(sender,e);
-                    }                                 
+                        if (bl.GetTesters().Count() == 0)
+                        {
+                            TesterWindow testerWindow = new TesterWindow();
+                            testerWindow.Show();
+                            Close();
+                        }
+                        else
+                        {
+                            list = (List<Tester>)bl.GetTesters();
+                            RightButton_Click(sender, e);
+                        }
+                    }
                 }
                 catch (InvalidOperationException exc)
                 {

@@ -87,16 +87,25 @@ namespace UI_WPF
                 try
                 {
                     bl.RemoveTrainee(trainee.ID);
-                    if (bl.GetTrainees().Count() == 0)
+                    if (!(GlobalSettings.User is Admin))
                     {
-                        TraineeWindow Window = new TraineeWindow();
-                        Window.Show();
+                        LoginWindow loginWindow = new LoginWindow();
+                        loginWindow.Show();
                         Close();
                     }
                     else
                     {
-                        list = (List<Trainee>)bl.GetTrainees();
-                        RightButton_Click(sender, e);
+                        if (bl.GetTrainees().Count() == 0)
+                        {
+                            TraineeWindow Window = new TraineeWindow();
+                            Window.Show();
+                            Close();
+                        }
+                        else
+                        {
+                            list = (List<Trainee>)bl.GetTrainees();
+                            RightButton_Click(sender, e);
+                        }
                     }
                 }
                 catch (InvalidOperationException exc)
