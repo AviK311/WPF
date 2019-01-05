@@ -43,7 +43,7 @@ namespace UI_WPF
 		{
             trainee.Address = new Address(city: cityTextBox.Text, street: streetTextBox.Text, buildingNumber: buildingNumberTextBox.Text);
             trainee.Name = new Name(firstNameTextBox.Text, lastNameTextBox.Text);
-            //trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
+            trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].numOfLessons = Convert.ToInt32(numOfLessonsTextBox.Text);
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].schoolName = schoolNameTextBox.Text;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].gearType = (GearType)gearTypeComboBox.SelectedIndex;
             trainee.carTypeStats[(VehicleType)currentCarTypeComboBox.SelectedIndex].teacherName.first = teacherFirst.Text;
@@ -74,12 +74,12 @@ namespace UI_WPF
 
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if (e.Key < Key.D0 || e.Key > Key.D9)
+            if ((e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Tab)
                 e.Handled = true;
         }
 		private void Phone_KeyDown(object sender, KeyEventArgs e)
 		{
-			if (e.Key != Key.OemMinus && e.Key != Key.Subtract && (e.Key < Key.D0 || e.Key > Key.D9))
+			if (e.Key != Key.OemMinus && e.Key != Key.Subtract && (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Tab)
 				e.Handled = true;
 		}
 
