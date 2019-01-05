@@ -161,6 +161,7 @@ namespace UI_WPF
 				bl.AddUpdatePassword(a.ID, "a");
 				bl.AddUpdatePassword(b.ID, "b");
 				bl.AddUpdatePassword(c.ID, "c");
+			
 			}
 			//this needs to be erased. it's here only for debugging reasons
 			GlobalSettings.AlreadyLoggedIn = true;
