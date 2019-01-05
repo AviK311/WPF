@@ -190,7 +190,7 @@ namespace UI_WPF
 				else throw new InvalidOperationException("That user ID does not exist in the system");
 				if (GlobalSettings.User.FirstLogIn)
 				{
-					FirstPassword firstPassword = new FirstPassword();
+					FirstPassword firstPassword = new FirstPassword(this);
 					firstPassword.Show();
 				}
 				else

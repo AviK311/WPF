@@ -22,10 +22,12 @@ namespace UI_WPF
 	public partial class FirstPassword : Window
 	{
 		IBL bl;
-		public FirstPassword()
+        Window loginWindow;
+		public FirstPassword(Window login_Window)
 		{
 			InitializeComponent();
 			bl = FactoryBL.GetBL();
+            loginWindow = login_Window;
 		}
 
 		
@@ -45,6 +47,7 @@ namespace UI_WPF
 				LoginWindow.ShowNotifications(GlobalSettings.User);
 				MessageBox.Show("Password successfully set!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				main.Show();
+                loginWindow.Close();
 				Close();
 			}
 			catch (InvalidOperationException exc)
