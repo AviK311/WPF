@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
+using System.Xml.Serialization;
 
 namespace BE
 {
@@ -246,6 +247,13 @@ namespace BE
 							select trainee).FirstOrDefault();
 			toRemove.Remove();
 			TraineeRoot.Save(TraineePath);
+		}
+		public void SaveToXML<T>(T source, string path)
+		{
+			FileStream file = new FileStream(path, FileMode.Create);
+			XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
+			xmlSerializer.Serialize(file, source);
+			file.Close();
 		}
 
 
