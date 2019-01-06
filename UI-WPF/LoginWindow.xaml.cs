@@ -258,7 +258,7 @@ namespace UI_WPF
 						bl.UpdatePerson(GlobalSettings.User);
 						string NewPassword = Functions.CreateNewRandomPassword();
 						bl.AddUpdatePassword(GlobalSettings.User.ID, NewPassword);
-						Functions.SendEmail(GlobalSettings.User, "Password Reset", "Your new password is: " + NewPassword);
+						Functions.SendEmail(GlobalSettings.User, "Password Reset", "Hello "+ GlobalSettings.User.Name.first+" "+ GlobalSettings.User.Name.last + "!!\nYour new password is: " + NewPassword+"\nYou can change your password in the main window.");
 					}
 				}
 				else { 
