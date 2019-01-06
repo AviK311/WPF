@@ -71,19 +71,11 @@ namespace UI_WPF
 			InitializeComponent();
 			
 			bl = FactoryBL.GetBL();
-
-			GlobalSettings.AlreadyLoggedIn = false;
+			
+			GlobalSettings.AlreadyLoggedIn = true;//to test out app, delete all xml source files and set this to false.
+			//after first run, set back to true
 			if (GlobalSettings.AlreadyLoggedIn == false)
 			{
-				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));
-				Vizen.ID = "11111111";
-				//bl.AddAdmin(Vizen);
-				//MessageBox.Show("Welcome, Dr. Vizen!\n" +
-				//	"To begin, click login. the system will allow you to choose a password.\n" +
-				//	"For your convenience, there are 3 other users in the system:\n" +
-				//	"Tester id: 00123456, password: \"c\"\n" +
-				//	"Trainee id: 00000123, password: \"a\" \n" +
-				//	"Trainee id: 00000456, password:  \"b\" \n");
 				Admin tamar = new Admin(new Name("Tamar", "Gold"));
 				tamar.ID = "207623224";
 				tamar.FirstLogIn = false;
