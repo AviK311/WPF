@@ -263,7 +263,7 @@ namespace BE
 		}
          public T LoadFromXML<T>(string path)
         {
-            FileStream file = new FileStream(path, FileMode.Open);
+            FileStream file = new FileStream(path, FileMode.OpenOrCreate);
             XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
             T result = (T)xmlSerializer.Deserialize(file);
             file.Close();
@@ -290,7 +290,21 @@ namespace BE
             XElement MaxDistance = new XElement("VehicleType", tester.MaxDistance);
             XElement ExpYears = new XElement("VehicleType", tester.ExpYears);
             XElement MaxWeeklyTests = new XElement("VehicleType", tester.MaxWeeklyTests);
-            List<XElement> schedule = new List<XElement>();
+            List<XElement> Day = new List<XElement>();
+            foreach (var item in tester.schedule.week)
+            {
+                var day = item.Value;
+                XElement _9 = new XElement("9", day.hours[0]);
+                XElement _10 = new XElement("10", day.hours[1]);
+                XElement _11 = new XElement("11", day.hours[2]);
+                XElement _12 = new XElement("12", day.hours[3]);
+                XElement _13 = new XElement("13", day.hours[4]);
+                XElement _14 = new XElement("14", day.hours[5]);
+                XElement _15 = new XElement("15", day.hours[6]);
+
+                Day.Add(new XElement(item.Key.ToString(), _9, _10, _11, _12, _13, _14, _15));
+            }
+            XElement Scheduale = new XElement("Scheduale", Day);
             XElement Tester = new XElement("Tester", ID, Name, sex, phone, email,
                 BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, testingCarType, MaxDistance,
                 ExpYears, MaxWeeklyTests);
