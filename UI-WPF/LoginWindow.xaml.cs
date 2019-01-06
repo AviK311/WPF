@@ -67,10 +67,11 @@ namespace UI_WPF
 		public LoginWindow()
 		{
 			Configuration.MailSender = new MailClient();
+			
 			InitializeComponent();
 			XMLHandler Handler = XMLHandler.GetXMLHandler();
 			bl = FactoryBL.GetBL();
-			
+			bl.Initialize();
 
 		
 			if (GlobalSettings.AlreadyLoggedIn == false) {
@@ -158,7 +159,6 @@ namespace UI_WPF
 				
 				bl.AddTrainee(b);
 				bl.AddTest(d);
-				
 				bl.AddUpdatePassword(a.ID, "a");
 				bl.AddUpdatePassword(b.ID, "b");
 				bl.AddUpdatePassword(c.ID, "c");

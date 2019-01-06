@@ -354,6 +354,11 @@ namespace BL
 		{
 			dal.RemoveMessage(num);
 		}
+
+		public void Initialize()
+		{
+			dal.Initialize();
+		}
 	}
 
 }

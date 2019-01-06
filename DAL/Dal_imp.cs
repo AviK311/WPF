@@ -52,7 +52,7 @@ namespace DAL
 
         public IEnumerable<Messages> GetMessages()
         {
-            return new List<Messages>(DataSource.messagesList);
+            return new List<Messages>(DataSource.MessagesList);
         }
 
         public IEnumerable<Admin> GetAdmins()
@@ -81,7 +81,7 @@ namespace DAL
 
         void Idal.AddMessage(Messages message)
         {
-            DataSource.messagesList.Add(message);
+            DataSource.MessagesList.Add(message);
         }
 
         void Idal.RemoveTest(Test toRemove)
@@ -114,23 +114,28 @@ namespace DAL
 
 		public bool CheckPassword(string id, string password)
 		{
-			return DataSource.passwordDictionary.CheckPassword(id, password);
+			return DataSource.PasswordList.CheckPassword(id, password);
 		}
 
 		public void AddUpdatePassword(string id, string password)
 		{
-			DataSource.passwordDictionary.AddUpdatePassword(id, password);
+			DataSource.PasswordList.AddUpdatePassword(id, password);
 		}
 
 		public void RemovePassword(string id)
 		{
-			DataSource.passwordDictionary.RemovePassword(id);
+			DataSource.PasswordList.RemovePassword(id);
 		}
        
 
         public void RemoveMessage(int num)
 		{
-			DataSource.messagesList.RemoveAll(T => T.MessageNumber == num);
+			DataSource.MessagesList.RemoveAll(T => T.MessageNumber == num);
+		}
+
+		public void Initialize()
+		{
+			
 		}
 
 

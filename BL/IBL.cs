@@ -66,6 +66,7 @@ namespace BL
             TesterGroupsAccordingToCarType(bool inOrder = false);
 		IEnumerable<IGrouping<Trainee, BE.Test>>
 			TestGroupsAccordingToTrainee(bool inOrder = false);
+		void Initialize();
     }
 }
 

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BE;
+using DS;
 
 namespace DAL
 {
@@ -36,12 +37,13 @@ namespace DAL
 
 		public void AddUpdatePassword(string id, string password)
 		{
-			throw new NotImplementedException();
+			DataSource.PasswordList.AddUpdatePassword(id, password);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.PasswordList, XMLHandler.GetXMLHandler().PasswordPath);
 		}
 
 		public bool CheckPassword(string id, string password)
 		{
-			throw new NotImplementedException();
+			return DataSource.PasswordList.CheckPassword(id, password);
 		}
 
 		public Admin GetAdmin(string id)
@@ -94,6 +96,13 @@ namespace DAL
 			return XMLHandler.GetXMLHandler().GetTrainees();
 		}
 
+		public void Initialize()
+		{
+			DataSource.MessagesList = XMLHandler.GetXMLHandler().LoadFromXML<List<Messages>>(XMLHandler.GetXMLHandler().MessagePath);
+			DataSource.PasswordList = XMLHandler.GetXMLHandler().LoadFromXML<PasswordList>(XMLHandler.GetXMLHandler().PasswordPath);
+			DataSource.testList = XMLHandler.GetXMLHandler().LoadFromXML<List<Test>>(XMLHandler.GetXMLHandler().TestPath);
+		}
+
 		public void RemoveAdmin(Admin toRemove)
 		{
 			throw new NotImplementedException();
@@ -106,7 +115,8 @@ namespace DAL
 
 		public void RemovePassword(string id)
 		{
-			throw new NotImplementedException();
+			DataSource.PasswordList.RemovePassword(id);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.PasswordList, XMLHandler.GetXMLHandler().PasswordPath);
 		}
 
 		public void RemoveTest(Test toRemove)

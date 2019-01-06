@@ -261,7 +261,14 @@ namespace BE
 		}
 
 
-
+		public T LoadFromXML<T>(string path)
+		{
+			FileStream file = new FileStream(path, FileMode.Open);
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+			T result = (T)xmlSerializer.Deserialize(file);
+			file.Close();
+			return result;
+		}
 
 	}
 
