@@ -12,22 +12,26 @@ namespace DAL
 	{
 		public void AddAdmin(Admin admin)
 		{
-			throw new NotImplementedException();
+			DataSource.adminList.Add(admin);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.adminList, XMLHandler.GetXMLHandler().AdminPath);
 		}
 
 		public void AddMessage(Messages message)
 		{
-			throw new NotImplementedException();
+			DataSource.MessagesList.Add(message);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.MessagesList, XMLHandler.GetXMLHandler().MessagePath);
+
 		}
 
 		public void AddTest(Test test)
 		{
-			throw new NotImplementedException();
+			DataSource.testList.Add(test);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.testList, XMLHandler.GetXMLHandler().TestPath);
 		}
 
 		public void AddTester(Tester tester)
 		{
-			throw new NotImplementedException();
+			/////for tamar
 		}
 
 		public void AddTrainee(Trainee trainee)
@@ -48,27 +52,30 @@ namespace DAL
 
 		public Admin GetAdmin(string id)
 		{
-			throw new NotImplementedException();
+			Admin toReturn = DataSource.adminList.FirstOrDefault(admin => admin.ID == id);
+			if (toReturn == null)
+				throw new InvalidOperationException("That Admin doesn't exist");
+			return new Admin(toReturn);
 		}
 
 		public IEnumerable<Admin> GetAdmins()
 		{
-			throw new NotImplementedException();
+			return new List<Admin>(DataSource.adminList);
 		}
 
 		public IEnumerable<Messages> GetMessages()
 		{
-			throw new NotImplementedException();
+			return new List<Messages>(DataSource.MessagesList);
 		}
 
-		public string GetPassword(string id)
-		{
-			throw new NotImplementedException();
-		}
+		
 
 		public Test GetTest(string id)
 		{
-			throw new NotImplementedException();
+			Test toReturn = DataSource.testList.FirstOrDefault(test => test.TestNumber == id);
+			if (toReturn == null)
+				throw new InvalidOperationException("That test doesn't exist");
+			return new Test(toReturn);
 		}
 
 		public Tester GetTester(string id)
@@ -83,7 +90,7 @@ namespace DAL
 
 		public IEnumerable<Test> GetTests()
 		{
-			throw new NotImplementedException();
+			return new List<Test>(DataSource.testList);
 		}
 
 		public Trainee GetTrainee(string id)
@@ -101,16 +108,21 @@ namespace DAL
 			DataSource.MessagesList = XMLHandler.GetXMLHandler().LoadFromXML<List<Messages>>(XMLHandler.GetXMLHandler().MessagePath);
 			DataSource.PasswordList = XMLHandler.GetXMLHandler().LoadFromXML<PasswordList>(XMLHandler.GetXMLHandler().PasswordPath);
 			DataSource.testList = XMLHandler.GetXMLHandler().LoadFromXML<List<Test>>(XMLHandler.GetXMLHandler().TestPath);
+			DataSource.adminList = XMLHandler.GetXMLHandler().LoadFromXML<List<Admin>>(XMLHandler.GetXMLHandler().AdminPath);
 		}
 
 		public void RemoveAdmin(Admin toRemove)
 		{
-			throw new NotImplementedException();
+			DataSource.adminList.Remove(toRemove);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.adminList, XMLHandler.GetXMLHandler().AdminPath);
 		}
 
 		public void RemoveMessage(int num)
 		{
-			throw new NotImplementedException();
+			DataSource.MessagesList.RemoveAll(T => T.MessageNumber == num);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.MessagesList, XMLHandler.GetXMLHandler().MessagePath);
+
+
 		}
 
 		public void RemovePassword(string id)
@@ -121,7 +133,9 @@ namespace DAL
 
 		public void RemoveTest(Test toRemove)
 		{
-			throw new NotImplementedException();
+			DataSource.testList.Remove(toRemove);
+			XMLHandler.GetXMLHandler().SaveToXML(DataSource.testList, XMLHandler.GetXMLHandler().TestPath);
+
 		}
 
 		public void RemoveTester(Tester toRemove)

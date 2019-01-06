@@ -8,7 +8,7 @@ namespace BE
 {
     public class Messages
     {
-		private static int messageNumber { get; set; } = 0;
+		
         public Name Name { get; set; }
         public string ID { get; set; }
         public string Content { get; set; }
@@ -33,8 +33,8 @@ namespace BE
         }
 		public Messages()
 		{
-			MessageNumber = messageNumber;
-			messageNumber++;
+			MessageNumber = Configuration.MessageCode;
+			Configuration.MessageCode++;
 		}
     }
 }
