@@ -151,7 +151,8 @@ namespace BE
 				throw new InvalidOperationException("Error Loading Test File");
 			}
 		}
-		public void AddTrainee(Trainee trainee)
+        #region trainee
+        public void AddTrainee(Trainee trainee)
 		{
 			XElement ID = new XElement("id", trainee.ID);
 			
@@ -252,24 +253,52 @@ namespace BE
 			toRemove.Remove();
 			TraineeRoot.Save(TraineePath);
 		}
-		public void SaveToXML<T>(T source, string path)
+#endregion
+        public void SaveToXML<T>(T source, string path)
 		{
 			FileStream file = new FileStream(path, FileMode.Create);
 			XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
 			xmlSerializer.Serialize(file, source);
 			file.Close();
 		}
+         public T LoadFromXML<T>(string path)
+        {
+            FileStream file = new FileStream(path, FileMode.Open);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            T result = (T)xmlSerializer.Deserialize(file);
+            file.Close();
+            return result;
+        }
+        public void AddTester(Tester tester)
+        {
+            XElement ID = new XElement("id", tester.ID);
+            XElement FirstName = new XElement("firstName", tester.Name.first);
+            XElement LastName = new XElement("lastName", tester.Name.last);
+            XElement Name = new XElement("name", LastName, FirstName);
+            XElement Street = new XElement("street", tester.Address.street);
+            XElement BuildingNumber = new XElement("bldNumber", tester.Address.buildingNumber);
+            XElement City = new XElement("City", tester.Address.city);
+            XElement Address = new XElement("Address", BuildingNumber, Street, City);
+            XElement phone = new XElement("Phone", tester.PhoneNumber);
+            XElement email = new XElement("Email", tester.Email);
+            XElement BirthDay = new XElement("BirthDay", tester.BirthDay);
+            XElement sex = new XElement("Gender", tester.Sex);
+            XElement CheckEmail = new XElement("CheckEmail", tester.CheckEmail);
+            XElement AwaitingAdminReset = new XElement("AwaitingAdminReset", tester.AwaitingAdminReset);
+            XElement firstLogin = new XElement("FirstLogin", tester.FirstLogIn);
+            XElement testingCarType = new XElement("VehicleType", tester.testingCarType);
+            XElement MaxDistance = new XElement("VehicleType", tester.MaxDistance);
+            XElement ExpYears = new XElement("VehicleType", tester.ExpYears);
+            XElement MaxWeeklyTests = new XElement("VehicleType", tester.MaxWeeklyTests);
+            List<XElement> schedule = new List<XElement>();
+            XElement Tester = new XElement("Tester", ID, Name, sex, phone, email,
+                BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, testingCarType, MaxDistance,
+                ExpYears, MaxWeeklyTests);
+            TesterRoot.Add(Tester);
+            TesterRoot.Save(TesterPath);
+        }
 
 
-		public T LoadFromXML<T>(string path)
-		{
-			FileStream file = new FileStream(path, FileMode.Open);
-			XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-			T result = (T)xmlSerializer.Deserialize(file);
-			file.Close();
-			return result;
-		}
-
-	}
+    }
 
 }
