@@ -87,7 +87,8 @@ namespace UI_WPF
                 try
                 {
                     bl.RemoveTrainee(trainee.ID);
-                    if (!(GlobalSettings.User is Admin))
+					bl.RemovePassword(trainee.ID);
+					if (!(GlobalSettings.User is Admin))
                     {
                         LoginWindow loginWindow = new LoginWindow();
                         loginWindow.Show();

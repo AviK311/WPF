@@ -66,13 +66,13 @@ namespace UI_WPF
 
 		public LoginWindow()
 		{
-			Configuration.MailSender = new MailClient();
+			//Configuration.MailSender = new MailClient();
 			
 			InitializeComponent();
 			
 			bl = FactoryBL.GetBL();
 
-			GlobalSettings.AlreadyLoggedIn = true;
+			GlobalSettings.AlreadyLoggedIn = false;
 			if (GlobalSettings.AlreadyLoggedIn == false)
 			{
 				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));

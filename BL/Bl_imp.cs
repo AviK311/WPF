@@ -20,7 +20,7 @@ namespace BL
         }
         public void AddTest(Test test, bool update = false)
         {
-            if (!update)test.TestNumber = Configuration.TestCode.ToString().PadLeft(8, '0');
+            if (!update)test.TestNumber = dal.GetTestCode().ToString().PadLeft(8, '0');
 			var testTrainee = dal.GetTrainees().FirstOrDefault(T => T.ID == test.TraineeID);
 			var testTester = dal.GetTesters().FirstOrDefault(T => T.ID == test.TesterID);
 			if (testTrainee == null) throw new InvalidOperationException("The trainee does not exist");
@@ -92,7 +92,7 @@ namespace BL
 			}
 			UpdateTrainee(testTrainee);
 			UpdateTester(testTester);
-			if (!update) Configuration.TestCode++;
+			if (!update) dal.AddTestCode();
             test.TestingCarType = testTester.testingCarType;
 			dal.AddTest(test);
         }
@@ -307,6 +307,7 @@ namespace BL
         public void AddMessage(Messages message)
         {
             dal.AddMessage(message);
+			dal.AddMessageCode();
         }
 
         public IEnumerable<IGrouping<Trainee, Test>> TestGroupsAccordingToTrainee(bool inOrder)

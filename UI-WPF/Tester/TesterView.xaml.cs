@@ -118,6 +118,7 @@ namespace UI_WPF
                 try
                 {
                     bl.RemoveTester(tester.ID);
+					bl.RemovePassword(tester.ID);
                     if (!(GlobalSettings.User is Admin))
                     {
                         LoginWindow loginWindow = new LoginWindow();

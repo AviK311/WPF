@@ -13,13 +13,14 @@ namespace DAL
 {
 	public class XMLHandler
 	{
-		XElement TraineeRoot, TesterRoot, AdminRoot, TestRoot, PasswordRoot, MessageRoot;
+		XElement TraineeRoot, TesterRoot, ConfigRoot;
 		public string TraineePath = @"TraineeXML.xml",
 			TesterPath = @"TesterXML.xml",
 			AdminPath = @"AdminXML.xml",
 			TestPath = @"TestXML.xml",
 			PasswordPath = @"PasswordXML.xml",
-			MessagePath = @"MessageXML.xml";
+			MessagePath = @"MessageXML.xml",
+			ConfigPath = @"ConfigXML.xml";
 		public static XMLHandler Handler = null;
 		public static XMLHandler GetXMLHandler()
 		{
@@ -31,6 +32,9 @@ namespace DAL
 {
 			try
 			{
+				if (!File.Exists(ConfigPath))
+					CreateConfigFile();
+				else LoadConfigData();
 				if (!File.Exists(TraineePath))
 					CreateTraineeFile();
 				else LoadTraineeData();
@@ -78,6 +82,24 @@ namespace DAL
 				throw new InvalidOperationException("Error Loading Trainee File");
 			}
 		}
+		private void CreateConfigFile()
+		{
+			ConfigRoot = new XElement("Config");
+			ConfigRoot.Add(new XElement("TestCode", 0), new XElement("MessageCode", 0));
+			ConfigRoot.Save(ConfigPath);
+		}
+		private void LoadConfigData()
+		{
+			try
+			{
+				ConfigRoot = XElement.Load(ConfigPath);
+			}
+			catch
+			{
+				throw new InvalidOperationException("Error Loading Configuration File");
+			}
+		}
+
 		private void CreateTesterFile()
 		{
 			TesterRoot = new XElement("Testers");
@@ -326,11 +348,29 @@ namespace DAL
             toRemove.Remove();
             TesterRoot.Save(TesterPath);
         }
-        #endregion
+
+		#endregion
+		public int GetTestCode()
+		{
+			return int.Parse(ConfigRoot.Element("TestCode").Value);
+		}
+		public void AddToTestCode()
+		{
+			ConfigRoot.Element("TestCode").Value = (GetTestCode() + 1).ToString();
+			ConfigRoot.Save(ConfigPath);
+		}
+		public int GetMessageCode()
+		{
+			return int.Parse(ConfigRoot.Element("MessageCode").Value);
+		}
+		public void AddToMessageCode()
+		{
+			ConfigRoot.Element("MessageCode").Value = (GetMessageCode() + 1).ToString();
+			ConfigRoot.Save(ConfigPath);
+		}
 
 
-
-        public void SaveToXML<T>(T source, string path)
+		public void SaveToXML<T>(T source, string path)
         {
             FileStream file = new FileStream(path, FileMode.Create);
 			if (source is PasswordList)

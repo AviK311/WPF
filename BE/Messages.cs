@@ -32,9 +32,7 @@ namespace BE
             return s;           
         }
 		public Messages()
-		{
-			MessageNumber = Configuration.MessageCode;
-			Configuration.MessageCode++;
+		{			
 		}
     }
 }

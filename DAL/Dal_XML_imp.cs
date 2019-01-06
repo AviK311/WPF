@@ -23,10 +23,20 @@ namespace DAL
 
 		}
 
+		public void AddMessageCode()
+		{
+			XMLHandler.GetXMLHandler().AddToMessageCode();
+		}
+
 		public void AddTest(Test test)
 		{
 			DataSource.testList.Add(test);
 			XMLHandler.GetXMLHandler().SaveToXML(DataSource.testList, XMLHandler.GetXMLHandler().TestPath);
+		}
+
+		public void AddTestCode()
+		{
+			XMLHandler.GetXMLHandler().AddToTestCode();
 		}
 
 		public void AddTester(Tester tester)
@@ -63,6 +73,11 @@ namespace DAL
 			return new List<Admin>(DataSource.adminList);
 		}
 
+		public int GetMessageCode()
+		{
+			return XMLHandler.GetXMLHandler().GetMessageCode();
+		}
+
 		public IEnumerable<Messages> GetMessages()
 		{
 			return new List<Messages>(DataSource.MessagesList);
@@ -76,6 +91,11 @@ namespace DAL
 			if (toReturn == null)
 				throw new InvalidOperationException("That test doesn't exist");
 			return new Test(toReturn);
+		}
+
+		public int GetTestCode()
+		{
+			return XMLHandler.GetXMLHandler().GetTestCode();
 		}
 
 		public Tester GetTester(string id)
