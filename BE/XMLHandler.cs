@@ -287,9 +287,9 @@ namespace BE
             XElement AwaitingAdminReset = new XElement("AwaitingAdminReset", tester.AwaitingAdminReset);
             XElement firstLogin = new XElement("FirstLogin", tester.FirstLogIn);
             XElement testingCarType = new XElement("VehicleType", tester.testingCarType);
-            XElement MaxDistance = new XElement("VehicleType", tester.MaxDistance);
-            XElement ExpYears = new XElement("VehicleType", tester.ExpYears);
-            XElement MaxWeeklyTests = new XElement("VehicleType", tester.MaxWeeklyTests);
+            XElement MaxDistance = new XElement("MaxDistance", tester.MaxDistance);
+            XElement ExpYears = new XElement("ExpYears", tester.ExpYears);
+            XElement MaxWeeklyTests = new XElement("MaxWeeklyTests", tester.MaxWeeklyTests);
             List<XElement> Day = new List<XElement>();
             foreach (var item in tester.schedule.week)
             {
@@ -307,9 +307,60 @@ namespace BE
             XElement Scheduale = new XElement("Scheduale", Day);
             XElement Tester = new XElement("Tester", ID, Name, sex, phone, email,
                 BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, testingCarType, MaxDistance,
-                ExpYears, MaxWeeklyTests);
+                ExpYears, MaxWeeklyTests, Scheduale);
             TesterRoot.Add(Tester);
             TesterRoot.Save(TesterPath);
+        }
+
+        public Tester GetTester(string id)
+        {
+            Tester toReturn;
+            try
+            {
+                toReturn = (from tester in TesterRoot.Elements()
+                            where tester.Element("id").Value == id
+                            select new Tester()
+                            {
+                                ID = tester.Element("id").Value,
+                                Email = tester.Element("Email").Value,
+                                PhoneNumber = tester.Element("Phone").Value,
+                                Name = new Name(tester .Element("name").Element("firstName").Value,
+                                                tester.Element("name").Element("lastName").Value),
+                                Address = new Address(tester.Element("Address").Element("City").Value,
+                                tester.Element("Address").Element("street").Value,
+                                tester.Element("Address").Element("bldNumber").Value),
+                                BirthDay = DateTime.Parse(tester.Element("BirthDay").Value),
+                                Sex = (from sex in (Gender[])Enum.GetValues(typeof(Gender))
+                                       where sex.ToString() == tester.Element("Gender").Value
+                                       select sex).FirstOrDefault(),
+                                CheckEmail = bool.Parse(tester.Element("CheckEmail").Value),
+                                AwaitingAdminReset = bool.Parse(tester.Element("AwaitingAdminReset").Value),
+                                FirstLogIn = bool.Parse(tester.Element("FirstLogin").Value),
+                                testingCarType = (from type in (VehicleType[])Enum.GetValues(typeof(VehicleType))
+                                                  where type.ToString() == tester.Element("VehicleType").Value
+                                                  select type).FirstOrDefault(),
+                                MaxDistance= uint.Parse(tester.Element("MaxDistance").Value),
+                                ExpYears = uint.Parse(tester.Element("ExpYears").Value)
+                            }).FirstOrDefault();
+
+                foreach (var item in toReturn.schedule.week)
+                {
+                    var day = item.Value;
+                    var TypeElement = TesterRoot.Elements().FirstOrDefault(T => T.Element("id").Value == id).Element(item.Key.ToString());
+                    day.hours[0] = bool.Parse(TypeElement.Element("_9").Value);
+                    day.hours[1] = bool.Parse(TypeElement.Element("_10").Value);
+                    day.hours[2] = bool.Parse(TypeElement.Element("_11").Value);
+                    day.hours[3] = bool.Parse(TypeElement.Element("_12").Value);
+                    day.hours[4] = bool.Parse(TypeElement.Element("_13").Value);
+                    day.hours[5] = bool.Parse(TypeElement.Element("_14").Value);
+                    day.hours[6] = bool.Parse(TypeElement.Element("_15").Value);
+                }
+            }
+            catch
+            {
+                toReturn = null;
+            }
+            return toReturn;
         }
 
 
