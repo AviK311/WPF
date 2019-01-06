@@ -254,21 +254,8 @@ namespace BE
 			TraineeRoot.Save(TraineePath);
 		}
 #endregion
-        public void SaveToXML<T>(T source, string path)
-		{
-			FileStream file = new FileStream(path, FileMode.Create);
-			XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
-			xmlSerializer.Serialize(file, source);
-			file.Close();
-		}
-         public T LoadFromXML<T>(string path)
-        {
-            FileStream file = new FileStream(path, FileMode.OpenOrCreate);
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-            T result = (T)xmlSerializer.Deserialize(file);
-            file.Close();
-            return result;
-        }
+       
+        #region tester
         public void AddTester(Tester tester)
         {
             XElement ID = new XElement("id", tester.ID);
@@ -362,8 +349,36 @@ namespace BE
             }
             return toReturn;
         }
+        public List<Tester> GetTesters()
+        {
+            return (from tester in TesterRoot.Elements()
+                    select GetTester(tester.Element("id").Value)).ToList();
+        }
+        public void RemoveTester(string id)
+        {
+            var toRemove = (from tester in TesterRoot.Elements()
+                            where tester.Element("id").Value == id
+                            select tester).FirstOrDefault();
+            toRemove.Remove();
+            TesterRoot.Save(TraineePath);
+        }
+        #endregion
 
-
+        public void SaveToXML<T>(T source, string path)
+        {
+            FileStream file = new FileStream(path, FileMode.Create);
+            XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
+            xmlSerializer.Serialize(file, source);
+            file.Close();
+        }
+        public T LoadFromXML<T>(string path)
+        {
+            FileStream file = new FileStream(path, FileMode.OpenOrCreate);
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+            T result = (T)xmlSerializer.Deserialize(file);
+            file.Close();
+            return result;
+        }
     }
 
 }
