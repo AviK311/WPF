@@ -153,11 +153,12 @@ namespace UI_WPF
 					Address = new Address("Kiryat Ata", "David Remez", "1a"),
 					CurrentCarType = VehicleType.LargeTruck,
 				};
-				a.notifications.Add(new Notification(MessageIcon.Error, "what do you want?"));
+				
 				bl.AddTrainee(a);
 				
 				bl.AddTrainee(b);
 				bl.AddTest(d);
+				
 				bl.AddUpdatePassword(a.ID, "a");
 				bl.AddUpdatePassword(b.ID, "b");
 				bl.AddUpdatePassword(c.ID, "c");

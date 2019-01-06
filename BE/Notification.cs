@@ -15,6 +15,7 @@ namespace BE
 			this.time = DateTime.Now;
 			this.message = message;
 		}
+		public Notification() { }
 
 		public MessageIcon Icon { get; set; }
 		public DateTime time { get; set; }

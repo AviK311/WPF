@@ -18,6 +18,12 @@
 			this.street = other.street;
 			this.buildingNumber = other.buildingNumber;
 		}
+		public Address()
+		{
+			this.city = "";
+			this.street = "";
+			this.buildingNumber = "";
+		}
 
 		public override string ToString()
 		{

@@ -12,7 +12,7 @@ namespace BE
 	public class XMLHandler
 	{
 		XElement TraineeRoot, TesterRoot, AdminRoot, TestRoot, PasswordRoot, MessageRoot;
-		string TraineePath = @"TraineeXML.xml",
+		public string TraineePath = @"TraineeXML.xml",
 			TesterPath = @"TesterXML.xml",
 			AdminPath = @"AdminXML.xml",
 			TestPath = @"TestXML.xml",
@@ -27,24 +27,28 @@ namespace BE
 		}
 		private XMLHandler()
 		{
-			if (!File.Exists(TraineePath))
-				CreateTraineeFile();
-			else LoadTraineeData();
-			if (!File.Exists(TesterPath))
-				CreateTesterFile();
-			else LoadTesterFile();
-			if (!File.Exists(TestPath))
-				CreateTestFile();
-			else LoadTestFile();
-			if (!File.Exists(AdminPath))
-				CreateAdminFile();
-			else LoadAdminFile();
-			if (!File.Exists(PasswordPath))
-				CreatePasswordFile();
-			else LoadPasswordFile();
-			if (!File.Exists(MessagePath))
-				CreateMessageFile();
-			else LoadMessageFile();
+			try
+			{
+				if (!File.Exists(TraineePath))
+					CreateTraineeFile();
+				else LoadTraineeData();
+				if (!File.Exists(TesterPath))
+					CreateTesterFile();
+				else LoadTesterFile();
+				if (!File.Exists(TestPath))
+					CreateTestFile();
+				else LoadTestFile();
+				if (!File.Exists(AdminPath))
+					CreateAdminFile();
+				else LoadAdminFile();
+				if (!File.Exists(PasswordPath))
+					CreatePasswordFile();
+				else LoadPasswordFile();
+				if (!File.Exists(MessagePath))
+					CreateMessageFile();
+				else LoadMessageFile();
+			}
+			catch { }
 
 		}
 
