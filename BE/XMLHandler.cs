@@ -334,13 +334,13 @@ namespace BE
                 {
                     var day = item.Value;
                     var TypeElement = TesterRoot.Elements().FirstOrDefault(T => T.Element("id").Value == id).Element(item.Key.ToString());
-                    day.hours[0] = bool.Parse(TypeElement.Element("_9").Value);
-                    day.hours[1] = bool.Parse(TypeElement.Element("_10").Value);
-                    day.hours[2] = bool.Parse(TypeElement.Element("_11").Value);
-                    day.hours[3] = bool.Parse(TypeElement.Element("_12").Value);
-                    day.hours[4] = bool.Parse(TypeElement.Element("_13").Value);
-                    day.hours[5] = bool.Parse(TypeElement.Element("_14").Value);
-                    day.hours[6] = bool.Parse(TypeElement.Element("_15").Value);
+                    day.hours[0] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_9").Value);
+                    day.hours[1] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_10").Value);
+                    day.hours[2] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_11").Value);
+                    day.hours[3] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_12").Value);
+                    day.hours[4] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_13").Value);
+                    day.hours[5] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_14").Value);
+                    day.hours[6] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_15").Value);
                 }
             }
             catch
@@ -363,6 +363,8 @@ namespace BE
             TesterRoot.Save(TraineePath);
         }
         #endregion
+
+
 
         public void SaveToXML<T>(T source, string path)
         {
