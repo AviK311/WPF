@@ -291,24 +291,11 @@ namespace BE
             XElement ExpYears = new XElement("VehicleType", tester.ExpYears);
             XElement MaxWeeklyTests = new XElement("VehicleType", tester.MaxWeeklyTests);
             List<XElement> schedule = new List<XElement>();
-            foreach (var item in trainee.carTypeStats)
-            {
-                var stats = item.Value;
-                XElement TeacherFirstName = new XElement("FirstName", stats.teacherName.first);
-                XElement TeacherLastName = new XElement("LastName", stats.teacherName.last);
-                XElement TeacherName = new XElement("TeacherName", TeacherFirstName, TeacherLastName);
-                XElement SchoolName = new XElement("SchoolName", stats.schoolName);
-                XElement GearType = new XElement("GearType", stats.gearType);
-                XElement NumOfTests = new XElement("NumOfTests", stats.numOfTest);
-                XElement NumOfLessons = new XElement("NumOfLessons", stats.numOfLessons);
-                XElement Passed = new XElement("Passed", stats.passed);
-                Stats.Add(new XElement(item.Key.ToString(), GearType, SchoolName, TeacherName, NumOfLessons, NumOfTests, Passed));
-            }
-            XElement Trainee = new XElement("Trainee", ID, Name, sex, phone, email,
-                BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, CurrentCarType,
-                Stats);
-            TraineeRoot.Add(Trainee);
-            TraineeRoot.Save(TraineePath);
+            XElement Tester = new XElement("Tester", ID, Name, sex, phone, email,
+                BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, testingCarType, MaxDistance,
+                ExpYears, MaxWeeklyTests);
+            TesterRoot.Add(Tester);
+            TesterRoot.Save(TesterPath);
         }
 
 
