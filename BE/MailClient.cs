@@ -12,7 +12,6 @@ namespace BE
 	public class MailClient
 	{
 		SmtpClient client;
-		Thread mailThread;
 
 		public MailClient()
 		{

@@ -13,6 +13,10 @@ namespace BE
 		{
 			Name = name;
 		}
+		public Admin()
+		{
+			Name = new Name();
+		}
 		public Admin(Admin other)
 		{
 			notifications = new List<Notification>(other.notifications);

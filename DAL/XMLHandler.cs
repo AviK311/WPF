@@ -6,8 +6,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
+using BE;
+using DS;
 
-namespace BE
+namespace DAL
 {
 	public class XMLHandler
 	{
@@ -26,7 +28,7 @@ namespace BE
 			 return Handler;
 		}
 		private XMLHandler()
-		{
+{
 			try
 			{
 				if (!File.Exists(TraineePath))
@@ -54,19 +56,11 @@ namespace BE
 
 		private void CreateMessageFile()
 		{
-			MessageRoot = new XElement("Messages");
-			MessageRoot.Save(MessagePath);
+			SaveToXML(DataSource.MessagesList, MessagePath);
 		}
 		private void LoadMessageFile()
 		{
-			try
-			{
-				MessageRoot = XElement.Load(MessagePath);
-			}
-			catch
-			{
-				throw new InvalidOperationException("Error Loading Message File");
-			}
+			DataSource.MessagesList = LoadFromXML<List<Messages>>(MessagePath);
 		}
 		private void CreateTraineeFile()
 		{
@@ -102,54 +96,30 @@ namespace BE
 		}
 		private void CreatePasswordFile()
 		{
-			PasswordRoot = new XElement("Passwords");
-			PasswordRoot.Save(PasswordPath);
+			SaveToXML(DataSource.PasswordList, PasswordPath);
 		}
 		private void LoadPasswordFile()
 		{
-			try
-			{
-				PasswordRoot = XElement.Load(PasswordPath);
-			}
-			catch
-			{
-				throw new InvalidOperationException("Error Loading Password File");
-			}
+			DataSource.PasswordList = LoadFromXMLPasswords();
 		}
 
 		private void CreateAdminFile()
 		{
-			AdminRoot = new XElement("Admins");
-			AdminRoot.Save(AdminPath);
+			SaveToXML(DataSource.adminList, AdminPath);
 		}
 		private void LoadAdminFile()
 		{
-			try
-			{
-				AdminRoot = XElement.Load(AdminPath);
-			}
-			catch
-			{
-				throw new InvalidOperationException("Error Loading Admin File");
-			}
+			DataSource.adminList = LoadFromXML<List<Admin>>(AdminPath);
 		}
 
 
 		private void CreateTestFile()
 		{
-			TestRoot = new XElement("Tests");
-			TestRoot.Save(TestPath);
+			SaveToXML(DataSource.testList, TestPath);
 		}
 		private void LoadTestFile()
 		{
-			try
-			{
-				TestRoot = XElement.Load(TestPath);
-			}
-			catch
-			{
-				throw new InvalidOperationException("Error Loading Test File");
-			}
+			DataSource.testList = LoadFromXML<List<Test>>(TestPath);
 		}
         #region trainee
         public void AddTrainee(Trainee trainee)
@@ -243,6 +213,7 @@ namespace BE
 		public List<Trainee> GetTrainees()
 		{
 			return (from trainee in TraineeRoot.Elements()
+					where GetTrainee(trainee.Element("id").Value)!=null
 					select GetTrainee(trainee.Element("id").Value)).ToList();
 		}
 		public void RemoveTrainee(string id)
@@ -277,24 +248,20 @@ namespace BE
             XElement MaxDistance = new XElement("MaxDistance", tester.MaxDistance);
             XElement ExpYears = new XElement("ExpYears", tester.ExpYears);
             XElement MaxWeeklyTests = new XElement("MaxWeeklyTests", tester.MaxWeeklyTests);
-            List<XElement> Day = new List<XElement>();
+            List<XElement> Days = new List<XElement>();
             foreach (var item in tester.schedule.week)
             {
-                var day = item.Value;
-                XElement _9 = new XElement("9", day.hours[0]);
-                XElement _10 = new XElement("10", day.hours[1]);
-                XElement _11 = new XElement("11", day.hours[2]);
-                XElement _12 = new XElement("12", day.hours[3]);
-                XElement _13 = new XElement("13", day.hours[4]);
-                XElement _14 = new XElement("14", day.hours[5]);
-                XElement _15 = new XElement("15", day.hours[6]);
-
-                Day.Add(new XElement(item.Key.ToString(), _9, _10, _11, _12, _13, _14, _15));
+				string HourString = "";
+				for (int i = 9; i < 15; i++)
+					if (item.Value[i])
+						HourString += i.ToString() + ",";
+				if (HourString.Length>0) HourString = HourString.Substring(0, HourString.Length - 1);
+				Days.Add(new XElement(item.Key.ToString(), HourString));
             }
-            XElement Scheduale = new XElement("Scheduale", Day);
+            XElement Schedule = new XElement("Schedule", Days);
             XElement Tester = new XElement("Tester", ID, Name, sex, phone, email,
                 BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, testingCarType, MaxDistance,
-                ExpYears, MaxWeeklyTests, Scheduale);
+                ExpYears, MaxWeeklyTests, Schedule);
             TesterRoot.Add(Tester);
             TesterRoot.Save(TesterPath);
         }
@@ -327,21 +294,17 @@ namespace BE
                                                   where type.ToString() == tester.Element("VehicleType").Value
                                                   select type).FirstOrDefault(),
                                 MaxDistance= uint.Parse(tester.Element("MaxDistance").Value),
-                                ExpYears = uint.Parse(tester.Element("ExpYears").Value)
-                            }).FirstOrDefault();
+                                ExpYears = uint.Parse(tester.Element("ExpYears").Value),
+								MaxWeeklyTests = uint.Parse(tester.Element("MaxWeeklyTests").Value),
+							}).FirstOrDefault();
 
                 foreach (var item in toReturn.schedule.week)
                 {
-                    var day = item.Value;
-                    var TypeElement = TesterRoot.Elements().FirstOrDefault(T => T.Element("id").Value == id).Element(item.Key.ToString());
-                    day.hours[0] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_9").Value);
-                    day.hours[1] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_10").Value);
-                    day.hours[2] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_11").Value);
-                    day.hours[3] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_12").Value);
-                    day.hours[4] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_13").Value);
-                    day.hours[5] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_14").Value);
-                    day.hours[6] = bool.Parse(TypeElement.Element("Scheduale").Element("Day").Element("_15").Value);
-                }
+					var DayElement = TesterRoot.Elements().FirstOrDefault(T => T.Element("id").Value == id).Element("Schedule").Element(item.Key.ToString());
+					var stringArray = DayElement.Value.Split(',');
+					foreach(var hour in stringArray)
+						toReturn.schedule[item.Key][int.Parse(hour)] = true;
+				}
             }
             catch
             {
@@ -352,7 +315,8 @@ namespace BE
         public List<Tester> GetTesters()
         {
             return (from tester in TesterRoot.Elements()
-                    select GetTester(tester.Element("id").Value)).ToList();
+					where GetTester(tester.Element("id").Value)!=null
+					select GetTester(tester.Element("id").Value)).ToList();
         }
         public void RemoveTester(string id)
         {
@@ -360,7 +324,7 @@ namespace BE
                             where tester.Element("id").Value == id
                             select tester).FirstOrDefault();
             toRemove.Remove();
-            TesterRoot.Save(TraineePath);
+            TesterRoot.Save(TesterPath);
         }
         #endregion
 
@@ -369,8 +333,13 @@ namespace BE
         public void SaveToXML<T>(T source, string path)
         {
             FileStream file = new FileStream(path, FileMode.Create);
-            XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
-            xmlSerializer.Serialize(file, source);
+			if (source is PasswordList)
+				DataSource.PasswordList.Serialize(file);
+			else
+			{
+				XmlSerializer xmlSerializer = new XmlSerializer(source.GetType());
+				xmlSerializer.Serialize(file, source);
+			}
             file.Close();
         }
         public T LoadFromXML<T>(string path)
@@ -381,6 +350,13 @@ namespace BE
             file.Close();
             return result;
         }
+		public PasswordList LoadFromXMLPasswords()
+		{
+			FileStream file = new FileStream(PasswordPath, FileMode.OpenOrCreate);
+			var result = DataSource.PasswordList.Deserialize(file);
+			file.Close();
+			return result;
+		}
     }
 
 }

@@ -69,15 +69,15 @@ namespace UI_WPF
 			Configuration.MailSender = new MailClient();
 			
 			InitializeComponent();
-			XMLHandler Handler = XMLHandler.GetXMLHandler();
+			
 			bl = FactoryBL.GetBL();
-			bl.Initialize();
 
-		
-			if (GlobalSettings.AlreadyLoggedIn == false) {
+			GlobalSettings.AlreadyLoggedIn = true;
+			if (GlobalSettings.AlreadyLoggedIn == false)
+			{
 				Admin Vizen = new Admin(new Name("Dr.", "Vizen"));
 				Vizen.ID = "11111111";
-				bl.AddAdmin(Vizen);
+				//bl.AddAdmin(Vizen);
 				//MessageBox.Show("Welcome, Dr. Vizen!\n" +
 				//	"To begin, click login. the system will allow you to choose a password.\n" +
 				//	"For your convenience, there are 3 other users in the system:\n" +
@@ -115,18 +115,18 @@ namespace UI_WPF
 				bl.AddTester(c);
 				//Tester e = new Tester
 				//{
-				//    ID = "123456",
-				//    Name = new Name("ron", "Cohen"),
-				//    Sex = Gender.Male,
-				//    PhoneNumber = "224",
-				//    BirthDay = new DateTime(1969, 2, 1),
-				//    Address = new Address("Tel Aviv", "Hahagana", "28"),
-				//    MaxDistance = 60,
-				//    MaxWeeklyTests = 9,
-				//    ExpYears = 6,
-				//    testingCarType = VehicleType.PrivateCar,
-				//    schedule = new Schedule(),
-				//    FirstLogIn = false,
+				//	ID = "123456",
+				//	Name = new Name("ron", "Cohen"),
+				//	Sex = Gender.Male,
+				//	PhoneNumber = "224",
+				//	BirthDay = new DateTime(1969, 2, 1),
+				//	Address = new Address("Tel Aviv", "Hahagana", "28"),
+				//	MaxDistance = 60,
+				//	MaxWeeklyTests = 9,
+				//	ExpYears = 6,
+				//	testingCarType = VehicleType.PrivateCar,
+				//	schedule = new Schedule(),
+				//	FirstLogIn = false,
 				//};
 				//bl.AddTester(e);
 
@@ -154,15 +154,16 @@ namespace UI_WPF
 					Address = new Address("Kiryat Ata", "David Remez", "1a"),
 					CurrentCarType = VehicleType.LargeTruck,
 				};
-				
+
 				bl.AddTrainee(a);
-				
+
 				bl.AddTrainee(b);
 				bl.AddTest(d);
 				bl.AddUpdatePassword(a.ID, "a");
+
 				bl.AddUpdatePassword(b.ID, "b");
 				bl.AddUpdatePassword(c.ID, "c");
-			
+
 			}
 			//this needs to be erased. it's here only for debugging reasons
 			GlobalSettings.AlreadyLoggedIn = true;
