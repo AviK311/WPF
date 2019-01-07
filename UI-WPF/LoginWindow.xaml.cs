@@ -165,10 +165,7 @@ namespace UI_WPF
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
 		{
 			string id = IdInput.Text;
-			string password = PasswordInput.Password;
-            //MainWindow main = new MainWindow();
-            //ShowNotifications(GlobalSettings.User);
-            //main.Show();
+			string password = PasswordInput.Password;            
             try
 			{
 				IBL bl = FactoryBL.GetBL();
