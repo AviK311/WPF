@@ -52,7 +52,10 @@ namespace BL
                                             select test1;
             if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
-			if (test.TestDateTime < DateTime.Now)
+            if(TestersInRange(test.BeginLocation).FirstOrDefault(T => T.ID == test.TesterID) == null)
+                throw new InvalidOperationException("The location is too far for the tester");
+
+            if (test.TestDateTime < DateTime.Now)
 			{
 				if (test.testProperties.passed())
 				{

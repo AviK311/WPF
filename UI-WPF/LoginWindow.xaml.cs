@@ -166,7 +166,10 @@ namespace UI_WPF
 		{
 			string id = IdInput.Text;
 			string password = PasswordInput.Password;
-			try
+            //MainWindow main = new MainWindow();
+            //ShowNotifications(GlobalSettings.User);
+            //main.Show();
+            try
 			{
 				IBL bl = FactoryBL.GetBL();
 				if (bl.GetTesters().Any(T => T.ID == id))
@@ -200,13 +203,14 @@ namespace UI_WPF
 						bl.UpdatePerson(GlobalSettings.User);
 					}
 	
-					MainWindow main = new MainWindow();
+					MainWindow maino = new MainWindow();
 					ShowNotifications(GlobalSettings.User);
-					main.Show();
+					maino.Show();
 
 					Close();
-				}
-			}
+				}              
+
+            }
 			catch (InvalidOperationException exc)
 			{
 				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
