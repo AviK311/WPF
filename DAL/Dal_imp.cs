@@ -133,10 +133,27 @@ namespace DAL
 			DataSource.MessagesList.RemoveAll(T => T.MessageNumber == num);
 		}
 
-		public void Initialize()
+		public int GetTestCode()
 		{
-			
+			throw new NotImplementedException();
 		}
+
+		public int GetMessageCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddTestCode()
+		{
+			throw new NotImplementedException();
+		}
+
+		public void AddMessageCode()
+		{
+			throw new NotImplementedException();
+		}
+
+
 
 
 

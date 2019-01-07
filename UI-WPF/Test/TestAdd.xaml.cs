@@ -26,6 +26,7 @@ namespace UI_WPF
 		IBL bl;
 		List<string> testers, trainees;
 		Test test;
+		DateTime PreviousTime;
 
 		private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -54,6 +55,7 @@ namespace UI_WPF
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			if (test.TestDateTime > DateTime.Now) {
+				
 			propertiesGrid.Visibility = Visibility.Hidden;
 			foreach (var i in propertiesGrid.Children.OfType<CheckBox>()) 
 				i.IsChecked = false;
@@ -75,6 +77,7 @@ namespace UI_WPF
 			bl = FactoryBL.GetBL();
 			test = new Test();
 			test.TestDateTime = DateTime.Now;
+			PreviousTime = test.TestDateTime;
 			DataContext = test;
 			int[] arr = { 9, 10, 11, 12, 13, 14 };
 			Hour.ItemsSource = arr;

@@ -7,7 +7,7 @@
 		public static Idal GetDAL()
 		{
 			if (dal == null)
-				dal = new Dal_imp();
+				dal = new Dal_XML_imp();
 			return dal;
 		}
 	}

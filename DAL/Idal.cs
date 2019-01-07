@@ -33,7 +33,11 @@ namespace DAL
         void AddMessage(Messages message);
 		void RemoveMessage(int num);
 
-		void Initialize();
+		int GetTestCode();
+		void AddTestCode();
+		int GetMessageCode();
+		void AddMessageCode();
+
         IEnumerable<Test> GetTests();
 		IEnumerable<Admin> GetAdmins();
 		IEnumerable<Tester> GetTesters();

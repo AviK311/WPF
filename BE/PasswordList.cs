@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace BE
 {
@@ -36,5 +38,19 @@ namespace BE
 		{
 			passwords.Remove(passwords.FirstOrDefault(P => P.id == id));
 		}
+		public void Serialize(FileStream file)
+		{
+			XmlSerializer xmlSerializer = new XmlSerializer(passwords.GetType());
+			xmlSerializer.Serialize(file, passwords);
+		}
+		public PasswordList Deserialize(FileStream file)
+		{
+
+			XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Password>));
+			List<Password> result = (List<Password>)xmlSerializer.Deserialize(file);
+			return new PasswordList() { passwords = result };
+		}
+
+
 	}
 }
