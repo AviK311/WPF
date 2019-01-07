@@ -5,6 +5,9 @@ using System.Linq;
 using System.Net.Mail;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
+using System.Net;
+using System.Xml;
 
 namespace BL
 {
@@ -230,7 +233,42 @@ namespace BL
 
         public IEnumerable<Tester> TestersInRange(Address address)
         {
-            throw new NotImplementedException();
+            IEnumerable<Tester> toReturn = dal.GetTesters();
+            foreach (var tester in dal.GetTesters().ToList())
+            {
+                string origin = tester.Address.ToString();
+                string destination = address.ToString();
+                string KEY = @"Bem5PJyvuuUAhHz9K2qM88vC9QEHrMgx";
+                string url = @"https://www.mapquestapi.com/directions/v2/route" +
+                 @"?key=" + KEY +
+                 @"&from=" + origin +
+                 @"&to=" + destination +
+                 @"&outFormat=xml" +
+                 @"&ambiguities=ignore&routeType=fastest&doReverseGeocode=false" +
+                 @"&enhancedNarrative=false&avoidTimedConditions=false";
+                //request from MapQuest service the distance between the 2 addresses
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                WebResponse response = request.GetResponse();
+                Stream dataStream = response.GetResponseStream();
+                StreamReader sreader = new StreamReader(dataStream);
+                string responsereader = sreader.ReadToEnd();
+                response.Close();
+                //the response is given in an XML format
+                XmlDocument xmldoc = new XmlDocument();
+                xmldoc.LoadXml(responsereader);
+
+                if (xmldoc.GetElementsByTagName("statusCode")[0].ChildNodes[0].InnerText == "0")
+                //we have the expected answer
+                {
+                    //display the returned distance
+                    XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
+                    double distInMiles = Convert.ToDouble(distance[0].ChildNodes[0].InnerText);
+                    Console.WriteLine("Distance In KM: " + distInMiles * 1.609344);
+                    if (distInMiles * 1.609344 > tester.MaxDistance&&tester.MaxDistance>3)
+                        toReturn.ToList().Remove(tester);
+                }
+            }
+            return toReturn;
         }
 
         public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(VehicleType c, bool inOrder)
