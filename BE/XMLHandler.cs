@@ -363,8 +363,7 @@ namespace BE
             TesterRoot.Save(TraineePath);
         }
         #endregion
-
-
+       
 
         public void SaveToXML<T>(T source, string path)
         {
