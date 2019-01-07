@@ -253,7 +253,7 @@ namespace BL
                 StreamReader sreader = new StreamReader(dataStream);
                 string responsereader = sreader.ReadToEnd();
                 response.Close();
-                //the response is given in an XML format
+                //the response is given in an XML format//
                 XmlDocument xmldoc = new XmlDocument();
                 xmldoc.LoadXml(responsereader);
 
