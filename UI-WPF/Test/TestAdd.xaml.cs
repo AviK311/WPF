@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 using BE;
 using BL;
 
@@ -27,28 +28,35 @@ namespace UI_WPF
 		List<string> testers, trainees;
 		Test test;
 		DateTime PreviousTime;
+        Tester tester;
+        bool distance = true;
 
-		private void SaveButton_Click(object sender, RoutedEventArgs e)
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
             //Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
             //testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
-            try
-			{
-				bl.AddTest(test);
-				MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-				TestWindow testWindow = new TestWindow();
-				testWindow.Show();
-				Close();
-				
-			}
-			catch (InvalidOperationException exc)
-			{
-				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-			}
-		}
+            if (distance == false)
+                MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                try
+                {
+                    bl.AddTest(test);
+                    MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    TestWindow testWindow = new TestWindow();
+                    testWindow.Show();
+                    Close();
+
+                }
+                catch (InvalidOperationException exc)
+                {
+                    MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
+        }
 
 		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
@@ -70,6 +78,29 @@ namespace UI_WPF
             testWindow.Show();
             Close();
         }
+
+        private void TestersInRange(Address address,Tester tester)
+        {
+            //tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+            //BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);     
+            if (address != null && tester != null)
+            {
+
+                if (bl.TestersInRange(tester, address) == false)
+                    distance = false;
+                else
+                    distance = true;
+            }
+        }
+
+        private void testerIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+            Thread thread = new Thread(() => TestersInRange(address,tester));
+            thread.Start();           
+        }
+
         public TestAdd()
         {
             InitializeComponent();

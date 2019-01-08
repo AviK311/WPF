@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Net;
 using System.Xml;
+using System.Threading;
 
 namespace BL
 {
@@ -22,14 +23,17 @@ namespace BL
             dal = DAL.FactoryDal.GetDAL();
         }
         public void AddTest(Test test, bool update = false)
-        {
+        {           
             if (!update)test.TestNumber = dal.GetTestCode().ToString().PadLeft(8, '0');
 			var testTrainee = dal.GetTrainees().FirstOrDefault(T => T.ID == test.TraineeID);
 			var testTester = dal.GetTesters().FirstOrDefault(T => T.ID == test.TesterID);
 			if (testTrainee == null) throw new InvalidOperationException("The trainee does not exist");
 			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
 
-			var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
+           // Thread thread = new Thread(() =>TestersInRange(testTester, test.BeginLocation));
+            //thread.Start();
+
+            var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
             if (update==false && otherTests != null &&otherTests.Any(T => Math.Abs((T.TestDateTime - DateTime.Now).TotalDays) < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests));
                        
@@ -53,8 +57,8 @@ namespace BL
             if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
             //if(TestersInRange(test.BeginLocation).FirstOrDefault(T => T.ID == test.TesterID) == null)
-            if(TestersInRange(testTester,test.BeginLocation)==false)
-                throw new InvalidOperationException("The location is too far for the tester");
+            //if (TestersInRange(testTester, test.BeginLocation) == false)
+            //    throw new InvalidOperationException("The location is too far for the tester");
 
             if (test.TestDateTime < DateTime.Now)
 			{
