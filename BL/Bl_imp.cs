@@ -243,6 +243,8 @@ namespace BL
         {          
                 string origin = tester.Address.street + " " + tester.Address.buildingNumber + " st." + tester.Address.city;  //"pisga 45 st. jerusalem"; //
                 string destination = address.street + " " + address.buildingNumber + " st." + address.city; //"gilgal 78 st. ramat-gan"; 
+                    if (address.street=="" ||tester.Address.street=="")
+                        return true;
                 string KEY = @"Bem5PJyvuuUAhHz9K2qM88vC9QEHrMgx";
                 string url = @"https://www.mapquestapi.com/directions/v2/route" +
                  @"?key=" + KEY +

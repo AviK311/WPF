@@ -37,13 +37,13 @@ namespace UI_WPF
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
             //Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
-            //testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
+            ////testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
             if (distance == false)
                 MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
                 try
-                {
+            {
                     bl.AddTest(test);
                     MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                     TestWindow testWindow = new TestWindow();
@@ -94,6 +94,17 @@ namespace UI_WPF
         }
 
         private void testerIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+            if (address != null && tester != null)
+            {
+                Thread thread = new Thread(() => TestersInRange(address, tester));
+                thread.Start();
+            }
+        }
+
+        private void City_TextChanged(object sender, TextChangedEventArgs e)
         {
             tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
             BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
