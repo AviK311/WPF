@@ -83,22 +83,25 @@ namespace UI_WPF
         {
             //tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
             //BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);     
-            if (address != null && tester != null)
-            {
-
-                if (bl.TestersInRange(tester, address) == false)
-                    distance = false;
-                else
-                    distance = true;
-            }
+            //if (address != null && tester != null)
+            //{
+                distance = bl.TestersInRange(tester, address);
+                //if (bl.TestersInRange(tester, address) == false)
+                //    distance = false;
+                //else
+                //    distance = true;
+            //}
         }
 
         private void testerIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
             BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            Thread thread = new Thread(() => TestersInRange(address,tester));
-            thread.Start();           
+            if (address != null && tester != null)
+            {
+                Thread thread = new Thread(() => TestersInRange(address, tester));
+                thread.Start();
+            }
         }
 
         public TestAdd()
