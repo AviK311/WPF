@@ -47,9 +47,9 @@ namespace BL
         IEnumerable<BE.Trainee> GetTrainees();
         IEnumerable<Messages> GetMessages();
 
-
-        IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
-		IEnumerable<BE.Tester> AvailableTesters(DateTime date);
+        bool TestersInRange(BE.Tester tester, Address address);
+        //IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
+        IEnumerable<BE.Tester> AvailableTesters(DateTime date);
 		IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date);
 		IEnumerable<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
         bool ProperToLicense(BE.Trainee trainee);

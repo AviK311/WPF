@@ -52,7 +52,8 @@ namespace BL
                                             select test1;
             if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
                 throw new InvalidOperationException("The tester has signed up for too many tests");
-            if(TestersInRange(test.BeginLocation).FirstOrDefault(T => T.ID == test.TesterID) == null)
+            //if(TestersInRange(test.BeginLocation).FirstOrDefault(T => T.ID == test.TesterID) == null)
+            if(TestersInRange(testTester,test.BeginLocation)==false)
                 throw new InvalidOperationException("The location is too far for the tester");
 
             if (test.TestDateTime < DateTime.Now)
@@ -234,13 +235,13 @@ namespace BL
 			return toReturn;
         }
 
-        public IEnumerable<Tester> TestersInRange(Address address)
+        public bool TestersInRange(Tester tester,Address address)
         {
             IEnumerable<Tester> toReturn = dal.GetTesters();
-            foreach (var tester in dal.GetTesters().ToList())
-            {
-                string origin = tester.Address.ToString();
-                string destination = address.ToString();
+            //foreach (var tester in dal.GetTesters().ToList())
+            //{
+                string origin = tester.Address.street + " " + tester.Address.buildingNumber + " st." + tester.Address.city; //tester.Address.ToString(); //"pisga 45 st. jerusalem"; //
+                string destination = address.street + " " + address.buildingNumber + " st." + address.city; //"gilgal 78 st. ramat-gan"; // address.ToString();
                 string KEY = @"Bem5PJyvuuUAhHz9K2qM88vC9QEHrMgx";
                 string url = @"https://www.mapquestapi.com/directions/v2/route" +
                  @"?key=" + KEY +
@@ -267,11 +268,11 @@ namespace BL
                     XmlNodeList distance = xmldoc.GetElementsByTagName("distance");
                     double distInMiles = Convert.ToDouble(distance[0].ChildNodes[0].InnerText);
                     Console.WriteLine("Distance In KM: " + distInMiles * 1.609344);
-                    if (distInMiles * 1.609344 > tester.MaxDistance&&tester.MaxDistance>3)
-                        toReturn.ToList().Remove(tester);
+                if (distInMiles * 1.609344 > tester.MaxDistance && tester.MaxDistance > 3)
+                    return false;
                 }
-            }
-            return toReturn;
+            //}
+            return true;
         }
 
         public IEnumerable<IGrouping<string, Trainee>> TraineesGroupsAccordingToSchoolName(VehicleType c, bool inOrder)
