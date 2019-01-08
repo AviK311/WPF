@@ -236,12 +236,9 @@ namespace BL
         }
 
         public bool TestersInRange(Tester tester,Address address)
-        {
-            IEnumerable<Tester> toReturn = dal.GetTesters();
-            //foreach (var tester in dal.GetTesters().ToList())
-            //{
-                string origin = tester.Address.street + " " + tester.Address.buildingNumber + " st." + tester.Address.city; //tester.Address.ToString(); //"pisga 45 st. jerusalem"; //
-                string destination = address.street + " " + address.buildingNumber + " st." + address.city; //"gilgal 78 st. ramat-gan"; // address.ToString();
+        {          
+                string origin = tester.Address.street + " " + tester.Address.buildingNumber + " st." + tester.Address.city;  //"pisga 45 st. jerusalem"; //
+                string destination = address.street + " " + address.buildingNumber + " st." + address.city; //"gilgal 78 st. ramat-gan"; 
                 string KEY = @"Bem5PJyvuuUAhHz9K2qM88vC9QEHrMgx";
                 string url = @"https://www.mapquestapi.com/directions/v2/route" +
                  @"?key=" + KEY +
@@ -271,7 +268,6 @@ namespace BL
                 if (distInMiles * 1.609344 > tester.MaxDistance && tester.MaxDistance > 3)
                     return false;
                 }
-            //}
             return true;
         }
 
