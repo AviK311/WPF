@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Threading;
 using BE;
 using BL;
 
@@ -26,6 +27,9 @@ namespace UI_WPF
         IBL bl = BL.FactoryBL.GetBL();
         List<Test> list;
 		readonly DateTime OriginalTime;
+        Tester tester;
+        bool distance = true;
+        bool calculating = false;
         public TestView(Test test1)
 		{
 			testers = new List<string>();
@@ -69,20 +73,25 @@ namespace UI_WPF
             
         }
 
-		private void SaveButton_Click(object sender, RoutedEventArgs e)
-		{
-			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-			try
-			{
-				bl.UpdateTest(test);
-				EditButton.Visibility = Visibility.Visible;
-				SaveButton.Visibility = Visibility.Hidden;
-				MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-			}
-			catch (InvalidOperationException exc)
-			{
-				MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-			}
+        private void SaveButton_Click(object sender, RoutedEventArgs e)
+        {
+            test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+            if (distance == false)
+                MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+            else
+            {
+                try
+                {
+                    bl.UpdateTest(test);
+                    EditButton.Visibility = Visibility.Visible;
+                    SaveButton.Visibility = Visibility.Hidden;
+                    MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (InvalidOperationException exc)
+                {
+                    MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                }
+            }
 		}
 		private void EditButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -156,6 +165,35 @@ namespace UI_WPF
 				EditButton.IsEnabled = false;
 			else EditButton.IsEnabled = true;
 		}
+
+        private void TestersInRange(Address address, Tester tester)
+        {
+            calculating = true;
+            distance = bl.TestersInRange(tester, address);
+            calculating = false;
+ 
+        }
+        private void City_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+            if (address != null && tester != null)
+            {
+                Thread thread = new Thread(() => TestersInRange(address, tester));
+                thread.Start();
+            }
+        }
+
+        private void testerIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+            if (address != null && tester != null)
+            {
+                Thread thread = new Thread(() => TestersInRange(address, tester));
+                thread.Start();
+            }
+        }
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

@@ -49,7 +49,7 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Date Time:"/>
 			<DatePicker x:Name="testDateTimeDatePicker"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  VerticalAlignment="Center" SelectedDate="{Binding TestDateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" SelectedDateChanged="Hour_SelectionChanged"/>
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
-			<ComboBox x:Name="testerIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1"/>
+			<ComboBox x:Name="testerIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="testerIDComboBox_SelectionChanged"/>
 
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
 			<ComboBox x:Name="traineeIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="3" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}"/>
@@ -76,11 +76,11 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Center" Grid.Column="0" Content="Beginning Address" Height="26" Width="293" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
 
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="City:" Height="26" Width="179"/>
-			<TextBox x:Name="City"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.city , Mode=TwoWay }"/>
+			<TextBox x:Name="City"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.city , Mode=TwoWay }" TextChanged="City_TextChanged"/>
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Street:" Height="26" Width="179"/>
-			<TextBox x:Name="Street"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.street , Mode=TwoWay }"/>
+            <TextBox x:Name="Street"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.street , Mode=TwoWay }" TextChanged="City_TextChanged"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Bld number:" Height="26" Width="179"/>
-			<TextBox x:Name="Number"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.buildingNumber , Mode=TwoWay }"/>
+            <TextBox x:Name="Number"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.buildingNumber , Mode=TwoWay }" TextChanged="City_TextChanged"/>
 
 
         </Grid>
