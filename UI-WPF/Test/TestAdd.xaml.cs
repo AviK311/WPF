@@ -30,6 +30,7 @@ namespace UI_WPF
 		DateTime PreviousTime;
         Tester tester;
         bool distance = true;
+        bool calculating = false;
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -38,22 +39,27 @@ namespace UI_WPF
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
             //Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
             ////testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
-            if (distance == false)
-                MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (calculating == true)
+                MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                try
-            {
-                    bl.AddTest(test);
-                    MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                    TestWindow testWindow = new TestWindow();
-                    testWindow.Show();
-                    Close();
-
-                }
-                catch (InvalidOperationException exc)
+                if (distance == false)
+                    MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
                 {
-                    MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    try
+                    {
+                        bl.AddTest(test);
+                        MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                        TestWindow testWindow = new TestWindow();
+                        testWindow.Show();
+                        Close();
+
+                    }
+                    catch (InvalidOperationException exc)
+                    {
+                        MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
                 }
             }
         }
@@ -85,11 +91,13 @@ namespace UI_WPF
             //BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);     
             //if (address != null && tester != null)
             //{
-                distance = bl.TestersInRange(tester, address);
-                //if (bl.TestersInRange(tester, address) == false)
-                //    distance = false;
-                //else
-                //    distance = true;
+            calculating = true;
+            distance = bl.TestersInRange(tester, address);
+            calculating = false;
+            //if (bl.TestersInRange(tester, address) == false)
+            //    distance = false;
+            //else
+            //    distance = true;
             //}
         }
 
