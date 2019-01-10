@@ -353,8 +353,12 @@ namespace DAL
                 {
 					var DayElement = TesterRoot.Elements().FirstOrDefault(T => T.Element("id").Value == id).Element("Schedule").Element(item.Key.ToString());
 					var stringArray = DayElement.Value.Split(',');
-					foreach(var hour in stringArray)
-						toReturn.schedule[item.Key][int.Parse(hour)] = true;
+					foreach (var hour in stringArray)
+					{
+						int h;
+						if (int.TryParse(hour, out h))
+							toReturn.schedule[item.Key][h] = true;
+					}
 				}
 				var testerElement = (from tester in TesterRoot.Elements()
 									  where tester.Element("id").Value == id

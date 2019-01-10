@@ -76,10 +76,18 @@ namespace BE
 		{
 			return (ID != null && ID != "" && ID.Length == 8);
 		}
+		public static bool ValidateName(Name name)
+		{
+			var FirstValidate = name.first != "" && name.first != null;
+			var LastValidate = name.last != "" && name.last != null;
+			return FirstValidate && LastValidate;
+		}
 		public static void ValidatePerson(Person p)
 		{
 			if (!ValidateID(p.ID))
 				throw new InvalidOperationException("The ID must be 8 digits long!");
+			if (!ValidateName(p.Name))
+				throw new InvalidOperationException("Please enter first and last name!");
 			if (!ValidateEmail(p.Email))
 				throw new InvalidOperationException("The email address is invalid");
 			if (!ValidatePhone(p.PhoneNumber))

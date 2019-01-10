@@ -11,7 +11,7 @@ namespace BE
 		public Day()
 		{
 			for (int i = 0; i < 6; i++)
-				hours[i] = true;
+				hours[i] = false;
 		}
 		public Day(Day other)
 		{
@@ -60,6 +60,15 @@ namespace BE
 				if (!week.ContainsKey(index))
 					throw new System.InvalidOperationException("The given day is invalid");
 				return week[index];
+			}
+		}
+		public bool this[DayOfWeek dayIndex, int hourIndex]
+		{
+			get
+			{
+				if (!week.ContainsKey(dayIndex))
+					throw new System.InvalidOperationException("The given day is invalid");
+				return week[dayIndex][hourIndex];
 			}
 		}
 		public override string ToString()

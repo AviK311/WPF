@@ -42,7 +42,6 @@ namespace BE
 	public class Person
 	{
 		public List<Notification> notifications;
-		protected string id;
 		public DateTime BirthDay { get; set; }
 		public bool FirstLogIn { get; set; } = true;
 		public bool AwaitingAdminReset { get; set; } = false;
@@ -52,7 +51,7 @@ namespace BE
 		public string PhoneNumber { get; set; }
 		public Address Address { get; set; }
 		public Gender Sex { get; set; }
-		public string ID { get => id?.PadLeft(8,'0'); set => id = value; }
+		public string ID { get; set; }
 		public string Email { get; set; }
 		public override bool Equals(object obj)
 		{
