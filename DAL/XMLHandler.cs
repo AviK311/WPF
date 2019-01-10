@@ -177,9 +177,17 @@ namespace DAL
 				XElement Passed = new XElement("Passed", stats.passed);
 				Stats.Add(new XElement(item.Key.ToString(), GearType, SchoolName, TeacherName, NumOfLessons, NumOfTests, Passed));
 			}
+			List<XElement> Notifications = new List<XElement>();
+			foreach(var item in trainee.notifications)
+			{
+				XElement Icon = new XElement("Icon", item.Icon);
+				XElement Time = new XElement("Time", item.time);
+				XElement Message = new XElement("Message", item.message);
+				Notifications.Add(new XElement("Notification", Icon, Message, Time));
+			}
 			XElement Trainee = new XElement("Trainee", ID, Name, sex, phone, email,
 				BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, CurrentCarType,
-				Stats);
+				Stats, new XElement("Notifications", Notifications));
 			TraineeRoot.Add(Trainee);
 			TraineeRoot.Save(TraineePath);
 		}
@@ -226,8 +234,21 @@ namespace DAL
 					stats.passed = bool.Parse(TypeElement.Element("Passed").Value);
 					stats.schoolName = TypeElement.Element("SchoolName").Value;
 				}
+				var traineeElement = (from trainee in TraineeRoot.Elements()
+									  where trainee.Element("id").Value == id
+									  select trainee).FirstOrDefault();
+				toReturn.notifications = (from Notification in traineeElement.Elements("Notifications").Elements()
+										  select new Notification
+										  {
+											  Icon = (from icon in (MessageIcon[])Enum.GetValues(typeof(MessageIcon))
+													  where icon.ToString() == Notification.Element("Icon").Value
+													  select icon).FirstOrDefault(),
+											  message = Notification.Element("Message").Value,
+											  time = DateTime.Parse(Notification.Element("Time").Value)
+										  }).ToList();
 			}
-			catch {
+			catch
+			{
 				toReturn = null;
 			}
 			return toReturn;
@@ -280,10 +301,18 @@ namespace DAL
 				if (HourString.Length>0) HourString = HourString.Substring(0, HourString.Length - 1);
 				Days.Add(new XElement(item.Key.ToString(), HourString));
             }
-            XElement Schedule = new XElement("Schedule", Days);
+			List<XElement> Notifications = new List<XElement>();
+			foreach (var item in tester.notifications)
+			{
+				XElement Icon = new XElement("Icon", item.Icon);
+				XElement Time = new XElement("Time", item.time);
+				XElement Message = new XElement("Message", item.message);
+				Notifications.Add(new XElement("Notification", Icon, Message, Time));
+			}
+			XElement Schedule = new XElement("Schedule", Days);
             XElement Tester = new XElement("Tester", ID, Name, sex, phone, email,
                 BirthDay, Address, CheckEmail, AwaitingAdminReset, firstLogin, testingCarType, MaxDistance,
-                ExpYears, MaxWeeklyTests, Schedule);
+                ExpYears, MaxWeeklyTests, Schedule, new XElement("Notifications",Notifications));
             TesterRoot.Add(Tester);
             TesterRoot.Save(TesterPath);
         }
@@ -327,7 +356,19 @@ namespace DAL
 					foreach(var hour in stringArray)
 						toReturn.schedule[item.Key][int.Parse(hour)] = true;
 				}
-            }
+				var testerElement = (from tester in TesterRoot.Elements()
+									  where tester.Element("id").Value == id
+									  select tester).FirstOrDefault();
+				toReturn.notifications = (from Notification in testerElement.Elements("Notification").Elements()
+										  select new Notification
+										  {
+											  Icon = (from icon in (MessageIcon[])Enum.GetValues(typeof(MessageIcon))
+													  where icon.ToString() == Notification.Element("Icon").Value
+													  select icon).FirstOrDefault(),
+											  message = Notification.Element("Message").Value,
+											  time = DateTime.Parse(Notification.Element("Time").Value)
+										  }).ToList();
+			}
             catch
             {
                 toReturn = null;

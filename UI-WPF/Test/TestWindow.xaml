@@ -20,7 +20,17 @@
             </Grid.RowDefinitions>
             <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click" />
 		</Grid>
-        <ListBox x:Name="listBox" HorizontalAlignment="Left" Height="240" Margin="75,40,0,0" VerticalAlignment="Top" Width="320" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick"/>
-        <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
+		<DataGrid x:Name="listBox" HorizontalAlignment="Left" Height="328" Margin="75,40,0,0" VerticalAlignment="Top" Width="509" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick">
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Test Number" Binding="{Binding TestNumber}"/>
+				<DataGridTextColumn Header="Tester ID" Binding="{Binding TesterID}"/>
+				<DataGridTextColumn Header="Trainee ID" Binding="{Binding TraineeID}"/>
+				<DataGridTextColumn Header="Trainee Time" Binding="{Binding TestDateTime}"/>
+
+
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
     </Grid>
 </Window>

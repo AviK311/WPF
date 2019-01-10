@@ -56,8 +56,8 @@
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
 
 			<ComboBox x:Name="Hour" Width="120"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" VerticalAlignment="Center" Grid.Row="1" Margin="3"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
-            <Label Content="testing Car Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-			<TextBlock x:Name="testingCarTypeTextBlock"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4"  VerticalAlignment="Center"/>
+            <Label Content="Testing Vehicle Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+			<TextBlock x:Name="testingCarTypeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4"  VerticalAlignment="Center" Text="{Binding TestingCarType , Mode=TwoWay }"/>
         </Grid>
         <Grid x:Name="Address" VerticalAlignment="Top" Margin="53,272,0,0" HorizontalAlignment="Left"  Width="306">
             <Grid.RowDefinitions>

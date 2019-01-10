@@ -36,10 +36,12 @@ namespace BL
             var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
             if (update==false && otherTests != null &&otherTests.Any(T => Math.Abs((T.TestDateTime - DateTime.Now).TotalDays) < Configuration.TimeBetweenTests))
                 throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests));
-                       
-            if (testTrainee.CurrentCarType != testTester.testingCarType)
-                throw new InvalidOperationException("The tester does not teach on the vehicle type that the trainee learned with");
-            if (testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfLessons < 20)
+
+			if (testTrainee.CurrentCarType != testTester.testingCarType)
+				throw new InvalidOperationException("The tester does not teach on the vehicle type that the trainee learned with");
+			else test.TestingCarType = testTrainee.CurrentCarType;
+
+			if (testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfLessons < 20)
                 throw new InvalidOperationException("The trainee is not yet ready for a test");
             if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
                 throw new InvalidOperationException("The student has already passed a test on that vehicle");

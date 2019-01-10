@@ -17,7 +17,6 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-                <RowDefinition Height="Auto"/>
 
 
             </Grid.RowDefinitions>
@@ -28,16 +27,14 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Date Time:"/>
             <DatePicker x:Name="testDateTimeDatePicker"  VerticalAlignment="Center" SelectedDate="{Binding TestDateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" SelectedDateChanged="Hour_SelectionChanged"/>
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
-            <ComboBox x:Name="testerIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="testerIDComboBox_SelectionChanged" />
+			<ComboBox x:Name="testerIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="CheckingValidAddress" />
 
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
             <ComboBox x:Name="traineeIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="3" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}"/>
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
 
             <ComboBox x:Name="Hour" Width="120" VerticalAlignment="Bottom" Grid.Row="1" Margin="3,0,0,5"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
-            <Label Content="testing Car Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBlock x:Name="testingCarTypeTextBlock" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4"  VerticalAlignment="Center"/>
-        </Grid>
+             </Grid>
         <Grid x:Name="Address" VerticalAlignment="Top" Margin="225,264,0,0" HorizontalAlignment="Left"  Width="306">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -55,11 +52,11 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Center" Grid.Column="0" Content="Beginning Address" Height="26" Width="293" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
 
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="City:" Height="26" Width="179"/>
-            <TextBox x:Name="City"  Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" TextChanged="City_TextChanged" />
+			<TextBox x:Name="City"  Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" TextChanged="CheckingValidAddress2" />
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Street:" Height="26" Width="179"/>
-            <TextBox x:Name="Street" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"  TextChanged="City_TextChanged"/>
+			<TextBox x:Name="Street" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"  TextChanged="CheckingValidAddress2"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Bld number:" Height="26" Width="179"/>
-            <TextBox x:Name="Number" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"  TextChanged="City_TextChanged" />
+			<TextBox x:Name="Number" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1"  TextChanged="CheckingValidAddress2" />
 
 
         </Grid>
