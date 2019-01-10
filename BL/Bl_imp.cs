@@ -114,7 +114,9 @@ namespace BL
         {
 			if (!update && dal.GetTesters().Any(T => T.Equals(tester)))
 				throw new InvalidOperationException("A tester with that ID already exists");
-			if (tester.GetAge() < Configuration.MinAgeOfTester)
+            if (!update && dal.GetTrainees().Any(T => T.Equals(tester)))
+                throw new InvalidOperationException("A trainee with that ID already exists");
+            if (tester.GetAge() < Configuration.MinAgeOfTester)
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
             dal.AddTester(tester);
         }
@@ -123,7 +125,9 @@ namespace BL
         {
 			if (!update &&dal.GetTrainees().Any(T => T.Equals(trainee)))
 				throw new InvalidOperationException("A trainee with that ID already exists");
-			dal.AddTrainee(trainee);
+            if (!update && dal.GetTesters().Any(T => T.Equals(trainee)))
+                throw new InvalidOperationException("A tester with that ID already exists");
+            dal.AddTrainee(trainee);
         }
 
         public IEnumerable<Test> AppropriateTests(Func<Test, bool> match)
