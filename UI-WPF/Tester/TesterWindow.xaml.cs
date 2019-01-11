@@ -23,12 +23,13 @@ namespace UI_WPF
     {
         //private ObservableCollection<Tester> trainees = new ObservableCollection<Tester>();
         IBL bl;
-
+		List<Tester> list;
         public TesterWindow()
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-			DataContext = bl.GetTesters();
+			list = bl.GetTesters().ToList();
+			DataContext = list;
 			if (!(GlobalSettings.User is Admin))
 				Add.Visibility = Visibility.Hidden;
 
@@ -45,7 +46,7 @@ namespace UI_WPF
 		{
 			if (listBox.SelectedItem != null)
 			{
-				TesterView testerView = new TesterView((Tester)listBox.SelectedItem);
+				TesterView testerView = new TesterView((Tester)listBox.SelectedItem, list);
 				testerView.Show();
 				Close();				
 			}
@@ -83,7 +84,7 @@ namespace UI_WPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text));
+            DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
         }
     }
 }

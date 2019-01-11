@@ -66,30 +66,30 @@ namespace UI_WPF
 
 		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+			try
 			{
-				MessageBox.Show("A Trainee cannot appoint a test that has passed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+					throw new InvalidOperationException("A Trainee cannot appoint a test retroactively");
+				if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
+					throw new InvalidOperationException("You cannot appoint a test on a " + test.TestDateTime.DayOfWeek);
+				TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
+				test.TestDateTime = test.TestDateTime.Date + ts;
+				if (test.TestDateTime > DateTime.Now)
+				{
+
+					propertiesGrid.Visibility = Visibility.Hidden;
+					foreach (var i in propertiesGrid.Children.OfType<CheckBox>())
+						i.IsChecked = false;
+				}
+				else propertiesGrid.Visibility = Visibility.Visible;
+				LastValidTime = test.TestDateTime;
+			}
+			catch(Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				test.TestDateTime = LastValidTime;
 				testDateTimeDatePicker.SelectedDate = LastValidTime;
-				return;
 			}
-			if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
-			{
-				MessageBox.Show("You cannot appoint a test on a " + test.TestDateTime.DayOfWeek, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				test.TestDateTime = LastValidTime;
-				testDateTimeDatePicker.SelectedDate = LastValidTime;
-				return;
-			}
-			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
-			test.TestDateTime = test.TestDateTime.Date + ts;
-			if (test.TestDateTime > DateTime.Now) {
-				
-			propertiesGrid.Visibility = Visibility.Hidden;
-			foreach (var i in propertiesGrid.Children.OfType<CheckBox>()) 
-				i.IsChecked = false;
-			}
-			else propertiesGrid.Visibility = Visibility.Visible;
-			LastValidTime = test.TestDateTime;
 		}
 
        
@@ -102,18 +102,11 @@ namespace UI_WPF
 
         private void VerifyRange(Address address,Tester tester)
         {
-            //tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
-            //BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);     
-            //if (address != null && tester != null)
-            //{
+            
             calculating = true;
             distance = bl.TestersInRange(tester, address);
             calculating = false;
-            //if (bl.TestersInRange(tester, address) == false)
-            //    distance = false;
-            //else
-            //    distance = true;
-            //}
+           
         }
 
         private void CheckingValidAddress(object sender, SelectionChangedEventArgs e)

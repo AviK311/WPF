@@ -30,12 +30,12 @@ namespace UI_WPF
         Tester tester;
         bool distance = true;
         bool calculating = false;
-        public TestView(Test test1)
+        public TestView(Test test1, List<Test> testList)
 		{
 			testers = new List<string>();
 			trainees = new List<string>();
 			InitializeComponent();
-            list = bl.GetTests().ToList();
+            list = testList;
 			test = new Test(list.First(T => T.TestNumber == test1.TestNumber));
 			LastValidTime = test.TestDateTime;
 			SaveButton.Visibility = Visibility.Hidden;            
@@ -209,38 +209,30 @@ namespace UI_WPF
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-			
-			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+			try
 			{
-				MessageBox.Show("A Trainee cannot change a test to a past date", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+					throw new InvalidOperationException("A Trainee cannot change a test to a past date");
+					
+				if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
+					throw new InvalidOperationException("You cannot appoint a test on a " + test.TestDateTime.DayOfWeek);				TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
+				test.TestDateTime = test.TestDateTime.Date + ts;
+				if (test.TestDateTime > DateTime.Now)
+				{
+					propertiesGrid.Visibility = Visibility.Hidden;
+					foreach (var i in propertiesGrid.Children.OfType<CheckBox>())
+						i.IsChecked = false;
+				}
+				else propertiesGrid.Visibility = Visibility.Visible;
+				LastValidTime = test.TestDateTime;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show(ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				test.TestDateTime = LastValidTime;
 				testDateTimeDatePicker.SelectedDate = LastValidTime;
-				return;
 			}
-			if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
-			{
-				MessageBox.Show("You cannot appoint a test on a " + test.TestDateTime.DayOfWeek, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-				test.TestDateTime = LastValidTime;
-				testDateTimeDatePicker.SelectedDate = LastValidTime;
-				return;
-			}
-			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
-			test.TestDateTime = test.TestDateTime.Date + ts;
-            if (test.TestDateTime > DateTime.Now)
-            {
-                propertiesGrid.Visibility = Visibility.Hidden;
-                foreach (var i in propertiesGrid.Children.OfType<CheckBox>())
-                    i.IsChecked = false;
-            }
-            else propertiesGrid.Visibility = Visibility.Visible;
-			LastValidTime = test.TestDateTime;
 			
-			//testers.Clear();
-			//foreach (var item in bl.AvailableTesters(test.TestDateTime))
-			//	testers.Add(item.ID);
-			//if (test.TestDateTime == OriginalTime)
-			//	testers.Add(test.TesterID);
-			//testerIDComboBox.ItemsSource = testers;
 		}
 
     }

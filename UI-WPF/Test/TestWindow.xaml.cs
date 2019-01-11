@@ -22,20 +22,21 @@ namespace UI_WPF
     public partial class TestWindow : Window
     {
         IBL bl;
+		List<Test> testlist;
         public TestWindow()
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-			var list = bl.GetTests().ToList();
+			testlist = bl.GetTests().ToList();
 			if (GlobalSettings.User is Trainee)
-				DataContext = (from item in list
+				DataContext = (from item in testlist
 							   where item.TraineeID == GlobalSettings.User.ID
 							   select item).ToList();
 			else if(GlobalSettings.User is Tester)
-				DataContext = (from item in list
+				DataContext = (from item in testlist
 							   where item.TesterID == GlobalSettings.User.ID
 							   select item).ToList();
-			else DataContext = list;
+			else DataContext = testlist;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -48,7 +49,7 @@ namespace UI_WPF
         {
             if (listBox.SelectedItem != null)
             {
-                TestView testerView = new TestView((Test)listBox.SelectedItem);
+                TestView testerView = new TestView((Test)listBox.SelectedItem, testlist);
                 testerView.Show();
                 Close();
             }

@@ -23,8 +23,8 @@ namespace UI_WPF
     {
         IBL bl = BL.FactoryBL.GetBL();
         Trainee trainee;        
-		List<Trainee> list;
-        public ViewTrainee(Trainee trainee1)
+		List<Trainee> traineelist;
+        public ViewTrainee(Trainee trainee1, List<Trainee> list )
         {           
             InitializeComponent();                 
             //bl = BL.FactoryBL.GetBL();
@@ -41,8 +41,8 @@ namespace UI_WPF
 					TraineeDeleteButton.IsEnabled = false;
 					CancelButton.IsEnabled = false;
 			}
-			list = (List<Trainee>)bl.GetTrainees();
-			trainee = list.First(T=>T.Equals(trainee1));
+			traineelist = list;
+			trainee =new Trainee(trainee1);
 			DataContext = trainee;
             this.cartype.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
             this.sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
@@ -104,7 +104,7 @@ namespace UI_WPF
                         }
                         else
                         {
-                            list = (List<Trainee>)bl.GetTrainees();
+                            traineelist = (List<Trainee>)bl.GetTrainees();
                             RightButton_Click(sender, e);
                         }
                     }
@@ -138,10 +138,10 @@ namespace UI_WPF
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-			int currentIndex = list.FindIndex(T => T.Equals(trainee));
-			if (currentIndex + 1 == list.Count)
+			int currentIndex = traineelist.FindIndex(T => T.Equals(trainee));
+			if (currentIndex + 1 == traineelist.Count)
 				currentIndex = -1;
-			trainee = list[currentIndex + 1];
+			trainee = new Trainee(traineelist[currentIndex + 1]);
 			DataContext = trainee;
 			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
 			cartype.SelectedItem = trainee.CurrentCarType;
@@ -150,10 +150,10 @@ namespace UI_WPF
 		}
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-			int currentIndex = list.FindIndex(T => T.Equals(trainee));
+			int currentIndex = traineelist.FindIndex(T => T.Equals(trainee));
 			if (currentIndex == 0)
-				currentIndex = list.Count;
-			trainee = list[currentIndex - 1];
+				currentIndex = traineelist.Count;
+			trainee = new Trainee(traineelist[currentIndex - 1]);
 			DataContext = trainee;
 			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
 			cartype.SelectedItem = trainee.CurrentCarType;

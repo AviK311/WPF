@@ -20,12 +20,13 @@
             </Grid.RowDefinitions>
             <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click" />
 		</Grid>
-		<DataGrid x:Name="listBox" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="328" Margin="75,40,0,0" VerticalAlignment="Top" Width="509" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick">
+		<DataGrid x:Name="listBox"  AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="328" Margin="75,40,0,0" VerticalAlignment="Top" Width="509" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick">
 			<DataGrid.Columns>
-				<DataGridTextColumn Header="Test Number" Binding="{Binding TestNumber}"/>
+				<DataGridTextColumn Header="Test Number"  Binding="{Binding TestNumber}"/>
 				<DataGridTextColumn Header="Tester ID" Binding="{Binding TesterID}"/>
 				<DataGridTextColumn Header="Trainee ID" Binding="{Binding TraineeID}"/>
-				<DataGridTextColumn Header="Test Time" Binding="{Binding TestDateTime}"/>
+				<DataGridTextColumn Header="Test Date" Binding="{Binding TestDateTime, StringFormat='dd/MM/yyyy'}"/>
+				<DataGridTextColumn Header="Test Hour" Binding="{Binding TestDateTime, StringFormat='HH'}"/>
 				<DataGridCheckBoxColumn  Header="Passed" Binding="{Binding testProperties.passed }"/>
 				<DataGridTextColumn Header="Vehicle Type" Binding="{Binding TestingCarType}"/>
 			</DataGrid.Columns>

@@ -36,7 +36,7 @@ namespace UI_WPF
         {
 			Window trainee;
 			if (GlobalSettings.User is Trainee)
-				trainee = new ViewTrainee((Trainee)GlobalSettings.User);
+				trainee = new ViewTrainee((Trainee)GlobalSettings.User, null);
 			else 
               trainee = new TraineeWindow();
             trainee.Show();
@@ -47,7 +47,7 @@ namespace UI_WPF
         {
 			Window tester;
 			if (GlobalSettings.User is Tester)
-				tester = new TesterView((Tester)GlobalSettings.User);
+				tester = new TesterView((Tester)GlobalSettings.User, null);
 			else tester = new TesterWindow();
             tester.Show();
             Close();

@@ -22,14 +22,16 @@ namespace UI_WPF
     public partial class TraineeWindow : Window
     {
         //private ObservableCollection<Trainee> trainees=new ObservableCollection<Trainee>();
-        IBL bl;        
+        IBL bl;
+		List<Trainee> list;
         public TraineeWindow()
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
 			if (!(GlobalSettings.User is Admin))
 				Add.Visibility = Visibility.Hidden;
-            DataContext = bl.GetTrainees();
+			list = bl.GetTrainees().ToList();
+			DataContext = list;
 
 
         }
@@ -46,7 +48,7 @@ namespace UI_WPF
         {
             if (listBox.SelectedItem != null)
             {
-                ViewTrainee traineeView = new ViewTrainee((Trainee)listBox.SelectedItem);
+                ViewTrainee traineeView = new ViewTrainee((Trainee)listBox.SelectedItem, list);
                 traineeView.Show();
                 Close();
             }
@@ -87,7 +89,7 @@ namespace UI_WPF
 
         private void button_Click(object sender, RoutedEventArgs e)
         {
-            DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text));
+            DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text)|| d.Name.ToString().Contains(ID_textBox.Text));
         }
       
     }
