@@ -63,14 +63,19 @@ namespace BE
 		{
 			notifications = new List<Notification>();
 		}
-		
-		public ushort GetAge()
+
+		public ushort Age
 		{
-			DateTime now = DateTime.Today;
-			ushort age = (ushort)(now.Year - BirthDay.Year);
-			if (now < BirthDay.AddYears(age)) age--;
-			return age;
+			get
+			{
+				DateTime now = DateTime.Today;
+				ushort age = (ushort)(now.Year - BirthDay.Year);
+				if (now < BirthDay.AddYears(age)) age--;
+				return age;
+			}
+			set { }
 		}
+
 		public void AddNotification(string message, MessageIcon icon)
 		{
 			notifications.Add(new Notification(message: message, icon: icon));

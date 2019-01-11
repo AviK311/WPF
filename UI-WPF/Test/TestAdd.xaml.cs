@@ -66,8 +66,9 @@ namespace UI_WPF
 
 		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
-			if (GlobalSettings.User is Trainee && test.TestDateTime > DateTime.Now)
+			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 			{
+				MessageBox.Show("A Trainee cannot appoint a test that has passed", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				test.TestDateTime = LastValidTime;
 				testDateTimeDatePicker.SelectedDate = LastValidTime;
 				return;
@@ -138,7 +139,10 @@ namespace UI_WPF
 			propertiesGrid.Visibility = Visibility.Hidden;
 			bl = FactoryBL.GetBL();
 			test = new Test();
-			test.TestDateTime = DateTime.Now;
+			var closestValidDate = DateTime.Now;
+			if (closestValidDate.DayOfWeek > (DayOfWeek)4)
+				closestValidDate = closestValidDate.AddDays(7 - (int)closestValidDate.DayOfWeek);
+			test.TestDateTime = closestValidDate;
 			LastValidTime = test.TestDateTime;
 			DataContext = test;
 			int[] arr = { 9, 10, 11, 12, 13, 14 };

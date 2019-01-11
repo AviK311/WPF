@@ -210,8 +210,9 @@ namespace UI_WPF
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 			
-			if (GlobalSettings.User is Trainee && test.TestDateTime > DateTime.Now)
+			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 			{
+				MessageBox.Show("A Trainee cannot change a test to a past date", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 				test.TestDateTime = LastValidTime;
 				testDateTimeDatePicker.SelectedDate = LastValidTime;
 				return;
