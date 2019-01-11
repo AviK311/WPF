@@ -26,7 +26,7 @@ namespace UI_WPF
         List<string> testers, trainees;
         IBL bl = BL.FactoryBL.GetBL();
         List<Test> list;
-		readonly DateTime OriginalTime;
+		DateTime LastValidTime;
         Tester tester;
         bool distance = true;
         bool calculating = false;
@@ -37,7 +37,7 @@ namespace UI_WPF
 			InitializeComponent();
             list = bl.GetTests().ToList();
 			test = new Test(list.First(T => T.TestNumber == test1.TestNumber));
-			OriginalTime = test.TestDateTime;
+			LastValidTime = test.TestDateTime;
 			SaveButton.Visibility = Visibility.Hidden;            
             propertiesGrid.Visibility = Visibility.Hidden;
             bl = FactoryBL.GetBL();
@@ -134,8 +134,12 @@ namespace UI_WPF
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-			test = new Test(list.First(T => T.TestNumber == test.TestNumber));
-			DataContext= test;
+		//	test = new Test(list.First(T => T.TestNumber == test.TestNumber));
+		//	DataContext= test;
+		//	Hour.SelectedIndex = test.TestDateTime.Hour - 9;
+		//	City.Text = test.BeginLocation.city;
+		//	Street.Text = test.BeginLocation.street;
+		//	Number.Text = test.BeginLocation.buildingNumber;
 			EditButton.Visibility = Visibility.Visible;
 			SaveButton.Visibility = Visibility.Hidden;
 		}
@@ -203,7 +207,21 @@ namespace UI_WPF
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
+			
+			if (GlobalSettings.User is Trainee && test.TestDateTime > DateTime.Now)
+			{
+				test.TestDateTime = LastValidTime;
+				testDateTimeDatePicker.SelectedDate = LastValidTime;
+				return;
+			}
+			if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
+			{
+				MessageBox.Show("You cannot appoint a test on a " + test.TestDateTime.DayOfWeek, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				test.TestDateTime = LastValidTime;
+				testDateTimeDatePicker.SelectedDate = LastValidTime;
+				return;
+			}
+			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
             if (test.TestDateTime > DateTime.Now)
             {
@@ -212,6 +230,8 @@ namespace UI_WPF
                     i.IsChecked = false;
             }
             else propertiesGrid.Visibility = Visibility.Visible;
+			LastValidTime = test.TestDateTime;
+			
 			//testers.Clear();
 			//foreach (var item in bl.AvailableTesters(test.TestDateTime))
 			//	testers.Add(item.ID);
