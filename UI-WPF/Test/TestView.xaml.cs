@@ -76,20 +76,25 @@ namespace UI_WPF
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            if (distance == false)
-                MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+            if (calculating == true)
+                MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                try
+                if (distance == false)
+                    MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                else
                 {
-                    bl.UpdateTest(test);
-                    EditButton.Visibility = Visibility.Visible;
-                    SaveButton.Visibility = Visibility.Hidden;
-                    MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                }
-                catch (InvalidOperationException exc)
-                {
-                    MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    try
+                    {
+                        bl.UpdateTest(test);
+                        EditButton.Visibility = Visibility.Visible;
+                        SaveButton.Visibility = Visibility.Hidden;
+                        MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                    }
+                    catch (InvalidOperationException exc)
+                    {
+                        MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    }
                 }
             }
 		}
