@@ -357,7 +357,7 @@ namespace DAL
 					{
 						int h;
 						if (int.TryParse(hour, out h))
-							toReturn.schedule[item.Key][h] = true;
+							toReturn.schedule[item.Key,h] = true;
 					}
 				}
 				var testerElement = (from tester in TesterRoot.Elements()

@@ -26,7 +26,7 @@ namespace UI_WPF
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-			var list = bl.GetTests();
+			var list = bl.GetTests().ToList();
 			if (GlobalSettings.User is Trainee)
 				DataContext = (from item in list
 							   where item.TraineeID == GlobalSettings.User.ID

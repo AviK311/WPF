@@ -35,8 +35,8 @@ namespace UI_WPF
 			testers = new List<string>();
 			trainees = new List<string>();
 			InitializeComponent();
-            list = (List<Test>)bl.GetTests();
-			test = list.First(T => T.TestNumber == test1.TestNumber);
+            list = bl.GetTests().ToList();
+			test = new Test(list.First(T => T.TestNumber == test1.TestNumber));
 			OriginalTime = test.TestDateTime;
 			SaveButton.Visibility = Visibility.Hidden;            
             propertiesGrid.Visibility = Visibility.Hidden;
@@ -129,7 +129,8 @@ namespace UI_WPF
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-
+			test = new Test(list.First(T => T.TestNumber == test.TestNumber));
+			DataContext= test;
 			EditButton.Visibility = Visibility.Visible;
 			SaveButton.Visibility = Visibility.Hidden;
 		}
@@ -145,7 +146,7 @@ namespace UI_WPF
             int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
             if (currentIndex + 1 == list.Count)
                 currentIndex = -1;
-            test = list[currentIndex + 1];
+            test = new Test(list[currentIndex + 1]);
             DataContext = test;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 				EditButton.IsEnabled = false;
@@ -158,7 +159,7 @@ namespace UI_WPF
             int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
             if (currentIndex == 0)
                 currentIndex = list.Count;
-            test = list[currentIndex - 1];
+            test = new Test(list[currentIndex - 1]);
 
             DataContext = test;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)

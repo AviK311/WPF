@@ -27,14 +27,21 @@ namespace BE
 		public bool SignsReading { get; set; }
 		public bool Breaking { get; set; }
 
-		public bool passed()
+		public bool passed
 		{
-			var info = GetType().GetProperties();
-			int passedTests = 0;
-			foreach (var item in info)
-				if ((bool)item.GetValue(this)) passedTests++;
-			double grade = (double)passedTests / info.Length;
-			return grade >= Configuration.MinPassGrade;
+			get
+			{
+				var info = GetType().GetProperties();
+				int passedTests = 0;
+				foreach (var item in info)
+				{
+					if (item.Name != "passed" && (bool)item.GetValue(this)) passedTests++;
+					//if ((bool)item.GetValue(this)) passedTests++;
+				}
+				double grade = (double)passedTests / info.Length;
+				return grade >= Configuration.MinPassGrade;
+			}
+			set { }
 		}
 	}
 }

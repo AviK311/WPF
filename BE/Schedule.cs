@@ -70,6 +70,12 @@ namespace BE
 					throw new System.InvalidOperationException("The given day is invalid");
 				return week[dayIndex][hourIndex];
 			}
+			set
+			{
+				if (!week.ContainsKey(dayIndex))
+					throw new System.InvalidOperationException("The given day is invalid");
+				week[dayIndex][hourIndex] = value;
+			}
 		}
 		public override string ToString()
 		{

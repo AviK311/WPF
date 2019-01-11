@@ -51,7 +51,7 @@ namespace BL
                                   where test1.TesterID == testTester.ID
                                   select test1;
 			///if the tester is unavailable
-			if (!testTester.schedule[day][time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour&&T.TestNumber!=test.TestNumber))
+			if (!testTester.schedule[day,time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour&&T.TestNumber!=test.TestNumber))
 				throw new InvalidOperationException("The tester is unavailable");
             var tests_by_tester_same_week = from test1 in tests_by_tester
                                             where Functions.DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
@@ -64,7 +64,7 @@ namespace BL
 
             if (test.TestDateTime < DateTime.Now)
 			{
-				if (test.testProperties.passed())
+				if (test.testProperties.passed)
 				{
 					testTrainee.carTypeStats[testTrainee.CurrentCarType].passed = true;
 					
@@ -138,7 +138,7 @@ namespace BL
                           let tests = from test in dal.GetTests()
                                       where test.TesterID==tester.ID
                                       select test
-                          where tester.schedule[date.DayOfWeek][date.Hour]  
+                          where tester.schedule[date.DayOfWeek,date.Hour]  
                                 && !tests.Any(T=>(T.TestDateTime-date).Days==0 && date.Hour==T.TestDateTime.Hour)
                                 && tester.MaxWeeklyTests<tests.Count()
                           select tester;
@@ -150,7 +150,7 @@ namespace BL
 				for (int hour = 9; hour < 15; hour++)
 				{
 					DateTime availableDate = new DateTime(j.Year, j.Month, j.Day, hour, 0, 0);
-					if (tester.schedule[j.DayOfWeek][hour] &&
+					if (tester.schedule[j.DayOfWeek,hour] &&
 						AvailableTesters(availableDate).Any(T => T.Equals(tester)))
 						available.Add(availableDate);
 				}

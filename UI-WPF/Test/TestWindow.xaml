@@ -26,7 +26,7 @@
 				<DataGridTextColumn Header="Tester ID" Binding="{Binding TesterID}"/>
 				<DataGridTextColumn Header="Trainee ID" Binding="{Binding TraineeID}"/>
 				<DataGridTextColumn Header="Test Time" Binding="{Binding TestDateTime}"/>
-				<DataGridCheckBoxColumn Header="Test Time" Binding="{Binding testProperties.passed}"/>
+				<DataGridCheckBoxColumn IsReadOnly="True" Header="Test Time" Binding="{Binding testProperties.passed }"/>
 
 			</DataGrid.Columns>
 		</DataGrid>
