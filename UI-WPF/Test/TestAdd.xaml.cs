@@ -27,7 +27,7 @@ namespace UI_WPF
 		IBL bl;
 		List<string> testers, trainees;
 		Test test;
-		DateTime PreviousTime;
+		DateTime LastValidTime;
         Tester tester;
         bool distance = true;
         bool calculating = false;
@@ -66,6 +66,19 @@ namespace UI_WPF
 
 		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
 		{
+			if (GlobalSettings.User is Trainee && test.TestDateTime > DateTime.Now)
+			{
+				test.TestDateTime = LastValidTime;
+				testDateTimeDatePicker.SelectedDate = LastValidTime;
+				return;
+			}
+			if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
+			{
+				MessageBox.Show("You cannot appoint a test on a " + test.TestDateTime.DayOfWeek, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+				test.TestDateTime = LastValidTime;
+				testDateTimeDatePicker.SelectedDate = LastValidTime;
+				return;
+			}
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			if (test.TestDateTime > DateTime.Now) {
@@ -75,6 +88,7 @@ namespace UI_WPF
 				i.IsChecked = false;
 			}
 			else propertiesGrid.Visibility = Visibility.Visible;
+			LastValidTime = test.TestDateTime;
 		}
 
        
@@ -125,7 +139,7 @@ namespace UI_WPF
 			bl = FactoryBL.GetBL();
 			test = new Test();
 			test.TestDateTime = DateTime.Now;
-			PreviousTime = test.TestDateTime;
+			LastValidTime = test.TestDateTime;
 			DataContext = test;
 			int[] arr = { 9, 10, 11, 12, 13, 14 };
 			Hour.ItemsSource = arr;

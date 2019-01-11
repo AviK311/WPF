@@ -157,6 +157,7 @@ namespace UI_WPF
                 currentIndex = -1;
             test = new Test(list[currentIndex + 1]);
             DataContext = test;
+			LastValidTime = test.TestDateTime;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 				EditButton.IsEnabled = false;
 			else EditButton.IsEnabled = true;
@@ -171,6 +172,7 @@ namespace UI_WPF
             test = new Test(list[currentIndex - 1]);
 
             DataContext = test;
+			LastValidTime = test.TestDateTime;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 				EditButton.IsEnabled = false;
 			else EditButton.IsEnabled = true;
