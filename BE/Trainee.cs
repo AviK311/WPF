@@ -8,7 +8,10 @@ namespace BE
 	{
 		public Dictionary<VehicleType, Stats> carTypeStats { get; set; }
 		public VehicleType CurrentCarType { get; set; }
-
+		public bool Passed
+		{
+			get { return carTypeStats[CurrentCarType].passed; }
+		}
 		public Trainee(Trainee other)
 		{
 			notifications = new List<Notification>(other.notifications);

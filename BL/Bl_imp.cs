@@ -45,8 +45,12 @@ namespace BL
                 throw new InvalidOperationException("The trainee is not yet ready for a test");
             if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
                 throw new InvalidOperationException("The student has already passed a test on that vehicle");
-            DayOfWeek day = test.TestDateTime.DayOfWeek;
+			Holiday? holiday;
+			if (Functions.IsHoliday(test.TestDateTime, out holiday))
+				throw new InvalidOperationException("The chosen date falls out on " + Functions.InsertSpacesBeforeUpper(holiday.ToString()));
+			DayOfWeek day = test.TestDateTime.DayOfWeek;
             int time = test.TestDateTime.Hour;
+			
             var tests_by_tester = from test1 in dal.GetTests()
                                   where test1.TesterID == testTester.ID
                                   select test1;

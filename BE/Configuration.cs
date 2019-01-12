@@ -16,6 +16,7 @@ namespace BE
 		public static Regex PhoneRegex { get; } = new Regex(@"\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})");
 		public static string SystemEmail { get; } = "CsharpProject5779@gmail.com";
 		public static MailClient MailSender { get; set; } = new MailClient();
+		
 		public Configuration()
         {
 

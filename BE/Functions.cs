@@ -110,9 +110,13 @@ namespace BE
 			return new string(Enumerable.Repeat(chars, 8)
 			  .Select(s => s[random.Next(s.Length)]).ToArray());
 		}
-		 
-			
-		
+		public static bool IsHoliday(DateTime Day, out Holiday? holiday)
+		{
+			return HebCal.HolidayChecker.IsHoliday(Day, out holiday);
+		}
+
+
+
 	}
 		
 
