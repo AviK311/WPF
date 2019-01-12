@@ -30,7 +30,7 @@
 				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
 				<DataGridTextColumn Header="Age" Binding="{Binding Age }"/>
 				<DataGridTextColumn Header="Vehicle Type" Binding="{Binding CurrentCarType}"/>
-				<DataGridCheckBoxColumn Header="Passed" Binding="{Binding carTypeStats[CurrentCarType].passed}"/>
+				<DataGridCheckBoxColumn Header="Passed" Binding="{Binding Passed, Mode=OneWay}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 		<Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>

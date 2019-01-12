@@ -110,7 +110,7 @@ namespace DAL
 
 		public IEnumerable<Test> GetTests()
 		{
-			return new List<Test>(DataSource.testList);
+			return Functions.TrueCopyTests(DataSource.testList);
 		}
 
 		public Trainee GetTrainee(string id)

@@ -114,8 +114,28 @@ namespace BE
 		{
 			return HebCal.HolidayChecker.IsHoliday(Day, out holiday);
 		}
-
-
+		
+		public static List<Test> TrueCopyTests(List<Test> other)
+		{
+			List<Test> tests = new List<Test>();
+			foreach (var t in other)
+				tests.Add(new Test(t));
+			return tests;
+		}
+		public static List<Tester> TrueCopyTesters(List<Tester> other)
+		{
+			List<Tester> testers = new List<Tester>();
+			foreach (var t in other)
+				testers.Add(new Tester(t));
+			return testers;
+		}
+		public static List<Trainee> TrueCopyTrainee(List<Trainee> other)
+		{
+			List<Trainee> trainees = new List<Trainee>();
+			foreach (var t in other)
+				trainees.Add(new Trainee(t));
+			return trainees;
+		}
 
 	}
 		

@@ -41,7 +41,7 @@ namespace UI_WPF
 					TraineeDeleteButton.IsEnabled = false;
 					CancelButton.IsEnabled = false;
 			}
-			traineelist = list;
+			traineelist = Functions.TrueCopyTrainee(list);
 			trainee =new Trainee(trainee1);
 			DataContext = trainee;
             this.cartype.ItemsSource = Enum.GetValues(typeof(BE.VehicleType));
@@ -121,7 +121,7 @@ namespace UI_WPF
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
         {
-
+			
             EditButton.Visibility = Visibility.Visible;
             SaveButton.Visibility = Visibility.Hidden;
         }
@@ -141,7 +141,7 @@ namespace UI_WPF
 			int currentIndex = traineelist.FindIndex(T => T.Equals(trainee));
 			if (currentIndex + 1 == traineelist.Count)
 				currentIndex = -1;
-			trainee = new Trainee(traineelist[currentIndex + 1]);
+			trainee = traineelist[currentIndex + 1];
 			DataContext = trainee;
 			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
 			cartype.SelectedItem = trainee.CurrentCarType;
@@ -153,7 +153,7 @@ namespace UI_WPF
 			int currentIndex = traineelist.FindIndex(T => T.Equals(trainee));
 			if (currentIndex == 0)
 				currentIndex = traineelist.Count;
-			trainee = new Trainee(traineelist[currentIndex - 1]);
+			trainee = traineelist[currentIndex - 1];
 			DataContext = trainee;
 			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
 			cartype.SelectedItem = trainee.CurrentCarType;

@@ -30,7 +30,7 @@ namespace UI_WPF
 		List<CheckBox> tueCheckboxes = new List<CheckBox>();
 		List<CheckBox> wedCheckboxes = new List<CheckBox>();
 		List<CheckBox> thursCheckboxes = new List<CheckBox>();
-        List<Tester> testerlist;       
+        List<Tester> testerList;       
         //public TesterView(Tester tester1)
 
         public TesterView(Tester tester1, List<Tester> list)
@@ -49,7 +49,7 @@ namespace UI_WPF
 					TesterDeleteButton.IsEnabled = false;
 					CancelButton.IsEnabled = false;
 			}
-			testerlist = list;
+			testerList = Functions.TrueCopyTesters(list);
 			tester = new Tester(tester1);
 			DataContext = tester;
     
@@ -135,7 +135,7 @@ namespace UI_WPF
                         }
                         else
                         {
-                            testerlist = (List<Tester>)bl.GetTesters();
+                            testerList = (List<Tester>)bl.GetTesters();
                             RightButton_Click(sender, e);
                         }
                     }
@@ -169,18 +169,10 @@ namespace UI_WPF
 		}
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            //SaveButton.Visibility = Visibility.Hidden;
-            //EditButton.Visibility = Visibility.Visible;
-
-
-
-            //Tester t = bl.GetTesters().First();
-            //bl.RemoveTester(t.ID);
-            //bl.AddTester(t);
-            int currentIndex = testerlist.FindIndex(T => T.Equals(tester));
-            if (currentIndex + 1 == testerlist.Count)
+            int currentIndex = testerList.FindIndex(T => T.Equals(tester));
+            if (currentIndex + 1 == testerList.Count)
                 currentIndex = -1;
-            tester = new Tester(testerlist[currentIndex + 1]);
+            tester = testerList[currentIndex + 1];
            
             foreach (var item in sunCheckboxes)
                 item.IsChecked = tester.schedule[DayOfWeek.Sunday][sunCheckboxes.IndexOf(item) + 9];
@@ -206,10 +198,10 @@ namespace UI_WPF
             //    bl.AddTester(t);
             //}
             //tester = new Tester(bl.GetTesters().First());
-            int currentIndex = testerlist.FindIndex(T => T.Equals(tester));
+            int currentIndex = testerList.FindIndex(T => T.Equals(tester));
             if (currentIndex == 0)
-                currentIndex = testerlist.Count;
-            tester = new Tester(testerlist[currentIndex - 1]);
+                currentIndex = testerList.Count;
+            tester = testerList[currentIndex - 1];
             DataContext = tester;
            
             foreach (var item in sunCheckboxes)

@@ -25,18 +25,18 @@ namespace UI_WPF
 		Test test;
         List<string> testers, trainees;
         IBL bl = BL.FactoryBL.GetBL();
-        List<Test> list;
+        List<Test> testList;
 		DateTime LastValidTime;
         Tester tester;
         bool distance = true;
         bool calculating = false;
-        public TestView(Test test1, List<Test> testList)
+        public TestView(Test test1, List<Test> list)
 		{
 			testers = new List<string>();
 			trainees = new List<string>();
 			InitializeComponent();
-            list = testList;
-			test = new Test(list.First(T => T.TestNumber == test1.TestNumber));
+            testList = Functions.TrueCopyTests(list);
+			test = testList.First(T => T.TestNumber == test1.TestNumber);
 			LastValidTime = test.TestDateTime;
 			SaveButton.Visibility = Visibility.Hidden;            
             propertiesGrid.Visibility = Visibility.Hidden;
@@ -48,7 +48,7 @@ namespace UI_WPF
 			if (GlobalSettings.User is Trainee)
 			{
 				trainees.Add(GlobalSettings.User.ID);
-				list = (from item in list
+				testList = (from item in testList
 						where item.TraineeID == GlobalSettings.User.ID
 						select item).ToList();
 				if (test.TestDateTime < DateTime.Now)
@@ -61,7 +61,7 @@ namespace UI_WPF
 			if (GlobalSettings.User is Tester)
 			{
 				testers.Add(GlobalSettings.User.ID);
-				list = (from item in list
+				testList = (from item in testList
 						where item.TesterID == GlobalSettings.User.ID
 						select item).ToList();
 			}
@@ -119,7 +119,7 @@ namespace UI_WPF
                     }
                     else
                     {
-                        list = (List<Test>)bl.GetTests();
+                        testList = (List<Test>)bl.GetTests();
                         RightButton_Click(sender, e);
                     }
                }
@@ -152,10 +152,10 @@ namespace UI_WPF
 		}
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-            int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
-            if (currentIndex + 1 == list.Count)
+            int currentIndex = testList.FindIndex(T => T.TestNumber == test.TestNumber);
+            if (currentIndex + 1 == testList.Count)
                 currentIndex = -1;
-            test = new Test(list[currentIndex + 1]);
+            test = testList[currentIndex + 1];
             DataContext = test;
 			LastValidTime = test.TestDateTime;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
@@ -166,10 +166,10 @@ namespace UI_WPF
 		}
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            int currentIndex = list.FindIndex(T => T.TestNumber == test.TestNumber);
+            int currentIndex = testList.FindIndex(T => T.TestNumber == test.TestNumber);
             if (currentIndex == 0)
-                currentIndex = list.Count;
-            test = new Test(list[currentIndex - 1]);
+                currentIndex = testList.Count;
+            test = testList[currentIndex - 1];
 
             DataContext = test;
 			LastValidTime = test.TestDateTime;
