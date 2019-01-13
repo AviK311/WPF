@@ -104,7 +104,7 @@ namespace UI_WPF
         {
             
             calculating = true;
-            distance = bl.TestersInRange(tester, address);
+            distance = bl.TesterIsInRange(tester, address);
             calculating = false;
            
         }
@@ -132,7 +132,7 @@ namespace UI_WPF
 			propertiesGrid.Visibility = Visibility.Hidden;
 			bl = FactoryBL.GetBL();
 			test = new Test();
-			var closestValidDate = DateTime.Now;
+			var closestValidDate = DateTime.Now.AddDays(1);
 			if (closestValidDate.DayOfWeek > (DayOfWeek)4)
 				closestValidDate = closestValidDate.AddDays(7 - (int)closestValidDate.DayOfWeek);
 			test.TestDateTime = closestValidDate;

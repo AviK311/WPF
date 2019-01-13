@@ -181,11 +181,11 @@ namespace UI_WPF
         private void TestersInRange(Address address, Tester tester)
         {
             calculating = true;
-            distance = bl.TestersInRange(tester, address);
+            distance = bl.TesterIsInRange(tester, address);
             calculating = false;
  
         }
-        private void City_TextChanged(object sender, TextChangedEventArgs e)
+        private void CheckingValidAddress(object sender, TextChangedEventArgs e)
         {
             tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
             BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
@@ -196,16 +196,11 @@ namespace UI_WPF
             }
         }
 
-        private void testerIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void CheckingValidAddress2(object sender, SelectionChangedEventArgs e)
         {
-            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
-            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            if (address != null && tester != null)
-            {
-                Thread thread = new Thread(() => TestersInRange(address, tester));
-                thread.Start();
-            }
-        }
+			CheckingValidAddress(null, null);
+
+		}
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
