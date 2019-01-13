@@ -31,7 +31,7 @@ namespace UI_WPF
 			adminList = Functions.TrueCopyAdmin(list);
 			admin =new Admin(admin1);
 			DataContext = admin;
-            sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender))
+            sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
 
 		}
 
@@ -110,48 +110,21 @@ namespace UI_WPF
 
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
-			int currentIndex = traineelist.FindIndex(T => T.Equals(trainee));
-			if (currentIndex + 1 == traineelist.Count)
-				currentIndex = -1;
-			trainee = traineelist[currentIndex + 1];
-			DataContext = trainee;
-			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
-			cartype.SelectedItem = trainee.CurrentCarType;
-			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
-			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;		
-		}
+            int currentIndex = adminList.FindIndex(T => T.Equals(admin));
+            if (currentIndex + 1 == adminList.Count)
+                currentIndex = -1;
+            admin = adminList[currentIndex + 1];
+            DataContext = admin;                     
+        }
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-			int currentIndex = traineelist.FindIndex(T => T.Equals(trainee));
-			if (currentIndex == 0)
-				currentIndex = traineelist.Count;
-			trainee = traineelist[currentIndex - 1];
-			DataContext = trainee;
-			StatsGrid.DataContext = trainee.carTypeStats[trainee.CurrentCarType];
-			cartype.SelectedItem = trainee.CurrentCarType;
-			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
-			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;			
+            int currentIndex = adminList.FindIndex(T => T.Equals(admin));
+            if (currentIndex == 0)
+                currentIndex = adminList.Count;
+            admin = adminList[currentIndex - 1];
+            DataContext = admin;           
         }
-
-		private void cartype_SelectionChanged(object sender, SelectionChangedEventArgs e)
-		{
-			StatsGrid.DataContext = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex];
-			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
-			teacherFirst.Text= trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
-		}
-
-		private void teacherLast_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last = teacherLast.Text;
-
-		}
-
-		private void teacherFirst_TextChanged(object sender, TextChangedEventArgs e)
-		{
-			trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first = teacherFirst.Text;
-
-		}
-
+       
         private void TextBox_KeyDown(object sender, KeyEventArgs e)
         {            
             if ((e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Tab)

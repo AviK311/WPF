@@ -55,7 +55,7 @@
 			<Button x:Name="MessageButton" Content="Send" HorizontalAlignment="Right"  VerticalAlignment="Top" Width="75" Click="MessageButton_Click" Grid.Row="2" Height="20" Margin="0,14.8,2,-14.8" />
 		</Grid>
 		<Button x:Name="button" Content="Button" HorizontalAlignment="Left" Margin="48,71,0,0" VerticalAlignment="Top" Width="75" Click="button_Click"/>
-		<Button x:Name="button_Messages" Content="Messages"  Margin="614,82,24,11" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Click="button_actions_Click" Grid.Row="1" />
+		<Button x:Name="button_admin" Content="Messages"  Margin="614,82,24,11" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Click="button_actions_Click" Grid.Row="1" />
 
 
 	</Grid>
