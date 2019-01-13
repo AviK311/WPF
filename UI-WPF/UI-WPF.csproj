@@ -299,13 +299,31 @@
     <Resource Include="images\car13.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\car3.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\car7.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\car9.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car5_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car3_.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car3p.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\הורד.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\images %2811%29.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\photo_2019-01-13_02-03-14.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car30.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
