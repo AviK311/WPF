@@ -12,12 +12,12 @@ namespace BE
 		public TestProperties()
 		{
 			foreach (PropertyInfo p in typeof(TestProperties).GetProperties())
-				p.SetValue(this, null);
+				if (p.CanWrite)p.SetValue(this, false);
 		}
 		public TestProperties(TestProperties other)
 		{
 			foreach (PropertyInfo p in typeof(TestProperties).GetProperties())
-				p.SetValue(this, p.GetValue(other));
+				if (p.CanWrite) p.SetValue(this, p.GetValue(other));
 		}
 		
 		public bool KeepingDistance { get; set; }
@@ -34,14 +34,10 @@ namespace BE
 				var info = GetType().GetProperties();
 				int passedTests = 0;
 				foreach (var item in info)
-				{
-					if (item.Name != "passed" && (bool)item.GetValue(this)) passedTests++;
-					//if ((bool)item.GetValue(this)) passedTests++;
-				}
+					if (item.CanWrite&& (bool)item.GetValue(this)) passedTests++;	
 				double grade = (double)passedTests / info.Length;
 				return grade >= Configuration.MinPassGrade;
 			}
-			set { }
 		}
 	}
 }

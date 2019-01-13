@@ -27,7 +27,7 @@
 				<DataGridTextColumn Header="Trainee ID" Binding="{Binding TraineeID}"/>
 				<DataGridTextColumn Header="Test Date" Binding="{Binding TestDateTime, StringFormat='dd/MM/yyyy'}"/>
 				<DataGridTextColumn Header="Test Hour" Binding="{Binding TestDateTime, StringFormat='HH'}"/>
-				<DataGridCheckBoxColumn  Header="Passed" Binding="{Binding testProperties.passed }"/>
+				<DataGridCheckBoxColumn  Header="Passed" Binding="{Binding testProperties.passed , Mode=OneWay}"/>
 				<DataGridTextColumn Header="Vehicle Type" Binding="{Binding TestingCarType}"/>
 			</DataGrid.Columns>
 		</DataGrid>

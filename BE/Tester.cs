@@ -9,7 +9,7 @@ namespace BE
 		{
 			notifications = new List<Notification>(other.notifications);
 			foreach (PropertyInfo property in other.GetType().GetProperties())
-				 property.SetValue(this, property.GetValue(other));
+				 if (property.CanWrite) property.SetValue(this, property.GetValue(other));
 			schedule = new Schedule(other.schedule);
 			
 		}
