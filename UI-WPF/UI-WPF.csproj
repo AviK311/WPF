@@ -325,5 +325,29 @@
   <ItemGroup>
     <Resource Include="images\car30.jpg" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\nhhhhh.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car13_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car18.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\view2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\view3.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\view1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\view4.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\round.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
