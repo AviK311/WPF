@@ -187,22 +187,28 @@ namespace UI_WPF
         }
         private void CheckingValidAddress(object sender, TextChangedEventArgs e)
         {
-            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
-            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            if (address != null && tester != null)
-            {
-                Thread thread = new Thread(() => TestersInRange(address, tester));
-                thread.Start();
-            }
-        }
-
-        private void CheckingValidAddress2(object sender, SelectionChangedEventArgs e)
-        {
-			CheckingValidAddress(null, null);
+			try { TesterName.Text = bl.GetTester(test.TesterID).Name.ToString(); } catch { }
+			CheckingValidAddress2(null, null);
 
 		}
 
-        private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		private void CheckingValidAddress2(object sender, SelectionChangedEventArgs e)
+        {
+			tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+			BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+			if (address != null && tester != null)
+			{
+				Thread thread = new Thread(() => TestersInRange(address, tester));
+				thread.Start();
+			}
+		}
+
+		private void traineeIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			try { TraineeName.Text = bl.GetTrainee(test.TraineeID).Name.ToString(); } catch { }
+		}
+
+		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 			try
 			{

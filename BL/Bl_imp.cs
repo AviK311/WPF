@@ -23,31 +23,34 @@ namespace BL
             dal = DAL.FactoryDal.GetDAL();
         }
         public void AddTest(Test test, bool update = false)
-        {           
+        {
+			string ErrorString = "";
+			
             if (!update)test.TestNumber = dal.GetTestCode().ToString().PadLeft(8, '0');
 			var testTrainee = dal.GetTrainees().FirstOrDefault(T => T.ID == test.TraineeID);
 			var testTester = dal.GetTesters().FirstOrDefault(T => T.ID == test.TesterID);
-			if (testTrainee == null) throw new InvalidOperationException("The trainee does not exist");
-			if (testTester == null) throw new InvalidOperationException("The tester does not exist");
+			if (testTrainee == null) ErrorString += "The trainee does not exist" + "\n";
+			if (testTester == null) ErrorString += "The tester does not exist" + "\n";
 
            // Thread thread = new Thread(() =>TestersInRange(testTester, test.BeginLocation));
             //thread.Start();
 
             var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
             if (update==false && otherTests != null &&otherTests.Any(T => Math.Abs((T.TestDateTime - DateTime.Now).TotalDays) < Configuration.TimeBetweenTests))
-                throw new InvalidOperationException(string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests));
+				ErrorString += string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests) + "\n";
 
 			if (testTrainee.CurrentCarType != testTester.testingCarType)
-				throw new InvalidOperationException("The tester does not teach on the vehicle type that the trainee learned with");
+				ErrorString+="The tester does not teach on the vehicle type that the trainee learned with" +"\n";
 			else test.TestingCarType = testTrainee.CurrentCarType;
 
 			if (testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfLessons < 20)
-                throw new InvalidOperationException("The trainee is not yet ready for a test");
-            if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
-                throw new InvalidOperationException("The student has already passed a test on that vehicle");
+				ErrorString += "The trainee is not yet ready for a test" + "\n";
+
+			if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
+				ErrorString += "The student has already passed a test on that vehicle" + "\n";
 			Holiday? holiday;
 			if (Functions.IsHoliday(test.TestDateTime, out holiday))
-				throw new InvalidOperationException("The chosen date falls out on " + Functions.InsertSpacesBeforeUpper(holiday.ToString()));
+				ErrorString +="The chosen date falls out on " + Functions.InsertSpacesBeforeUpper(holiday.ToString())+ "\n";
 			DayOfWeek day = test.TestDateTime.DayOfWeek;
             int time = test.TestDateTime.Hour;
 			
@@ -56,16 +59,17 @@ namespace BL
                                   select test1;
 			///if the tester is unavailable
 			if (!testTester.schedule[day,time] || tests_by_tester.Any(T => T.TestDateTime.Date == test.TestDateTime.Date && T.TestDateTime.Hour == test.TestDateTime.Hour&&T.TestNumber!=test.TestNumber))
-				throw new InvalidOperationException("The tester is unavailable");
+				ErrorString += "The tester is unavailable" + "\n";
             var tests_by_tester_same_week = from test1 in tests_by_tester
                                             where Functions.DatesAreInTheSameWeek(test.TestDateTime, test1.TestDateTime)
                                             select test1;
-            if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
-                throw new InvalidOperationException("The tester has signed up for too many tests");
-            //if(TestersInRange(test.BeginLocation).FirstOrDefault(T => T.ID == test.TesterID) == null)
-            //if (TestersInRange(testTester, test.BeginLocation) == false)
-            //    throw new InvalidOperationException("The location is too far for the tester");
-
+			if (tests_by_tester_same_week.Count() >= testTester.MaxWeeklyTests)
+				ErrorString += "The tester has signed up for too many tests";
+			//if(TestersInRange(test.BeginLocation).FirstOrDefault(T => T.ID == test.TesterID) == null)
+			//if (TestersInRange(testTester, test.BeginLocation) == false)
+			//    throw new InvalidOperationException("The location is too far for the tester");
+			if (ErrorString.Length != 0)
+				throw new InvalidOperationException(ErrorString); 
             if (test.TestDateTime < DateTime.Now)
 			{
 				if (test.testProperties.passed)

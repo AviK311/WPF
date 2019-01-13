@@ -40,7 +40,7 @@
                     <ImageBrush ImageSource="images/round.png"/>
                 </Button.Background>
             </Button>
-            <Button x:Name="button_admin" Content="Admin"  Margin="22.5,25,22.5,25" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Click="button_actions_Click" Grid.Column="3" BorderBrush="{x:Null}" >
+            <Button x:Name="button_admin" Content="Admin"  Margin="22.5,25,22.5,25" Width="auto" Height="auto" FontSize="36" FontStyle="Italic" Click="button_admin_Click" Grid.Column="3" BorderBrush="{x:Null}" >
                 <Button.Background>
                     <ImageBrush ImageSource="images/round.png"/>
                 </Button.Background>
