@@ -74,8 +74,22 @@ namespace BE
 		}
 		public static bool ValidateID(string ID)
 		{
-			return (ID != null && ID != "" && ID.Length == 8);
+			return (ID != null && ID != "" && ID.Length == 9);
 		}
+		public static bool ValidateLastDigit(string ID)
+		{ 
+			int[] NumArray = new int[9];
+			int sum = 0;
+			for (int i = 0; i < 9; i++)
+			{
+				NumArray[i] = (Convert.ToInt32(ID[i]) - '0') * (i % 2 + 1);
+				if (NumArray[i] >= 10)
+					NumArray[i] = NumArray[i] / 10 + NumArray[i] % 10;
+				sum += NumArray[i];
+			}
+			return sum % 10 == 0;
+		}
+
 		public static bool ValidateName(Name name)
 		{
 			var FirstValidate = name.first != "" && name.first != null;
@@ -85,7 +99,9 @@ namespace BE
 		public static void ValidatePerson(Person p)
 		{
 			if (!ValidateID(p.ID))
-				throw new InvalidOperationException("The ID must be 8 digits long!");
+				throw new InvalidOperationException("The ID must be 9 digits long!");
+			if (!ValidateLastDigit(p.ID))
+				throw new InvalidOperationException("The ID is invalid!");
 			if (!ValidateName(p.Name))
 				throw new InvalidOperationException("Please enter first and last name!");
 			if (!ValidateEmail(p.Email))
@@ -117,6 +133,7 @@ namespace BE
 		
 		public static List<Test> TrueCopyTests(List<Test> other)
 		{
+			if (other == null) return null;
 			List<Test> tests = new List<Test>();
 			foreach (var t in other)
 				tests.Add(new Test(t));
@@ -124,6 +141,7 @@ namespace BE
 		}
 		public static List<Tester> TrueCopyTesters(List<Tester> other)
 		{
+			if (other == null) return null;
 			List<Tester> testers = new List<Tester>();
 			foreach (var t in other)
 				testers.Add(new Tester(t));
@@ -131,10 +149,19 @@ namespace BE
 		}
 		public static List<Trainee> TrueCopyTrainee(List<Trainee> other)
 		{
+			if (other == null) return null;
 			List<Trainee> trainees = new List<Trainee>();
 			foreach (var t in other)
 				trainees.Add(new Trainee(t));
 			return trainees;
+		}
+		public static List<Admin> TrueCopyAdmin(List<Admin> other)
+		{
+			if (other == null) return null;
+			List<Admin> admins = new List<Admin>();
+			foreach (var a in other)
+				admins.Add(new Admin(a));
+			return admins;
 		}
 
 	}

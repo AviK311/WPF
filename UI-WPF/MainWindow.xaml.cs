@@ -29,7 +29,9 @@ namespace UI_WPF
 			MessageButton.Visibility = Visibility.Hidden;
 			if (GlobalSettings.User is Admin)
 				messageLabel.Visibility = Visibility.Hidden;
-			else button_Messages.Visibility = Visibility.Hidden;
+			else
+				button_Messages.Visibility= button_admin.Visibility = Visibility.Hidden;
+
 		}
 
         private void button_trainee_Click(object sender, RoutedEventArgs e)
@@ -129,5 +131,12 @@ namespace UI_WPF
                 MessageButton_Click(this, new RoutedEventArgs());
             }
         }
-    }
+
+		private void button_admin_Click(object sender, RoutedEventArgs e)
+		{
+			Window adminWindow = new AdminWindow();
+			adminWindow.Show();
+			Close();
+		}
+	}
 }
