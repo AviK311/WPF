@@ -70,7 +70,7 @@ namespace DAL
 
 		public IEnumerable<Admin> GetAdmins()
 		{
-			return new List<Admin>(DataSource.adminList);
+			return Functions.TrueCopyAdmin(DataSource.adminList);
 		}
 
 		public int GetMessageCode()

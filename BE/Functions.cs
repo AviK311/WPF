@@ -155,6 +155,14 @@ namespace BE
 				trainees.Add(new Trainee(t));
 			return trainees;
 		}
+		public static List<Admin> TrueCopyAdmin(List<Admin> other)
+		{
+			if (other == null) return null;
+			List<Admin> admins = new List<Admin>();
+			foreach (var a in other)
+				admins.Add(new Admin(a));
+			return admins;
+		}
 
 	}
 		
