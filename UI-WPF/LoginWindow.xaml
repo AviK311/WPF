@@ -12,6 +12,8 @@
             <LinearGradientBrush>
                 <GradientStop Color="White" Offset="0"/>
                 <GradientStop Color="Yellow" Offset="0.5"/>
+                <GradientStop Color="Orange" Offset="0.52"/>
+                <GradientStop Color="Yellow" Offset="0.55"/>
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
@@ -46,7 +48,7 @@
             <Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
             <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2" KeyDown="PasswordInput_KeyDown"/>
             <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="578,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" BorderBrush="Black" BorderThickness="2"  Background="LightYellow" />
-            <Button x:Name="Forgot" Content="Forgot Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="408,18,0,0" Grid.Row="4" Height="56" Click="Forgot_Click" BorderThickness="2" BorderBrush="Black" Background="LightYellow" />
+            <Button x:Name="Forgot" Content="Forgot Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="408,18,0,0" Grid.Row="4" Height="56" Click="Forgot_Click" BorderThickness="2" Background="LightYellow" BorderBrush="Black" />
         </Grid>
     </Grid>
 
