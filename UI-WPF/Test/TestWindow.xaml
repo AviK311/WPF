@@ -33,5 +33,16 @@
 		</DataGrid>
 
 		<Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
+        <StackPanel Margin="546,91,72.6,114" Grid.ColumnSpan="2">
+            <RadioButton  GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
+            <RadioButton x:Name="MotorCycle" GroupName="Car Type" Content="Motor Cycle" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="PrivateCar" GroupName="Car Type" Content="Private Car" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="SmallTruck" GroupName="Car Type" Content="Small Truck" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="LargeTruck" GroupName="Car Type" Content="Large Truck" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="AirPlane" GroupName="Car Type" Content="Air Plane" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="Train" GroupName="Car Type" Content="Train" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
+        </StackPanel>
     </Grid>
 </Window>

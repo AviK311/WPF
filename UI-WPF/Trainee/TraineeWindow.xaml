@@ -51,6 +51,6 @@
 				<ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
 			</Button.Background>
 		</Button>
-		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" />
+		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120"  PreviewKeyUp="ID_textBox_PreviewKeyUp" />
 	</Grid>
 </Window>
