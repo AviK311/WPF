@@ -20,18 +20,29 @@
             </Grid.RowDefinitions>
             <Button x:Name="Add" Content="Add" Margin="40,25,40,25" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click" />
 		</Grid>
-		<DataGrid x:Name="listBox"  AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="328" Margin="75,40,0,0" VerticalAlignment="Top" Width="509" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick">
+        <DataGrid x:Name="listBox"  AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="75,40,0,0" VerticalAlignment="Top" Width="460" ItemsSource="{Binding}" MouseDoubleClick="listBox_MouseDoubleClick" AlternatingRowBackground="LightBlue" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Test Number"  Binding="{Binding TestNumber}"/>
 				<DataGridTextColumn Header="Tester ID" Binding="{Binding TesterID}"/>
 				<DataGridTextColumn Header="Trainee ID" Binding="{Binding TraineeID}"/>
 				<DataGridTextColumn Header="Test Date" Binding="{Binding TestDateTime, StringFormat='dd/MM/yyyy'}"/>
-				<DataGridTextColumn Header="Test Hour" Binding="{Binding TestDateTime, StringFormat='HH'}"/>
+				<DataGridTextColumn Header="Test Hour" Binding="{Binding TestDateTime, StringFormat='h:00'}"/>
 				<DataGridCheckBoxColumn  Header="Passed" Binding="{Binding testProperties.passed , Mode=OneWay}"/>
 				<DataGridTextColumn Header="Vehicle Type" Binding="{Binding TestingCarType}"/>
 			</DataGrid.Columns>
 		</DataGrid>
 
 		<Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click"/>
+        <StackPanel Margin="546,91,72.6,114" Grid.ColumnSpan="2">
+            <RadioButton  GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
+            <RadioButton x:Name="MotorCycle" GroupName="Car Type" Content="Motor Cycle" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="PrivateCar" GroupName="Car Type" Content="Private Car" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="SmallTruck" GroupName="Car Type" Content="Small Truck" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="LargeTruck" GroupName="Car Type" Content="Large Truck" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="AirPlane" GroupName="Car Type" Content="Air Plane" Checked="RadioButton_Checked" />
+            <RadioButton x:Name="Train" GroupName="Car Type" Content="Train" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
+            <RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
+        </StackPanel>
     </Grid>
 </Window>

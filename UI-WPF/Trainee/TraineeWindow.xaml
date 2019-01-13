@@ -24,7 +24,7 @@
 			</Grid.RowDefinitions>
 			<Button x:Name="Add" Content="Add" Margin="40,25,40,10" Height="auto" Width="auto" Click="Add_Click" FontSize="36" Grid.Row="0"/>
 		</Grid>
-		<DataGrid x:Name="listBox" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="239" Margin="70,55,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="425" MouseDoubleClick="listBox_MouseDoubleClick">
+        <DataGrid x:Name="listBox" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="70,55,0,0" VerticalAlignment="Top" ItemsSource="{Binding}" Width="290" MouseDoubleClick="listBox_MouseDoubleClick" AlternatingRowBackground="LightBlue" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None">
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
 				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
@@ -51,6 +51,6 @@
 				<ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
 			</Button.Background>
 		</Button>
-		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" />
+		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120"  PreviewKeyUp="ID_textBox_PreviewKeyUp" />
 	</Grid>
 </Window>
