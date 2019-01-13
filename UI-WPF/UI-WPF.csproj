@@ -257,12 +257,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\WhiteCar.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Car.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Car2.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -276,12 +270,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Bridge2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Train2.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\Train.jpg" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\arrow2.jpg" />
@@ -341,13 +329,7 @@
     <Resource Include="images\images %2811%29.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\photo_2019-01-13_02-03-14.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\car30.jpg" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\nhhhhh.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\car13_.png" />
@@ -369,6 +351,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\round.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\round2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\round4.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
