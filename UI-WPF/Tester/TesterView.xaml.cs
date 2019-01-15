@@ -146,8 +146,7 @@ namespace UI_WPF
                 }
 
             }
-            //Window confirmDelete = new ConfirmDelete(sender, this, tester.ID);
-			//confirmDelete.ShowDialog();
+           
 			
 		}
 
@@ -188,16 +187,7 @@ namespace UI_WPF
         }
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
-            //SaveButton.Visibility = Visibility.Hidden;
-            //EditButton.Visibility = Visibility.Visible;
-            //Tester t;
-            //for (int i = 0; i < bl.GetTrainees().Count() - 1; i++)
-            //{
-            //    t = bl.GetTesters().First();
-            //    bl.RemoveTester(t.ID);
-            //    bl.AddTester(t);
-            //}
-            //tester = new Tester(bl.GetTesters().First());
+           
             int currentIndex = testerList.FindIndex(T => T.Equals(tester));
             if (currentIndex == 0)
                 currentIndex = testerList.Count;

@@ -12,7 +12,11 @@ namespace BE
 	{
 		public static HebCal HolidayChecker = new HebCal();
 		HebrewCalendar cal = new HebrewCalendar();
+		
 		Dictionary<string, Holiday> Holidays;
+		/// <summary>
+		/// initializes the static instance with the known holidays
+		/// </summary>
 		private HebCal()
 		{
 			Holidays = new Dictionary<string, Holiday>();
@@ -31,6 +35,13 @@ namespace BE
 			Holidays.Add("9,5", Holiday.ErevShavuot);
 			Holidays.Add("9,6", Holiday.Shavuot);
 		}
+		/// <summary>
+		/// checks if a given day falls out on a hebrew holiday.
+		/// if it is, holiday will hold the specific holiday
+		/// </summary>
+		/// <param name="Day"></param>
+		/// <param name="holiday"></param>
+		/// <returns></returns>
 		public bool IsHoliday(DateTime Day, out Holiday? holiday)
 		{
 			holiday = null;

@@ -111,22 +111,33 @@ namespace UI_WPF
 
         private void CheckingValidAddress(object sender, SelectionChangedEventArgs e)
         {
-            tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
-            BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            if (address != null && tester != null)
-            {
-                Thread thread = new Thread(() => VerifyRange(address, tester));
-                thread.Start();
-            }
-        }
+			try
+			{
+				TesterName.Text = bl.GetTester(test.TesterID).Name.ToString();
+					}
+			catch { }
+			CheckingValidAddress2(null, null);
+		}
 
         private void CheckingValidAddress2(object sender, TextChangedEventArgs e)
         {
-			CheckingValidAddress(null, null);
+			
+			tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
+			BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+			if (address != null && tester != null)
+			{
+				Thread thread = new Thread(() => VerifyRange(address, tester));
+				thread.Start();
+			}
 
 		}
 
-        public TestAdd()
+		private void traineeIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		{
+			try { TraineeName.Text = bl.GetTrainee(test.TraineeID).Name.ToString(); } catch { }
+		}
+
+		public TestAdd()
         {
             InitializeComponent();
 			propertiesGrid.Visibility = Visibility.Hidden;

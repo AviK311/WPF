@@ -53,11 +53,22 @@ namespace BE
 					toReturn.Add(s.Key);
 			return toReturn; 	
 		}
+		/// <summary>
+		/// This function Adds all items in args into the list
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="list"></param>
+		/// <param name="args"></param>
 		public static void AddTemplateList<T>(List<T> list, params T[] args)
 		{
 			foreach (var item in args)
 				list.Add(item);
 		}
+		/// <summary>
+		/// this function checks if a string contains a valid email
+		/// </summary>
+		/// <param name="email"></param>
+		/// <returns></returns>
 		public static bool ValidateEmail(string email)
 		{
 			if (email == null || email == "")
@@ -65,6 +76,11 @@ namespace BE
 			Match match = Configuration.EmailRegex.Match(email);
 			return match.Success;
 		}
+		/// <summary>
+		/// this function checks if string contains a valid phone number
+		/// </summary>
+		/// <param name="phone"></param>
+		/// <returns></returns>
 		public static bool ValidatePhone(string phone)
 		{
 			if (phone == null || phone == "")
@@ -72,10 +88,20 @@ namespace BE
 			Match match = Configuration.PhoneRegex.Match(phone);
 			return match.Success;
 		}
+		/// <summary>
+		/// this function checks if an ID string contains 9 number chars
+		/// </summary>
+		/// <param name="ID"></param>
+		/// <returns></returns>
 		public static bool ValidateID(string ID)
 		{
-			return (ID != null && ID != "" && ID.Length == 9);
+			return (ID != null && ID != "" && ID.Length == 9 && ID.All(c => char.IsNumber(c)));
 		}
+		/// <summary>
+		/// checks if the ID is a valid ID is israel
+		/// </summary>
+		/// <param name="ID"></param>
+		/// <returns></returns>
 		public static bool ValidateLastDigit(string ID)
 		{ 
 			int[] NumArray = new int[9];
@@ -89,13 +115,22 @@ namespace BE
 			}
 			return sum % 10 == 0;
 		}
-
+		/// <summary>
+		/// checks that first and last name are not empty
+		/// </summary>
+		/// <param name="name"></param>
+		/// <returns></returns>
 		public static bool ValidateName(Name name)
 		{
 			var FirstValidate = name.first != "" && name.first != null;
 			var LastValidate = name.last != "" && name.last != null;
 			return FirstValidate && LastValidate;
 		}
+
+		/// <summary>
+		/// Validates ID, Name, Email, and Phone number of p
+		/// </summary>
+		/// <param name="p"></param>
 		public static void ValidatePerson(Person p)
 		{
 			if (!ValidateID(p.ID))
@@ -109,6 +144,13 @@ namespace BE
 			if (!ValidatePhone(p.PhoneNumber))
 				throw new InvalidOperationException("The phone number is invalid");
 		}
+		/// <summary>
+		/// sends an email to p using the MailClient class. 
+		/// the function uses a thread
+		/// </summary>
+		/// <param name="p"></param>
+		/// <param name="subject"></param>
+		/// <param name="content"></param>
 		public static void SendEmail(Person p, string subject, string content)
 		{
 			if (p.Email != null && p.Email != "")
@@ -118,7 +160,10 @@ namespace BE
 				thread.Start();
 			}
 		}
-		
+		/// <summary>
+		/// randomizes a password from letters and numbers
+		/// </summary>
+		/// <returns></returns>
 		public static string CreateNewRandomPassword()
 		{
 			Random random = new Random();
@@ -126,11 +171,22 @@ namespace BE
 			return new string(Enumerable.Repeat(chars, 8)
 			  .Select(s => s[random.Next(s.Length)]).ToArray());
 		}
+		/// <summary>
+		/// Checks if a day is a holiday, using the HebCal class.
+		/// if it is, the specific holiday is returned with holiday
+		/// </summary>
+		/// <param name="Day"></param>
+		/// <param name="holiday"></param>
+		/// <returns></returns>
 		public static bool IsHoliday(DateTime Day, out Holiday? holiday)
 		{
 			return HebCal.HolidayChecker.IsHoliday(Day, out holiday);
 		}
-		
+		/// <summary>
+		/// Full copy constructor, using copy constructors
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
 		public static List<Test> TrueCopyTests(List<Test> other)
 		{
 			if (other == null) return null;
@@ -139,6 +195,11 @@ namespace BE
 				tests.Add(new Test(t));
 			return tests;
 		}
+		/// <summary>
+		/// Full copy constructor, using copy constructors
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
 		public static List<Tester> TrueCopyTesters(List<Tester> other)
 		{
 			if (other == null) return null;
@@ -147,6 +208,11 @@ namespace BE
 				testers.Add(new Tester(t));
 			return testers;
 		}
+		/// <summary>
+		/// Full copy constructor, using copy constructors
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
 		public static List<Trainee> TrueCopyTrainee(List<Trainee> other)
 		{
 			if (other == null) return null;
@@ -155,6 +221,11 @@ namespace BE
 				trainees.Add(new Trainee(t));
 			return trainees;
 		}
+		/// <summary>
+		/// Full copy constructor, using copy constructors
+		/// </summary>
+		/// <param name="other"></param>
+		/// <returns></returns>
 		public static List<Admin> TrueCopyAdmin(List<Admin> other)
 		{
 			if (other == null) return null;
