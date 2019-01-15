@@ -10,6 +10,13 @@
 
 
     <Grid>
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="LightGray" Offset="0"/>
+                <GradientStop Color="White" Offset="0.9"/>
+                <GradientStop Color="LightGray" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="90,69,0,0" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>

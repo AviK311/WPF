@@ -293,9 +293,6 @@
     <Resource Include="images\Pen.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\car1.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\images %285%29.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -357,6 +354,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\round4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car9.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car17.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car15.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
