@@ -133,10 +133,10 @@ namespace BE
 		/// <param name="p"></param>
 		public static void ValidatePerson(Person p)
 		{
-			if (!ValidateID(p.ID))
-				throw new InvalidOperationException("The ID must be 9 digits long!");
-			if (!ValidateLastDigit(p.ID))
-				throw new InvalidOperationException("The ID is invalid!");
+			//if (!ValidateID(p.ID))
+			//	throw new InvalidOperationException("The ID must be 9 digits long!");
+			//if (!ValidateLastDigit(p.ID))
+			//	throw new InvalidOperationException("The ID is invalid!");
 			if (!ValidateName(p.Name))
 				throw new InvalidOperationException("Please enter first and last name!");
 			if (!ValidateEmail(p.Email))

@@ -54,7 +54,7 @@
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
 			<ComboBox x:Name="testerIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="CheckingValidAddress2"/>
 			<Label Content="Tester Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-			<TextBlock x:Name="TesterName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6"  VerticalAlignment="Center"/>
+			<TextBlock x:Name="TesterName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3"  VerticalAlignment="Center"/>
 
 			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
 			<ComboBox x:Name="traineeIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}" SelectionChanged="traineeIDComboBox_SelectionChanged"/>
