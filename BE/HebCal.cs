@@ -66,8 +66,48 @@ namespace BE
 				else toReturn += (HebMonth)(hebMonth);
 			}
 			else toReturn += (HebMonth)(hebMonth);
-			toReturn += string.Format(" {0}, {1}", HebDay, HebYear);
+			toReturn += string.Format(" {0}, {1}", HebDay, GetHebrewYear(HebYear));
 			return toReturn;
 		}
-	}
+        public string GetHebrewYear(int year)
+        {
+            string s = "";
+            if (year >= 1000)
+                year = year % 1000;
+            int meot = year/100; year= year % 100;
+            int asarot= year/10; year = year % 10;
+            int achadot=year;
+            while (meot > 4)
+            {
+                    s += (char)154;
+                    meot -= 4;
+            }
+            if(meot > 3)
+            {
+                s += (char)153;
+                meot -= 3;
+            }
+            if (meot > 2)
+            {
+                s += (char)152;
+                meot -= 2;
+            }
+            else
+                s += (char)151;
+            if (achadot == 0) s += "''";
+            if(asarot == 1) s += (char)137;
+            if (asarot == 4) s += (char)142;
+            if (asarot == 8) s += (char)148;
+            if (asarot == 9) s += (char)150;
+            else if(asarot < 4 && asarot != 0)
+                s += (char)(asarot + 137);
+            else if (asarot < 7 && asarot != 0)
+                s += (char)(asarot + 139);
+            if (achadot != 0)
+                s += "''"+(char)(achadot + 127);          
+            return s;
+
+        }
+
+    }
 }
