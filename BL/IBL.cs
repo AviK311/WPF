@@ -37,8 +37,8 @@ namespace BL
 		bool CheckPassword(string id, string password);
 		void AddUpdatePassword(string id, string password);
 		void RemovePassword(string id);
-      
 
+		int GetTestCode();
 
         IEnumerable<BE.Test> GetTests();
 		IEnumerable<BE.Admin> GetAdmins();

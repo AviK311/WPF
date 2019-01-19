@@ -83,6 +83,7 @@ namespace UI_WPF
 				}
 				else propertiesGrid.Visibility = Visibility.Visible;
 				LastValidTime = test.TestDateTime;
+				HebDate.Text = Functions.GetHebrewDate(LastValidTime);
 			}
 			catch(Exception ex)
 			{
@@ -149,6 +150,7 @@ namespace UI_WPF
 			test.TestDateTime = closestValidDate;
 			LastValidTime = test.TestDateTime;
 			DataContext = test;
+			TestNumber.Text = bl.GetTestCode().ToString().PadLeft(8,'0') ;
 			int[] arr = { 9, 10, 11, 12, 13, 14 };
 			Hour.ItemsSource = arr;
 			Hour.SelectedIndex = 0;

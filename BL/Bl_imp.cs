@@ -416,7 +416,10 @@ namespace BL
 			dal.RemoveMessage(num);
 		}
 
-		
+		public int GetTestCode()
+		{
+			return dal.GetTestCode();
+		}
 	}
 
 }

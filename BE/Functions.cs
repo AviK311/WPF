@@ -182,6 +182,10 @@ namespace BE
 		{
 			return HebCal.HolidayChecker.IsHoliday(Day, out holiday);
 		}
+		public static string GetHebrewDate(DateTime Day)
+		{
+			return HebCal.HolidayChecker.GetHebrewDate(Day);
+		}
 		/// <summary>
 		/// Full copy constructor, using copy constructors
 		/// </summary>

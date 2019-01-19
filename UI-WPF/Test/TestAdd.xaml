@@ -26,6 +26,8 @@
                 <RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 
 
 
@@ -35,21 +37,27 @@
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Date Time:"/>
-            <DatePicker x:Name="testDateTimeDatePicker"  VerticalAlignment="Center" SelectedDate="{Binding TestDateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="1" SelectedDateChanged="Hour_SelectionChanged"/>
-            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
-			<ComboBox x:Name="testerIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="2" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="CheckingValidAddress" />
-			<Label Content="Tester Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-			<TextBlock x:Name="TesterName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3"  VerticalAlignment="Center"/>
+			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Number:"/>
+			<TextBlock x:Name="TestNumber" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" />
 
-			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
-            <ComboBox x:Name="traineeIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}" SelectionChanged="traineeIDComboBox_SelectionChanged"/>
-			<Label Content="Trainee Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-			<TextBlock x:Name="TraineeName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5"  VerticalAlignment="Center"/>
+			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Date:"/>
 
-			<Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
+            <DatePicker x:Name="testDateTimeDatePicker"  VerticalAlignment="Center" SelectedDate="{Binding TestDateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="1" SelectedDateChanged="Hour_SelectionChanged"/>
+			<Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Hebrew Date:"/>
+			<TextBlock x:Name="HebDate" Width="155" VerticalAlignment="Center" Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" />
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
+			<ComboBox x:Name="testerIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="CheckingValidAddress" />
+			<Label Content="Tester Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+			<TextBlock x:Name="TesterName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5"  VerticalAlignment="Center"/>
 
-            <ComboBox x:Name="Hour" Width="120" VerticalAlignment="Bottom" Grid.Row="1" Margin="3,0,0,5"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
+			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
+            <ComboBox x:Name="traineeIDComboBox" Width="120" VerticalAlignment="Center" Grid.Row="6" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}" SelectionChanged="traineeIDComboBox_SelectionChanged"/>
+			<Label Content="Trainee Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+			<TextBlock x:Name="TraineeName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="7"  VerticalAlignment="Center"/>
+
+			<Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
+
+            <ComboBox x:Name="Hour" Width="120" VerticalAlignment="Bottom" Grid.Row="3" Margin="3,0,0,5"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
              </Grid>
         <Grid x:Name="Address" VerticalAlignment="Top" Margin="225,264,0,0" HorizontalAlignment="Left"  Width="306">
             <Grid.RowDefinitions>

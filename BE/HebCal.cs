@@ -52,5 +52,22 @@ namespace BE
 			holiday = Holidays[Date];
 			return true;
 		}
+		public string GetHebrewDate(DateTime date)
+		{
+			string toReturn = "";
+			int HebDay = cal.GetDayOfMonth(date);
+			int HebYear = cal.GetYear(date);
+			int hebMonth = cal.GetMonth(date);
+			if (cal.IsLeapYear(HebYear))
+			{
+				if (hebMonth == 6) toReturn += "Adar A";
+				else if (hebMonth == 7) toReturn += "Adar B";
+				else if (hebMonth > 7) toReturn += (HebMonth)(hebMonth - 1);
+				else toReturn += (HebMonth)(hebMonth);
+			}
+			else toReturn += (HebMonth)(hebMonth);
+			toReturn += string.Format(" {0}, {1}", HebDay, HebYear);
+			return toReturn;
+		}
 	}
 }
