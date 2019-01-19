@@ -51,5 +51,15 @@ namespace UI_WPF
 		{
 			DataContext = bl.GetAdmins().OrderBy(N => N.Name.last).OrderBy(N => N.Name.first);
 		}
+
+		private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+		{
+			if (listBox.SelectedItem != null)
+			{
+				AdminView adminView = new AdminView((Admin)listBox.SelectedItem, list);
+				adminView.Show();
+				Close();
+			}
+		}
 	}
 }

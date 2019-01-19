@@ -26,8 +26,8 @@ namespace UI_WPF
 		List<Admin> adminList;
         public AdminView(Admin admin1, List<Admin> list )
         {           
-            InitializeComponent();                 
-            
+            InitializeComponent();
+			SaveButton.Visibility = Visibility.Hidden;
 			adminList = Functions.TrueCopyAdmin(list);
 			admin =new Admin(admin1);
 			DataContext = admin;
