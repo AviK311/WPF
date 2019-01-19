@@ -114,7 +114,9 @@ namespace BL
 			UpdateTrainee(testTrainee);
 			UpdateTester(testTester);
 			if (!update) dal.AddTestCode();
-            test.TestingCarType = testTester.testingCarType;
+			else RemoveTest(test.TestNumber);
+			test.TestingCarType = testTester.testingCarType;
+			
 			dal.AddTest(test);
         }
 
@@ -318,7 +320,7 @@ namespace BL
         public void UpdateTest(Test newData)
         {
 			AddTest(newData, update: true);
-			RemoveTest(newData.TestNumber);
+				
         }
 
         public void UpdateTester(Tester newData)

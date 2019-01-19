@@ -147,7 +147,7 @@ namespace DAL
 
 		public void RemoveTest(Test toRemove)
 		{
-			DataSource.testList.Remove(toRemove);
+			DataSource.testList.RemoveAll(T => T.TestNumber == toRemove.TestNumber);
 			XMLHandler.GetXMLHandler().SaveToXML(DataSource.testList, XMLHandler.GetXMLHandler().TestPath);
 
 		}
