@@ -32,11 +32,11 @@ namespace BL
 			if (testTrainee == null) ErrorString += "The trainee does not exist" + "\n";
 			if (testTester == null) ErrorString += "The tester does not exist" + "\n";
 
-           // Thread thread = new Thread(() =>TestersInRange(testTester, test.BeginLocation));
+            // Thread thread = new Thread(() =>TestersInRange(testTester, test.BeginLocation));
             //thread.Start();
-
-            var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
-            if (update==false && otherTests != null &&otherTests.Any(T => Math.Abs((T.TestDateTime - DateTime.Now).TotalDays) < Configuration.TimeBetweenTests))
+            Test test2 = dal.GetTests().FirstOrDefault(t => t.TraineeID == test.TraineeID && t.TestDateTime.AddDays(Configuration.TimeBetweenTests) > test.TestDateTime);
+            //var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
+            if (test2!=null)
 				ErrorString += string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests) + "\n";
 
 			if (testTrainee.CurrentCarType != testTester.testingCarType)
