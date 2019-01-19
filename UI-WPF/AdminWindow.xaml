@@ -8,7 +8,7 @@
         Title="TesterWindow" Height="450" Width="485.106">
 	<Grid >
 		
-		<DataGrid x:Name="listBox" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="58,62,0,0" VerticalAlignment="Top" Width="182" ItemsSource="{Binding}"  AlternatingRowBackground="LightBlue" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None" AutomationProperties.IsColumnHeader="True" >
+		<DataGrid x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="58,62,0,0" VerticalAlignment="Top" Width="182" ItemsSource="{Binding}"  AlternatingRowBackground="LightBlue" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None" AutomationProperties.IsColumnHeader="True" >
 			<DataGrid.Columns>
 				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
 				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
