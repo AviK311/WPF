@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.AddTrainee1"
-        mc:Ignorable="d"
+        mc:Ignorable="d" ResizeMode="NoResize"
         Title="AddTrainee1" Height="470" Width="620" >
    
     <Grid>
