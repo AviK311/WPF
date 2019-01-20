@@ -59,7 +59,7 @@
 
             <ComboBox x:Name="Hour" Width="120" VerticalAlignment="Bottom" Grid.Row="3" Margin="3,0,0,5"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
              </Grid>
-        <Grid x:Name="Address" VerticalAlignment="Top" Margin="225,264,0,0" HorizontalAlignment="Left"  Width="306">
+        <Grid x:Name="Address" VerticalAlignment="Top" Margin="375,267,0,0" HorizontalAlignment="Left"  Width="306">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

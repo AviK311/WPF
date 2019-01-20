@@ -25,6 +25,7 @@ namespace BE
 		public void send(MailMessage message)
 		{
 			client.Send(message);
+			
 		}
 		
 	}

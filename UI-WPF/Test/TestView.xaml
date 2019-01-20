@@ -43,6 +43,7 @@
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
 				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
 
 			</Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
@@ -63,16 +64,16 @@
 
 			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
 			<ComboBox x:Name="traineeIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="6" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}" SelectionChanged="traineeIDComboBox_SelectionChanged"/>
-			<Label Content="Trainee Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-			<TextBlock x:Name="TraineeName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="9"  VerticalAlignment="Center"/>
+			<Label Content="Trainee Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+			<TextBlock x:Name="TraineeName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="8"  VerticalAlignment="Center"/>
 
 			<Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
 
 			<ComboBox x:Name="Hour" Width="120"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" VerticalAlignment="Center" Grid.Row="3" Margin="3"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
-            <Label Content="Testing Vehicle Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-			<TextBlock x:Name="testingCarTypeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="8"  VerticalAlignment="Center" Text="{Binding TestingCarType , Mode=TwoWay }"/>
+            <Label Content="Testing Vehicle Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
+			<TextBlock x:Name="testingCarTypeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="9"  VerticalAlignment="Center" Text="{Binding TestingCarType , Mode=TwoWay }"/>
         </Grid>
-        <Grid x:Name="Address" VerticalAlignment="Top" Margin="23,307,0,0" HorizontalAlignment="Left"  Width="306">
+        <Grid x:Name="Address" VerticalAlignment="Top" Margin="276,324,0,0" HorizontalAlignment="Left"  Width="306">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>

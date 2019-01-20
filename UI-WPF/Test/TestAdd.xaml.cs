@@ -84,6 +84,7 @@ namespace UI_WPF
 				else propertiesGrid.Visibility = Visibility.Visible;
 				LastValidTime = test.TestDateTime;
 				HebDate.Text = Functions.GetHebrewDate(LastValidTime);
+				
 			}
 			catch(Exception ex)
 			{
