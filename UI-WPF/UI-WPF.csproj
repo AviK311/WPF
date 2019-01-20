@@ -55,17 +55,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="AddAdmin.xaml.cs">
+    <Compile Include="Admin\AddAdmin.xaml.cs">
       <DependentUpon>AddAdmin.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdminWindow.xaml.cs">
+    <Compile Include="Admin\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="ConfirmDelete.xaml.cs">
-      <DependentUpon>ConfirmDelete.xaml</DependentUpon>
     </Compile>
     <Compile Include="FirstPassword.xaml.cs">
       <DependentUpon>FirstPassword.xaml</DependentUpon>
@@ -100,28 +97,21 @@
     <Compile Include="Trainee\TraineeWindow.xaml.cs">
       <DependentUpon>TraineeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="UpdateGrade.xaml.cs">
-      <DependentUpon>UpdateGrade.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Trainee\ViewTrainee.xaml.cs">
       <DependentUpon>ViewTrainee.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AdminView.xaml.cs">
+    <Compile Include="Admin\AdminView.xaml.cs">
       <DependentUpon>AdminView.xaml</DependentUpon>
     </Compile>
-    <Page Include="AddAdmin.xaml">
+    <Page Include="Admin\AddAdmin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdminWindow.xaml">
+    <Page Include="Admin\AdminWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ChangePassword.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="ConfirmDelete.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -188,15 +178,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="UpdateGrade.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Trainee\ViewTrainee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AdminView.xaml">
+    <Page Include="Admin\AdminView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
