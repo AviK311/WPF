@@ -144,7 +144,7 @@
             </Button>
             <Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
         </Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="156" Margin="548,46,0,0" VerticalAlignment="Top" Width="207" Source="/UI-WPF;component/images/helicopter_.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="156" Margin="548,46,0,0" VerticalAlignment="Top" Width="207" Source="/UI-WPF;component/images/helicopter_.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
 
     </Grid>
 </Window>

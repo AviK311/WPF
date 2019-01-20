@@ -186,12 +186,22 @@
             </Button>
             <Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
         </Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="170" Margin="10,390,0,0" VerticalAlignment="Top" Width="305" Source="/UI-WPF;component/images/helicopter2.png" RenderTransformOrigin="0.5,0.5">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="170" Margin="10,390,0,0" VerticalAlignment="Top" Width="305" Source="/UI-WPF;component/images/helicopter2.png" RenderTransformOrigin="0.5,0.5" MouseEnter="image_MouseEnter">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
                     <SkewTransform/>
                     <RotateTransform Angle="25.404"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="170" Margin="0,385,0,0" VerticalAlignment="Top" Width="331" Source="/UI-WPF;component/images/helicopter2.png" RenderTransformOrigin="0.5,0.5" MouseEnter="image2_MouseEnter">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="-15.552"/>
                     <TranslateTransform/>
                 </TransformGroup>
             </Image.RenderTransform>

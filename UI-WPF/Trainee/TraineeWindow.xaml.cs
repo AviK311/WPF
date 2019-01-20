@@ -97,5 +97,17 @@ namespace UI_WPF
         {
             DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
         }
+
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image.Height += 7;
+            image.Width += 7;    
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.Height -= 7;
+            image.Width -= 7;
+        }
     }
 }

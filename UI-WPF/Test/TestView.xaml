@@ -134,7 +134,7 @@
             <Label Content="Signs Reading:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <CheckBox x:Name="signsReadingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.SignsReading, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
         </Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="151" Margin="35,344,0,-24.6" VerticalAlignment="Top" Width="195" Source="/UI-WPF;component/images/helicopter_.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="151" Margin="35,344,0,-24.6" VerticalAlignment="Top" Width="195" Source="/UI-WPF;component/images/helicopter_.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
 
     </Grid>
 </Window>

@@ -91,5 +91,17 @@ namespace UI_WPF
         {
             DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
         }
+       
+
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScaleTransform scale = new ScaleTransform(1.2, 1.2);
+            image.RenderTransform = scale;
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.RenderTransform = null;
+        }
     }
 }

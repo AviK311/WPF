@@ -21,7 +21,7 @@
             <ColumnDefinition Width="515*"/>
             <ColumnDefinition Width="198*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="245" Margin="420,215,0,-40" VerticalAlignment="Top" Width="245" Source="/UI-WPF;component/images/car1.png" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="245" Margin="420,215,0,-40" VerticalAlignment="Top" Width="245" Source="/UI-WPF;component/images/car1.png" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
         <Grid x:Name="buttons" Grid.ColumnSpan="2" Margin="515,0,-0.4,210" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
@@ -41,7 +41,7 @@
         </DataGrid>
         <Button x:Name="button_back" Content="Back to main window" HorizontalAlignment="Left" Margin="40,10,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16" Click="button_back_Click" Grid.ColumnSpan="2"/>
         <Button x:Name="button_sort" Content="Sort" HorizontalAlignment="Left" Margin="430,55,0,0" VerticalAlignment="Top" Width="75" Click="sort_Click" FontSize="14" Grid.Column="1"/>
-        <StackPanel Margin="430,105,108.6,100" Grid.ColumnSpan="2" Grid.Column="1">
+        <StackPanel Margin="430,105,108.6,100" Grid.ColumnSpan="2" Grid.Column="1" >
             <RadioButton  GroupName="Car Type" Content="All Car Types" Checked="All_RadioButton_Checked" />
             <RadioButton x:Name="MotorCycle" GroupName="Car Type" Content="Motor Cycle" Checked="RadioButton_Checked" />
             <RadioButton x:Name="PrivateCar" GroupName="Car Type" Content="Private Car" Checked="RadioButton_Checked" />

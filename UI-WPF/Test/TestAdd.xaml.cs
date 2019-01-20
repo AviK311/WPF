@@ -140,7 +140,18 @@ namespace UI_WPF
 			try { TraineeName.Text = bl.GetTrainee(test.TraineeID).Name.ToString(); } catch { }
 		}
 
-		public TestAdd()
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScaleTransform scale = new ScaleTransform(1.2, 1.2);
+            image.RenderTransform = scale;
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.RenderTransform = null;
+        }
+
+        public TestAdd()
         {
             InitializeComponent();
 			propertiesGrid.Visibility = Visibility.Hidden;

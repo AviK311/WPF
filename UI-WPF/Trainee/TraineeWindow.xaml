@@ -61,7 +61,7 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120"  PreviewKeyUp="ID_textBox_PreviewKeyUp" />
-        <Image x:Name="image" HorizontalAlignment="Left" Height="140" Margin="440,260,0,0" VerticalAlignment="Top" Width="245" Source="/UI-WPF;component/images/car15.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="140" Margin="440,260,0,0" VerticalAlignment="Top" Width="245" Source="/UI-WPF;component/images/car15.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>

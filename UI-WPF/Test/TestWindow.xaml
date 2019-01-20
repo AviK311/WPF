@@ -53,6 +53,6 @@
             <RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
             <RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
         </StackPanel>
-        <Image x:Name="image" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="145" Margin="470,265,0,0" VerticalAlignment="Top" Width="220" Source="/UI-WPF;component/images/car9.png"/>
+        <Image x:Name="image" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="145" Margin="460,240,0,0" VerticalAlignment="Top" Width="220" Source="/UI-WPF;component/images/car9.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
     </Grid>
 </Window>

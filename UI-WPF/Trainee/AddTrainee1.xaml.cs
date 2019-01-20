@@ -84,5 +84,15 @@ namespace UI_WPF
 				e.Handled = true;
 		}
 
-	}
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScaleTransform scale = new ScaleTransform(1.1, 1.1);
+            image.RenderTransform = scale;
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.RenderTransform = null;
+        }
+    }
 }

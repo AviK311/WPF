@@ -142,6 +142,6 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Car Type Stats:"/>
             <ComboBox x:Name="cartype" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1"  SelectionChanged="cartype_SelectionChanged"/>
         </Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="30,299,0,0" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="30,299,0,0" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
     </Grid>
 </Window>
