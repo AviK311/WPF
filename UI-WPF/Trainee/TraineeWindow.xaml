@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="TraineeWindow" Height="450" Width="800" >
+        Title="Trainee" Height="450" Width="800" Icon="/UI-WPF;component/images/icon6.png" >
     <Grid>
         <Grid.Background>
             <LinearGradientBrush>

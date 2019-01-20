@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"
-        Title="TesterWindow" Height="450" Width="800">
+        Title="Tester" Height="450" Width="800" Icon="/UI-WPF;component/images/icon5.png">
     <Grid>
         <Grid.Background>
             <LinearGradientBrush>
@@ -21,7 +21,7 @@
             <ColumnDefinition Width="515*"/>
             <ColumnDefinition Width="198*"/>
         </Grid.ColumnDefinitions>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="270" Margin="378,185,0,-35" VerticalAlignment="Top" Width="265" Source="/UI-WPF;component/images/car17.png" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="245" Margin="420,215,0,-40" VerticalAlignment="Top" Width="245" Source="/UI-WPF;component/images/car1.png" RenderTransformOrigin="0.5,0.5" Grid.Column="1" Grid.ColumnSpan="2"/>
         <Grid x:Name="buttons" Grid.ColumnSpan="2" Margin="515,0,-0.4,210" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
