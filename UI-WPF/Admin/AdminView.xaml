@@ -6,10 +6,17 @@
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.AdminView"
         mc:Ignorable="d"  ResizeMode="NoResize"
-        Title="AdminView" Height="500" Width="317" >
+        Title="AdminView" Height="450" Width="500" >
 
 
 	<Grid >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FF686666" Offset="0"/>
+                <GradientStop Color="#FFC5C5C5" Offset="0.3"/>
+                <GradientStop Color="White" Offset="0.7"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 		<Grid HorizontalAlignment="Left" Height="20" Margin="26,22,0,0" VerticalAlignment="Top" Width="254">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="auto"/>
@@ -65,6 +72,7 @@
 
 
 		</Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="190" Margin="303,280,0,-50" VerticalAlignment="Top" Width="172" Source="/UI-WPF;component/images/car20.png"/>
 
-	</Grid>
+    </Grid>
 </Window>

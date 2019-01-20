@@ -5,24 +5,33 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"  ResizeMode="NoResize"
-        Title="TesterWindow" Height="450" Width="485.106">
-	<Grid >
-		
-		<DataGrid x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="58,62,0,0" VerticalAlignment="Top" Width="182" ItemsSource="{Binding}"  AlternatingRowBackground="LightBlue" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None" AutomationProperties.IsColumnHeader="True" >
-			<DataGrid.Columns>
-				<DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
-				<DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-			</DataGrid.Columns>
-		</DataGrid>
-		<Button x:Name="button_back" Click="button_back_Click" Content="Back to main window" HorizontalAlignment="Left" Margin="30,288,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16"/>
-		<Button x:Name="button_sort" Click="sort_Click" Content="Sort" HorizontalAlignment="Left" Margin="267,63,0,0" VerticalAlignment="Top" Width="75" FontSize="14"/>
+        Title="TesterWindow" Height="450" Width="500">
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush>
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="LightGray" Offset="0.5"/>
+                <GradientStop Color="Black" Offset="0.52"/>
+                <GradientStop Color="Gray" Offset="0.55"/>
+                <GradientStop Color="White" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <DataGrid x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="58,62,0,0" VerticalAlignment="Top" Width="182" ItemsSource="{Binding}"  AlternatingRowBackground="LightGray" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None" AutomationProperties.IsColumnHeader="True" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="button_back" Click="button_back_Click" Content="Back to main window" HorizontalAlignment="Left" Margin="30,288,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16"/>
+        <Button x:Name="button_sort" Click="sort_Click" Content="Sort" HorizontalAlignment="Left" Margin="267,63,0,0" VerticalAlignment="Top" Width="75" FontSize="14"/>
 
-		<Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="150,21,0,0" VerticalAlignment="Top" Width="20" Height="22" Grid.Column="1" Click="button_Click">
-			<Button.Background>
-				<ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
-			</Button.Background>
-		</Button>
-		<TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="175,21,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" Grid.Column="1" />
-		<Button x:Name="Add" Content="Add" Margin="267,151,95,203" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
-	</Grid>
+        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="150,21,0,0" VerticalAlignment="Top" Width="20" Height="22" Grid.Column="1" Click="button_Click">
+            <Button.Background>
+                <ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
+            </Button.Background>
+        </Button>
+        <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="175,21,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" Grid.Column="1" />
+        <Button x:Name="Add" Content="Add" Margin="267,151,95,203" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="166" Margin="245,222,0,0" VerticalAlignment="Top" Width="217" Source="/UI-WPF;component/images/car14.png"/>
+    </Grid>
 </Window>
