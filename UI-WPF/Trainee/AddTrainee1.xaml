@@ -121,7 +121,7 @@
             <TextBox x:Name="teacherFirst" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="3,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
             <TextBox x:Name="teacherLast" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="83,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
         </Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="15,280,0,-0.2" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="15,280,0,-0.2" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
 
     </Grid>
 </Window>

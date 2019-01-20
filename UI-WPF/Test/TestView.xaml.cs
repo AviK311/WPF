@@ -208,7 +208,18 @@ namespace UI_WPF
 			try { TraineeName.Text = bl.GetTrainee(test.TraineeID).Name.ToString(); } catch { }
 		}
 
-		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            ScaleTransform scale = new ScaleTransform(1.1, 1.1);
+            image.RenderTransform = scale;
+        }
+
+        private void image_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.RenderTransform = null;
+        }
+
+        private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 			try
 			{
