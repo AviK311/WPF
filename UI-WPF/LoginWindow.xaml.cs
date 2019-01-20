@@ -159,7 +159,7 @@ namespace UI_WPF
 			}
 			//this needs to be erased. it's here only for debugging reasons
 			GlobalSettings.AlreadyLoggedIn = true;
-
+			InfoBlock.Text = "Login: Enter ID and password to enter.\nFloat above a button for an explanation.";
 
 		}
 		private void LoginButton_Click(object sender, RoutedEventArgs e)
@@ -290,4 +290,24 @@ namespace UI_WPF
                 LoginButton_Click(this, new RoutedEventArgs());
             }
         }
-    } }
+
+		
+
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "Login: Enter ID and password to enter.\nFloat above a button for an explanation.";
+		}
+
+		private void Forgot_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "If your Email Address is in the system, you will receive an email with a new randomized password. "+
+				"Otherwise, the administrators will receive a message requesting a password reset. Once one of them accepts, you may " +
+				"try logging in again";
+		}
+
+		private void LoginButton_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "After you've entered the correct ID and password, click here to log in.\n" +
+				"If this is your first time, you will be prompted to choose a password for yourself.";
+		}
+	} }

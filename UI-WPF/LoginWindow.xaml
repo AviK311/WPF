@@ -7,49 +7,50 @@
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="עמוד התחברות" Height="450" Width="800" Background="Yellow">
 
-    <Grid >
-        <Grid.Background>
-            <LinearGradientBrush>
-                <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="Yellow" Offset="0.5"/>
-                <GradientStop Color="Orange" Offset="0.52"/>
-                <GradientStop Color="Yellow" Offset="0.55"/>
-                <GradientStop Color="White" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
-        <Grid Name="buttons" >
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="*"/>
-                <RowDefinition Height="0.25*"/>
-            </Grid.RowDefinitions>
-            <Image x:Name="image1" HorizontalAlignment="Left" Height="133" Grid.RowSpan="3" VerticalAlignment="Top" Width="293" Source="images/car18.png" RenderTransformOrigin="0.487,-0.2" Margin="289,59,0,0"/>
+	<Grid >
+		<Grid.Background>
+			<LinearGradientBrush>
+				<GradientStop Color="White" Offset="0"/>
+				<GradientStop Color="Yellow" Offset="0.5"/>
+				<GradientStop Color="Orange" Offset="0.52"/>
+				<GradientStop Color="Yellow" Offset="0.55"/>
+				<GradientStop Color="White" Offset="1"/>
+			</LinearGradientBrush>
+		</Grid.Background>
+		<Grid Name="buttons" >
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="*"/>
+				<RowDefinition Height="0.25*"/>
+			</Grid.RowDefinitions>
+			<Image x:Name="image1" HorizontalAlignment="Left" Height="133" Grid.RowSpan="3" VerticalAlignment="Top" Width="293" Source="images/car18.png" RenderTransformOrigin="0.487,-0.2" Margin="289,59,0,0"/>
 
 
-            <Image x:Name="image" HorizontalAlignment="Left" Height="160" Margin="175,30,0,-10" Grid.RowSpan="3" VerticalAlignment="Top" Width="225" Source="images/car13_.png" Grid.Row="3" RenderTransformOrigin="0.5,0.5">
-                <Image.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform/>
-                        <SkewTransform/>
-                        <RotateTransform Angle="0.231"/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </Image.RenderTransform>
-            </Image>
+			<Image x:Name="image" HorizontalAlignment="Left" Height="160" Margin="175,30,0,-10" Grid.RowSpan="3" VerticalAlignment="Top" Width="225" Source="images/car13_.png" Grid.Row="3" RenderTransformOrigin="0.5,0.5">
+				<Image.RenderTransform>
+					<TransformGroup>
+						<ScaleTransform/>
+						<SkewTransform/>
+						<RotateTransform Angle="0.231"/>
+						<TranslateTransform/>
+					</TransformGroup>
+				</Image.RenderTransform>
+			</Image>
 
 
-            <Label x:Name="label" Content="מערכת לניתוב מבחני נהיגה " HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="36" Width="465" Grid.Row="0" FontWeight="Bold"/>
-            <Label x:Name="label2" Content="להתחברות אנא הקש ת.ז וסיסמא " HorizontalAlignment="Left" Margin="508,44,0,0" VerticalAlignment="Top" FontSize="18" Width="270" Grid.Row="1"/>
-            <Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="153,10,0,41" Width="97" FontSize="20" Height="33" Grid.Row="3"/>
-            <PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="250,0,0,30"  FontSize="20" HorizontalContentAlignment="Center" Grid.Row="3" KeyDown="PasswordInput_KeyDown"/>
-            <Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
-            <TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2" KeyDown="PasswordInput_KeyDown"/>
-            <Button x:Name="LoginButton" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="578,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" BorderBrush="Black" BorderThickness="2"  Background="LightYellow" />
-            <Button x:Name="Forgot" Content="Forgot Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="408,18,0,0" Grid.Row="4" Height="56" Click="Forgot_Click" BorderThickness="2" Background="LightYellow" BorderBrush="Black" />
-        </Grid>
-    </Grid>
+			<Label x:Name="label" Content="מערכת לניתוב מבחני נהיגה " HorizontalAlignment="Left" Margin="160,10,0,0" VerticalAlignment="Top" FontSize="36" Width="465" Grid.Row="0" FontWeight="Bold"/>
+			<Label x:Name="label2" Content="להתחברות אנא הקש ת.ז וסיסמא " HorizontalAlignment="Left" Margin="508,44,0,0" VerticalAlignment="Top" FontSize="18" Width="270" Grid.Row="1"/>
+			<Label x:Name="labelPassword" Content="Password" HorizontalAlignment="Left" Margin="153,10,0,41" Width="97" FontSize="20" Height="33" Grid.Row="3"/>
+			<PasswordBox x:Name="PasswordInput"  HorizontalAlignment="Left" Height="33"  VerticalAlignment="Center" Width="430" Margin="250,0,0,30"  FontSize="20" HorizontalContentAlignment="Center" Grid.Row="3" KeyDown="PasswordInput_KeyDown"/>
+			<Label x:Name="labelID" Content="User ID" HorizontalAlignment="Left" VerticalAlignment="Top" Width="97" Height="33"  FontSize="20" Grid.Row="2" Margin="153,33.2,0,0"/>
+			<TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2" KeyDown="PasswordInput_KeyDown"/>
+			<Button x:Name="LoginButton" MouseLeave="MouseLeave" MouseEnter="LoginButton_MouseEnter" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="578,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" BorderBrush="Black" BorderThickness="2"  Background="LightYellow" />
+			<Button x:Name="Forgot" MouseEnter="Forgot_MouseEnter" MouseLeave="MouseLeave" Content="Forgot Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="408,18,0,0" Grid.Row="4" Height="56" Click="Forgot_Click" BorderThickness="2" Background="LightYellow" BorderBrush="Black"  />
+			<TextBlock x:Name="InfoBlock" HorizontalAlignment="Left" Margin="28,59,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="134" Width="222" Grid.RowSpan="3"/>
+		</Grid>
+	</Grid>
 
 </Window>
