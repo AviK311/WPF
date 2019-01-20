@@ -6,9 +6,17 @@
         xmlns:local="clr-namespace:UI_WPF"
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.TestView"
         mc:Ignorable="d"
-        Title="TestView" Height="501.064" Width="600" >
+        Title="TestView" Height="500" Width="650" >
 
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FFFDA44A" Offset="0"/>
+                <GradientStop Color="#FFEEAE83" Offset="0.3"/>
+                <GradientStop Color="White" Offset="0.7"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid HorizontalAlignment="Left" Height="20" Margin="75,27,0,0" VerticalAlignment="Top" Width="254">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -37,41 +45,41 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
 
-			</Grid.RowDefinitions>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-			<Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Number:"/>
-			<TextBlock x:Name="TestNumber" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding TestNumber}" />
+            <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Number:"/>
+            <TextBlock x:Name="TestNumber" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding TestNumber}" />
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Date:"/>
-			<DatePicker x:Name="testDateTimeDatePicker"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  VerticalAlignment="Center" SelectedDate="{Binding TestDateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="1" SelectedDateChanged="Hour_SelectionChanged"/>
-			<Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Hebrew Date:"/>
-			<TextBlock x:Name="HebDate" Width="155" VerticalAlignment="Center" Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" />
+            <DatePicker x:Name="testDateTimeDatePicker"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  VerticalAlignment="Center" SelectedDate="{Binding TestDateTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="1" Margin="3" HorizontalAlignment="Left" Grid.Column="1" SelectedDateChanged="Hour_SelectionChanged"/>
+            <Label VerticalAlignment="Center" Grid.Row="2" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Hebrew Date:"/>
+            <TextBlock x:Name="HebDate" Width="155" VerticalAlignment="Center" Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" />
 
-			<Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
-			<ComboBox x:Name="testerIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="CheckingValidAddress2"/>
-			<Label Content="Tester Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-			<TextBlock x:Name="TesterName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5"  VerticalAlignment="Center"/>
+            <Label VerticalAlignment="Center" Grid.Row="4" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Tester ID:"/>
+            <ComboBox x:Name="testerIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="4" Margin="3" Height="Auto" HorizontalAlignment="Left" SelectedItem="{Binding TesterID}" Grid.Column="1" SelectionChanged="CheckingValidAddress2"/>
+            <Label Content="Tester Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TesterName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5"  VerticalAlignment="Center"/>
 
-			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
-			<ComboBox x:Name="traineeIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="6" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}" SelectionChanged="traineeIDComboBox_SelectionChanged"/>
-			<Label Content="Trainee Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-			<TextBlock x:Name="TraineeName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="8"  VerticalAlignment="Center"/>
+            <Label VerticalAlignment="Center" Grid.Row="6" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Trainee ID:"/>
+            <ComboBox x:Name="traineeIDComboBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="120" VerticalAlignment="Center" Grid.Row="6" Margin="3" Height="Auto" HorizontalAlignment="Left"  Grid.Column="1"  SelectedItem="{Binding TraineeID}" SelectionChanged="traineeIDComboBox_SelectionChanged"/>
+            <Label Content="Trainee Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBlock x:Name="TraineeName"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="8"  VerticalAlignment="Center"/>
 
-			<Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
+            <Label VerticalAlignment="Center" Grid.Row="3" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Test Hour:"/>
 
-			<ComboBox x:Name="Hour" Width="120"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" VerticalAlignment="Center" Grid.Row="3" Margin="3"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
+            <ComboBox x:Name="Hour" Width="120"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" VerticalAlignment="Center" Grid.Row="3" Margin="3"  Height="Auto" HorizontalAlignment="Left"  Grid.Column="1" SelectionChanged="Hour_SelectionChanged"/>
             <Label Content="Testing Vehicle Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-			<TextBlock x:Name="testingCarTypeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="9"  VerticalAlignment="Center" Text="{Binding TestingCarType , Mode=TwoWay }"/>
+            <TextBlock x:Name="testingCarTypeTextBlock"  Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="9"  VerticalAlignment="Center" Text="{Binding TestingCarType , Mode=TwoWay }"/>
         </Grid>
         <Grid x:Name="Address" VerticalAlignment="Top" Margin="276,324,0,0" HorizontalAlignment="Left"  Width="306">
             <Grid.RowDefinitions>
@@ -90,11 +98,11 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Center" Grid.Column="0" Content="Beginning Address" Height="26" Width="293" Grid.ColumnSpan="2" HorizontalContentAlignment="Center"/>
 
             <Label VerticalAlignment="Center" Grid.Row="1" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="City:" Height="26" Width="179"/>
-			<TextBox x:Name="City"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.city , Mode=TwoWay }" TextChanged="CheckingValidAddress"/>
+            <TextBox x:Name="City"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}"  Width="155" VerticalAlignment="Center"  Grid.Row="1" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.city , Mode=TwoWay }" TextChanged="CheckingValidAddress"/>
             <Label VerticalAlignment="Center" Grid.Row="2" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Street:" Height="26" Width="179"/>
-			<TextBox x:Name="Street"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.street , Mode=TwoWay }" TextChanged="CheckingValidAddress"/>
+            <TextBox x:Name="Street"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="2" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.street , Mode=TwoWay }" TextChanged="CheckingValidAddress"/>
             <Label VerticalAlignment="Center" Grid.Row="3" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Bld number:" Height="26" Width="179"/>
-			<TextBox x:Name="Number"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.buildingNumber , Mode=TwoWay }" TextChanged="CheckingValidAddress"/>
+            <TextBox x:Name="Number"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Width="155" VerticalAlignment="Center"  Grid.Row="3" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" Text="{Binding BeginLocation.buildingNumber , Mode=TwoWay }" TextChanged="CheckingValidAddress"/>
 
 
         </Grid>
@@ -114,18 +122,19 @@
             </Grid.RowDefinitions>
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3,3,0,3" HorizontalAlignment="Center" Grid.Column="0" Content="Test Properties" Height="26" Width="170" Grid.ColumnSpan="3" HorizontalContentAlignment="Center"/>
             <Label Content="Breaking:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-			<CheckBox x:Name="breakingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.Breaking, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <CheckBox x:Name="breakingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.Breaking, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
             <Label Content="Driving In Reverse:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-			<CheckBox x:Name="drivingInReverseCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.DrivingInReverse, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <CheckBox x:Name="drivingInReverseCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.DrivingInReverse, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <Label Content="Keeping Distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-			<CheckBox x:Name="keepingDistanceCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.KeepingDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <CheckBox x:Name="keepingDistanceCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.KeepingDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <Label Content="Mirror Usage:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-			<CheckBox x:Name="mirrorUsageCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.MirrorUsage, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <CheckBox x:Name="mirrorUsageCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.MirrorUsage, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <Label Content="Signaling:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-			<CheckBox x:Name="signalingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.Signaling, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <CheckBox x:Name="signalingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.Signaling, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <Label Content="Signs Reading:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-			<CheckBox x:Name="signsReadingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.SignsReading, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <CheckBox x:Name="signsReadingCheckBox"  IsEnabled="{Binding ElementName=SaveButton, Path=IsVisible}" Content="" Grid.Column="1" HorizontalAlignment="Left" IsChecked="{Binding testProperties.SignsReading, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
         </Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="151" Margin="35,344,0,-24.6" VerticalAlignment="Top" Width="195" Source="/UI-WPF;component/images/helicopter_.png"/>
 
     </Grid>
 </Window>
