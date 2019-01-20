@@ -7,8 +7,16 @@
         xmlns:BE="clr-namespace:BE;assembly=BE" x:Class="UI_WPF.AddTrainee1"
         mc:Ignorable="d" ResizeMode="NoResize"
         Title="AddTrainee1" Height="470" Width="620" >
-   
+
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FF917D7D" Offset="0"/>
+                <GradientStop Color="#FFDBC7E5" Offset="0.3"/>
+                <GradientStop Color="White" Offset="0.7"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="12,27,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -25,29 +33,29 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
-				<RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
 
-			</Grid.RowDefinitions>
-			
+            </Grid.RowDefinitions>
+
             <Label Content="Birth Day:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
             <DatePicker x:Name="birthDayDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="2.8,4,0,4" Grid.Row="3" SelectedDate="{Binding BirthDay, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="155"/>
             <Label Content="Current Car Type:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
             <ComboBox x:Name="currentCarTypeComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding CurrentCarType}" Margin="7" Grid.Row="7" VerticalAlignment="Center" Width="155"/>
 
-			<Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
             <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" VerticalAlignment="Center" Width="155" Text="{Binding ID, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" KeyDown="TextBox_KeyDown" />
             <Label Content="first Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="firstNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="155"/>
             <Label Content="last Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="lastNameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="155"/>
             <Label Content="Phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-			<TextBox x:Name="phoneNumberTextBox" Grid.Column="1" Text="{Binding PhoneNumber, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="155" KeyDown="Phone_KeyDown"/>
-			<Label Content="Email Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-			<TextBox x:Name="emailTextBox" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="155"/>
-			<Label Content="Sex:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" Text="{Binding PhoneNumber, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="155" KeyDown="Phone_KeyDown"/>
+            <Label Content="Email Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <TextBox x:Name="emailTextBox" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="155"/>
+            <Label Content="Sex:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <ComboBox x:Name="sexComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding Sex}" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="155"/>
 
-		</Grid>
+        </Grid>
         <Grid x:Name="grid3"  HorizontalAlignment="Left" Margin="326,20,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -68,13 +76,13 @@
             <Label Content="street:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="2" VerticalAlignment="Center"/>
             <TextBox x:Name="streetTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3.2,4,0,4" Grid.Row="2" VerticalAlignment="Center" Width="155" Grid.ColumnSpan="2"/>
         </Grid>
-		
-		<Grid HorizontalAlignment="Left" Height="20" Margin="414,391,0,0" VerticalAlignment="Top" Width="auto">
-			<Grid.ColumnDefinitions>
-				<ColumnDefinition Width="auto"/>
-				<ColumnDefinition Width="auto"/>
-			</Grid.ColumnDefinitions>
-			<Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="1" Width="60" Height="20">
+
+        <Grid HorizontalAlignment="Left" Height="20" Margin="414,391,0,0" VerticalAlignment="Top" Width="auto">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="1" Width="60" Height="20">
                 <Button.Style>
                     <Style>
                         <Style.Triggers>
@@ -85,8 +93,8 @@
                     </Style>
                 </Button.Style>
             </Button>
-			<Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
-		</Grid>
+            <Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"   Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
+        </Grid>
         <Grid x:Name="StatsGrid" VerticalAlignment="Top" Margin="305,168,0,0" HorizontalAlignment="Left" >
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -113,6 +121,7 @@
             <TextBox x:Name="teacherFirst" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="3,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
             <TextBox x:Name="teacherLast" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="83,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
         </Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="15,280,0,-0.2" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png"/>
 
     </Grid>
 </Window>

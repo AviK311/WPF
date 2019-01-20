@@ -351,7 +351,34 @@
     <Resource Include="images\car15.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\SadCarsFailLoser.jpg" />
+    <Resource Include="images\new driver.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon6.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\icon7.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car12.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\helicopter_.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\helicopter2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
