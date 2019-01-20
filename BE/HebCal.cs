@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Globalization;
 
 
@@ -12,13 +13,14 @@ namespace BE
 	{
 		public static HebCal HolidayChecker = new HebCal();
 		HebrewCalendar cal = new HebrewCalendar();
-		
+		CultureInfo culture;
 		Dictionary<string, Holiday> Holidays;
 		/// <summary>
 		/// initializes the static instance with the known holidays
 		/// </summary>
 		private HebCal()
 		{
+
 			Holidays = new Dictionary<string, Holiday>();
 			Holidays.Add("12,29", Holiday.ErevRoshHashana);
 			for (int i = 1; i < 3; i++)
@@ -34,6 +36,9 @@ namespace BE
 				Holidays.Add("7,"+i.ToString(), Holiday.Pesach);
 			Holidays.Add("9,5", Holiday.ErevShavuot);
 			Holidays.Add("9,6", Holiday.Shavuot);
+
+			culture = CultureInfo.CreateSpecificCulture("he-IL");
+						
 		}
 		/// <summary>
 		/// checks if a given day falls out on a hebrew holiday.
@@ -54,20 +59,12 @@ namespace BE
 		}
 		public string GetHebrewDate(DateTime date)
 		{
-			string toReturn = "";
-			int HebDay = cal.GetDayOfMonth(date);
-			int HebYear = cal.GetYear(date);
-			int hebMonth = cal.GetMonth(date);
-			if (cal.IsLeapYear(HebYear))
-			{
-				if (hebMonth == 6) toReturn += "Adar A";
-				else if (hebMonth == 7) toReturn += "Adar B";
-				else if (hebMonth > 7) toReturn += (HebMonth)(hebMonth - 1);
-				else toReturn += (HebMonth)(hebMonth);
-			}
-			else toReturn += (HebMonth)(hebMonth);
-			toReturn += string.Format(" {0}, {1}", HebDay, GetHebrewYear(HebYear));
+			culture.DateTimeFormat.Calendar = cal;
+			Thread.CurrentThread.CurrentCulture = culture;
+			string toReturn = date.ToShortDateString();
+			culture.DateTimeFormat.Calendar = culture.Calendar;
 			return toReturn;
+
 		}
         public string GetHebrewYear(int year)
         {

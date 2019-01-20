@@ -156,6 +156,7 @@ namespace BE
 			if (p.Email != null && p.Email != "")
 			{
 				MailMessage mail = new MailMessage(Configuration.SystemEmail, p.Email, subject, content);
+			
 				Thread thread = new Thread(() => Configuration.MailSender.send(mail));
 				thread.Start();
 			}

@@ -94,7 +94,7 @@ namespace BL
 				string traineeMessage = string.Format("A test was appointed to you with the tester {0} at {1}, {2}. See test for details.", testTester.Name, test.TestDateTime.ToShortDateString(), test.TestDateTime.ToShortTimeString());
 				testTrainee.AddNotification(traineeMessage, MessageIcon.Warning);
 				testTester.AddNotification(testerMessage, MessageIcon.Warning);
-				Functions.SendEmail(testTrainee, "New Test Appointment", traineeMessage);
+				if (test.TestDateTime > DateTime.Now) Functions.SendEmail(testTrainee, "New Test Appointment", traineeMessage);
 				Functions.SendEmail(testTester, "New Test Appointment", testerMessage);
 			}
 			else
@@ -103,12 +103,12 @@ namespace BL
 				if (!testTrainee.Equals(GlobalSettings.User))
 				{
 					testTrainee.AddNotification(message, MessageIcon.Information);
-					Functions.SendEmail(testTrainee, "Test Update", message);
+					if (test.TestDateTime > DateTime.Now) Functions.SendEmail(testTrainee, "Test Update", message);
 				}
 				if (!testTester.Equals(GlobalSettings.User))
 				{
 					testTester.AddNotification(message, MessageIcon.Information);
-					Functions.SendEmail(testTester, "Test Update", message);
+					if (test.TestDateTime > DateTime.Now)Functions.SendEmail(testTester, "Test Update", message);
 				}
 			}
 			UpdateTrainee(testTrainee);
