@@ -22,6 +22,11 @@ namespace BL
         {
             dal = DAL.FactoryDal.GetDAL();
         }
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="test"></param>
+		/// <param name="update"></param>
         public void AddTest(Test test, bool update = false)
         {
 			string ErrorString = "";
@@ -46,7 +51,7 @@ namespace BL
 			if (testTrainee.carTypeStats[testTrainee.CurrentCarType].numOfLessons < 20)
 				ErrorString += "The trainee is not yet ready for a test" + "\n";
 
-			if (testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
+			if (!update && testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
 				ErrorString += "The student has already passed a test on that vehicle" + "\n";
 			Holiday? holiday;
 			if (Functions.IsHoliday(test.TestDateTime, out holiday))
@@ -146,17 +151,25 @@ namespace BL
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Tester> AvailableTesters(DateTime date)
+        public IEnumerable<string> AvailableTesters(DateTime date, string TestNumber)
         {
-            return from  tester in dal.GetTesters()
-                          let tests = from test in dal.GetTests()
-                                      where test.TesterID==tester.ID
-                                      select test
-                          where tester.schedule[date.DayOfWeek,date.Hour]  
-                                && !tests.Any(T=>(T.TestDateTime-date).Days==0 && date.Hour==T.TestDateTime.Hour)
-                                && tester.MaxWeeklyTests<tests.Count()
-                          select tester;
-        }
+			//return from tester in dal.GetTesters()
+			//	   let tests = from test in dal.GetTests()
+			//				   where test.TesterID == tester.ID
+			//				   select test
+			//	   where tester.schedule[date.DayOfWeek, date.Hour]
+			//			 && !tests.Any(T => T.TestNumber != TestNumber &&( T.TestDateTime - date).Days == 0 && date.Hour == T.TestDateTime.Hour)
+			//			 && tester.MaxWeeklyTests < tests.Count()
+			//	   select tester.ID;
+			List<string> toReturn = new List<string>();
+			foreach (var tester in dal.GetTesters())
+				if (!TestGroupsAccordingToTester(false).Any(group =>
+				group.Key.ID == tester.ID && group.Any(T =>
+				T.TestNumber != TestNumber && T.TestDateTime.Date == date.Date && T.TestDateTime.Hour == date.Hour))
+				&& tester.schedule[date.DayOfWeek, date.Hour])
+					toReturn.Add(tester.ID);
+			return toReturn;
+		}
 		public IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date)
 		{
 			List<DateTime> available = new List<DateTime>();
@@ -165,7 +178,7 @@ namespace BL
 				{
 					DateTime availableDate = new DateTime(j.Year, j.Month, j.Day, hour, 0, 0);
 					if (tester.schedule[j.DayOfWeek,hour] &&
-						AvailableTesters(availableDate).Any(T => T.Equals(tester)))
+						AvailableTesters(availableDate, "").Any(T => T.Equals(tester)))
 						available.Add(availableDate);
 				}
 			return available;
@@ -316,8 +329,15 @@ namespace BL
 			if (inOrder) toReturn.OrderBy(item => item.Key);
 			return toReturn;
 		}
+		public IEnumerable<IGrouping<Tester, Test>> TestGroupsAccordingToTester(bool inOrder)
+		{
+			var toReturn = from test in dal.GetTests()
+						   group test by dal.GetTester(test.TesterID);
+			if (inOrder) toReturn.OrderBy(item => item.Key);
+			return toReturn;
+		}
 
-        public void UpdateTest(Test newData)
+		public void UpdateTest(Test newData)
         {
 			AddTest(newData, update: true);
 				

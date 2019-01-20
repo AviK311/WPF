@@ -49,7 +49,7 @@ namespace BL
 
         bool TesterIsInRange(BE.Tester tester, Address address);
         //IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
-        IEnumerable<BE.Tester> AvailableTesters(DateTime date);
+        IEnumerable<string> AvailableTesters(DateTime date, string TestNumber);
 		IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date);
 		IEnumerable<BE.Test> AppropriateTests(Func<BE.Test, bool> match);
         bool ProperToLicense(BE.Trainee trainee);
@@ -66,8 +66,11 @@ namespace BL
             TesterGroupsAccordingToCarType(bool inOrder = false);
 		IEnumerable<IGrouping<Trainee, BE.Test>>
 			TestGroupsAccordingToTrainee(bool inOrder = false);
+		IEnumerable<IGrouping<Tester, BE.Test>>
+			TestGroupsAccordingToTester(bool inOrder = false);
 
-    }
+
+	}
 }
 
     

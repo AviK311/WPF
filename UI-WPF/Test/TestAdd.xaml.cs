@@ -84,7 +84,8 @@ namespace UI_WPF
 				else propertiesGrid.Visibility = Visibility.Visible;
 				LastValidTime = test.TestDateTime;
 				HebDate.Text = Functions.GetHebrewDate(LastValidTime);
-				
+				//testerIDComboBox.ItemsSource = bl.AvailableTesters(LastValidTime, "");
+
 			}
 			catch(Exception ex)
 			{
