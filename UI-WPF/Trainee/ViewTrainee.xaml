@@ -10,7 +10,13 @@
    
 
     <Grid >
-
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+                <GradientStop Color="#FF917D7D" Offset="0"/>
+                <GradientStop Color="#FFDBC7E5" Offset="0.3"/>
+                <GradientStop Color="White" Offset="0.7"/>
+            </LinearGradientBrush>
+        </Grid.Background>
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,61,0,0" HorizontalAlignment="Left">
             <Grid.RowDefinitions>
@@ -136,5 +142,6 @@
             <Label VerticalAlignment="Center" Grid.Row="0" Margin="3" HorizontalAlignment="Left" Grid.Column="0" Content="Car Type Stats:"/>
             <ComboBox x:Name="cartype" Width="155" VerticalAlignment="Center" Grid.Row="0" Margin="3" Height="Auto" HorizontalAlignment="Left" Grid.Column="1"  SelectionChanged="cartype_SelectionChanged"/>
         </Grid>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="30,299,0,0" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png"/>
     </Grid>
 </Window>
