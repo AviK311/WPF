@@ -22,16 +22,29 @@ namespace UI_WPF
 	/// </summary>
 	public partial class MainWindow : Window
 	{
+		string InfoBoxMessage;
 		public MainWindow()
 		{
 			InitializeComponent();
+			InfoBoxMessage = "Welcome! ";
 			contentTextBox.Visibility = Visibility.Hidden;
 			MessageButton.Visibility = Visibility.Hidden;
 			if (GlobalSettings.User is Admin)
+			{
 				messageLabel.Visibility = Visibility.Hidden;
+				InfoBoxMessage += "Admin Privileges: You may add, edit, or delete any test, tester, trainee, or admin.\n" +
+					"You may view the admin messages, and delete them.";
+			}
 			else
-				button_Messages.Visibility= button_admin.Visibility = Visibility.Hidden;
-
+			{
+				button_Messages.Visibility = button_admin.Visibility = Visibility.Hidden;
+				if (GlobalSettings.User is Tester)
+					InfoBoxMessage += "Tester Privileges: You may edit your page. you may add, edit, or delete your tests. " +
+						"You may view trainees.";
+				else InfoBoxMessage += "Trainee Privileges: You may edit your page. you may add, edit, or delete your tests. " +
+						"You may view testers.";
+			}
+			InfoBox.Text = InfoBoxMessage;
 		}
 
         private void button_trainee_Click(object sender, RoutedEventArgs e)
@@ -137,6 +150,52 @@ namespace UI_WPF
 			Window adminWindow = new AdminWindow();
 			adminWindow.Show();
 			Close();
+		}
+
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = InfoBoxMessage;
+		}
+
+		private void button_trainee_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = (GlobalSettings.User is Trainee)?"Click to view your profile.": "Click to see Trainee list.";
+		}
+
+
+		private void button_tester_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = (GlobalSettings.User is Tester) ? "Click to view your profile." : "Click to see Tester list.";
+		}
+
+		private void button_test_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = (GlobalSettings.User is Admin) ? "Click to view Test list." : "Click to view your tests.";
+		}
+
+		private void button_admin_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = "Click to view Admin List.";
+		}
+
+		private void LogOut_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = "Click to view Log out.";
+		}
+
+		private void changePassword_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = "Click to change your password.";
+		}
+
+		private void button_Messages_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = "Click to view messages left for admins.";
+		}
+
+		private void messageLabel_MouseEnter(object sender, MouseEventArgs e)
+		{
+			InfoBox.Text = "Click to leave a message for the admins.";
 		}
 	}
 }
