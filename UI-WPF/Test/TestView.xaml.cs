@@ -31,10 +31,11 @@ namespace UI_WPF
         bool distance = true;
         bool calculating = false;
         public TestView(Test test1, List<Test> list)
-		{
+		{            
 			testers = new List<string>();
 			trainees = new List<string>();
 			InitializeComponent();
+            image2.Visibility = Visibility.Collapsed;
             testList = Functions.TrueCopyTests(list);
 			test = testList.First(T => T.TestNumber == test1.TestNumber);
 			LastValidTime = test.TestDateTime;
@@ -207,17 +208,27 @@ namespace UI_WPF
 		{
 			try { TraineeName.Text = bl.GetTrainee(test.TraineeID).Name.ToString(); } catch { }
 		}
-
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
-            ScaleTransform scale = new ScaleTransform(1.1, 1.1);
-            image.RenderTransform = scale;
+            image.Visibility = Visibility.Collapsed;
+            image2.Visibility = Visibility.Visible;
         }
 
-        private void image_MouseLeave(object sender, MouseEventArgs e)
+        private void image2_MouseEnter(object sender, MouseEventArgs e)
         {
-            image.RenderTransform = null;
+            image2.Visibility = Visibility.Collapsed;
+            image.Visibility = Visibility.Visible;
         }
+        //private void image_MouseEnter(object sender, MouseEventArgs e)
+        //{
+        //    ScaleTransform scale = new ScaleTransform(1.1, 1.1);
+        //    image.RenderTransform = scale;
+        //}
+
+        //private void image_MouseLeave(object sender, MouseEventArgs e)
+        //{
+        //    image.RenderTransform = null;
+        //}
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
