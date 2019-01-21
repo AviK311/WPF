@@ -34,8 +34,8 @@ namespace BL
             if (!update)test.TestNumber = dal.GetTestCode().ToString().PadLeft(8, '0');
 			var testTrainee = dal.GetTrainees().FirstOrDefault(T => T.ID == test.TraineeID);
 			var testTester = dal.GetTesters().FirstOrDefault(T => T.ID == test.TesterID);
-			if (testTrainee == null) ErrorString += "The trainee does not exist" + "\n";
-			if (testTester == null) ErrorString += "The tester does not exist" + "\n";
+			if (testTrainee == null) throw new InvalidOperationException("The trainee does not exist" + "\n");
+			if (testTester == null) throw new InvalidOperationException("The tester does not exist" + "\n");
 
             // Thread thread = new Thread(() =>TestersInRange(testTester, test.BeginLocation));
             //thread.Start();
@@ -53,9 +53,8 @@ namespace BL
 
 			if (!update && testTrainee.carTypeStats[testTrainee.CurrentCarType].passed)
 				ErrorString += "The student has already passed a test on that vehicle" + "\n";
-			Holiday? holiday;
-			if (Functions.IsHoliday(test.TestDateTime, out holiday))
-				ErrorString +="The chosen date falls out on " + Functions.InsertSpacesBeforeUpper(holiday.ToString())+ "\n";
+			if (Functions.IsHoliday(test.TestDateTime, out Holiday? holiday))
+				ErrorString += "The chosen date falls out on " + Functions.InsertSpacesBeforeUpper(holiday.ToString()) + "\n";
 			DayOfWeek day = test.TestDateTime.DayOfWeek;
             int time = test.TestDateTime.Hour;
 			
@@ -153,21 +152,22 @@ namespace BL
 
         public IEnumerable<string> AvailableTesters(DateTime date, string TestNumber)
         {
-			//return from tester in dal.GetTesters()
-			//	   let tests = from test in dal.GetTests()
-			//				   where test.TesterID == tester.ID
-			//				   select test
-			//	   where tester.schedule[date.DayOfWeek, date.Hour]
-			//			 && !tests.Any(T => T.TestNumber != TestNumber &&( T.TestDateTime - date).Days == 0 && date.Hour == T.TestDateTime.Hour)
-			//			 && tester.MaxWeeklyTests < tests.Count()
-			//	   select tester.ID;
+			
 			List<string> toReturn = new List<string>();
+			var testList = dal.GetTests();
 			foreach (var tester in dal.GetTesters())
-				if (!TestGroupsAccordingToTester(false).Any(group =>
-				group.Key.ID == tester.ID && group.Any(T =>
-				T.TestNumber != TestNumber && T.TestDateTime.Date == date.Date && T.TestDateTime.Hour == date.Hour))
-				&& tester.schedule[date.DayOfWeek, date.Hour])
-					toReturn.Add(tester.ID);
+			{
+				if (!tester.schedule[date.DayOfWeek, date.Hour])
+					continue;
+				if (testList.Any(T =>
+				T.TesterID == tester.ID &&
+				T.TestNumber != TestNumber &&
+				T.TestDateTime.ToShortDateString() == date.ToShortDateString() &&
+				T.TestDateTime.Hour == date.Hour))
+					continue;
+				toReturn.Add(tester.ID);
+
+			}
 			return toReturn;
 		}
 		public IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date)
