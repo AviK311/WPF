@@ -24,7 +24,17 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Grid Name="buttons" Grid.Column="1">
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="170" Margin="416,220,0,0" VerticalAlignment="Top" Width="295" Source="/UI-WPF;component/images/car153עותק.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image2_MouseEnter" MouseLeave="image_MouseLeave">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-77.42"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Grid x:Name="buttons" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
@@ -37,7 +47,7 @@
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
                 <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
-                <DataGridTextColumn Header="Age" Binding="{Binding Age }"/>
+                <DataGridTextColumn Header="Age" Binding="{Binding Age}"/>
                 <DataGridTextColumn Header="Vehicle Type" Binding="{Binding CurrentCarType}"/>
                 <DataGridCheckBoxColumn Header="Passed" Binding="{Binding Passed, Mode=OneWay}"/>
             </DataGrid.Columns>
@@ -61,7 +71,7 @@
             </Button.Background>
         </Button>
         <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120"  PreviewKeyUp="ID_textBox_PreviewKeyUp" />
-        <Image x:Name="image" HorizontalAlignment="Left" Height="140" Margin="440,260,0,0" VerticalAlignment="Top" Width="245" Source="/UI-WPF;component/images/car15.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave">
+        <Image x:Name="image" HorizontalAlignment="Left" Height="170" Margin="416,220,0,0" VerticalAlignment="Top" Width="295" Source="/UI-WPF;component/images/car15.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave">
             <Image.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform ScaleX="-1"/>

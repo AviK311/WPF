@@ -83,16 +83,16 @@ namespace UI_WPF
 			if (e.Key != Key.OemMinus && e.Key != Key.Subtract && (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Tab)
 				e.Handled = true;
 		}
-
-        private void image_MouseEnter(object sender, MouseEventArgs e)
+              
+        private void image_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            ScaleTransform scale = new ScaleTransform(1.1, 1.1);
-            image.RenderTransform = scale;
+            image.Visibility = Visibility.Collapsed;
+            image2.Visibility = Visibility.Visible;
         }
-
-        private void image_MouseLeave(object sender, MouseEventArgs e)
+        private void image2_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            image.RenderTransform = null;
+            image2.Visibility = Visibility.Collapsed;
+            image.Visibility = Visibility.Visible;
         }
     }
 }

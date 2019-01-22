@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BL;
@@ -310,4 +311,24 @@ namespace UI_WPF
 			InfoBlock.Text = "After you've entered the correct ID and password, click here to log in.\n" +
 				"If this is your first time, you will be prompted to choose a password for yourself.";
 		}
-	} }
+        private void image1_MouseEnter(object sender, MouseEventArgs e)
+        {
+
+            DoubleAnimation da = new DoubleAnimation();
+            da.From = 0;
+            da.To = 360;
+            da.Duration = new Duration(TimeSpan.FromSeconds(1));
+            da.RepeatBehavior = RepeatBehavior.Forever;
+            RotateTransform rt = new RotateTransform();
+            image.RenderTransform = rt;
+            rt.BeginAnimation(RotateTransform.AngleProperty, da);
+
+        }
+
+        private void image1_MouseLeave(object sender, MouseEventArgs e)
+        {
+            image.RenderTransform = null;
+        }
+
+
+    } }

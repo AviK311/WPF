@@ -17,6 +17,8 @@
             </LinearGradientBrush>
         </Grid.Background>
 
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="161" Margin="15,280,0,-0.2" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12עותק.png" MouseDown="image2_MouseDown"/>
+
         <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="12,27,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -86,8 +88,8 @@
                 <Button.Style>
                     <Style>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=iDTextBox, Path=Text}" Value="">
-                                <Setter Property="Button.IsEnabled" Value="false"/>
+                            <DataTrigger Binding="{Binding Text, ElementName=iDTextBox}" Value="">
+                                <Setter Property="UIElement.IsEnabled" Value="false"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
@@ -121,7 +123,7 @@
             <TextBox x:Name="teacherFirst" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="3,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
             <TextBox x:Name="teacherLast" Width="75" VerticalAlignment="Center"  Grid.Row="4" Margin="83,4,0,5" Height="23" HorizontalAlignment="Left" Grid.Column="1" IsEnabled="{Binding IsVisible, ElementName=SaveButton}"/>
         </Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="15,280,0,-0.2" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png" MouseEnter="image_MouseEnter" MouseLeave="image_MouseLeave"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="161" Margin="15,280,0,-0.2" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12.png" MouseDown="image_MouseDown"/>
 
     </Grid>
 </Window>

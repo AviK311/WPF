@@ -26,10 +26,25 @@
 				<RowDefinition Height="*"/>
 				<RowDefinition Height="0.25*"/>
 			</Grid.RowDefinitions>
-			<Image x:Name="image1" HorizontalAlignment="Left" Height="133" Grid.RowSpan="3" VerticalAlignment="Top" Width="293" Source="images/car18.png" RenderTransformOrigin="0.487,-0.2" Margin="289,59,0,0"/>
+			<Image x:Name="image1" HorizontalAlignment="Left" Height="133" Grid.RowSpan="3" VerticalAlignment="Top" Width="293" Source="images/car18.png" RenderTransformOrigin="0.487,-0.2" Margin="289,59,0,0">
+                <Image.Triggers>
+                    <!-- Animates the rectangle's opacity. -->
+                    <EventTrigger RoutedEvent="Rectangle.Loaded">
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation
+                                    Storyboard.TargetName="image1" 
+                                    Storyboard.TargetProperty="Opacity"
+                                    From="1.0" To="0.0" Duration="0:0:5" 
+                                    AutoReverse="True" RepeatBehavior="1" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger>
+                </Image.Triggers>
+                </Image>
 
 
-			<Image x:Name="image" HorizontalAlignment="Left" Height="160" Margin="175,30,0,-10" Grid.RowSpan="3" VerticalAlignment="Top" Width="225" Source="images/car13_.png" Grid.Row="3" RenderTransformOrigin="0.5,0.5">
+            <Image x:Name="image" HorizontalAlignment="Left" Height="160" Margin="175,30,0,-10" Grid.RowSpan="3" VerticalAlignment="Top" Width="225" Source="images/car13_.png" Grid.Row="3" RenderTransformOrigin="0.5,0.5" MouseEnter="image1_MouseEnter" MouseLeave="image1_MouseLeave" >
 				<Image.RenderTransform>
 					<TransformGroup>
 						<ScaleTransform/>
@@ -49,8 +64,9 @@
 			<TextBox x:Name="IdInput" HorizontalAlignment="Left" Height="33" TextWrapping="Wrap" Text="207623224" VerticalAlignment="Top" Width="430" Margin="250,33.2,0,0" TextAlignment="Center" FontSize="20" Grid.Row="2" KeyDown="PasswordInput_KeyDown"/>
 			<Button x:Name="LoginButton" MouseLeave="MouseLeave" MouseEnter="LoginButton_MouseEnter" Content="Login" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="578,18,0,0" Grid.Row="4" Height="56" Click="LoginButton_Click" BorderBrush="Black" BorderThickness="2"  Background="LightYellow" />
 			<Button x:Name="Forgot" MouseEnter="Forgot_MouseEnter" MouseLeave="MouseLeave" Content="Forgot Password" HorizontalAlignment="Left" VerticalAlignment="Top" Width="151" Margin="408,18,0,0" Grid.Row="4" Height="56" Click="Forgot_Click" BorderThickness="2" Background="LightYellow" BorderBrush="Black"  />
-			<TextBlock x:Name="InfoBlock" HorizontalAlignment="Left" Margin="28,59,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="134" Width="222" Grid.RowSpan="3"/>
+			<TextBlock x:Name="InfoBlock" HorizontalAlignment="Left" Margin="28,59,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="134" Width="222" Grid.RowSpan="3" TextAlignment="Justify"/>
 		</Grid>
+        
 	</Grid>
 
 </Window>

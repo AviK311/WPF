@@ -389,5 +389,26 @@
   <ItemGroup>
     <Resource Include="images\car21.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Image2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\מעגל.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\helicopter_עותק.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\helicopter28.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\helicopter2עuותק.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car12עותק.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car153עותק.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
