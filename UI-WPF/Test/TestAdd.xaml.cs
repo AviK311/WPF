@@ -113,7 +113,7 @@ namespace UI_WPF
             distance = bl.TesterIsInRange(tester, address);
             calculating = false;
 			FinishedMessage += distance ? "The tester lives close enough to the designated begin address" : "The tester lives too far away from the designated begin address";
-			if (PromptDistance) MessageBox.Show(FinishedMessage, "Alert", MessageBoxButton.OK,MessageBoxImage.Information);
+		//	if (PromptDistance) MessageBox.Show(FinishedMessage, "Alert", MessageBoxButton.OK,MessageBoxImage.Information);
 			PromptDistance = false;
         }
 
