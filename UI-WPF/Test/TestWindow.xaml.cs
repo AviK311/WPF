@@ -27,16 +27,17 @@ namespace UI_WPF
         {
             InitializeComponent();
             bl = FactoryBL.GetBL();
-			testlist = bl.GetTests().ToList();
+			
 			if (GlobalSettings.User is Trainee)
-				DataContext = (from item in testlist
+				testlist = (from item in bl.GetTests()
 							   where item.TraineeID == GlobalSettings.User.ID
 							   select item).ToList();
 			else if(GlobalSettings.User is Tester)
-				DataContext = (from item in testlist
+				testlist = (from item in bl.GetTests()
 							   where item.TesterID == GlobalSettings.User.ID
 							   select item).ToList();
-			else DataContext = testlist;
+			else testlist = bl.GetTests().ToList();
+			DataContext = testlist;
         }
 
         private void Add_Click(object sender, RoutedEventArgs e)
@@ -63,7 +64,7 @@ namespace UI_WPF
 
         private void All_RadioButton_Checked(object sender, RoutedEventArgs e)
         {
-            DataContext = bl.GetTests();
+			DataContext = testlist;
         }
         private void RadioButton_Checked(object sender, RoutedEventArgs e)
         {
@@ -76,7 +77,7 @@ namespace UI_WPF
                     vehicleType = item;
                     break;
                 }
-            DataContext = bl.GetTests().Where(c => c.TestingCarType == vehicleType);
+            DataContext =testlist.Where(c => c.TestingCarType == vehicleType);
         }
 
         private void image_MouseEnter(object sender, MouseEventArgs e)

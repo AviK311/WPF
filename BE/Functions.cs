@@ -239,6 +239,14 @@ namespace BE
 				admins.Add(new Admin(a));
 			return admins;
 		}
+		public static bool IsAddress(Address ad)
+		{
+			if (ad.buildingNumber == "" || ad.buildingNumber == null)
+				if (ad.city == "" || ad.city == null)
+					if (ad.street == "" || ad.street == null)
+						return false;
+			return true;
+		}
 
 	}
 		
