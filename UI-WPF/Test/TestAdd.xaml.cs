@@ -31,37 +31,40 @@ namespace UI_WPF
         Tester tester;
         bool distance = true;
         bool calculating = false;
+		bool PromptDistance = false;
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            //Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
-            ////testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
-            if (calculating == true)
-                MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-            else
-            {
-                if (distance == false)
-                    MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                else
-                {
-                    try
-                    {
-                        bl.AddTest(test);
-                        MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
-                        TestWindow testWindow = new TestWindow();
-                        testWindow.Show();
-                        Close();
+			//Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
+			////testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
+			PromptDistance = calculating;
 
-                    }
-                    catch (InvalidOperationException exc)
-                    {
-                        MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
-                    }
-                }
-            }
+			if (calculating == true)
+				MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+			else
+			{
+				if (distance == false)
+					MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+				else
+				{
+					try
+					{
+						bl.AddTest(test);
+						MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+						TestWindow testWindow = new TestWindow();
+						testWindow.Show();
+						Close();
+
+					}
+					catch (InvalidOperationException exc)
+					{
+						MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+					}
+				}
+			}
         }
 
 		private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -105,11 +108,13 @@ namespace UI_WPF
 
         private void VerifyRange(Address address,Tester tester)
         {
-            
+			string FinishedMessage = "The system finished calculating.\n";
             calculating = true;
             distance = bl.TesterIsInRange(tester, address);
             calculating = false;
-           
+			FinishedMessage += distance ? "The tester lives close enough to the designated begin address" : "The tester lives too far away from the designated begin address";
+		//	if (PromptDistance) MessageBox.Show(FinishedMessage, "Alert", MessageBoxButton.OK,MessageBoxImage.Information);
+			PromptDistance = false;
         }
 
         private void CheckingValidAddress(object sender, SelectionChangedEventArgs e)
@@ -123,15 +128,16 @@ namespace UI_WPF
 		}
 
         private void CheckingValidAddress2(object sender, TextChangedEventArgs e)
-        {
+       {
 			
 			tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
 			BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-			if (address != null && tester != null)
+			if (Functions.IsAddress(address) && tester != null)
 			{
 				Thread thread = new Thread(() => VerifyRange(address, tester));
 				thread.Start();
 			}
+			else distance = true;
 
 		}
 
@@ -181,7 +187,7 @@ namespace UI_WPF
 			testerIDComboBox.SelectedIndex = 0;
 			traineeIDComboBox.ItemsSource = trainees;
 			traineeIDComboBox.SelectedIndex = 1;
-
+			InfoBlock.Text = "Add Test: Once you choose a trainee and a tester, you can save.";
 
 
 		}

@@ -30,6 +30,7 @@ namespace UI_WPF
         Tester tester;
         bool distance = true;
         bool calculating = false;
+		bool PromptDistance = false;
         public TestView(Test test1, List<Test> list)
 		{            
 			testers = new List<string>();
@@ -49,9 +50,6 @@ namespace UI_WPF
 			if (GlobalSettings.User is Trainee)
 			{
 				trainees.Add(GlobalSettings.User.ID);
-				testList = (from item in testList
-						where item.TraineeID == GlobalSettings.User.ID
-						select item).ToList();
 				if (test.TestDateTime < DateTime.Now)
 					EditButton.IsEnabled = false;
 				TestDeleteButton.IsEnabled = false;
@@ -62,9 +60,6 @@ namespace UI_WPF
 			if (GlobalSettings.User is Tester)
 			{
 				testers.Add(GlobalSettings.User.ID);
-				testList = (from item in testList
-						where item.TesterID == GlobalSettings.User.ID
-						select item).ToList();
 			}
 			else foreach (var item in bl.GetTesters())
 					testers.Add(item.ID);
@@ -77,6 +72,7 @@ namespace UI_WPF
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
+			PromptDistance = calculating;
             if (calculating == true)
                 MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             else
@@ -129,18 +125,11 @@ namespace UI_WPF
                     MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                 }
             }
-            //Window confirmDelete = new ConfirmDelete(sender, this, test.TestNumber);
-            //confirmDelete.ShowDialog();
+            
         }
 
 		private void CancelButton_Click(object sender, RoutedEventArgs e)
 		{
-		//	test = new Test(list.First(T => T.TestNumber == test.TestNumber));
-		//	DataContext= test;
-		//	Hour.SelectedIndex = test.TestDateTime.Hour - 9;
-		//	City.Text = test.BeginLocation.city;
-		//	Street.Text = test.BeginLocation.street;
-		//	Number.Text = test.BeginLocation.buildingNumber;
 			EditButton.Visibility = Visibility.Visible;
 			SaveButton.Visibility = Visibility.Hidden;
 		}
@@ -163,7 +152,6 @@ namespace UI_WPF
 				EditButton.IsEnabled = false;
 			else EditButton.IsEnabled = true;
 
-
 		}
         private void LeftButton_Click(object sender, RoutedEventArgs e)
         {
@@ -171,7 +159,6 @@ namespace UI_WPF
             if (currentIndex == 0)
                 currentIndex = testList.Count;
             test = testList[currentIndex - 1];
-
             DataContext = test;
 			LastValidTime = test.TestDateTime;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
@@ -179,13 +166,17 @@ namespace UI_WPF
 			else EditButton.IsEnabled = true;
 		}
 
-        private void TestersInRange(Address address, Tester tester)
+        private void VerifyAddress(Address address, Tester tester)
         {
-            calculating = true;
-            distance = bl.TesterIsInRange(tester, address);
-            calculating = false;
- 
-        }
+			string FinishedMessage = "The system finished calculating.\n";
+			calculating = true;
+			distance = bl.TesterIsInRange(tester, address);
+			calculating = false;
+			FinishedMessage += distance ? "The tester lives close enough to the designated begin address" : "The tester lives too far away from the designated begin address";
+			//if (PromptDistance)MessageBox.Show(FinishedMessage, "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+			PromptDistance = false;
+
+		}
         private void CheckingValidAddress(object sender, TextChangedEventArgs e)
         {
 			try { TesterName.Text = bl.GetTester(test.TesterID).Name.ToString(); } catch { }
@@ -197,11 +188,12 @@ namespace UI_WPF
         {
 			tester = bl.GetTesters().FirstOrDefault(T => T.ID == (string)testerIDComboBox.SelectedValue);
 			BE.Address address = new BE.Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-			if (address != null && tester != null)
+			if (Functions.IsAddress(address) && tester != null)
 			{
-				Thread thread = new Thread(() => TestersInRange(address, tester));
+				Thread thread = new Thread(() => VerifyAddress(address, tester));
 				thread.Start();
 			}
+			else distance = true;
 		}
 
 		private void traineeIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -234,7 +226,7 @@ namespace UI_WPF
         {
 			try
 			{
-				if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
+				if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now && LastValidTime > DateTime.Now)
 					throw new InvalidOperationException("A Trainee cannot change a test to a past date");
 					
 				if (test.TestDateTime.DayOfWeek > (DayOfWeek)4)
