@@ -98,41 +98,34 @@ namespace UI_WPF
             DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
         }
 
-        //private void image_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    //image.Height += 7;
-        //    //image.Width += 7;    
-        //}
-
-        private void image_MouseLeave(object sender, MouseEventArgs e)
-        {
-            //image.Height -= 7;
-            //image.Width -= 7;
-        }
+     
+     
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
+            var button = sender as Image;
             System.Threading.Thread.Sleep(500);
-            image.Visibility = Visibility.Collapsed;         
-            image2.Visibility = Visibility.Visible;
-        }
+            switch (button.Name)
+            {
+                case "image":
+                    image.Visibility = Visibility.Collapsed;
+                    image2.Visibility = Visibility.Visible;
+                    break;
+                case "image2":
+                    image2.Visibility = Visibility.Collapsed;
+                    image3.Visibility = Visibility.Visible;
+                    break;
+                case "image3":
+                    image3.Visibility = Visibility.Collapsed;
+                    image4.Visibility = Visibility.Visible;
+                    break;
+                case "image4":
+                    image4.Visibility = Visibility.Collapsed;
+                    image.Visibility = Visibility.Visible;
+                    break;
 
-        private void image2_MouseEnter(object sender, MouseEventArgs e)
-        {
-            System.Threading.Thread.Sleep(500);
-            image2.Visibility = Visibility.Collapsed;          
-            image3.Visibility = Visibility.Visible;
-        }
-        private void image3_MouseEnter(object sender, MouseEventArgs e)
-        {
-            System.Threading.Thread.Sleep(500);
-            image3.Visibility = Visibility.Collapsed;
-            image4.Visibility = Visibility.Visible;
-        }
-        private void image4_MouseEnter(object sender, MouseEventArgs e)
-        {
-            System.Threading.Thread.Sleep(500);
-            image4.Visibility = Visibility.Collapsed;
-            image.Visibility = Visibility.Visible;
+                default:
+                    break;
+            }        
         }
 
     }
