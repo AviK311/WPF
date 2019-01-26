@@ -5,11 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"  ResizeMode="NoResize"
-        Title="MessagesWindow" Height="339.894" Width="485.638">
+        Title="MessagesWindow" Height="400" Width="600">
     <Grid>
-        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="210" FontFamily="MV Boli" Background="{x:Null}"  />
+        <Grid.Background>
+            <RadialGradientBrush>
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="#FFC6E79B" Offset="0.5"/>
+                <GradientStop Color="#FF81D168" Offset="0.52"/>
+                <GradientStop Color="#FFB5F38E" Offset="0.55"/>
+                <GradientStop Color="White" Offset="1"/>
+            </RadialGradientBrush>
+        </Grid.Background>
+        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="220" FontFamily="MV Boli" Background="{x:Null}"  />
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="344,64,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
-        <StackPanel Margin="305,88,0.2,61.4">
+        <StackPanel Margin="305,88,198.6,220.4">
             <RadioButton  GroupName="radio"  x:Name="All"  Content="All" Checked="RadioButton_Checked" />
             <RadioButton  GroupName="radio"  x:Name="Trainee"  Content="Trainees" Checked="RadioButton_Checked" />
             <RadioButton GroupName="radio" x:Name="Tester" Content="Testers" Checked="RadioButton_Checked" />
