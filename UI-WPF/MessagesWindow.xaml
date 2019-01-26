@@ -18,7 +18,7 @@
         </Grid.Background>
         <Image x:Name="image" HorizontalAlignment="Left" Height="145" Margin="245,185,0,0" VerticalAlignment="Top" Width="250" Source="images/car12_green.png"/>
 
-        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="220" FontFamily="MV Boli" Background="{x:Null}" BorderBrush="#FF81D168" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Hidden" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"  />
+        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="220" FontFamily="MV Boli" Background="{x:Null}" BorderBrush="#FF81D168" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"  />
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="344,64,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
         <StackPanel Margin="305,88,198.6,220.4">
             <RadioButton  GroupName="radio"  x:Name="All"  Content="All" Checked="RadioButton_Checked" />
