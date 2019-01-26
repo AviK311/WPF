@@ -92,6 +92,16 @@ namespace UI_WPF
         private void image2_MouseDown(object sender, MouseButtonEventArgs e)
         {
             image2.Visibility = Visibility.Collapsed;
+            image3.Visibility = Visibility.Visible;
+        }
+        private void image3_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            image3.Visibility = Visibility.Collapsed;
+            image4.Visibility = Visibility.Visible;
+        }
+        private void image4_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            image4.Visibility = Visibility.Collapsed;
             image.Visibility = Visibility.Visible;
         }
     }

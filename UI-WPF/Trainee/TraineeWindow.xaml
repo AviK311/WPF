@@ -24,6 +24,26 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
+        <Image x:Name="image4" HorizontalAlignment="Left" Height="170" Margin="416,220,0,0" VerticalAlignment="Top" Width="295" Source="/UI-WPF;component/images/car15_green.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image4_MouseEnter" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-77.42"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+        <Image x:Name="image3" HorizontalAlignment="Left" Height="170" Margin="416,220,0,0" VerticalAlignment="Top" Width="295" Source="/UI-WPF;component/images/car15_blue.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image3_MouseEnter" >
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform ScaleX="-1"/>
+                    <SkewTransform/>
+                    <RotateTransform/>
+                    <TranslateTransform X="-77.42"/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
         <Image x:Name="image2" HorizontalAlignment="Left" Height="170" Margin="416,220,0,0" VerticalAlignment="Top" Width="295" Source="/UI-WPF;component/images/car153עותק.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image2_MouseEnter" MouseLeave="image_MouseLeave">
             <Image.RenderTransform>
                 <TransformGroup>
