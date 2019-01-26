@@ -157,7 +157,24 @@ namespace UI_WPF
             image.RenderTransform = null;
         }
 
-        public TestAdd()
+		private void AddressOrTester(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text ="When you choose an address and a Tester, the system will check if the tester lives close enough.";
+		}
+		private void Date(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "When you choose a date and time, the Tester list will update to the testers available on that date.\n";
+			if (GlobalSettings.User is Trainee)
+				InfoBlock.Text += "A trainee cannot choose a time that has already passed.";
+			else
+				InfoBlock.Text += "Choosing a time that has passed enables grading of the test";
+		}
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "Add Test: Once you choose a trainee and a tester, you can save.";
+		}
+
+		public TestAdd()
         {
             InitializeComponent();
 			propertiesGrid.Visibility = Visibility.Hidden;
@@ -191,6 +208,7 @@ namespace UI_WPF
 
 
 		}
+
 
 		
 	}

@@ -10,13 +10,13 @@
 
 
 	<Grid >
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
-                <GradientStop Color="#FF686666" Offset="0"/>
-                <GradientStop Color="#FFC5C5C5" Offset="0.3"/>
-                <GradientStop Color="White" Offset="0.7"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+		<Grid.Background>
+			<LinearGradientBrush EndPoint="0.5,1" MappingMode="RelativeToBoundingBox" StartPoint="0.5,0">
+				<GradientStop Color="#FF686666" Offset="0"/>
+				<GradientStop Color="#FFC5C5C5" Offset="0.3"/>
+				<GradientStop Color="White" Offset="0.7"/>
+			</LinearGradientBrush>
+		</Grid.Background>
 		<Grid HorizontalAlignment="Left" Height="20" Margin="26,22,0,0" VerticalAlignment="Top" Width="254">
 			<Grid.ColumnDefinitions>
 				<ColumnDefinition Width="auto"/>
@@ -25,17 +25,17 @@
 				<ColumnDefinition Width="auto" />
 			</Grid.ColumnDefinitions>
 			<Button x:Name="TraineeDeleteButton"  Content="Delete" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="DeleteButton_Click" Grid.Column="1" Width="60" Height="20" />
-			<Button x:Name="SaveButton"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="2" Width="60" Height="20" />
-			<Button x:Name="EditButton"  Content="Edit" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"  Click="EditButton_Click" Grid.Column="2" Width="60" Height="20"  />
-			<Button x:Name="CancelButton"  Content="Cancel" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"  Visibility="{Binding IsVisible, ElementName=SaveButton}" IsEnabled="{Binding IsVisible, ElementName=SaveButton}" Click="CancelButton_Click" Grid.Column="3" Width="60" Height="20" />
-			<Button x:Name="BackButton"  Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"  IsEnabled="{Binding IsVisible, ElementName=EditButton}"  Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
+			<Button x:Name="SaveButton" MouseEnter="SaveButtonEnterEvent" MouseLeave="MouseLeave"  Content="Save" HorizontalAlignment="Left" Margin="2,0,0,0" VerticalAlignment="Top"  Click="SaveButton_Click" Grid.Column="2" Width="60" Height="20" />
+			<Button x:Name="EditButton" MouseEnter="EditButtonEnterEvent"  MouseLeave="MouseLeave" Content="Edit" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"  Click="EditButton_Click" Grid.Column="2" Width="60" Height="20"  />
+			<Button x:Name="CancelButton" MouseEnter="CancelButtonEnterEvent"  MouseLeave="MouseLeave" Content="Cancel" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"  Visibility="{Binding IsVisible, ElementName=SaveButton}" IsEnabled="{Binding IsVisible, ElementName=SaveButton}" Click="CancelButton_Click" Grid.Column="3" Width="60" Height="20" />
+			<Button x:Name="BackButton" MouseEnter="BackButtonEnterEvent"  MouseLeave="MouseLeave" Content="Back" HorizontalAlignment="Left"  Margin="2,0,0,0" VerticalAlignment="Top"  IsEnabled="{Binding IsVisible, ElementName=EditButton}"  Grid.Column="0" Width="60" Height="20" Click="BackButton_Click" />
 		</Grid>
-		<Button x:Name="RightButton" Content="" HorizontalAlignment="Left" Margin="138,62,0,0" VerticalAlignment="Top" Width="50" Height="30" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="RightButton_Click" BorderBrush="White">
+		<Button x:Name="RightButton" MouseLeave="MouseLeave" MouseEnter="RightArrow" Content="" HorizontalAlignment="Left" Margin="138,62,0,0" VerticalAlignment="Top" Width="50" Height="30" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="RightButton_Click" BorderBrush="White">
 			<Button.Background>
 				<ImageBrush ImageSource="/UI-WPF;component/images/arrow5.jpg"/>
 			</Button.Background>
 		</Button>
-		<Button x:Name="LeftButton" Content="" HorizontalAlignment="Left" Margin="66,62,0,0" VerticalAlignment="Top" Width="50" Height="30" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="LeftButton_Click" BorderBrush="White">
+		<Button x:Name="LeftButton" MouseLeave="MouseLeave" MouseEnter="LeftArrow" Content="" HorizontalAlignment="Left" Margin="66,62,0,0" VerticalAlignment="Top" Width="50" Height="30" IsEnabled="{Binding IsVisible, ElementName=EditButton}" Click="LeftButton_Click" BorderBrush="White">
 			<Button.Background>
 				<ImageBrush ImageSource="/UI-WPF;component/images/arrow4.jpg"/>
 			</Button.Background>
@@ -72,7 +72,8 @@
 
 
 		</Grid>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="190" Margin="303,280,0,-50" VerticalAlignment="Top" Width="172" Source="/UI-WPF;component/images/car20.png"/>
+		<Image x:Name="image" HorizontalAlignment="Left" Height="190" Margin="303,280,0,-50" VerticalAlignment="Top" Width="172" Source="/UI-WPF;component/images/car20.png"/>
+		<TextBlock x:Name="InfoBlock" HorizontalAlignment="Left" Margin="276,110,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="154" Width="208"/>
 
-    </Grid>
+	</Grid>
 </Window>

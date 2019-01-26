@@ -65,9 +65,9 @@ namespace UI_WPF
 					testers.Add(item.ID);
             traineeIDComboBox.ItemsSource = trainees;
 			testerIDComboBox.ItemsSource = testers;
-            
-            
-        }
+			InfoBlock.Text = "View Test";
+
+		}
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -251,6 +251,59 @@ namespace UI_WPF
 			}
 			
 		}
+		private void RightArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			//if (button.IsEnabled)
+				InfoBlock.Text = "Click to go to the next Test on the list";
+		}
+		private void LeftArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled)
+				InfoBlock.Text = "Click to go to the previous Test on the list";
+		}
+		private void AddressOrTester(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "When you choose an address and a Tester, the system will check if the tester lives close enough.";
+		}
+		private void EditButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to Enter Edit Mode";
+		}
+		private void CancelButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to exit Edit Mode";
+		}
+		private void DeleteButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to delete the test";
+		}
+		private void SaveButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to update changes";
+		}
+		private void BackButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to navigate back to Test List page";
+		}
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "View Test";
+		}
+		private void Date(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "When you choose a date and time, the Tester list will update to the testers available on that date.\n";
+			if (GlobalSettings.User is Trainee)
+				InfoBlock.Text += "A trainee cannot choose a time that has already passed.";
+			else
+				InfoBlock.Text += "Choosing a time that has passed enables grading of the test";
+		}
 
-    }
+	}
 }

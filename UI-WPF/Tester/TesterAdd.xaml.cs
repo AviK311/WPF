@@ -79,6 +79,7 @@ namespace UI_WPF
 			Functions.AddTemplateList(wedCheckboxes, Wed9, Wed10, Wed11, Wed12, Wed13, Wed14);
 			Functions.AddTemplateList(thursCheckboxes, Thurs9, Thurs10, Thurs11, Thurs12, Thurs13, Thurs14);
             image2.Visibility = Visibility.Collapsed;
+			InfoBlock.Text = "Add Tester";
 		}
 
 		private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -152,5 +153,31 @@ namespace UI_WPF
             image2.Visibility = Visibility.Collapsed;
             image.Visibility = Visibility.Visible;
         }
-    }
+
+		
+		
+		private void CheckBoxEnterEvent(object sender, MouseEventArgs e)
+		{
+			string SenderName = (sender as CheckBox).Name.ToLower();
+			DayOfWeek day = DayOfWeek.Friday;
+			int hour = 0;
+			if (SenderName.Contains("sun")) day = DayOfWeek.Sunday;
+			if (SenderName.Contains("mon")) day = DayOfWeek.Monday;
+			if (SenderName.Contains("tue")) day = DayOfWeek.Tuesday;
+			if (SenderName.Contains("wed")) day = DayOfWeek.Wednesday;
+			if (SenderName.Contains("thurs")) day = DayOfWeek.Thursday;
+			if (SenderName.Contains("9")) hour = 9;
+			if (SenderName.Contains("10")) hour = 10;
+			if (SenderName.Contains("11")) hour = 11;
+			if (SenderName.Contains("12")) hour = 12;
+			if (SenderName.Contains("13")) hour = 13;
+			if (SenderName.Contains("14")) hour = 14;
+
+			InfoBlock.Text = string.Format("Check this box if the tester is available on {0} at {1}:00", day, hour);
+		}
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "Add Tester";
+		}
+	}
 }

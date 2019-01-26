@@ -73,6 +73,8 @@ namespace UI_WPF
 				item.IsChecked = tester.schedule[DayOfWeek.Wednesday][wedCheckboxes.IndexOf(item) + 9];
 			foreach (var item in thursCheckboxes)
 				item.IsChecked = tester.schedule[DayOfWeek.Thursday][thursCheckboxes.IndexOf(item) + 9];
+
+			InfoBlock.Text = "View Tester";
 		}
 
 		private void EditButton_Click(object sender, RoutedEventArgs e)
@@ -221,7 +223,69 @@ namespace UI_WPF
 			if (e.Key != Key.OemMinus && e.Key != Key.Subtract && (e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Tab)
 				e.Handled = true;
 		}
+		private void RightArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			//if (button.IsEnabled)
+			InfoBlock.Text = "Click to go to the next Tester on the list";
+		}
+		private void LeftArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled)
+				InfoBlock.Text = "Click to go to the previous Tester on the list";
+		}
 
-       
-    }
+		private void EditButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to Enter Edit Mode";
+		}
+		private void CancelButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to exit Edit Mode";
+		}
+		private void DeleteButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to delete the Tester";
+		}
+		private void SaveButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to update changes";
+		}
+		private void BackButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "Click to navigate back to " + (GlobalSettings.User is Tester? "Main Page":"Tester list page");
+		}
+		private void CheckBoxEnterEvent(object sender, MouseEventArgs e)
+		{
+			string SenderName = (sender as CheckBox).Name.ToLower();
+			DayOfWeek day = DayOfWeek.Friday;
+			int hour = 0;
+			if (SenderName.Contains("sun")) day = DayOfWeek.Sunday;
+			if (SenderName.Contains("mon")) day = DayOfWeek.Monday;
+			if (SenderName.Contains("tue")) day = DayOfWeek.Tuesday;
+			if (SenderName.Contains("wed")) day = DayOfWeek.Wednesday;
+			if (SenderName.Contains("thurs")) day = DayOfWeek.Thursday;
+			if (SenderName.Contains("9")) hour = 9;
+			if (SenderName.Contains("10")) hour = 10;
+			if (SenderName.Contains("11")) hour = 11;
+			if (SenderName.Contains("12")) hour = 12;
+			if (SenderName.Contains("13")) hour = 13;
+			if (SenderName.Contains("14")) hour = 14;
+
+			if (GlobalSettings.User is Tester)
+				InfoBlock.Text = string.Format("Check this box if you are available on {0} at {1}:00", day, hour);
+			else InfoBlock.Text = string.Format("Check this box if the tester is available on {0} at {1}:00", day, hour);
+		}
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "View Tester";
+		}
+
+
+	}
 }
