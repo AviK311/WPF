@@ -422,5 +422,8 @@
     <Resource Include="images\car12_blue.png" />
     <Resource Include="images\car12_green.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="images\carGif.mp4" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

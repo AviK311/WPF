@@ -32,6 +32,7 @@ namespace UI_WPF
 			admin =new Admin(admin1);
 			DataContext = admin;
             sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
+			InfoBlock.Text = "View Admin";
 
 		}
 
@@ -136,6 +137,48 @@ namespace UI_WPF
 		{
 			if (e.Key!= Key.OemMinus && e.Key != Key.Subtract &&(e.Key < Key.D0 || e.Key > Key.D9) && (e.Key < Key.NumPad0 || e.Key > Key.NumPad9) && e.Key != Key.Tab)
 				e.Handled = true;
+		}
+		private void RightArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			//if (button.IsEnabled)
+			InfoBlock.Text = "Click to go to the next Admin on the list";
+		}
+		private void LeftArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled)
+				InfoBlock.Text = "Click to go to the previous Admin on the list";
+		}
+		
+		private void EditButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to Enter Edit Mode";
+		}
+		private void CancelButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to exit Edit Mode";
+		}
+		private void DeleteButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to delete the Admin";
+		}
+		private void SaveButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to update changes";
+		}
+		private void BackButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to navigate back to Admin List page";
+		}
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "View Admin";
 		}
 
 	}

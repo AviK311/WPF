@@ -52,6 +52,7 @@ namespace UI_WPF
 			cartype.SelectedItem = trainee.CurrentCarType;
 			teacherLast.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.last;
 			teacherFirst.Text = trainee.carTypeStats[(VehicleType)cartype.SelectedIndex].teacherName.first;
+			InfoBlock.Text = "View Trainee";
 
 		}
 
@@ -204,5 +205,51 @@ namespace UI_WPF
             image2.Visibility = Visibility.Collapsed;
             image.Visibility = Visibility.Visible;
         }
-    }
+		private void RightArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled)
+			InfoBlock.Text = "Click to go to the next Trainee on the list";
+		}
+		private void LeftArrow(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled)
+				InfoBlock.Text = "Click to go to the previous Trainee on the list";
+		}
+
+		private void EditButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to Enter Edit Mode";
+		}
+		private void CancelButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to exit Edit Mode";
+		}
+		private void DeleteButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to delete the Trainee";
+		}
+		private void SaveButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			var button = sender as Button;
+			if (button.IsEnabled) InfoBlock.Text = "Click to update changes";
+		}
+		private void BackButtonEnterEvent(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "Click to navigate back to " + (GlobalSettings.User is Trainee ? "Main Page" : "Trainee list page");
+		}
+		private void CarTypeEnterEvent(object sender, MouseEventArgs e)
+		{
+
+			InfoBlock.Text = "Choose to view/edit the vehicle learning stats.";
+		}
+		private void MouseLeave(object sender, MouseEventArgs e)
+		{
+			InfoBlock.Text = "View Trainee";
+		}
+	}
 }
