@@ -16,6 +16,7 @@
                 <GradientStop Color="White" Offset="1"/>
             </LinearGradientBrush>
         </Grid.Background>
+
         <DataGrid x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" AutoGenerateColumns="False" IsReadOnly="True" HorizontalAlignment="Left" Height="200" Margin="58,62,0,0" VerticalAlignment="Top" Width="182" ItemsSource="{Binding}"  AlternatingRowBackground="LightGray" RowBackground="LightYellow" Background="LightYellow" GridLinesVisibility="None" AutomationProperties.IsColumnHeader="True" >
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}"/>
@@ -32,6 +33,7 @@
         </Button>
         <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="175,21,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" Grid.Column="1" />
         <Button x:Name="Add" Content="Add" Margin="267,151,95,203" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="166" Margin="245,222,0,0" VerticalAlignment="Top" Width="217" Source="/UI-WPF;component/images/car14.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="237" Margin="194,189,-42.4,-6" VerticalAlignment="Top" Width="342" Source="/UI-WPF;component/images/police2.png" MouseEnter="image_MouseEnter"/>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="237" Margin="194,189,-42.4,-6" VerticalAlignment="Top" Width="342" Source="/UI-WPF;component/images/police1.png" MouseEnter="image2_MouseEnter"/>
     </Grid>
 </Window>
