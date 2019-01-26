@@ -61,6 +61,7 @@
     <Compile Include="Admin\AdminWindow.xaml.cs">
       <DependentUpon>AdminWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AutoClosingMessageBox.cs" />
     <Compile Include="ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
@@ -421,9 +422,6 @@
   <ItemGroup>
     <Resource Include="images\car12_blue.png" />
     <Resource Include="images\car12_green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="images\carGif.mp4" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
