@@ -112,12 +112,14 @@ namespace UI_WPF
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
             image.Visibility = Visibility.Collapsed;
+            System.Threading.Thread.Sleep(200);
             image2.Visibility = Visibility.Visible;
         }
 
         private void image2_MouseEnter(object sender, MouseEventArgs e)
         {
             image2.Visibility = Visibility.Collapsed;
+            System.Threading.Thread.Sleep(200);
             image.Visibility = Visibility.Visible;
         }
     }
