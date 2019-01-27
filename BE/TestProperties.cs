@@ -20,12 +20,12 @@ namespace BE
 				if (p.CanWrite) p.SetValue(this, p.GetValue(other));
 		}
 		
-		public bool KeepingDistance { get; set; }
-		public bool DrivingInReverse { get; set; }
-		public bool MirrorUsage { get; set; }
-		public bool Signaling { get; set; }
-		public bool SignsReading { get; set; }
-		public bool Breaking { get; set; }
+		public bool IsKeepingDistance { get; set; }
+		public bool IsDrivingInReverse { get; set; }
+		public bool IsMirrorUsage { get; set; }
+		public bool IsSignaling { get; set; }
+		public bool IsSignsReading { get; set; }
+		public bool IsBreaking { get; set; }
 
 		public bool passed
 		{
