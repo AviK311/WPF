@@ -148,9 +148,9 @@ namespace BE
 		/// sends an email to p using the MailClient class. 
 		/// the function uses a thread
 		/// </summary>
-		/// <param name="p"></param>
-		/// <param name="subject"></param>
-		/// <param name="content"></param>
+		/// <param name="p">The person who will receive the email</param>
+		/// <param name="subject">subject of the email</param>
+		/// <param name="content">content of the email</param>
 		public static void SendEmail(Person p, string subject, string content)
 		{
 			if (p.Email != null && p.Email != "")

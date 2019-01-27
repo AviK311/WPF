@@ -129,7 +129,7 @@ namespace BL
 			if (!update && dal.GetTesters().Any(T => T.Equals(tester)))
 				throw new InvalidOperationException("A tester with that ID already exists");
             if (!update && dal.GetTrainees().Any(T => T.Equals(tester)))
-                throw new InvalidOperationException("A trainee with that ID already exists");
+                throw new InvalidOperationException("A trainee with that ID exists");
             if (tester.Age< Configuration.MinAgeOfTester)
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
             dal.AddTester(tester);
@@ -137,10 +137,12 @@ namespace BL
 
         public void AddTrainee(Trainee trainee, bool update = false)
         {
+			if (trainee.Age < Configuration.MinAgeOfTrainee)
+				throw new InvalidOperationException("The trainee is younger than " + Configuration.MinAgeOfTrainee);
 			if (!update &&dal.GetTrainees().Any(T => T.Equals(trainee)))
 				throw new InvalidOperationException("A trainee with that ID already exists");
             if (!update && dal.GetTesters().Any(T => T.Equals(trainee)))
-                throw new InvalidOperationException("A tester with that ID already exists");
+                throw new InvalidOperationException("A tester with that ID exists");
             dal.AddTrainee(trainee);
         }
 
