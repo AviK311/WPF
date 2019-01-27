@@ -145,18 +145,7 @@ namespace UI_WPF
 		{
 			try { TraineeName.Text = bl.GetTrainee(test.TraineeID).Name.ToString(); } catch { }
 		}
-
-        private void image_MouseEnter(object sender, MouseEventArgs e)
-        {
-            ScaleTransform scale = new ScaleTransform(1.2, 1.2);
-            image.RenderTransform = scale;
-        }
-
-        private void image_MouseLeave(object sender, MouseEventArgs e)
-        {
-            image.RenderTransform = null;
-        }
-
+        
 		private void AddressOrTester(object sender, MouseEventArgs e)
 		{
 			InfoBlock.Text ="When you choose an address and a Tester, the system will check if the tester lives close enough.";
@@ -177,8 +166,9 @@ namespace UI_WPF
 		public TestAdd()
         {
             InitializeComponent();
-			propertiesGrid.Visibility = Visibility.Hidden;
-			bl = FactoryBL.GetBL();
+			propertiesGrid.Visibility = Visibility.Hidden;          
+            image2.Visibility = Visibility.Collapsed;
+            bl = FactoryBL.GetBL();
 			test = new Test();
 			var closestValidDate = DateTime.Now.AddDays(1);
 			if (closestValidDate.DayOfWeek > (DayOfWeek)4)
@@ -208,8 +198,22 @@ namespace UI_WPF
 
 
 		}
+        private void image_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image.Visibility = Visibility.Collapsed;
+            Thread.Sleep(40);
+          
+            image2.Visibility = Visibility.Visible;
+        }
+
+        private void image2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image2.Visibility = Visibility.Collapsed;
+            Thread.Sleep(40);
+            image.Visibility = Visibility.Visible;
+        }
 
 
-		
-	}
+
+    }
 }
