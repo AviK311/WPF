@@ -18,7 +18,7 @@
 			</LinearGradientBrush>
 		</Grid.Background>
 
-		<Image x:Name="image2" HorizontalAlignment="Left" Height="161" Margin="30,299,0,0" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12עותק.png" MouseDown="image2_MouseDown"/>
+		<Image x:Name="image2" HorizontalAlignment="Left" Height="161" Margin="30,299,0,0" VerticalAlignment="Top" Width="290" Source="/UI-WPF;component/images/car12copy.png" MouseDown="image2_MouseDown"/>
 
 		<Grid x:Name="grid1" VerticalAlignment="Top" Margin="10,61,0,0" HorizontalAlignment="Left">
 			<Grid.RowDefinitions>

@@ -307,9 +307,6 @@
     <Resource Include="images\car3p.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\הורד.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\images %2811%29.jpg" />
   </ItemGroup>
   <ItemGroup>
@@ -394,22 +391,7 @@
     <Resource Include="Image2.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="images\מעגל.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\helicopter_עותק.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\helicopter28.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\helicopter2עuותק.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\car12עותק.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\car153עותק.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\police1.png" />
@@ -422,9 +404,6 @@
   <ItemGroup>
     <Resource Include="images\car12_blue.png" />
     <Resource Include="images\car12_green.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\helicopter_עותuק.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\helicopter_l.png" />
@@ -443,6 +422,16 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\tr4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car153copy.png" />
+    <Resource Include="images\circle.png" />
+    <Resource Include="images\down.jpg" />
+    <Resource Include="images\helicopter2copy.png" />
+    <Resource Include="images\helicopterCopy.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\car12copy.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
