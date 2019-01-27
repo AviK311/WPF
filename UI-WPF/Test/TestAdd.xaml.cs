@@ -231,19 +231,30 @@ namespace UI_WPF
       
         private void image_MouseEnter()
         {
-          
-                    if (image.Visibility == Visibility.Visible)
+			this.Dispatcher.Invoke((Action)(() =>
+			{//this refer to form in WPF application 
+				
+			}));
+			if (image.Visibility == Visibility.Visible)
                     {
-                        image.Visibility = Visibility.Collapsed;
-				Thread.Sleep(40);
-				image2.Visibility = Visibility.Visible;
+				this.Dispatcher.Invoke((Action)(() =>
+				{
+					image.Visibility = Visibility.Collapsed;
+					image2.Visibility = Visibility.Visible;
+
+				}));
+				
                     }
                     else
                     {
-                        image2.Visibility = Visibility.Collapsed;
-				Thread.Sleep(40);
-				image.Visibility = Visibility.Visible;
-                    }
+				this.Dispatcher.Invoke((Action)(() =>
+				{
+					image2.Visibility = Visibility.Collapsed;
+					image.Visibility = Visibility.Visible;
+					
+
+				}));
+			}
                                      
         }
 
