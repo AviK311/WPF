@@ -32,6 +32,15 @@ namespace UI_WPF
         bool distance = true;
         bool calculating = false;
 		bool PromptDistance = false;
+		Thread PropellerThread;
+		
+		private void PropellerFunction()
+		{
+			while (true)
+				if (calculating)
+					image_MouseEnter();
+
+		}
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -56,6 +65,7 @@ namespace UI_WPF
 						MessageBox.Show("Adding Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 						TestWindow testWindow = new TestWindow();
 						testWindow.Show();
+						PropellerThread.Abort();
 						Close();
 
 					}
@@ -103,6 +113,7 @@ namespace UI_WPF
         {
             Window testWindow = new TestWindow();
             testWindow.Show();
+			PropellerThread.Abort();
             Close();
         }
 
@@ -122,7 +133,7 @@ namespace UI_WPF
 			try
 			{
 				TesterName.Text = bl.GetTester(test.TesterID).Name.ToString();
-					}
+			}
 			catch { }
 			CheckingValidAddress2(null, null);
 		}
@@ -195,8 +206,8 @@ namespace UI_WPF
 			traineeIDComboBox.ItemsSource = trainees;
 			traineeIDComboBox.SelectedIndex = 1;
 			InfoBlock.Text = "Add Test: Once you choose a trainee and a tester, you can save.";
-            Thread thread = new Thread(() => f());
-            thread.Start();
+			PropellerThread = new Thread(PropellerFunction);
+            PropellerThread.Start();
 
 
         }
@@ -217,28 +228,21 @@ namespace UI_WPF
                 image.Visibility = Visibility.Visible;
             }
         }
-        private void f()
-        {
-            while (true)
-            {
-                if (calculating)
-                {
-                    image_MouseEnter();
-                }
-            }
-        }
+      
         private void image_MouseEnter()
         {
           
                     if (image.Visibility == Visibility.Visible)
                     {
                         image.Visibility = Visibility.Collapsed;
-                        image2.Visibility = Visibility.Visible;
+				Thread.Sleep(40);
+				image2.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         image2.Visibility = Visibility.Collapsed;
-                        image.Visibility = Visibility.Visible;
+				Thread.Sleep(40);
+				image.Visibility = Visibility.Visible;
                     }
                                      
         }
