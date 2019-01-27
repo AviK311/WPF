@@ -195,22 +195,52 @@ namespace UI_WPF
 			traineeIDComboBox.ItemsSource = trainees;
 			traineeIDComboBox.SelectedIndex = 1;
 			InfoBlock.Text = "Add Test: Once you choose a trainee and a tester, you can save.";
+            Thread thread = new Thread(() => f());
+            thread.Start();
 
 
-		}
+        }
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
-            image.Visibility = Visibility.Collapsed;
-            Thread.Sleep(40);
-          
-            image2.Visibility = Visibility.Visible;
-        }
 
-        private void image2_MouseEnter(object sender, MouseEventArgs e)
+            if (image.Visibility == Visibility.Visible)
+            {
+                image.Visibility = Visibility.Collapsed;
+                Thread.Sleep(40);
+
+                image2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                image2.Visibility = Visibility.Collapsed;
+                Thread.Sleep(40);
+                image.Visibility = Visibility.Visible;
+            }
+        }
+        private void f()
         {
-            image2.Visibility = Visibility.Collapsed;
-            Thread.Sleep(40);
-            image.Visibility = Visibility.Visible;
+            while (true)
+            {
+                if (calculating)
+                {
+                    image_MouseEnter();
+                }
+            }
+        }
+        private void image_MouseEnter()
+        {
+          
+                    if (image.Visibility == Visibility.Visible)
+                    {
+                        image.Visibility = Visibility.Collapsed;
+                        image2.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        image2.Visibility = Visibility.Collapsed;
+                        image.Visibility = Visibility.Visible;
+                    }
+                                     
         }
 
 
