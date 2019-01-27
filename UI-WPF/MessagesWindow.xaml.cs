@@ -103,7 +103,7 @@ namespace UI_WPF
         {
 
             var button = sender as RadioButton;
-            if (button.Name== "All")
+            if (button.Name == "All")
             {
                 DataContext = bl.GetMessages();
             }
@@ -116,5 +116,6 @@ namespace UI_WPF
                 DataContext = bl.GetMessages().Where(c => c.UserType == UserType.Trainee);
             }
         }
+      
     }
 }

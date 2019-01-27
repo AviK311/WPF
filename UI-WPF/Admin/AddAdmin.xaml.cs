@@ -29,7 +29,8 @@ namespace UI_WPF
 			
 			InitializeComponent();
 			admin = new Admin();
-			bl = FactoryBL.GetBL();
+            image7.Visibility = Visibility.Collapsed;
+            bl = FactoryBL.GetBL();
 			DataContext = admin;
 			sexComboBox.ItemsSource = Enum.GetValues(typeof(BE.Gender));
 			admin.BirthDay = DateTime.Now.AddYears(-25);
@@ -71,6 +72,30 @@ namespace UI_WPF
 				e.Handled = true;
 		}
 
+        private void image1_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image1.Visibility = Visibility.Collapsed;
+            System.Threading.Thread.Sleep(1000);
+            image2.Visibility = Visibility.Visible;
+        }
 
-	}
+        private void image2_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image2.Visibility = Visibility.Collapsed;
+            System.Threading.Thread.Sleep(1000);
+            image3.Visibility = Visibility.Visible;
+            image.Visibility = Visibility.Collapsed;        
+            image7.Visibility = Visibility.Visible;
+        }
+        private void image3_MouseEnter(object sender, MouseEventArgs e)
+        {
+            image3.Visibility = Visibility.Collapsed;
+            image7.Visibility = Visibility.Collapsed;
+            image.Visibility = Visibility.Visible;
+            System.Threading.Thread.Sleep(2000);
+            image1.Visibility = Visibility.Visible;
+        }
+       
+
+    }
 }

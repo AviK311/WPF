@@ -17,18 +17,19 @@ namespace BE
 		public int MessageNumber { get; set; }
 		public bool UserReset { get; set; } = false;
         public override string ToString()
-        {          
-            if (Content.Length>25)
+        {
+            string c= Content;
+            if (c.Length > 25)
             {
-                for (int i = 25; i < Content.Length; i += 30)
+                for (int i = 25; i < c.Length; i += 30)
                 {
-                    while (Content[i] != ' ')
+                    while (c[i] != ' ')
                         i--;
-                        Content = Content.Substring(0, i) + "\n" + Content.Substring(i++);                  
+                    c = c.Substring(0, i) + "\n" + c.Substring(i++);
                 }
             }
-            
-            string s = DateOfMessage + "\n"+UserType.ToString() +" " + Name + "\nID: " + ID + "\n" + Content+ "\n";
+
+            string s = DateOfMessage + "\n"+UserType.ToString() +" " + Name + "\nID: " + ID + "\n" + c+ "\n";
             return s;           
         }
 		public Messages()

@@ -10,17 +10,19 @@
         <Grid.Background>
             <RadialGradientBrush>
                 <GradientStop Color="White" Offset="0"/>
-                <GradientStop Color="#FFC6E79B" Offset="0.5"/>
-                <GradientStop Color="#FF81D168" Offset="0.52"/>
-                <GradientStop Color="#FFB5F38E" Offset="0.55"/>
+                <GradientStop Color="#FFC6E79B" Offset="0.6"/>
+                <GradientStop Color="#FF81D168" Offset="0.65"/>
+                <GradientStop Color="#FFB5F38E" Offset="0.7"/>
                 <GradientStop Color="White" Offset="1"/>
             </RadialGradientBrush>
         </Grid.Background>
-        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="220" FontFamily="MV Boli" Background="{x:Null}"  />
+        <Image x:Name="image" HorizontalAlignment="Left" Height="145" Margin="245,185,0,0" VerticalAlignment="Top" Width="250" Source="images/car12_green.png"/>
+
+        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="220" FontFamily="MV Boli" Background="{x:Null}" BorderBrush="#FF81D168" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"  />
         <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="344,64,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
         <StackPanel Margin="305,88,198.6,220.4">
             <RadioButton  GroupName="radio"  x:Name="All"  Content="All" Checked="RadioButton_Checked" />
-            <RadioButton  GroupName="radio"  x:Name="Trainee"  Content="Trainees" Checked="RadioButton_Checked" />
+            <RadioButton  GroupName="radio"  x:Name="Trainee"  Content="Trainees" Checked="RadioButton_Checked" BorderThickness="2" />
             <RadioButton GroupName="radio" x:Name="Tester" Content="Testers" Checked="RadioButton_Checked" />
         </StackPanel>
 
