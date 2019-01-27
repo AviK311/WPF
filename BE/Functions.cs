@@ -133,10 +133,10 @@ namespace BE
 		/// <param name="p"></param>
 		public static void ValidatePerson(Person p)
 		{
-			//if (!ValidateID(p.ID))
-			//	throw new InvalidOperationException("The ID must be 9 digits long!");
-			//if (!ValidateLastDigit(p.ID))
-			//	throw new InvalidOperationException("The ID is invalid!");
+			if (!ValidateID(p.ID))
+				throw new InvalidOperationException("The ID must be 9 digits long!");
+			if (!ValidateLastDigit(p.ID))
+				throw new InvalidOperationException("The ID is invalid!");
 			if (!ValidateName(p.Name))
 				throw new InvalidOperationException("Please enter first and last name!");
 			if (!ValidateEmail(p.Email))
@@ -176,13 +176,18 @@ namespace BE
 		/// Checks if a day is a holiday, using the HebCal class.
 		/// if it is, the specific holiday is returned with holiday
 		/// </summary>
-		/// <param name="Day"></param>
-		/// <param name="holiday"></param>
+		/// <param name="Day">day to check</param>
+		/// <param name="holiday">if is a holiday, it will be returned here</param>
 		/// <returns></returns>
 		public static bool IsHoliday(DateTime Day, out Holiday? holiday)
 		{
 			return HebCal.HolidayChecker.IsHoliday(Day, out holiday);
 		}
+		/// <summary>
+		/// 
+		/// </summary>
+		/// <param name="Day">day to convert</param>
+		/// <returns>the hebrew representation of the date</returns>
 		public static string GetHebrewDate(DateTime Day)
 		{
 			return HebCal.HolidayChecker.GetHebrewDate(Day);
@@ -239,6 +244,11 @@ namespace BE
 				admins.Add(new Admin(a));
 			return admins;
 		}
+		/// <summary>
+		/// returns false if all the address fields are empty
+		/// </summary>
+		/// <param name="ad">address to check</param>
+		/// <returns></returns>
 		public static bool IsAddress(Address ad)
 		{
 			if (ad.buildingNumber == "" || ad.buildingNumber == null)
@@ -248,16 +258,7 @@ namespace BE
 			return true;
 		}
 
-		public static void wait(double x)
-		{
-			DateTime t = DateTime.Now;
-			DateTime tf = DateTime.Now.AddSeconds(x);
-
-			while (t < tf)
-			{
-				t = DateTime.Now;
-			}
-		}
+		
 
 	}
 		

@@ -87,7 +87,7 @@ namespace UI_WPF
 				else propertiesGrid.Visibility = Visibility.Visible;
 				LastValidTime = test.TestDateTime;
 				HebDate.Text = Functions.GetHebrewDate(LastValidTime);
-				testerIDComboBox.ItemsSource = bl.AvailableTesters(LastValidTime, "");
+				if (!(GlobalSettings.User is Tester)) testerIDComboBox.ItemsSource = bl.AvailableTesters(LastValidTime, "");
 
 			}
 			catch(Exception ex)
@@ -152,7 +152,7 @@ namespace UI_WPF
 		}
 		private void Date(object sender, MouseEventArgs e)
 		{
-			InfoBlock.Text = "When you choose a date and time, the Tester list will update to the testers available on that date.\n";
+			if (!(GlobalSettings.User is Tester)) InfoBlock.Text = "When you choose a date and time, the Tester list will update to the testers available on that date.\n";
 			if (GlobalSettings.User is Trainee)
 				InfoBlock.Text += "A trainee cannot choose a time that has already passed.";
 			else

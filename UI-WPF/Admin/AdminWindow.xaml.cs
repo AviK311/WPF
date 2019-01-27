@@ -36,9 +36,9 @@ namespace UI_WPF
 			mainWindow.Show();
 			Close();
 		}
-		private void button_Click(object sender, RoutedEventArgs e)
+		private void ID_textBox_PreviewKeyUp(object sender, KeyEventArgs e)
 		{
-			DataContext =list.Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
+			DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().ToLower().Contains(ID_textBox.Text.ToLower()));
 		}
 
 		private void Add_Click(object sender, RoutedEventArgs e)

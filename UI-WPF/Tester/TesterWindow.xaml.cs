@@ -83,18 +83,15 @@ namespace UI_WPF
             DataContext = bl.GetTesters().Where(c => c.testingCarType == vehicleType);
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
-        }
+        
 
         private void ID_textBox_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
-        }
-       
+			DataContext = bl.GetTesters().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().ToLower().Contains(ID_textBox.Text.ToLower()));
+		}
 
-        private void image_MouseEnter(object sender, MouseEventArgs e)
+
+		private void image_MouseEnter(object sender, MouseEventArgs e)
         {
             ScaleTransform scale = new ScaleTransform(1.2, 1.2);
             image.RenderTransform = scale;

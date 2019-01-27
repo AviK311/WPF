@@ -85,11 +85,7 @@
             <RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
             <RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
         </StackPanel>
-        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="350,27,0,0" VerticalAlignment="Top" Width="20" Click="button_Click" Height="22">
-            <Button.Background>
-                <ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
-            </Button.Background>
-        </Button>
+        
         <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="375,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120"  PreviewKeyUp="ID_textBox_PreviewKeyUp" />
         <Image x:Name="image" HorizontalAlignment="Left" Height="170" Margin="416,220,0,0" VerticalAlignment="Top" Width="295" Source="/UI-WPF;component/images/car15.png" Grid.ColumnSpan="2" RenderTransformOrigin="0.658,0.466" MouseEnter="image_MouseEnter">
             <Image.RenderTransform>

@@ -87,15 +87,11 @@ namespace UI_WPF
 			DataContext = bl.GetTrainees().Where(c => c.CurrentCarType == vehicleType);
 		}
 
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text)|| d.Name.ToString().Contains(ID_textBox.Text));
-        }
        
 
         private void ID_textBox_PreviewKeyUp(object sender, KeyEventArgs e)
         {
-            DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().Contains(ID_textBox.Text));
+            DataContext = bl.GetTrainees().Where(d => d.ID.Contains(ID_textBox.Text) || d.Name.ToString().ToLower().Contains(ID_textBox.Text.ToLower()));
         }
 
      

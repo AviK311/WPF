@@ -23,11 +23,26 @@ namespace UI_WPF
     public partial class MessagesWindow : Window
     {
         IBL bl;
-        public MessagesWindow()
+		bool NoMessages;
+		string noMessage = "There are no messages\nfor the Admins";
+		List<string> noMessageList;
+		public MessagesWindow()
         {
             InitializeComponent();
-            bl = FactoryBL.GetBL();            
-            DataContext = bl.GetMessages();
+            bl = FactoryBL.GetBL();
+			List<Messages> context = bl.GetMessages().ToList();
+			NoMessages = context.Count() == 0;
+
+			noMessageList = new List<string>();
+			noMessageList.Add(noMessage);
+			if (NoMessages)
+			{
+				DataContext = noMessageList;
+				listBox.IsEnabled = Tester.IsEnabled = Trainee.IsEnabled = All.IsEnabled = false;
+				
+			}
+			else
+				DataContext = context;
         }
 
 		private void Back_Click(object sender, RoutedEventArgs e)
@@ -40,6 +55,7 @@ namespace UI_WPF
 
 		private void listBox_MouseDoubleClick(object sender, MouseButtonEventArgs e)
 		{
+			if (NoMessages) return;
 			if (listBox.SelectedItem != null)
 			{
 				if (((Messages)listBox.SelectedItem).UserReset)
@@ -74,7 +90,16 @@ namespace UI_WPF
 							}
 							else throw new InvalidOperationException("That user ID does not exist in the system");
 							bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
-							DataContext = bl.GetMessages();
+							List<Messages> context = bl.GetMessages().ToList();
+							NoMessages = context.Count() == 0;
+							if (NoMessages)
+							{
+								DataContext = noMessageList;
+								listBox.IsEnabled = Tester.IsEnabled = Trainee.IsEnabled = All.IsEnabled = false;
+							}
+							else
+								DataContext = context;
+
 							Functions.SendEmail(p, "Password Reset",
 									"Your password has been reset.\nDuring your next login, enter your ID and click the login button.\n" +
 									"You will be prompted to choose a new Password");

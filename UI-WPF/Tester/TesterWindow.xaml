@@ -52,11 +52,7 @@
             <RadioButton x:Name="MotorBoat" GroupName="Car Type" Content="Motor Boat" Checked="RadioButton_Checked"/>
             <RadioButton x:Name="CruiseShip" GroupName="Car Type" Content="Cruise Ship" Checked="RadioButton_Checked"/>
         </StackPanel>
-        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="270,27,0,0" VerticalAlignment="Top" Width="20" Click="button_Click" Height="22" Grid.Column="1">
-            <Button.Background>
-                <ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
-            </Button.Background>
-        </Button>
+       
         <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="295,27,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" Grid.Column="1" PreviewKeyUp="ID_textBox_PreviewKeyUp" />
     </Grid>
 </Window>

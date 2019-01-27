@@ -26,12 +26,8 @@
         <Button x:Name="button_back" Click="button_back_Click" Content="Back to main window" HorizontalAlignment="Left" Margin="30,288,0,0" VerticalAlignment="Top" Width="160" Height="25" FontSize="16"/>
         <Button x:Name="button_sort" Click="sort_Click" Content="Sort" HorizontalAlignment="Left" Margin="267,63,0,0" VerticalAlignment="Top" Width="75" FontSize="14"/>
 
-        <Button x:Name="button" Content="" HorizontalAlignment="Left" Margin="150,21,0,0" VerticalAlignment="Top" Width="20" Height="22" Grid.Column="1" Click="button_Click">
-            <Button.Background>
-                <ImageBrush ImageSource="/UI-WPF;component/images/Search.jpg"/>
-            </Button.Background>
-        </Button>
-        <TextBox x:Name="ID_textBox" HorizontalAlignment="Left" Height="23" Margin="175,21,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" Grid.Column="1" />
+       
+		<TextBox x:Name="ID_textBox" PreviewKeyUp="ID_textBox_PreviewKeyUp" HorizontalAlignment="Left" Height="23" Margin="175,21,0,0" TextWrapping="Wrap" Text="Enter Name or ID" VerticalAlignment="Top" Width="120" Grid.Column="1"  />
         <Button x:Name="Add" Content="Add" Margin="267,151,95,203" Height="auto" Width="auto"  FontSize="36" Grid.Row="0" Click="Add_Click"/>
         <Image x:Name="image" HorizontalAlignment="Left" Height="237" Margin="194,189,-42.4,-6" VerticalAlignment="Top" Width="342" Source="/UI-WPF;component/images/police2.png" MouseEnter="image_MouseEnter"/>
         <Image x:Name="image2" HorizontalAlignment="Left" Height="237" Margin="194,189,-42.4,-6" VerticalAlignment="Top" Width="342" Source="/UI-WPF;component/images/police1.png" MouseEnter="image2_MouseEnter"/>
