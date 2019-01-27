@@ -31,6 +31,15 @@ namespace UI_WPF
         bool distance = true;
         bool calculating = false;
 		bool PromptDistance = false;
+        Thread PropellerThread;
+
+        private void PropellerFunction()
+        {
+            while (true)
+                if (calculating)
+                    image_MouseEnter();
+
+        }
         public TestView(Test test1, List<Test> list)
 		{            
 			testers = new List<string>();
@@ -66,8 +75,10 @@ namespace UI_WPF
             traineeIDComboBox.ItemsSource = trainees;
 			testerIDComboBox.ItemsSource = testers;
 			InfoBlock.Text = "View Test";
+            PropellerThread = new Thread(PropellerFunction);
+            PropellerThread.Start();
 
-		}
+        }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
@@ -110,8 +121,9 @@ namespace UI_WPF
                     bl.RemoveTest(test.TestNumber);
                     if (bl.GetTests().Count() == 0)
                     {
-                        TestWindow testWindow = new TestWindow();
+                        TestWindow testWindow = new TestWindow();                       
                         testWindow.Show();
+                        PropellerThread.Abort();
                         Close();
                     }
                     else
@@ -137,8 +149,9 @@ namespace UI_WPF
 		private void BackButton_Click(object sender, RoutedEventArgs e)
 		{
 			TestWindow testWindow = new TestWindow();
-			testWindow.Show();
-			Close();
+            testWindow.Show();
+            PropellerThread.Abort();
+            Close();
 		}
         private void RightButton_Click(object sender, RoutedEventArgs e)
         {
@@ -202,25 +215,50 @@ namespace UI_WPF
 		}
         private void image_MouseEnter(object sender, MouseEventArgs e)
         {
-            image.Visibility = Visibility.Collapsed;
-            image2.Visibility = Visibility.Visible;
+
+            if (image.Visibility == Visibility.Visible)
+            {
+                image.Visibility = Visibility.Collapsed;
+                Thread.Sleep(40);
+
+                image2.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                image2.Visibility = Visibility.Collapsed;
+                Thread.Sleep(40);
+                image.Visibility = Visibility.Visible;
+            }
         }
 
-        private void image2_MouseEnter(object sender, MouseEventArgs e)
+        private void image_MouseEnter()
         {
-            image2.Visibility = Visibility.Collapsed;
-            image.Visibility = Visibility.Visible;
-        }
-        //private void image_MouseEnter(object sender, MouseEventArgs e)
-        //{
-        //    ScaleTransform scale = new ScaleTransform(1.1, 1.1);
-        //    image.RenderTransform = scale;
-        //}
+            this.Dispatcher.Invoke((Action)(() =>
+            {//this refer to form in WPF application 
 
-        //private void image_MouseLeave(object sender, MouseEventArgs e)
-        //{
-        //    image.RenderTransform = null;
-        //}
+            }));
+            if (image.Visibility == Visibility.Visible)
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    image.Visibility = Visibility.Collapsed;
+                    image2.Visibility = Visibility.Visible;
+
+                }));
+
+            }
+            else
+            {
+                this.Dispatcher.Invoke((Action)(() =>
+                {
+                    image2.Visibility = Visibility.Collapsed;
+                    image.Visibility = Visibility.Visible;
+
+
+                }));
+            }
+
+        }
 
         private void Hour_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

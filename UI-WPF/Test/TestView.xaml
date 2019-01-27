@@ -17,7 +17,7 @@
             </LinearGradientBrush>
         </Grid.Background>
 
-        <Image x:Name="image2" HorizontalAlignment="Left" Height="151" Margin="14,324,0,-4.6" VerticalAlignment="Top" Width="262" Source="/UI-WPF;component/images/helicopter_l.png" MouseEnter="image2_MouseEnter"  RenderTransformOrigin="0.5,0.5"/>
+        <Image x:Name="image2" HorizontalAlignment="Left" Height="151" Margin="14,324,0,-4.6" VerticalAlignment="Top" Width="262" Source="/UI-WPF;component/images/helicopter_l.png" MouseEnter="image_MouseEnter"  RenderTransformOrigin="0.5,0.5"/>
 
         <Grid HorizontalAlignment="Left" Height="20" Margin="75,27,0,0" VerticalAlignment="Top" Width="254">
             <Grid.ColumnDefinitions>
