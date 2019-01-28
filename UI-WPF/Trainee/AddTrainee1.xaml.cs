@@ -104,5 +104,12 @@ namespace UI_WPF
             image4.Visibility = Visibility.Collapsed;
             image.Visibility = Visibility.Visible;
         }
+
+        private void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string s = emailTextBox.Text+"gmail.com";
+            if (emailTextBox.Text.Last()== '@')
+                emailTextBox.Text = s;
+        }
     }
 }
