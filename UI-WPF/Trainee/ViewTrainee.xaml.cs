@@ -251,5 +251,15 @@ namespace UI_WPF
 		{
 			InfoBlock.Text = "View Trainee";
 		}
-	}
+        private void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                string s = emailTextBox.Text + "gmail.com";
+                if (emailTextBox.Text.Last() == '@')
+                    emailTextBox.Text = s;
+            }
+            catch { }
+        }
+    }
 }

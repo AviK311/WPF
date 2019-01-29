@@ -151,5 +151,16 @@ namespace UI_WPF
 		{
 			InfoBlock.Text = "Add Tester";
 		}
-	}
+        private void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                string s = emailTextBox.Text + "gmail.com";
+                if (emailTextBox.Text.Last() == '@')
+                    emailTextBox.Text = s;
+            }
+            catch { } 
+                     
+        }
+    }
 }

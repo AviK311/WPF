@@ -107,9 +107,13 @@ namespace UI_WPF
 
         private void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            string s = emailTextBox.Text+"gmail.com";
-            if (emailTextBox.Text.Last()== '@')
-                emailTextBox.Text = s;
+            try
+            {
+                string s = emailTextBox.Text + "gmail.com";
+                if (emailTextBox.Text.Last() == '@')
+                    emailTextBox.Text = s;
+            }
+            catch { }
         }
     }
 }
