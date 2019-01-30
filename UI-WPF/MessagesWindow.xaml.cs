@@ -43,6 +43,7 @@ namespace UI_WPF
 			}
 			else
 				DataContext = context;
+			MessageBlock.Text = "Message:";
         }
 
 		private void Back_Click(object sender, RoutedEventArgs e)
@@ -108,6 +109,7 @@ namespace UI_WPF
 						{
 							MessageBox.Show(exc.Message, "Alert", MessageBoxButton.OK, MessageBoxImage.Exclamation);
 							bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+							MessageBlock.Text = "Message: ";
 							DataContext = bl.GetMessages();
 						}
 					}
@@ -119,6 +121,7 @@ namespace UI_WPF
                     if (result == MessageBoxResult.Yes)
 					{
 						bl.RemoveMessage(((Messages)listBox.SelectedItem).MessageNumber);
+						MessageBlock.Text = "Message: ";
 						DataContext = bl.GetMessages();
 					}
 				}
@@ -145,7 +148,8 @@ namespace UI_WPF
 
         private void listBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            MessageBox.Show(((Messages)listBox.SelectedItem).Content, "Content", MessageBoxButton.OK, MessageBoxImage.Information);
+			if (listBox.Items.Count > 0 && listBox.SelectedItem!= null)
+			    MessageBlock.Text = "Message: " + ((Messages)listBox.SelectedItem).Content;
         }
 
     }

@@ -388,6 +388,7 @@ namespace BL
 
         public void AddMessage(Messages message)
         {
+			message.MessageNumber = dal.GetMessageCode();
             dal.AddMessage(message);
 			dal.AddMessageCode();
         }
