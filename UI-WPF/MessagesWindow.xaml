@@ -6,6 +6,27 @@
         xmlns:local="clr-namespace:UI_WPF"
         mc:Ignorable="d"  ResizeMode="NoResize"
         Title="MessagesWindow" Height="400" Width="600">
+    <Window.Resources>
+        <DataTemplate x:Key="MyDataTemplate" DataType="local:Messages">
+            <Grid Width="400">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="auto" />
+                </Grid.ColumnDefinitions>
+                <TextBlock Grid.Column="4" Text="{Binding Path=Name}"/>
+                <TextBlock Grid.Column="3" Text=" " />
+                <TextBlock Grid.Column="2" Text="{Binding Path=ID}" />
+                <TextBlock Grid.Column="1" Text=" " />
+                <TextBlock Grid.Column="0" Text="{Binding Path=DateOfMessage}" />
+            </Grid>
+        </DataTemplate>
+    </Window.Resources>
     <Grid>
         <Grid.Background>
             <RadialGradientBrush>
@@ -16,11 +37,11 @@
                 <GradientStop Color="White" Offset="1"/>
             </RadialGradientBrush>
         </Grid.Background>
-        <Image x:Name="image" HorizontalAlignment="Left" Height="145" Margin="245,185,0,0" VerticalAlignment="Top" Width="250" Source="images/car12_green.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="145" Margin="357,137,-13.4,0" VerticalAlignment="Top" Width="250" Source="images/car12_green.png"/>
 
-        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="70,50,0,0" VerticalAlignment="Top" Width="220" FontFamily="MV Boli" Background="{x:Null}" BorderBrush="#FF81D168" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False"  />
-        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="344,64,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
-        <StackPanel Margin="305,88,198.6,220.4">
+        <ListBox x:Name="listBox" MouseDoubleClick="listBox_MouseDoubleClick" HorizontalAlignment="Left" ItemsSource="{Binding}" Height="220" Margin="25,50,0,0" VerticalAlignment="Top" Width="370" FontFamily="MV Boli" Background="{x:Null}" BorderBrush="#FF81D168" BorderThickness="2" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.CanContentScroll="False" ItemTemplate="{StaticResource MyDataTemplate}" SelectionChanged="listBox_SelectionChanged"  />
+        <Button x:Name="Back" Content="Back" HorizontalAlignment="Left" Margin="441,16,0,0" VerticalAlignment="Top" Width="75" Click="Back_Click"/>
+        <StackPanel Margin="402,40,101.6,268.4">
             <RadioButton  GroupName="radio"  x:Name="All"  Content="All" Checked="RadioButton_Checked" />
             <RadioButton  GroupName="radio"  x:Name="Trainee"  Content="Trainees" Checked="RadioButton_Checked" BorderThickness="2" />
             <RadioButton GroupName="radio" x:Name="Tester" Content="Testers" Checked="RadioButton_Checked" />
