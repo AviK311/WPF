@@ -270,7 +270,7 @@ namespace BL
 			return toReturn;
         }
 
-        public bool TesterIsInRange(Tester tester,Address address)
+        public bool IsTesterCloseEnough(Tester tester,Address address)
         {          
                 string origin = tester.Address.street + " " + tester.Address.buildingNumber + " st." + tester.Address.city;  //"pisga 45 st. jerusalem"; //
                 string destination = address.street + " " + address.buildingNumber + " st." + address.city; //"gilgal 78 st. ramat-gan"; 

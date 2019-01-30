@@ -47,7 +47,7 @@ namespace BL
         IEnumerable<BE.Trainee> GetTrainees();
         IEnumerable<Messages> GetMessages();
 
-        bool TesterIsInRange(BE.Tester tester, Address address);
+        bool IsTesterCloseEnough(BE.Tester tester, Address address);
         //IEnumerable<BE.Tester> TestersInRange(BE.Address address);//with GoogleMaps
         IEnumerable<string> AvailableTesters(DateTime date, string TestNumber);
 		IEnumerable<DateTime> otherAvailableTestTimes(Tester tester, DateTime date);

@@ -25,14 +25,14 @@ namespace BE
 		public PasswordList() { passwords = new List<Password>(); }
 		public bool CheckPassword(string id, string password)
 		{
-			return passwords.Any(P => P.id == id && P.password == password);
+			return passwords.Any(P => P.id == id && Encrypt.DecryptString(P.password) == password);
 		}
 		public void AddUpdatePassword(string id, string password)
 		{
 			var existing = passwords.FirstOrDefault(P => P.id == id);
 			if (existing == null)
-				passwords.Add(new Password(id, password));
-			else existing.password = password;
+				passwords.Add(new Password(id, Encrypt.EncryptString(password)));
+			else existing.password = Encrypt.EncryptString(password);
 		}
 		public void RemovePassword(string id)
 		{
@@ -45,7 +45,6 @@ namespace BE
 		}
 		public PasswordList Deserialize(FileStream file)
 		{
-
 			XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Password>));
 			List<Password> result = (List<Password>)xmlSerializer.Deserialize(file);
 			return new PasswordList() { passwords = result };

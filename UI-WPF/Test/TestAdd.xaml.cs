@@ -29,15 +29,14 @@ namespace UI_WPF
 		Test test;
 		DateTime LastValidTime;
         Tester tester;
-        bool distance = true;
-        bool calculating = false;
-		bool PromptDistance = false;
+        bool IsCloseEnough = true;
+        bool IsStillCalculating = false;
 		Thread PropellerThread;
 		
 		private void PropellerFunction()
 		{
 			while (true)
-				if (calculating)
+				if (IsStillCalculating)
 					image_MouseEnter();
 
 		}
@@ -47,15 +46,11 @@ namespace UI_WPF
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-			//Tester t = bl.GetTesters().FirstOrDefault(tester => tester.ID == Convert.ToString(testerIDComboBox));
-			////testingCarTypeTextBlock.Text = Convert.ToString(t.testingCarType);
-			PromptDistance = calculating;
-
-			if (calculating == true)
+			if (IsStillCalculating == true)
 				MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 			else
 			{
-				if (distance == false)
+				if (IsCloseEnough == false)
 					MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				else
 				{
@@ -119,13 +114,9 @@ namespace UI_WPF
 
         private void VerifyRange(Address address,Tester tester)
         {
-			string FinishedMessage = "The system finished calculating.\n";
-            calculating = true;
-            distance = bl.TesterIsInRange(tester, address);
-            calculating = false;
-			FinishedMessage += distance ? "The tester lives close enough to the designated begin address" : "The tester lives too far away from the designated begin address";
-		//	if (PromptDistance) MessageBox.Show(FinishedMessage, "Alert", MessageBoxButton.OK,MessageBoxImage.Information);
-			PromptDistance = false;
+            IsStillCalculating = true;
+            IsCloseEnough = bl.IsTesterCloseEnough(tester, address);
+            IsStillCalculating = false;
         }
 
         private void CheckingValidAddress(object sender, SelectionChangedEventArgs e)
@@ -148,7 +139,7 @@ namespace UI_WPF
 				Thread thread = new Thread(() => VerifyRange(address, tester));
 				thread.Start();
 			}
-			else distance = true;
+			else IsCloseEnough = true;
 
 		}
 

@@ -43,6 +43,7 @@
     <Compile Include="Address.cs" />
     <Compile Include="Admin.cs" />
     <Compile Include="Configuration.cs" />
+    <Compile Include="Encrypt.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="Functions.cs" />
     <Compile Include="Global.cs" />
