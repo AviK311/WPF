@@ -69,6 +69,7 @@ namespace UI_WPF
                 EditButton.Visibility = Visibility.Visible;
                 SaveButton.Visibility = Visibility.Hidden;
 				MessageBox.Show("Update Successful!", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
+                traineelist[traineelist.FindIndex(t => t.ID == trainee.ID)]=trainee;
 			}
             catch (InvalidOperationException exc)
             {

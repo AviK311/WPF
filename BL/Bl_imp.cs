@@ -41,7 +41,7 @@ namespace BL
             //thread.Start();
             Test test2 = dal.GetTests().FirstOrDefault(t => t.TraineeID == test.TraineeID && t.TestDateTime.AddDays(Configuration.TimeBetweenTests) > test.TestDateTime);
             //var otherTests = TestGroupsAccordingToTrainee(false).FirstOrDefault(item => item.Key.ID == test.TraineeID);
-            if (test2!=null)
+            if (test2!=null&&update==false)
 				ErrorString += string.Format("The trainee must wait {0} days before he can appoint the test", Configuration.TimeBetweenTests) + "\n";
 
 			if (testTrainee.CurrentCarType != testTester.testingCarType)
