@@ -76,7 +76,7 @@ namespace UI_WPF
 			InfoBlock.Text = "View Test";
             PropellerThread = new Thread(PropellerFunction);
             PropellerThread.Start();
-
+			CalculatingTextBlock.Visibility = Visibility.Collapsed;
         }
 
         private void SaveButton_Click(object sender, RoutedEventArgs e)
@@ -180,8 +180,10 @@ namespace UI_WPF
         private void VerifyAddress(Address address, Tester tester)
         {
 			IsStillCalculating = true;
+			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Visible));
 			IsCloseEnough = bl.IsTesterCloseEnough(tester, address);
 			IsStillCalculating = false;
+			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Collapsed));
 
 		}
         private void CheckingValidAddress(object sender, TextChangedEventArgs e)
@@ -328,6 +330,12 @@ namespace UI_WPF
 		{
 			InfoBlock.Text = "View Test";
 		}
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			PropellerThread.Abort();
+		}
+
 		private void Date(object sender, MouseEventArgs e)
 		{
 			if (!(GlobalSettings.User is Tester)) InfoBlock.Text = "When you choose a date and time, the Tester list will update to the testers available on that date.\n";
