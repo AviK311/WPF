@@ -28,7 +28,7 @@
         <Image x:Name="image1" HorizontalAlignment="Left" Height="250" Margin="500,41,0,0" VerticalAlignment="Top" Width="84" Source="/UI-WPF;component/images/t1.png" MouseEnter="image1_MouseEnter"/>
 
 
-        <Image x:Name="image" HorizontalAlignment="Left" Height="190" Margin="303,280,0,-50" VerticalAlignment="Top" Width="172" Source="/UI-WPF;component/images/car20.png"/>
+        <Image x:Name="image" HorizontalAlignment="Left" Height="190" Margin="336,280,0,-50" VerticalAlignment="Top" Width="172" Source="/UI-WPF;component/images/car20.png"/>
 
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="72,103,0,0" HorizontalAlignment="Left" >
