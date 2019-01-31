@@ -71,95 +71,7 @@ namespace UI_WPF
 			
 			InitializeComponent();
 			
-			bl = FactoryBL.GetBL();
-			
-			GlobalSettings.AlreadyLoggedIn = true;//to test out app, delete all xml source files and set this to false.
-			//after first run, set back to true
-			if (GlobalSettings.AlreadyLoggedIn == false)
-			{
-				Admin tamar = new Admin(new Name("Tamar", "Gold"));
-				tamar.ID = "207623224";
-				tamar.FirstLogIn = false;
-				bl.AddAdmin(tamar);
-				bl.AddUpdatePassword(tamar.ID, "1234");
-				Test d = new Test
-				{
-					TesterID = "00123456",
-					TraineeID = "00000123",
-					TestDateTime = new DateTime(2018, 12, 26, 10, 0, 0),
-					BeginLocation = new Address("jeru", "vaad", "21"),
-				};
-
-				Tester c = new Tester
-				{
-					ID = "123456",
-					Name = new Name("Dan", "internatonal"),
-					Sex = Gender.Male,
-					PhoneNumber = "224",
-					BirthDay = new DateTime(1969, 2, 1),
-					Address = new Address("jeru", "vaad", "21"),
-					MaxDistance = 60,
-					MaxWeeklyTests = 9,
-					ExpYears = 6,
-					testingCarType = VehicleType.LargeTruck,
-					schedule = new Schedule(),
-					FirstLogIn = false,
-				};
-				bl.AddTester(c);
-				//Tester e = new Tester
-				//{
-				//	ID = "123456",
-				//	Name = new Name("ron", "Cohen"),
-				//	Sex = Gender.Male,
-				//	PhoneNumber = "224",
-				//	BirthDay = new DateTime(1969, 2, 1),
-				//	Address = new Address("Tel Aviv", "Hahagana", "28"),
-				//	MaxDistance = 60,
-				//	MaxWeeklyTests = 9,
-				//	ExpYears = 6,
-				//	testingCarType = VehicleType.PrivateCar,
-				//	schedule = new Schedule(),
-				//	FirstLogIn = false,
-				//};
-				//bl.AddTester(e);
-
-				Trainee a = new Trainee
-				{
-					ID = "123",
-					Name = new Name("Avi", "Levi"),
-					Sex = Gender.Male,
-					PhoneNumber = "123",
-					BirthDay = new DateTime(1993, 11, 3),
-					Address = new Address("bet shemesh", "nahal maor", "19"),
-					CurrentCarType = VehicleType.LargeTruck,
-					FirstLogIn = false,
-
-				};
-				a.carTypeStats[VehicleType.LargeTruck] = new Stats { gearType = GearType.Manual, numOfLessons = 21, numOfTest = 0, schoolName = " www", passed = false };
-
-				Trainee b = new Trainee
-				{
-					ID = "456",
-					Name = new Name("Sapir", "Barabi"),
-					Sex = Gender.Female,
-					PhoneNumber = "456",
-					BirthDay = new DateTime(1993, 5, 14),
-					Address = new Address("Kiryat Ata", "David Remez", "1a"),
-					CurrentCarType = VehicleType.LargeTruck,
-				};
-
-				bl.AddTrainee(a);
-
-				bl.AddTrainee(b);
-				bl.AddTest(d);
-				bl.AddUpdatePassword(a.ID, "a");
-
-				bl.AddUpdatePassword(b.ID, "b");
-				bl.AddUpdatePassword(c.ID, "c");
-
-			}
-			//this needs to be erased. it's here only for debugging reasons
-			GlobalSettings.AlreadyLoggedIn = true;
+			bl = FactoryBL.GetBL();			
 			InfoBlock.Text = "Login: Enter ID and password to enter.\nFloat above a button for an explanation.";
 
 		}
@@ -171,20 +83,13 @@ namespace UI_WPF
 			{
 				IBL bl = FactoryBL.GetBL();
 				if (bl.GetTesters().Any(T => T.ID == id))
-				{
 					GlobalSettings.User = bl.GetTester(id);
-					GlobalSettings.AppClearanceLevel = UserType.Tester;
-				}
 				else if (bl.GetTrainees().Any(T => T.ID == id))
-				{
 					GlobalSettings.User = bl.GetTrainee(id);
-					GlobalSettings.AppClearanceLevel = UserType.Trainee;
-				}
+				
 				else if (bl.GetAdmins().Any(A => A.ID == id))
-				{
 					GlobalSettings.User = bl.GetAdmin(id);
-					GlobalSettings.AppClearanceLevel = UserType.Admin;
-				}
+
 				else throw new InvalidOperationException("That user ID does not exist in the system");
 				if (GlobalSettings.User.FirstLogIn)
 				{
@@ -224,20 +129,11 @@ namespace UI_WPF
 			{
 				IBL bl = FactoryBL.GetBL();
 				if (bl.GetTesters().Any(T => T.ID == id))
-				{
 					GlobalSettings.User = bl.GetTester(id);
-					GlobalSettings.AppClearanceLevel = UserType.Tester;
-				}
-				else if (bl.GetTrainees().Any(T => T.ID == id))
-				{
+				else if (bl.GetTrainees().Any(T => T.ID == id))	
 					GlobalSettings.User = bl.GetTrainee(id);
-					GlobalSettings.AppClearanceLevel = UserType.Trainee;
-				}
 				else if (bl.GetAdmins().Any(A => A.ID == id))
-				{
 					GlobalSettings.User = bl.GetAdmin(id);
-					GlobalSettings.AppClearanceLevel = UserType.Admin;
-				}
 				else throw new InvalidOperationException("That user ID does not exist in the system");
 				if (GlobalSettings.User.AwaitingAdminReset == true)
 					throw new InvalidOperationException("The admins are processing your first request.");

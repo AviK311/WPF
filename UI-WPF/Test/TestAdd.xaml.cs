@@ -114,10 +114,12 @@ namespace UI_WPF
 
         private void VerifyRange(Address address,Tester tester)
         {
-            IsStillCalculating = true;
-            IsCloseEnough = bl.IsTesterCloseEnough(tester, address);
-            IsStillCalculating = false;
-        }
+			IsStillCalculating = true;
+			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Visible));
+			IsCloseEnough = bl.IsTesterCloseEnough(tester, address);
+			IsStillCalculating = false;
+			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Collapsed));
+		}
 
         private void CheckingValidAddress(object sender, SelectionChangedEventArgs e)
         {
@@ -199,6 +201,7 @@ namespace UI_WPF
 			InfoBlock.Text = "Add Test: Once you choose a trainee and a tester, you can save.";
 			PropellerThread = new Thread(PropellerFunction);
             PropellerThread.Start();
+			CalculatingTextBlock.Visibility = Visibility.Collapsed;
 
 
         }
@@ -219,8 +222,13 @@ namespace UI_WPF
                 image.Visibility = Visibility.Visible;
             }
         }
-      
-        private void image_MouseEnter()
+
+		private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+		{
+			PropellerThread.Abort();
+		}
+
+		private void image_MouseEnter()
         {
 			this.Dispatcher.Invoke((Action)(() =>
 			{//this refer to form in WPF application 
