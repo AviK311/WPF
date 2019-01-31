@@ -57,7 +57,7 @@
             <Label Content="Phone Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox x:Name="phoneNumberTextBox" Grid.Column="1" Text="{Binding PhoneNumber, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" VerticalAlignment="Center" Width="155" KeyDown="Phone_KeyDown"/>
             <Label Content="Email Address:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <TextBox x:Name="emailTextBox" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="155" TextChanged="emailTextBox_TextChanged" />
+            <TextBox x:Name="emailTextBox" Grid.Column="1" Text="{Binding Email, Mode=OneWayToSource, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="155" KeyUp="emailTextBox_KeyUp" />
             <Label Content="Sex:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <ComboBox x:Name="sexComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" SelectedItem="{Binding Sex}" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="155"/>
 
