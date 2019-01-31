@@ -51,7 +51,7 @@
 			<Label VerticalAlignment="Center" Grid.Row="5" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Phone Number:" Height="26" Width="93"/>
 			<TextBox x:Name="phoneNumberTextBox" Width="155" VerticalAlignment="Center" Text="{Binding PhoneNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="5" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" KeyDown="Phone_KeyDown" />
 			<Label VerticalAlignment="Center" Grid.Row="6" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Email Address:" Height="26" Width="93"/>
-            <TextBox x:Name="emailTextBox" Width="155" VerticalAlignment="Center" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" TextChanged="emailTextBox_TextChanged"/>
+            <TextBox x:Name="emailTextBox" Width="155" VerticalAlignment="Center" Text="{Binding Email, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="6" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" KeyUp="emailTextBox_KeyUp"/>
 
 			<Label VerticalAlignment="Center" Grid.Row="7" Margin="3,3,0,3" HorizontalAlignment="Left" Grid.Column="0" Content="Exp Years:" Height="26" Width="62"/>
 			<TextBox x:Name="expYearsTextBox" Width="155" VerticalAlignment="Center" Text="{Binding ExpYears, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Row="7" Margin="3,4,0,4" Height="24" HorizontalAlignment="Left" Grid.Column="1" KeyDown="TextBox_KeyDown"/>

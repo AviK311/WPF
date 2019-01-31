@@ -251,12 +251,14 @@ namespace UI_WPF
 		{
 			InfoBlock.Text = "View Trainee";
 		}
-        private void emailTextBox_TextChanged(object sender, TextChangedEventArgs e)
+      
+
+        private void emailTextBox_KeyUp(object sender, KeyEventArgs e)
         {
             try
             {
                 string s = emailTextBox.Text + "gmail.com";
-                if (emailTextBox.Text.Last() == '@')
+                if (emailTextBox.Text.Last() == '@' && e.Key != Key.Delete && e.Key != Key.Back && !emailTextBox.Text.Contains("@gmail.com"))
                     emailTextBox.Text = s;
             }
             catch { }

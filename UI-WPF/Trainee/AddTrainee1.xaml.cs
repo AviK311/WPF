@@ -111,7 +111,7 @@ namespace UI_WPF
             try
             {
                 string s = emailTextBox.Text + "gmail.com";
-                if (emailTextBox.Text.Last() == '@'&& e.Key != Key.Delete&& e.Key != Key.Back)
+                if (emailTextBox.Text.Last() == '@'&& e.Key != Key.Delete&& e.Key != Key.Back&& !emailTextBox.Text.Contains("@gmail.com"))
                     emailTextBox.Text = s;
             }
             catch { }
