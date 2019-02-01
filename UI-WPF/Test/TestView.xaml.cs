@@ -28,14 +28,17 @@ namespace UI_WPF
         List<Test> testList;
 		DateTime LastValidTime;
         Tester tester;
-        bool IsCloseEnough = true;
-        bool IsStillCalculating = false;
+        bool IsTesterCloseEnough = true;
+        bool IsStillCalculatingDistance = false;
+		/// <summary>
+		/// This thread handles the propeller spinning while the system calculates the distance.
+		/// </summary>
         Thread PropellerThread;
 
         private void PropellerFunction()
         {
             while (true)
-                if (IsStillCalculating)
+                if (IsStillCalculatingDistance)
                     image_MouseEnter();
 
         }
@@ -82,11 +85,11 @@ namespace UI_WPF
         private void SaveButton_Click(object sender, RoutedEventArgs e)
         {
             test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-            if (IsStillCalculating == true)
+            if (IsStillCalculatingDistance == true)
                 MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
             else
             {
-                if (IsCloseEnough == false)
+                if (IsTesterCloseEnough == false)
                     MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
                 else
                 {
@@ -160,6 +163,7 @@ namespace UI_WPF
             test = testList[currentIndex + 1];
             DataContext = test;
 			LastValidTime = test.TestDateTime;
+			Hour.SelectedIndex = test.TestDateTime.Hour - 9;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 				EditButton.IsEnabled = false;
 			else EditButton.IsEnabled = true;
@@ -173,6 +177,7 @@ namespace UI_WPF
             test = testList[currentIndex - 1];
             DataContext = test;
 			LastValidTime = test.TestDateTime;
+			Hour.SelectedIndex = test.TestDateTime.Hour - 9;
 			if (GlobalSettings.User is Trainee && test.TestDateTime < DateTime.Now)
 				EditButton.IsEnabled = false;
 			else EditButton.IsEnabled = true;
@@ -180,10 +185,10 @@ namespace UI_WPF
 
         private void VerifyAddress(Address address, Tester tester)
         {
-			IsStillCalculating = true;
+			IsStillCalculatingDistance = true;
 			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Visible));
-			IsCloseEnough = bl.IsTesterCloseEnough(tester, address);
-			IsStillCalculating = false;
+			IsTesterCloseEnough = bl.IsTesterCloseEnough(tester, address);
+			IsStillCalculatingDistance = false;
 			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Collapsed));
 
 		}
@@ -203,7 +208,7 @@ namespace UI_WPF
 				Thread thread = new Thread(() => VerifyAddress(address, tester));
 				thread.Start();
 			}
-			else IsCloseEnough = true;
+			else IsTesterCloseEnough = true;
 		}
 
 		private void traineeIDComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

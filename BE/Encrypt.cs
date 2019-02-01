@@ -8,11 +8,19 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+	/// <summary>
+	/// Encrypt Class is used to handle encryption and decryption of passwords
+	/// </summary>
 	public static class Encrypt
 	{
 		static readonly string PasswordHash = "P@@Sw0rd";
 		static readonly string SaltKey = "S@LT&KEY";
 		static readonly string VIKey = "@1B2c3D4e5F6g7H8";
+		/// <summary>
+		/// Takes a string and encrypts it
+		/// </summary>
+		/// <param name="plainText">The string to be encrypted</param>
+		/// <returns></returns>
 		public static string EncryptString(string plainText)
 		{
 			byte[] plainTextBytes = Encoding.UTF8.GetBytes(plainText);
@@ -36,7 +44,11 @@ namespace BE
 			}
 			return Convert.ToBase64String(cipherTextBytes);
 		}
-		//Decrypt
+		/// <summary>
+		/// Takes a string and decrypts it
+		/// </summary>
+		/// <param name="encryptedText">The string to decrypt</param>
+		/// <returns></returns>
 		public static string DecryptString(string encryptedText)
 		{
 			byte[] cipherTextBytes = Convert.FromBase64String(encryptedText);

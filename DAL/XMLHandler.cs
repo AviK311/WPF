@@ -11,6 +11,9 @@ using DS;
 
 namespace DAL
 {
+	/// <summary>
+	/// class made for handling XML data files
+	/// </summary>
 	public class XMLHandler
 	{
 		XElement TraineeRoot, TesterRoot, ConfigRoot;
@@ -21,7 +24,11 @@ namespace DAL
 			PasswordPath = @"PasswordXML.xml",
 			MessagePath = @"MessageXML.xml",
 			ConfigPath = @"ConfigXML.xml";
-		public static XMLHandler Handler = null;
+		private static XMLHandler Handler = null;
+		/// <summary>
+		/// singleton
+		/// </summary>
+		/// <returns></returns>
 		public static XMLHandler GetXMLHandler()
 		{
 			if (Handler == null)
@@ -144,6 +151,10 @@ namespace DAL
 			DataSource.testList = LoadFromXML<List<Test>>(TestPath);
 		}
         #region trainee
+		/// <summary>
+		/// manual trainee serialize
+		/// </summary>
+		/// <param name="trainee"></param>
         public void AddTrainee(Trainee trainee)
 		{
 			XElement ID = new XElement("id", trainee.ID);
@@ -191,6 +202,11 @@ namespace DAL
 			TraineeRoot.Add(Trainee);
 			TraineeRoot.Save(TraineePath);
 		}
+		/// <summary>
+		/// manual trainee deserialize
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
 		public Trainee GetTrainee(string id)
 		{
 			Trainee toReturn;
@@ -253,12 +269,20 @@ namespace DAL
 			}
 			return toReturn;
 		}
+		/// <summary>
+		/// manual trainee list deserialize
+		/// </summary>
+		/// <returns></returns>
 		public List<Trainee> GetTrainees()
 		{
 			return (from trainee in TraineeRoot.Elements()
 					where GetTrainee(trainee.Element("id").Value)!=null
 					select GetTrainee(trainee.Element("id").Value)).ToList();
 		}
+		/// <summary>
+		/// remove trainee from the root
+		/// </summary>
+		/// <param name="id"></param>
 		public void RemoveTrainee(string id)
 		{
 			var toRemove = (from trainee in TraineeRoot.Elements()
@@ -270,6 +294,10 @@ namespace DAL
 #endregion
        
         #region tester
+		/// <summary>
+		/// manual tester serialize
+		/// </summary>
+		/// <param name="tester"></param>
         public void AddTester(Tester tester)
         {
             XElement ID = new XElement("id", tester.ID);
@@ -316,7 +344,11 @@ namespace DAL
             TesterRoot.Add(Tester);
             TesterRoot.Save(TesterPath);
         }
-
+		/// <summary>
+		/// manual tester deserialize
+		/// </summary>
+		/// <param name="id"></param>
+		/// <returns></returns>
         public Tester GetTester(string id)
         {
             Tester toReturn;
@@ -379,12 +411,20 @@ namespace DAL
             }
             return toReturn;
         }
+		/// <summary>
+		/// manual tester list deserialize
+		/// </summary>
+		/// <returns></returns>
         public List<Tester> GetTesters()
         {
             return (from tester in TesterRoot.Elements()
 					where GetTester(tester.Element("id").Value)!=null
 					select GetTester(tester.Element("id").Value)).ToList();
         }
+		/// <summary>
+		/// remove tester from the root
+		/// </summary>
+		/// <param name="id"></param>
         public void RemoveTester(string id)
         {
             var toRemove = (from tester in TesterRoot.Elements()
@@ -395,26 +435,45 @@ namespace DAL
         }
 
 		#endregion
+		/// <summary>
+		/// returns the code for the next test to be added
+		/// </summary>
+		/// <returns></returns>
 		public int GetTestCode()
 		{
 			return int.Parse(ConfigRoot.Element("TestCode").Value);
 		}
+		/// <summary>
+		/// adds 1 to the code of the Config test code
+		/// </summary>
 		public void AddToTestCode()
 		{
 			ConfigRoot.Element("TestCode").Value = (GetTestCode() + 1).ToString();
 			ConfigRoot.Save(ConfigPath);
 		}
+		/// <summary>
+		/// returns the code for the next message to be added
+		/// </summary>
+		/// <returns></returns>
 		public int GetMessageCode()
 		{
 			return int.Parse(ConfigRoot.Element("MessageCode").Value);
 		}
+		/// <summary>
+		/// adds to the next code number of the messages
+		/// </summary>
 		public void AddToMessageCode()
 		{
 			ConfigRoot.Element("MessageCode").Value = (GetMessageCode() + 1).ToString();
 			ConfigRoot.Save(ConfigPath);
 		}
 
-
+		/// <summary>
+		/// generic function (handles password serialize as well)
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="source"></param>
+		/// <param name="path"></param>
 		public void SaveToXML<T>(T source, string path)
         {
             FileStream file = new FileStream(path, FileMode.Create);

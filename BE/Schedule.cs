@@ -35,6 +35,9 @@ namespace BE
 			}
 		}
 	}
+	/// <summary>
+	/// A data structure that holds information on the availability of a tester during the week, with functions for comfortable usage
+	/// </summary>
 	public class Schedule
 	{
 		public Dictionary<DayOfWeek, Day> week;
@@ -62,6 +65,12 @@ namespace BE
 				return week[index];
 			}
 		}
+		/// <summary>
+		/// determines whether the Tester is available on the day and hour
+		/// </summary>
+		/// <param name="dayIndex"></param>
+		/// <param name="hourIndex"></param>
+		/// <returns></returns>
 		public bool this[DayOfWeek dayIndex, int hourIndex]
 		{
 			get

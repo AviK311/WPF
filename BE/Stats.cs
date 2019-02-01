@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+	/// <summary>
+	/// Each trainee has a Dictionary containing all types of vehicles as keys, and for each vehicle, an stats object that holds information on the car type learning stats
+	/// </summary>
 	public class Stats
 	{
 		public Stats()

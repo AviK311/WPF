@@ -8,6 +8,9 @@ using DS;
 
 namespace DAL
 {
+	/// <summary>
+	/// the class implements Idal and uses functions of the XMLHandler class to load and save data to XML files
+	/// </summary>
 	class Dal_XML_imp : Idal
 	{
 		public void AddAdmin(Admin admin)

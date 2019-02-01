@@ -15,12 +15,21 @@ namespace BE
 		{
 			PasswordDB = new Dictionary<string, string>();
 		}
-
+		/// <summary>
+		/// checks if the password is the correct password of the user with the given id
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="password"></param>
+		/// <returns></returns>
 		public bool CheckPassword(string id, string password)
 		{
 			//return PasswordDB.Any(pair => pair.Key == id && pair.Value == password);
 			return PasswordDB[id] == password;
 		}
+		/// <summary>
+		/// </summary>
+		/// <param name="id"></param>
+		/// <param name="password"></param>
 		public void AddUpdatePassword(string id, string password)
 		{
 			if (PasswordDB.Any(pair => pair.Key == id))

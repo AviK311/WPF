@@ -22,6 +22,10 @@ namespace BE
 			client.EnableSsl = true;
 			
 		}
+		/// <summary>
+		/// Sends the message using the SmtpClient class method "send"
+		/// </summary>
+		/// <param name="message">MailMessage to send</param>
 		public void send(MailMessage message)
 		{
 			client.Send(message);

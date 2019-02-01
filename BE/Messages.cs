@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace BE
 {
+	/// <summary>
+	/// messages that a non-admin can leave for the admins. The messages are sent to all admins, and upon deleting one, it is deleted for all admins.
+	/// </summary>
     public class Messages
     {
 		

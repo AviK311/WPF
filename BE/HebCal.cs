@@ -44,8 +44,8 @@ namespace BE
 		/// checks if a given day falls out on a hebrew holiday.
 		/// if it is, holiday will hold the specific holiday
 		/// </summary>
-		/// <param name="Day"></param>
-		/// <param name="holiday"></param>
+		/// <param name="Day">the day to check</param>
+		/// <param name="holiday">the returning holiday</param>
 		/// <returns></returns>
 		public bool IsHoliday(DateTime Day, out Holiday? holiday)
 		{
@@ -57,6 +57,11 @@ namespace BE
 			holiday = Holidays[Date];
 			return true;
 		}
+		/// <summary>
+		/// Returns a string containing the IL culture format of the date
+		/// </summary>
+		/// <param name="date"></param>
+		/// <returns></returns>
 		public string GetHebrewDate(DateTime date)
 		{
 			culture.DateTimeFormat.Calendar = cal;

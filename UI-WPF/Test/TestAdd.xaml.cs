@@ -29,14 +29,17 @@ namespace UI_WPF
 		Test test;
 		DateTime LastValidTime;
         Tester tester;
-        bool IsCloseEnough = true;
-        bool IsStillCalculating = false;
+        bool IsTesterCloseEnough = true;
+        bool IsStillCalculatingDistance = false;
+		/// <summary>
+		/// This thread handles the propeller spinning while the system calculates the distance.
+		/// </summary>
 		Thread PropellerThread;
 		
 		private void PropellerFunction()
 		{
 			while (true)
-				if (IsStillCalculating)
+				if (IsStillCalculatingDistance)
 					image_MouseEnter();
 
 		}
@@ -46,11 +49,11 @@ namespace UI_WPF
 			TimeSpan ts = new TimeSpan((int)Hour.SelectedItem, 0, 0);
 			test.TestDateTime = test.TestDateTime.Date + ts;
 			test.BeginLocation = new Address(city: City.Text, street: Street.Text, buildingNumber: Number.Text);
-			if (IsStillCalculating == true)
+			if (IsStillCalculatingDistance == true)
 				MessageBox.Show("please wait, the system is calculating", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 			else
 			{
-				if (IsCloseEnough == false)
+				if (IsTesterCloseEnough == false)
 					MessageBox.Show("The location is too far for the tester", "Alert", MessageBoxButton.OK, MessageBoxImage.Information);
 				else
 				{
@@ -114,10 +117,10 @@ namespace UI_WPF
 
         private void VerifyRange(Address address,Tester tester)
         {
-			IsStillCalculating = true;
+			IsStillCalculatingDistance = true;
 			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Visible));
-			IsCloseEnough = bl.IsTesterCloseEnough(tester, address);
-			IsStillCalculating = false;
+			IsTesterCloseEnough = bl.IsTesterCloseEnough(tester, address);
+			IsStillCalculatingDistance = false;
 			Dispatcher.Invoke((Action)(() => CalculatingTextBlock.Visibility = Visibility.Collapsed));
 		}
 
@@ -141,7 +144,7 @@ namespace UI_WPF
 				Thread thread = new Thread(() => VerifyRange(address, tester));
 				thread.Start();
 			}
-			else IsCloseEnough = true;
+			else IsTesterCloseEnough = true;
 
 		}
 

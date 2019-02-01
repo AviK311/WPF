@@ -26,7 +26,9 @@ namespace BE
 		public bool IsSignaling { get; set; }
 		public bool IsSignsReading { get; set; }
 		public bool IsBreaking { get; set; }
-
+		/// <summary>
+		/// get only property that determines whether the test was passed
+		/// </summary>
 		public bool passed
 		{
 			get
