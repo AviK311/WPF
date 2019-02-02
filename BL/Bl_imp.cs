@@ -23,10 +23,11 @@ namespace BL
             dal = DAL.FactoryDal.GetDAL();
         }
 		/// <summary>
+		/// function that checks the logic of a test that the user requested to add or update to the database.
 		/// 
 		/// </summary>
-		/// <param name="test"></param>
-		/// <param name="update"></param>
+		/// <param name="test">the test the user added or updated</param>
+		/// <param name="update">if the function was called for updating, this will be true</param>
         public void AddTest(Test test, bool update = false)
         {
 			string ErrorString = "";
@@ -123,7 +124,11 @@ namespace BL
 			
 			dal.AddTest(test);
         }
-
+		/// <summary>
+		/// the function checks the logic of a tester before adding or updating him to the database
+		/// </summary>
+		/// <param name="tester"></param>
+		/// <param name="update"></param>
         public void AddTester(Tester tester, bool update = false)
         {
 			if (!update && dal.GetTesters().Any(T => T.Equals(tester)))
@@ -134,7 +139,11 @@ namespace BL
                 throw new InvalidOperationException("The tester is younger than " + Configuration.MinAgeOfTester);
             dal.AddTester(tester);
         }
-
+		/// <summary>
+		/// check trainee logic before adding hi to database
+		/// </summary>
+		/// <param name="trainee"></param>
+		/// <param name="update"></param>
         public void AddTrainee(Trainee trainee, bool update = false)
         {
 			if (trainee.Age < Configuration.MinAgeOfTrainee)
@@ -151,7 +160,13 @@ namespace BL
             //add code here
             throw new NotImplementedException();
         }
-
+		/// <summary>
+		/// returns an Ienumerable of Testers who are available on a given date
+		/// 
+		/// </summary>
+		/// <param name="date">date to check</param>
+		/// <param name="TestNumber">this is sent to exclude this test from the testing of availability</param>
+		/// <returns></returns>
         public IEnumerable<string> AvailableTesters(DateTime date, string TestNumber)
         {
 			
@@ -269,7 +284,13 @@ namespace BL
 			if (inOrder) toReturn.OrderBy(item => item.Key.ToString());
 			return toReturn;
         }
-
+		/// <summary>
+		/// function that takes a tester and a designated test begin address and returns
+		/// true if the test is close enough
+		/// </summary>
+		/// <param name="tester"></param>
+		/// <param name="address"></param>
+		/// <returns></returns>
         public bool IsTesterCloseEnough(Tester tester,Address address)
         {          
                 string origin = tester.Address.street + " " + tester.Address.buildingNumber + " st." + tester.Address.city;  //"pisga 45 st. jerusalem"; //
